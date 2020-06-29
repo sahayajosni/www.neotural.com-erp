@@ -37,6 +37,7 @@
               name="qty" (ngModelChange)="getNetAmount(model.productName,model.qty,model.category)" 
               autocomplete="off" required  />
             
+            
             <div *ngIf="qty.errors && (qty.dirty || qty.touched) ||
               (salesForm.submitted && !qty.valid )">
               <span [hidden]="!qty.errors.required" class="spanerror">
@@ -44,7 +45,7 @@
               </span>
             </div>
 
-            <label id="po-label">Unit :  {{ this.model.unit }} </label>
+            <label id="po-label" *ngIf="productchosendiv">Unit :  {{ this.model.unit }} </label>
             
               
           </div>
@@ -87,9 +88,22 @@
               </span>
             </div>
 
-            <label id="po-label" style="margin-left: auto;">Price</label>
-            <label class="m-t-5px" id="po-textbox" style="margin-left: auto;border: 1px solid #2C4655;
-              padding-top: 4px;" name="price">  {{ this.model.unitPrice }} </label>
+            
+            <div class="column1" style="margin-left: auto;" *ngIf="productchosendiv">
+              <div class="row">
+                <label id="po-label" style="margin-left: auto;">Availabe Qty</label>
+                <label class="m-t-5px" id="po-textbox" style="margin-left: auto;border: 1px solid #2C4655;
+                padding-top: 4px;" name="price">  {{ this.model.recentStock }} </label>
+              </div>
+            </div>
+
+            <div class="column1" style="margin-left: auto;" *ngIf="productchosendiv">
+              <div class="row">
+                <label id="po-label" style="margin-left: auto;">Price</label>
+                <label class="m-t-5px" id="po-textbox" style="margin-left: auto;border: 1px solid #2C4655;
+                padding-top: 4px;" name="price">  {{ this.model.unitPrice }} </label>
+              </div>
+            </div>
             
           </div>
         </div>
@@ -109,7 +123,7 @@
           </div>
         </div>
                   
-        <div class="update-btn" style="margin: 20px 0px;">
+        <div class="update-btn" style="margin: 20px 0px;" *ngIf="this.model.qty !== 0 && this.model.aboveqty !== 'recent' ">
           <button id="add-btn">{{data.dialogText}}</button>
         </div>
       </div>

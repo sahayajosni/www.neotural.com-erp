@@ -28,6 +28,7 @@ export class Sales extends Common {
    categorycode: string;
    totalAmount:number;
    unit:string;
+   recentStock: number;
 }
 
 /*export const TEXT_NO_RESULTS = "No results found";

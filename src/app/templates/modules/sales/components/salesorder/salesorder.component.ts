@@ -39,7 +39,7 @@ export class SalesorderComponent implements OnInit {
   customerList: any;
   currentDate = new Date();
   salesDate: any;
-
+  public productchosendiv = false;
 
   public dataService: CompleterData;
   public searchData :any=[];
@@ -74,6 +74,8 @@ export class SalesorderComponent implements OnInit {
     this.getProductList();
     this.getCustomerLists();
     this.ErrorHandle = false;
+    this.productchosendiv = false;
+    this.model.aboveqty = "";
   }
 
   ngAfterViewInit() {
@@ -119,33 +121,55 @@ export class SalesorderComponent implements OnInit {
   getNetAmount(productName: string, quantity: string, category: string) {
     console.log("productName -->"+productName);
     console.log("quantity -->"+quantity);
+    this.model.aboveqty = "";
+    if(this.snackBar.open) {
+      this.snackBar.dismiss();
+    }
     this.model.unit = '';
-    if(quantity == '' || quantity == undefined){
-      console.log("--- No Quantity are available ---");
-      this.salesService.getUnitPrice(productName,category).subscribe(
-        (data) => {
-          this.sales = data;
-          this.model.unitPrice = this.sales.sellingprice;   
-          this.model.unit = this.sales.unit;
-        }
-      );
+    if(productName == '' || productName == undefined){
+      this.productchosendiv = false;
     }else{
-      this.salesService.getUnitPrice(productName,category)
-      .subscribe(
-        data => {
-          this.sales = data; 
-          this.model.unitPrice = this.sales.sellingprice;
-          this.model.unit = this.sales.unit;
-          this.model.netAmount = Number.parseInt(quantity) * this.sales.sellingprice;
-          //this.model.customerName = this.sales.customername+"-"+this.sales.customercode;
-          /* let res = quantity.replace(/\D/g, "");
-          this.model.netAmount = Number.parseInt(res) * this.sales.sellingprice;
-          console.log("Price ---->"+this.model.unitPrice +" --netAmount -->"+this.model.netAmount);*/
-        },
-        error => {
-          
-        }
-      );
+      this.productchosendiv = true;
+      if(quantity == '' || quantity == undefined){
+        console.log("--- No Quantity are available ---");
+        this.salesService.getUnitPrice(productName,category).subscribe(
+          (data) => {
+            this.sales = data;
+            this.model.unitPrice = this.sales.sellingprice;   
+            this.model.unit = this.sales.unit;
+            this.model.recentStock = this.sales.recentStock;
+          }
+        );
+      }else{
+        this.salesService.getUnitPrice(productName,category)
+        .subscribe(
+          data => {
+            this.sales = data; 
+            this.model.unitPrice = this.sales.sellingprice;
+            this.model.unit = this.sales.unit;
+            this.model.recentStock = this.sales.recentStock;
+            this.model.netAmount = Number.parseInt(quantity) * this.sales.sellingprice;
+            if(quantity > this.model.recentStock){
+              this.model.aboveqty = "recent";
+              setTimeout(() => {
+                this.snackBar.open("Qty must be equal or below available qty", "dismiss", {
+                  duration: 20000, 
+                  panelClass: ["warning"],
+                  verticalPosition: "top",
+                  horizontalPosition: 'center'
+                });
+              });
+            }
+            //this.model.customerName = this.sales.customername+"-"+this.sales.customercode;
+            /* let res = quantity.replace(/\D/g, "");
+            this.model.netAmount = Number.parseInt(res) * this.sales.sellingprice;
+            console.log("Price ---->"+this.model.unitPrice +" --netAmount -->"+this.model.netAmount);*/
+          },
+          error => {
+            
+          }
+        );
+      }
     }
   }
 
@@ -284,6 +308,11 @@ export class SalesorderComponent implements OnInit {
   }
 
   addSalesOrder(data: any) {
+
+    if(this.snackBar.open) {
+      this.snackBar.dismiss();
+    }
+
     let categoryname = "";
     let categorycode = "";
     let productname = "";
@@ -418,6 +447,11 @@ export class SalesorderComponent implements OnInit {
         });
       }
     );
+  }
+
+  ngOnDestroy(){
+    this.snackBar.dismiss();
+    (<HTMLElement>document.querySelector('.mat-drawer-content')).style.overflow = 'auto';
   }
   
 }
