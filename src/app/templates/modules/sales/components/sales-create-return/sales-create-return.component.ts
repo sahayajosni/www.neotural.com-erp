@@ -37,6 +37,9 @@ export class SalesCreateReturnComponent implements OnInit {
   }
 
   getPrice(quantity:number){
+    if(this.snackBar.open) {
+      this.snackBar.dismiss();
+    }
     let price = this.model.subtotal/quantity;
     if(this.model.quantity > this.model.invqty){
       setTimeout(() => {
@@ -48,6 +51,18 @@ export class SalesCreateReturnComponent implements OnInit {
             verticalPosition: "top",
           }
         );
+      });
+    }else if(quantity == 0){
+      setTimeout(() => {
+        this.snackBar.open(
+          "Qty must be valid.",
+          "dismss",
+          {
+            duration: 20000, 
+            panelClass: ["warning"],
+            verticalPosition: "top",
+          }
+        );   
       });
     }
     if(price == Infinity){
@@ -86,6 +101,11 @@ export class SalesCreateReturnComponent implements OnInit {
   }
 
   addReturn() {
+
+    if(this.snackBar.open) {
+      this.snackBar.dismiss();
+    }
+
     if(this.model.itemstatus == null){
       console.log("ItemStatus not chosen");
       document.getElementById("damaged").style.background = '#c18484';
@@ -106,6 +126,18 @@ export class SalesCreateReturnComponent implements OnInit {
           verticalPosition: "top",
         }
       );
+    }else if(this.model.quantity == 0){
+      setTimeout(() => {
+        this.snackBar.open(
+          "Qty must be valid.",
+          "dismss",
+          {
+            duration: 20000, 
+            panelClass: ["warning"],
+            verticalPosition: "top",
+          }
+        );   
+      });
     }else{
       const invoice = {
         "createddate": new Date().toJSON().slice(0, 10).split('-').reverse().join('/'),

@@ -36,6 +36,9 @@ export class PurchaseCreateReturnComponent implements OnInit {
   }
 
   getPrice(quantity:number){
+    if(this.snackBar.open) {
+      this.snackBar.dismiss();
+    }
     let price = this.model.subtotal/quantity;
     if(this.model.quantity > this.model.invqty){
       setTimeout(() => {
@@ -43,6 +46,18 @@ export class PurchaseCreateReturnComponent implements OnInit {
           "Qty cannot be more than Invoiced Qty.",
           "dismss",
           {
+            panelClass: ["warning"],
+            verticalPosition: "top",
+          }
+        );   
+      });
+    }else if(quantity == 0){
+      setTimeout(() => {
+        this.snackBar.open(
+          "Qty must be valid.",
+          "dismss",
+          {
+            duration: 20000, 
             panelClass: ["warning"],
             verticalPosition: "top",
           }
@@ -85,6 +100,11 @@ export class PurchaseCreateReturnComponent implements OnInit {
   }
 
   addReturn() {
+
+    if(this.snackBar.open) {
+      this.snackBar.dismiss();
+    }
+
     if(this.model.itemstatus == null){
       console.log("ItemStatus not chosen");
       document.getElementById("damaged").style.background = '#c18484';
@@ -105,6 +125,18 @@ export class PurchaseCreateReturnComponent implements OnInit {
           verticalPosition: "top",
         }
       );
+    }else if(this.model.quantity == 0){
+      setTimeout(() => {
+        this.snackBar.open(
+          "Qty must be valid.",
+          "dismss",
+          {
+            duration: 20000, 
+            panelClass: ["warning"],
+            verticalPosition: "top",
+          }
+        );   
+      });
     }else{
       const invoice = {
         "createddate": new Date().toJSON().slice(0, 10).split('-').reverse().join('/'),
@@ -150,6 +182,11 @@ export class PurchaseCreateReturnComponent implements OnInit {
         }
       );
     }
+  }
+
+  ngOnDestroy(){
+    this.snackBar.dismiss();
+    (<HTMLElement>document.querySelector('.mat-drawer-content')).style.overflow = 'auto';
   }
 
 }
