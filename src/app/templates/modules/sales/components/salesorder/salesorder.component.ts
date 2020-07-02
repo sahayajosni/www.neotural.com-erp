@@ -152,7 +152,7 @@ export class SalesorderComponent implements OnInit {
             if(quantity > this.model.recentStock){
               this.model.aboveqty = "recent";
               setTimeout(() => {
-                this.snackBar.open("Qty must be equal or below available qty", "dismiss", {
+                this.snackBar.open("Quantity must be equal or below available Quantity", "dismiss", {
                   duration: 20000, 
                   panelClass: ["warning"],
                   verticalPosition: "top",
