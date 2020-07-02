@@ -3,7 +3,7 @@
     <h4>Petty Cash List</h4> 
   </div>
   <div class="col-6">
-    <button (click)="addPetty(null,null,null,null,null,null,null)" class="create-button">
+    <button (click)="addPetty(null,null,null,null,null,null,null,null)" class="create-button">
       <span class="fas fa-plus"></span> Add Petty 
     </button>
   </div>
@@ -32,7 +32,7 @@
             <td class="txt-right wid-150px">{{p.totalAmount}} 
               <span class="edit-delete-icon">
                 <span class="fas fa-pen mar-let-40px" (click)="addPetty(p.id,p.description,p.addedDate,p.type,
-                p.toPerson,p.totalAmount,p.currency)" ></span>
+                p.toPerson,p.totalAmount,p.currency,p.invoicenumber)" ></span>
                 <span class="fas fa-trash mar-let-30px" (click)="pettydelete(p.id)"></span>
               </span>
             </td>

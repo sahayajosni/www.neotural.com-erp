@@ -57,7 +57,7 @@ export class PettycashlistComponent implements OnInit {
   }
 
   addPetty(id:string,description:string,addedDate:string,type:string,
-    toPerson:string,totalAmount:string,currency:string){
+    toPerson:string,totalAmount:string,currency:string,invoicenumber:string){
 
     if(this.snackBar.open) {
       this.snackBar.dismiss();
@@ -72,8 +72,8 @@ export class PettycashlistComponent implements OnInit {
       this.button = "Add";
     }
     data = { dialogTitle: this.title, dialogText: this.button, id: id,
-      description: description, addedDate: addedDate, type: type,
-      toPerson: toPerson, totalAmount: totalAmount,currency: currency };
+      description: description, addedDate: addedDate, type: type,toPerson: toPerson, 
+      totalAmount: totalAmount,currency: currency,invoicenumber: invoicenumber };
 
     this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;

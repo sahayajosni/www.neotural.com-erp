@@ -45,7 +45,8 @@ export class AddPettycashComponent implements OnInit {
     this.model.type=this.local_data.type;
     this.model.toPerson=this.local_data.toPerson;
     this.model.totalAmount=this.local_data.totalAmount;    
-    this.model.currency=this.local_data.currency;   
+    this.model.currency=this.local_data.currency; 
+    this.model.invoicenumber=this.local_data.invoicenumber;  
     if(this.local_data.id!=null){
       this.showbackbtn=false;
     }else{
@@ -109,6 +110,7 @@ export class AddPettycashComponent implements OnInit {
     console.log("Update Type-->"+this.model.type);
     console.log("Update ToPerson-->"+this.model.toPerson);
     console.log("Update TotalAmount-->"+this.model.totalAmount);
+    console.log("Update InvoiceNumber-->"+this.model.invoicenumber);
     this.financeService.save(this.model)
       .subscribe(
         data => {
