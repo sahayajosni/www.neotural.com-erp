@@ -84,7 +84,7 @@ export class PettycashlistComponent implements OnInit {
     let dialogRef = this.dialog
     .open(AddPettycashComponent, {
       width:'150vh',
-      height:'80vh',
+      //height:'80vh',
       data: data,
       disableClose: true,
       //: true
