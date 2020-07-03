@@ -17,6 +17,7 @@ import { EmployeeAddComponent } from "../employee-add/employee-add.component";
 import { CommonService } from "../../../../../core/common/_services/common.service";
 import {formatDate } from '@angular/common';
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: "app-employee-list",
@@ -50,12 +51,19 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     //private config: MatSnackBarConfig,
     private dialog: MatDialog,
     public commonService: CommonService,
-    public router: Router
+    public router: Router,
+    private SpinnerService: NgxSpinnerService,
+
   ) {
   }
 
   ngOnInit() { 
+    this.SpinnerService.show();  
     this.allemplist();
+        setTimeout(() => {
+            this.SpinnerService.hide();
+        }, 100);
+
     //this.removeScrollBar();
   }
 

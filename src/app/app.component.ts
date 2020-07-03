@@ -3,17 +3,18 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from './core/common/_services';
 import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
-import { Component, ViewChild, ViewContainerRef, TemplateRef, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, TemplateRef, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from "ngx-spinner";  
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'app';
   idleState = 'Not started.';
   timedOut = false;
@@ -23,10 +24,12 @@ export class AppComponent {
   @ViewChild('childModal', {static:false}) public childModal:ModalDirective;
 
   constructor(private router: Router,
+    private SpinnerService: NgxSpinnerService,
     private authenticationService:AuthenticationService,
     private dialog: MatDialog,
     private viewContainerRef: ViewContainerRef,
     private idle: Idle, private keepalive: Keepalive) {
+     
       console.log(authenticationService.getToken());
     if(authenticationService.getToken()!=null){
       this.router.navigate(['/']);
@@ -83,6 +86,13 @@ this.authenticationService.getUserLoggedIn().subscribe(userLoggedIn => {
   }
 })
 }
+
+ngOnInit() {  
+  this.SpinnerService.show();  
+        setTimeout(() => {
+            this.SpinnerService.hide();
+        }, 500);
+}  
 
 reset() {
 this.idle.watch();

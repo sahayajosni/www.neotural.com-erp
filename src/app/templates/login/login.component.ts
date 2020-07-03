@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { AlertService, AuthenticationService } from "../../core/common/_services/index";
 import { FormsModule } from "@angular/forms";
 import { MatSnackBar } from '@angular/material';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: "app-login",
@@ -27,10 +28,13 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, 
     private alertService: AlertService,
     private authenticationService:AuthenticationService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private SpinnerService: NgxSpinnerService,
+
     ) {}
 
   ngOnInit() {
+    this.SpinnerService.show(); 
     this.label1 = "User Name";
     this.label2 = "Password";
     this.label3 = "Login";
@@ -40,9 +44,11 @@ export class LoginComponent implements OnInit {
     this.label6 = "System"; 
     //document.getElementById('id01').style.display='block'";
     //document.getElementById('id01').style.display='block';
-
     this.model.currentusername = "";
-    this.model.currentpassword = "";
+    this.model.currentpassword = ""; 
+        setTimeout(() => {
+            this.SpinnerService.hide();
+        }, 100);
   }
 
   lang(lang:string) {
@@ -76,6 +82,7 @@ export class LoginComponent implements OnInit {
 
   }
   login() {
+    this.SpinnerService.show(); 
     this.alertService.clear();
     let message = "Invalid User Name !";
     console.log("user name : password" +this.model.currentusername +
@@ -99,8 +106,8 @@ export class LoginComponent implements OnInit {
     }
   ); 
 
-    
-  }
+  this.SpinnerService.hide(); 
+}
 
   forgetPassword() {}
 

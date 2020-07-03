@@ -9,6 +9,7 @@ import {
   MatTableDataSource,
 } from "@angular/material";
 import { formatDate } from '@angular/common';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: "app-profitandloss",
@@ -28,7 +29,9 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
   constructor(
     private financeService: FinanceService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private SpinnerService: NgxSpinnerService,
+
   ) {
     this.todayDate = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
   }
@@ -36,7 +39,6 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.model.totalDebit = 0;
     this.model.totalCredit = 0;
-
     this.getProfitandLossList();
   }
 
@@ -47,6 +49,8 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
   }
   
   getProfitandLossList() {
+        this.SpinnerService.show();  
+
     this.loadinggif=true;
     this.profitTable = false;
     this.financeService.getProfitLoss().subscribe(
@@ -65,6 +69,7 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
       },
       (error) => {
         setTimeout(() => {
+          this.SpinnerService.hide();
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
             "dismss",
@@ -76,6 +81,7 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
         });
       }
     );
+    this.SpinnerService.hide();
   }
 
   /* filterSelected(isChecked: boolean){
@@ -87,6 +93,7 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
   } */
 
   sortByDate(){
+    this.SpinnerService.show();  
     this.loadinggif=true;
     this.profitTable = false;
     this.model.totalDebit = 0;
@@ -119,6 +126,7 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
         },
         (error) => {
           setTimeout(() => {
+            this.SpinnerService.hide();
             this.snackBar.open(
               "Network error: server is temporarily unavailable",
               "dismss",
@@ -131,6 +139,7 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
         }
       );    
     }
+    this.SpinnerService.hide();
 
   }
 

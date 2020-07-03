@@ -11,6 +11,7 @@ import {
 import { PurchaseAddComponent } from "../purchaseadd/purchaseadd.component";
 import { PurchaseCreateInvoiceComponent } from "./../purchase-create-invoice/purchase-create-invoice.component";
 import { PurchaseCreateReturnComponent } from '../purchase-create-return/purchase-create-return.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: "app-purchaselist",
@@ -44,12 +45,21 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
   constructor(
     private purchaseService: PurchaseService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private SpinnerService: NgxSpinnerService,
+
   ) {}
 
   ngOnInit() {
+    this.SpinnerService.show();  
     this.getPurchaseOrderLists();
-   // this.removeScrollBar();
+    setTimeout(() => {
+        this.SpinnerService.hide();
+    }, 100);
+
+    // this.SpinnerService.show();  
+    // this.getPurchaseOrderLists();
+    // this.SpinnerService.hide();
   }
 
   ngOnDestroy() {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-placeholder',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaceholderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private SpinnerService: NgxSpinnerService,
+    ) { }
 
   ngOnInit() {
+    this.SpinnerService.show();
   }
 
 }
