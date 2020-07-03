@@ -1620,7 +1620,7 @@ productlist(number: string){
     this.dialog.open(AddnewcategoryComponent,{
       //height:'55vh',
       width:'90vh',
-      height:'40vh',
+      //height:'40vh',
       panelClass: 'addnewcategory',
       disableClose: true,
       //hasBackdrop: true
@@ -1644,7 +1644,7 @@ productlist(number: string){
     this.dialog.open(AddpromotionComponent,{
       panelClass: 'addpromotion',
       width:'120vh',
-      height:'70vh',
+      //height:'70vh',
       data: {title: title, key: show},
       disableClose: true,
      // hasBackdrop: true

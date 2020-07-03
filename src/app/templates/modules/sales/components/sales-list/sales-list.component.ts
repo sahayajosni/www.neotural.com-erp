@@ -251,7 +251,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
       .open(SalesorderComponent, {
         panelClass: "addpromotion",
         width:'200vh',
-        height:'400vh',
+        //height:'400vh',
         data: data,
         disableClose: true,
        // hasBackdrop: true
@@ -409,7 +409,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
     let dialogRef = this.dialog.open(SalesCreateReturnComponent, {
       panelClass: "purchaseCreateReturn",
       width:'120vh',
-      height:'200vh',
+      //height:'200vh',
       data: data,
     })
     dialogRef.backdropClick().subscribe(result => {

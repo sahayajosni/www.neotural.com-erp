@@ -252,7 +252,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
       .open(PurchaseAddComponent, {
         panelClass: "addpromotion",
         width:'200vh',
-        height:'400vh',
+        //height:'400vh',
         data: data,
         disableClose: true,
       //  hasBackdrop: true
@@ -410,7 +410,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
     let dialogRef = this.dialog.open(PurchaseCreateReturnComponent, {
       panelClass: "purchaseCreateReturn",
       width:'120vh',
-      height:'200vh',
+      //height:'200vh',
       //disableClose: true,
       //hasBackdrop: true
       data: data,
