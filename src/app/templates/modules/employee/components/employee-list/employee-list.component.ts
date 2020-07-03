@@ -185,7 +185,7 @@ enable: boolean;
     this.dialog.open(EmployeeAddComponent,{
       panelClass: 'addpromotion',
       width:'200vh',
-      height:'400vh',
+      //height:'400vh',
       data: data,
       disableClose: true,
      // hasBackdrop: true
