@@ -114,9 +114,7 @@
           <div></div>
           <div> <p id="totID">Total</p></div>
           <div>
-            <p id="pID" *ngIf="this.model.productName !== undefined && this.model.qty === undefined || this.model.qty === 0">
-              {{ this.model.unitPrice }}</p>
-            <p id="pID" *ngIf="this.model.productName !== undefined && this.model.qty !== undefined">
+            <p id="pID" *ngIf="this.model.productName !== undefined">
               {{ this.model.netAmount }}</p>
             <p id="pID" *ngIf="this.model.productName === undefined">
               {{this.model.subtotal === 0 ? '0.00':this.model.subtotal}}</p>

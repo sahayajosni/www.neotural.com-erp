@@ -130,12 +130,13 @@ export class SalesorderComponent implements OnInit {
       this.productchosendiv = false;
     }else{
       this.productchosendiv = true;
-      if(quantity == '' || quantity == undefined){
+      this.model.zeroqunatity = Number.parseInt(quantity);
+      if(quantity == '' || quantity == undefined || this.model.zeroqunatity == 0){
         console.log("--- No Quantity are available ---");
         this.salesService.getUnitPrice(productName,category).subscribe(
           (data) => {
             this.sales = data;
-            this.model.unitPrice = this.sales.sellingprice;   
+            this.model.netAmount = 0.00;   
             this.model.unit = this.sales.unit;
             this.model.recentStock = this.sales.recentStock;
           }
