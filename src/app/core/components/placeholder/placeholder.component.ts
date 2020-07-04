@@ -12,7 +12,6 @@ export class PlaceholderComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.SpinnerService.show();
   }
 
 }
