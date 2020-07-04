@@ -75,7 +75,7 @@ export class SalesorderComponent implements OnInit {
     this.getCustomerLists();
     this.ErrorHandle = false;
     this.productchosendiv = false;
-    this.model.aboveqty = "";
+    this.model.aboveqty = '';
   }
 
   ngAfterViewInit() {
@@ -121,7 +121,7 @@ export class SalesorderComponent implements OnInit {
   getNetAmount(productName: string, quantity: string, category: string) {
     console.log("productName -->"+productName);
     console.log("quantity -->"+quantity);
-    this.model.aboveqty = "";
+    this.model.aboveqty = '';
     if(this.snackBar.open) {
       this.snackBar.dismiss();
     }
@@ -131,7 +131,7 @@ export class SalesorderComponent implements OnInit {
     }else{
       this.productchosendiv = true;
       this.model.zeroqunatity = Number.parseInt(quantity);
-      if(quantity == '' || quantity == undefined || this.model.zeroqunatity == 0){
+      if(quantity == '' || quantity == undefined){
         console.log("--- No Quantity are available ---");
         this.salesService.getUnitPrice(productName,category).subscribe(
           (data) => {
@@ -139,6 +139,17 @@ export class SalesorderComponent implements OnInit {
             this.model.netAmount = 0.00;   
             this.model.unit = this.sales.unit;
             this.model.recentStock = this.sales.recentStock;
+            this.model.unitPrice = this.sales.sellingprice;
+            if (this.model.zeroqunatity == 0){
+              setTimeout(() => {
+                this.snackBar.open("Quantity must be Valid", "dismiss", {
+                  duration: 20000, 
+                  panelClass: ["warning"],
+                  verticalPosition: "top",
+                  horizontalPosition: 'center'
+                });
+              });
+            }
           }
         );
       }else{
@@ -151,7 +162,7 @@ export class SalesorderComponent implements OnInit {
             this.model.recentStock = this.sales.recentStock;
             this.model.netAmount = Number.parseInt(quantity) * this.sales.sellingprice;
             if(quantity > this.model.recentStock){
-              this.model.aboveqty = "recent";
+              this.model.aboveqty = 'above';
               setTimeout(() => {
                 this.snackBar.open("Quantity must be equal or below available Quantity", "dismiss", {
                   duration: 20000, 
@@ -309,10 +320,6 @@ export class SalesorderComponent implements OnInit {
   }
 
   addSalesOrder(data: any) {
-
-    if(this.snackBar.open) {
-      this.snackBar.dismiss();
-    }
 
     let categoryname = "";
     let categorycode = "";

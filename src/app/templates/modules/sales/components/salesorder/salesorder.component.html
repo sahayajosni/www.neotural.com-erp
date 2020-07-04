@@ -121,8 +121,8 @@
           </div>
         </div>
                   
-        <div class="update-btn" style="margin: 20px 0px;" *ngIf="this.model.qty !== 0 && this.model.aboveqty !== 'recent' ">
-          <button id="add-btn">{{data.dialogText}}</button>
+        <div class="update-btn" style="margin: 20px 0px;">
+          <button id="add-btn" [disabled]="this.model.qty == 0 || this.model.aboveqty == 'above'">{{data.dialogText}}</button>
         </div>
       </div>
                    
