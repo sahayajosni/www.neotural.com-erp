@@ -46,6 +46,7 @@ export class PurchaseCreateReturnComponent implements OnInit {
           "Qty cannot be more than Invoiced Qty.",
           "dismss",
           {
+            duration: 20000, 
             panelClass: ["warning"],
             verticalPosition: "top",
           }
@@ -121,6 +122,7 @@ export class PurchaseCreateReturnComponent implements OnInit {
         "Qty cannot be more than Invoiced Qty.",
         "dismss",
         {
+          duration: 20000, 
           panelClass: ["warning"],
           verticalPosition: "top",
         }
