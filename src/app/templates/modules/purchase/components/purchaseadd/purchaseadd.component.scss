@@ -161,6 +161,11 @@ body {background-color: #16222B;}
   color: #6E7D87;
 }
 
+#add-btn[disabled] {
+  //background-color: #FF85A1;
+  background-color: #6E7D87;
+  cursor: not-allowed;
+}
 
 .mat-dialog-container{
   background: inherit !important;
