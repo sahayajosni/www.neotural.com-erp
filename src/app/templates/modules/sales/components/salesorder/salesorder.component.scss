@@ -49,6 +49,12 @@ span{
   margin-top: 0px;
   font-weight: bold;
 }
+#error{
+  color:red;
+  font-family: $font-family;
+  float: right;
+  margin-top: -40px;
+}
 #pID{
   color:$h2-bg;
   font-family: $font-family;

@@ -40,6 +40,7 @@ export class SalesorderComponent implements OnInit {
   currentDate = new Date();
   salesDate: any;
   public productchosendiv = false;
+  public noavailableqty = false;
 
   public dataService: CompleterData;
   public searchData :any=[];
@@ -75,6 +76,7 @@ export class SalesorderComponent implements OnInit {
     this.getCustomerLists();
     this.ErrorHandle = false;
     this.productchosendiv = false;
+    this.noavailableqty = false;
     this.model.aboveqty = '';
   }
 
@@ -125,20 +127,25 @@ export class SalesorderComponent implements OnInit {
     if(this.snackBar.open) {
       this.snackBar.dismiss();
     }
-    this.model.unit = '';
     if(productName == '' || productName == undefined){
       this.productchosendiv = false;
+      this.noavailableqty = false;
     }else{
       this.productchosendiv = true;
       this.model.zeroqunatity = Number.parseInt(quantity);
       if(quantity == '' || quantity == undefined){
         console.log("--- No Quantity are available ---");
+        this.model.netAmount = 0.00;   
         this.salesService.getUnitPrice(productName,category).subscribe(
           (data) => {
             this.sales = data;
-            this.model.netAmount = 0.00;   
             this.model.unit = this.sales.unit;
             this.model.recentStock = this.sales.recentStock;
+            if(this.model.recentStock == 0){
+              this.noavailableqty = true;
+            }else{
+              this.noavailableqty = false;
+            }
             this.model.unitPrice = this.sales.sellingprice;
             if (this.model.zeroqunatity == 0){
               setTimeout(() => {
@@ -171,6 +178,11 @@ export class SalesorderComponent implements OnInit {
                   horizontalPosition: 'center'
                 });
               });
+            }
+            if(this.model.recentStock == 0){
+              this.noavailableqty = true;
+            }else{
+              this.noavailableqty = false;
             }
             //this.model.customerName = this.sales.customername+"-"+this.sales.customercode;
             /* let res = quantity.replace(/\D/g, "");
@@ -303,6 +315,7 @@ export class SalesorderComponent implements OnInit {
     this.model.unitPrice = '';
     this.model.netAmount = 0.00;
     this.productchosendiv = false;
+    this.noavailableqty = false;
   }
   
   getCustomerLists() {
