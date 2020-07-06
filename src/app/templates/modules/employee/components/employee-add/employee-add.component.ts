@@ -73,6 +73,8 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
     this.model.monthlysalary = '';
     this.model.workHour = '';
     this.model.annualLeave = '';
+    this.model.departmentname = '';
+    this.model.location = '';
   }
 
   fileChangeEvent(fileInput: any) {
