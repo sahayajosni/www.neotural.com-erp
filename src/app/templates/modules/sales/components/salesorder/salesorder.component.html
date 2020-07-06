@@ -124,9 +124,13 @@
         <div class="update-btn" style="margin: 20px 0px;">
           <button id="add-btn" [disabled]="this.model.qty == 0 || this.model.aboveqty == 'above'">{{data.dialogText}}</button>
         </div>
+        <div class="update-btn" style="margin: 20px 0px;">
+          <button id="add-btn" (click)="cancelSales()">Revert</button>
+        </div> 
       </div>
                    
-    </form>                   
+    </form>    
+                  
   </div>
 
 </div>      

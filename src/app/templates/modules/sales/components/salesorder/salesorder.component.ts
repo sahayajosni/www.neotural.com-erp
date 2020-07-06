@@ -295,8 +295,14 @@ export class SalesorderComponent implements OnInit {
     this.model.category = '';
     this.model.sNo = 0;
     this.model.totalItem = 0;
-    this.model.subTotal = '';
+    this.model.subTotal = 0.00;
     this.model.deliveryCost = '';   
+    this.model.qty = '';
+    this.model.unit = '';
+    this.model.recentStock = '';
+    this.model.unitPrice = '';
+    this.model.netAmount = 0.00;
+    this.productchosendiv = false;
   }
   
   getCustomerLists() {
