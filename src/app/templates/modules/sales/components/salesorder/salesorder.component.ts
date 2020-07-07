@@ -132,7 +132,7 @@ export class SalesorderComponent implements OnInit {
       this.noavailableqty = false;
     }else{
       this.productchosendiv = true;
-      this.model.zeroqunatity = Number.parseInt(quantity);
+      this.model.zeroquantity = Number.parseInt(quantity);
       if(quantity == '' || quantity == undefined){
         console.log("--- No Quantity are available ---");
         this.model.netAmount = 0.00;   
@@ -147,18 +147,17 @@ export class SalesorderComponent implements OnInit {
               this.noavailableqty = false;
             }
             this.model.unitPrice = this.sales.sellingprice;
-            if (this.model.zeroqunatity == 0){
-              setTimeout(() => {
-                this.snackBar.open("Quantity must be Valid", "dismiss", {
-                  duration: 20000, 
-                  panelClass: ["warning"],
-                  verticalPosition: "top",
-                  horizontalPosition: 'center'
-                });
-              });
-            }
           }
         );
+      }if(this.model.zeroquantity == 0){
+        setTimeout(() => {
+          this.snackBar.open("Quantity must be Valid", "dismiss", {
+            duration: 20000, 
+            panelClass: ["warning"],
+            verticalPosition: "top",
+            horizontalPosition: 'center'
+          });
+        });
       }else{
         this.salesService.getUnitPrice(productName,category)
         .subscribe(

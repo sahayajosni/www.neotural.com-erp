@@ -129,7 +129,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
       this.productchosendiv = false;
     }else{
       this.productchosendiv = true;
-      this.model.zeroqunatity = Number.parseInt(quantity);
+      this.model.zeroquantity = Number.parseInt(quantity);
       if (quantity == "" || quantity == undefined) {
         console.log("--- No Quantity are available ---");
         this.model.netAmount = 0.00;   
@@ -138,18 +138,18 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
             this.purchase = data;
             this.model.unitPrice = this.purchase.sellingprice;   
             this.model.unit = this.purchase.unit;  
-            if (this.model.zeroqunatity == 0){
-              setTimeout(() => {
-                this.snackBar.open("Quantity must be Valid", "dismiss", {
-                  duration: 20000, 
-                  panelClass: ["warning"],
-                  verticalPosition: "top",
-                  horizontalPosition: 'center'
-                });
-              });
-            }
+            
           }
         );
+      } if (this.model.zeroquantity == 0){
+        setTimeout(() => {
+          this.snackBar.open("Quantity must be Valid", "dismiss", {
+            duration: 20000, 
+            panelClass: ["warning"],
+            verticalPosition: "top",
+            horizontalPosition: 'center'
+          });
+        });
       } else {
         this.purchaseService.getUnitPrice(productName, category).subscribe(
           (data) => {
@@ -158,7 +158,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
             this.model.unit = this.purchase.unit;  
             this.model.vendorName =
               this.purchase.vendorname + "-" + this.purchase.vendorcode;
-            this.model.netAmount = Number.parseInt(quantity) * this.purchase.sellingprice;
+            this.model.netAmount = Number.parseInt(quantity) * this.purchase.sellingprice;           
             /* let res = quantity.replace(/\D/g, "");
             this.model.netAmount =
               Number.parseInt(res) * this.purchase.sellingprice; */
