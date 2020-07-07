@@ -371,6 +371,8 @@ export class SalesListComponent implements OnInit, OnDestroy {
     };
 
     let dialogRef = this.dialog.open(SalesCreateInvoiceComponent, {
+      height: "400px",
+      width: "600px",
       panelClass: "purchaseCreateInvoice",
       data: data,
     })
