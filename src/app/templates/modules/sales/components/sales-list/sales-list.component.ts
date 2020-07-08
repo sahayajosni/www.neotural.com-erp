@@ -37,6 +37,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
   isSortDateAsc: boolean = true;
   title: string = "";
   button: string = "";
+  checkedInfo: any;
 
   public salesTable = false;
   soreturnList: any = {};
@@ -139,6 +140,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
   }
 
   rowSelected(index: number, item: any, isChecked: boolean) {
+    this.checkedInfo = isChecked;
     if (isChecked) {
       item.indexVal = index;
       this.prodArr.push(item);
@@ -198,7 +200,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
                     if(this.soreturnList[i].socode == this.prodArr[0].socode ){
                       this.isCreateReturn = false;
                       setTimeout(() => {
-                        this.snackBar.open("Sales was Returnrd already.", "dismss", {
+                        this.snackBar.open("Sales was Returned already.", "dismss", {
                           panelClass: ["warn"],
                           verticalPosition: "top",
                         });
@@ -264,6 +266,8 @@ export class SalesListComponent implements OnInit, OnDestroy {
         console.log('The Sales Order dialog was closed');
         this.ngOnInit();
       });
+      this.checkedInfo.target.checked = false;
+      this.isAddSalesOrder = true;
   }
 
   getErrorMsg(isErrMsg: boolean) {
@@ -389,6 +393,8 @@ export class SalesListComponent implements OnInit, OnDestroy {
       this.isDeleteButton = false;
       this.isAddSalesOrder = true; 
     });
+    this.checkedInfo.target.checked = false;
+    this.isAddSalesOrder = true;
   }
 
   createReturn() {
@@ -426,5 +432,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
       this.isCreateReturn = false;
       this.isAddSalesOrder = true; 
     });
+    this.checkedInfo.target.checked = false;
+    this.isAddSalesOrder = true;
   }
 }

@@ -38,6 +38,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
   isSortDateAsc: boolean = true;
   title: string = "";
   button: string = "";
+  checkedInfo: any;
 
   public purchaseTable = false;
   poreturnList: any = {};
@@ -148,7 +149,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
   }
 
   rowSelected(index: number, item: any, isChecked: boolean) {
-    
+    this.checkedInfo = isChecked;
     if (isChecked) {
       item.indexVal = index;
       this.prodArr.push(item);
@@ -208,7 +209,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
                     if(this.poreturnList[i].pocode == this.prodArr[0].pocode ){
                       this.isCreateReturn = false;
                       setTimeout(() => {
-                        this.snackBar.open("Purchase was Returnrd already.", "dismss", {
+                        this.snackBar.open("Purchase was Returned already.", "dismss", {
                           panelClass: ["warn"],
                           verticalPosition: "top",
                         });
@@ -275,6 +276,8 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
         console.log('The dialog was closed');
         this.ngOnInit();
       });
+      this.checkedInfo.target.checked = false;
+      this.isAddPurchaseOrder = true;
   }
 
   getErrorMsg(isErrMsg: boolean) {
@@ -398,6 +401,8 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
       this.isDeleteButton = false;
       this.isAddPurchaseOrder = true; 
     });
+    this.checkedInfo.target.checked = false;
+    this.isAddPurchaseOrder = true;
   }
 
   createReturn() {
@@ -436,5 +441,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
       this.isCreateReturn = false;
       this.isAddPurchaseOrder = true; 
      });
+     this.checkedInfo.target.checked = false;
+     this.isAddPurchaseOrder = true;
   }
 }
