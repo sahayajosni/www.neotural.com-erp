@@ -11,6 +11,7 @@ import { Category, Product } from '../../../../core/common/_models';
 import { Discount } from '../../../../core/common/_models/discount';
 import { PrintDialogService } from "src/app/core/services/print-dialog/print-dialog.service";
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 // addnewcategory start
 @Component({
@@ -1252,7 +1253,9 @@ export class CategorytableComponent {
 @Component({
   selector: 'app-categoryitem',
   templateUrl: './categoryitem.component.html',
-  styleUrls: ['./categoryitem.component.scss']
+  styleUrls: ['./categoryitem.component.scss'],
+  providers: [NgbModalConfig, NgbModal]
+
 })
 export class CategoryItemComponent implements OnInit {
   allproductlist : any= {};// Product;  
@@ -1339,12 +1342,16 @@ export class CategoryItemComponent implements OnInit {
     private catprodservice: CategoryproductService,
     private snackBar: MatSnackBar,
     private printDialogService: PrintDialogService,
+    config: NgbModalConfig, private modalService: NgbModal,
 
     ) { 
 
       this.dataSource = new MatTableDataSource(this.allproductlist);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      // customize default values of modals used by this component tree
+    config.backdrop = 'static';
+    config.keyboard = false;
     }
 
    
@@ -1606,30 +1613,31 @@ productlist(number: string){
     this.editdeletediv=true;
    // this.discountdetails=false;
   }
-
-  addNewCategory(){
+  addNewCategory(content){
     //this.successdialog = 'block';
 
-    this.dialogConfig.disableClose = true;
-    this.dialogConfig.autoFocus = true;
-    this.dialogConfig.position = {
-      'top': '100',
-       'left': '100',
-       'right': '0'
-    };
-    this.dialog.open(AddnewcategoryComponent,{
-      //height:'55vh',
-      width:'90vh',
-      //height:'40vh',
-      panelClass: 'addnewcategory',
-      disableClose: true,
-      //hasBackdrop: true
-     // data: {dialogTitle: "hello", dialogText: "text"},
-    })
-    .afterClosed().subscribe(result => {
-      this.allcategorylist();
-    }
-    );
+    this.modalService.open(content);
+
+    // this.dialogConfig.disableClose = true;
+    // this.dialogConfig.autoFocus = true;
+    // this.dialogConfig.position = {
+    //   'top': '100',
+    //    'left': '100',
+    //    'right': '0'
+    // };
+    // this.dialog.open(AddnewcategoryComponent,{
+    //   //height:'55vh',
+    //   width:'90vh',
+    //   //height:'40vh',
+    //   panelClass: 'addnewcategory',
+    //   disableClose: true,
+    //   //hasBackdrop: true
+    //  // data: {dialogTitle: "hello", dialogText: "text"},
+    // })
+    // .afterClosed().subscribe(result => {
+    //   this.allcategorylist();
+    // }
+    // );
   }
 
   addpromotion(title:string,show:string){

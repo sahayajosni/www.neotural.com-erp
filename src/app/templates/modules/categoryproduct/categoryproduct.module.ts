@@ -50,6 +50,8 @@ import { CategoryProductRoutingModule } from "./categoryproduct-routing.module";
 import { UnitsComponent } from './units/units.component';
 import { AddunitsComponent } from './addunits/addunits.component';
 import { CategoryComponent } from './category/category.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AddnewcategoryComponent,CategoryItemComponent,CategoryeditdeleteComponent,AddpromotionComponent,DiscounteditComponent, DiscountdeleteComponent,AddnewproductComponent,ProductviewComponent,ProducteditComponent,AllproducteditComponent,CategorytableComponent, UnitsComponent, AddunitsComponent, CategoryComponent],
@@ -101,8 +103,11 @@ import { CategoryComponent } from './category/category.component';
     CommonModule,
     //RouterModule.forChild(routes) ,
     Ng2CompleterModule,
+    NgbModule,
     CategoryProductRoutingModule
   ],
+  exports: [CategoryItemComponent],
+  bootstrap: [CategoryItemComponent],
   entryComponents: [AddnewcategoryComponent,AddpromotionComponent,DiscounteditComponent, CategoryeditdeleteComponent,DiscountdeleteComponent,AddnewproductComponent,ProductviewComponent,ProducteditComponent,AllproducteditComponent],
   providers: [CategoryproductService,VendorService]
 })
