@@ -4,7 +4,7 @@
   </div>
   <div class="col-8">
     <div style="float: right;">
-      <button  (click)="addNewCategory(content)" class="create-button">
+      <button (click)="addNewCategory(content)" class="create-button">
         <span class="fas fa-plus"></span> Category 
       </button>
       <button  (click)="addNewProduct()" class="create-button">
@@ -75,7 +75,6 @@
 </div>
 <!-- Loading Image End -->
 <!-- <button class="btn btn-lg btn-outline-primary" (click)="addNewCategory(content)">Launch demo modal</button> -->
-
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <!-- <h4 class="modal-title" id="modal-basic-title">Hi there!</h4> -->
@@ -89,13 +88,12 @@
       (submit)="categoryForm.form.valid && saveCategory()"
       #categoryForm="ngForm" novalidate>   
           <div>
-             <div *ngIf="show">
+            <div *ngIf="show">
               <label> Code : {{model.categorycode}} </label>
-          </div>
+            </div>
               <input type="text"  [(ngModel)]="model.name" 
                   #name="ngModel" placeholder="Enter Name"
                   id="name" name="name"  autocomplete="off" required>
-  
   
               <div *ngIf="name.errors  && (name.dirty || name.touched) ||
                   (categoryForm.submitted && !name.valid )">
@@ -108,11 +106,11 @@
               id="description"
                   placeholder="Enter Description" name="description" autocomplete="off">
           </div>
-          <button type="submit">{{btnlabel}}</button>
-  
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-dark">{{btnlabel}}</button>
+          </div>  
       </form>
-  </div>
-  
+    </div>
   </div>
   <!-- <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>

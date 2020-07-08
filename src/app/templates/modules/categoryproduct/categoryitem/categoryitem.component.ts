@@ -1272,6 +1272,9 @@ export class CategoryItemComponent implements OnInit {
   loadinggif:boolean = false;
   public productTable = false;
 
+  btnlabel:string;
+  show:boolean;
+
   // All Product
   displayedColumns: string[] = [
     'productname',
@@ -1615,7 +1618,8 @@ productlist(number: string){
   }
   addNewCategory(content){
     //this.successdialog = 'block';
-
+    this.btnlabel="Save";
+    this.show = false;
     this.modalService.open(content);
 
     // this.dialogConfig.disableClose = true;
@@ -1638,6 +1642,31 @@ productlist(number: string){
     //   this.allcategorylist();
     // }
     // );
+  }
+
+  saveCategory(){
+    console.log("Inside saveCategory method");
+    console.log("Category Name-->"+this.model.categorycode);
+    console.log("Category Name-->"+this.model.name);
+    console.log("Category Desc-->"+this.model.description);
+    this.catprodservice.save(this.model)
+    .subscribe(
+      data => {
+        setTimeout(() => {
+          this.snackBar.open("Category Saved Successfully", "", {
+            panelClass: ["success"],
+            verticalPosition: 'top'      
+          });
+        });
+    },
+    error => {
+      setTimeout(() => {
+        this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          panelClass: ["error"],
+          verticalPosition: 'top'      
+        });
+      }); 
+    });  
   }
 
   addpromotion(title:string,show:string){
