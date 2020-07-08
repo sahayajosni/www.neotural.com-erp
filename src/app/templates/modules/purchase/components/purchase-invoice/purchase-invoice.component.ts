@@ -16,6 +16,8 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
   invArr = [];
   isShowEditDelete = [];
   isAddStock: boolean = false;
+  checkedInfo: any;
+
   constructor(
     private purchaseservice: PurchaseService,
     private snackBar: MatSnackBar
@@ -104,7 +106,7 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
   }
 
   rowSelected(index: number, item: any, isChecked: boolean) {
-    
+    this.checkedInfo = isChecked;
     if (isChecked) {
       item.indexVal = index;
       this.invArr.push(item);
@@ -175,7 +177,9 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
             );
 
           });
-
+          
+          this.checkedInfo.target.checked = false;
+          this.isAddStock = false;
           this.getInvoiceLists();
       },
       (error) => {
