@@ -22,7 +22,7 @@
 }
 input,select,textarea{
   width: 100%;
-  padding: 12px;
+  padding: 8px;
   font-size: 12px;
   font-family: $font-family;
   background:$po-order-form-bg;
@@ -47,11 +47,7 @@ button[type="submit"]{
   // padding: 12px;
   // font-family: $font-family;
 }
-.close-x{
-  border-radius: 50%;
-  background: #16222B;
-  color: white;
-}
+
 h4{
   font-size: $header-label;
 }
@@ -152,23 +148,30 @@ table tbody tr:hover td span{
 	margin-top: 30%;
 }
 
-//-------Product Css Start
+//-------Product Css Start -------
+#prodheader{
+  margin-left: 5rem;
+}
 #disedit-icon {
-  font-size: 18px;
+  font-size: 22px;
   color: white;
   text-align: center;
   margin: 3px 10px;
 }
-
+.col-20 {
+  float: left;
+  width: 20%;
+  margin-top: 15px;
+}
 .col-30 {
   float: left;
   width: 30%;
-  margin-top: 6px;
+  margin-top: 15px;
 }
 .col-70 {
   float: left;
   width: 70%;
-  margin-top: 6px;
+  margin-top: 15px;
 }
 .image-wrap {
   padding: 10px;
@@ -243,6 +246,8 @@ table tbody tr:hover td span{
   background: $btn-bg;
   border: none;
   border-radius: $btn-border-radius;
+  padding: auto;
+  float: right;
 }
 ::ng-deep .modal-dialog{
   max-width: 80%;

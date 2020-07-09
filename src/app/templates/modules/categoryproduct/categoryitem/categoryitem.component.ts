@@ -1675,6 +1675,7 @@ productlist(number: string){
   }
   addNewCategory(content){
     //this.successdialog = 'block';
+    this.btnlabel = 'Save';
     this.modalService.open(content);
 
     // this.dialogConfig.disableClose = true;
