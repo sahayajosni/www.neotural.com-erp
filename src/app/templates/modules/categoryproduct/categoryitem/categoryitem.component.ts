@@ -1658,6 +1658,7 @@ productlist(number: string){
             verticalPosition: 'top'      
           });
         });
+        this.modalService.dismissAll();
     },
     error => {
       setTimeout(() => {

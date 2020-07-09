@@ -35,14 +35,18 @@ input{
 }
 button[type="submit"]{
   background: $btn-bg;
-  width: 100%;
+  width: 30%;
   border: none;
+  border-radius: 20px;
   border-radius: $btn-border-radius;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  padding: 12px;
+  padding: 0.5rem 1.5rem;
   font-family: $font-family;
+  color: white;
+  // box-sizing: border-box;
+  // margin-top: 6px;
+  // margin-bottom: 16px;
+  // padding: 12px;
+  // font-family: $font-family;
 }
 h4{
   font-size: $header-label;
