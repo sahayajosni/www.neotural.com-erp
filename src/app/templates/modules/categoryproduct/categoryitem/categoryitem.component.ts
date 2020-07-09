@@ -1675,7 +1675,8 @@ productlist(number: string){
   }
   addNewCategory(content){
     //this.successdialog = 'block';
-    this.modalService.open(content);
+   // this.modalService.open(content);
+    this.modalService.open(content, { windowClass: 'my-class'});
 
     // this.dialogConfig.disableClose = true;
     // this.dialogConfig.autoFocus = true;

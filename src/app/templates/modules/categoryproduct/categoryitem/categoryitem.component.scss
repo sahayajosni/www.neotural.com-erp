@@ -41,6 +41,7 @@ button[type="submit"]{
   padding: 0.5rem 1.5rem;
   font-family: $font-family;
   color: white;
+  height: 35px;
   // box-sizing: border-box;
   // margin-top: 6px;
   // margin-bottom: 16px;
@@ -244,10 +245,23 @@ table tbody tr:hover td span{
   border: none;
   border-radius: $btn-border-radius;
 }
-::ng-deep .modal-dialog{
+// add product
+::ng-deep  .modal-dialog {
   max-width: 80%;
-  width: 80% !important;
+  width: 60% !important;
+
 }
+// add category
+::ng-deep .my-class .modal-dialog {
+  max-width: 50%;
+  width: 30% !important;
+  // height: 600px;// !important;
+
+}
+
+
+
+
 // iPhone media query start
 
 // iPhone 6, 7, & 8 in portrait & landscape
