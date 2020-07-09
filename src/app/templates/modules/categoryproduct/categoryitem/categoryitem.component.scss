@@ -20,7 +20,7 @@
 .modal-footer {
   border: 1px solid $po-order-form-bg;
 }
-input{
+input,select,textarea{
   width: 100%;
   padding: 12px;
   font-size: 12px;
@@ -30,8 +30,7 @@ input{
   color:$white;
   border-radius: 5px;
   box-sizing: border-box;
-  margin-top: 6px;
-  margin: 5px 0px 3px 0px;
+  margin: 6px 0px 3px 0px;
 }
 button[type="submit"]{
   background: $btn-bg;
@@ -47,6 +46,11 @@ button[type="submit"]{
   // margin-bottom: 16px;
   // padding: 12px;
   // font-family: $font-family;
+}
+.close-x{
+  border-radius: 50%;
+  background: #16222B;
+  color: white;
 }
 h4{
   font-size: $header-label;
@@ -147,6 +151,103 @@ table tbody tr:hover td span{
 	position: absolute;
 	margin-top: 30%;
 }
+
+//-------Product Css Start
+#disedit-icon {
+  font-size: 18px;
+  color: white;
+  text-align: center;
+  margin: 3px 10px;
+}
+
+.col-30 {
+  float: left;
+  width: 30%;
+  margin-top: 6px;
+}
+.col-70 {
+  float: left;
+  width: 70%;
+  margin-top: 6px;
+}
+.image-wrap {
+  padding: 10px;
+  border: solid 1px #e0e0e0;
+  display: inline-block;
+}
+
+.img-space {
+  border-radius: 8px;
+  height: auto;
+  width: 70%;
+  padding: 10px;
+  min-height:175px;
+}
+
+.img-space img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  cursor: pointer;
+}
+
+.fileInputProfileWrap {
+  width: 100%;
+  height: auto;
+}
+
+.fileInputProfile {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  opacity: 0;
+}
+.fileInputProfile[disabled] + .img-space{
+  pointer-events: none;
+  cursor: not-allowed!important;
+}
+#tax-box {
+  background:$po-order-form-bg;
+  border: 1px solid $header-bg;
+  border-radius: 5px;
+}
+#margin-box {
+  background:$po-order-form-bg;
+  border: 1px solid $header-bg;
+  border-radius: 5px;
+}
+
+#addproductpic-box {
+  height: 150px;
+  width: 150px;
+  text-align: center;
+  background: #272e34;
+  border: none;
+  box-shadow: none;
+}
+#addpicture-icon {
+  font-size: 40px;
+  color: #51575c;
+  text-align: center;
+  margin: 50px auto;
+}
+
+.btn-danger{
+  margin-left: 25px;
+}
+#save-btn {
+  width: 140px;
+  height: 35px;
+  background: $btn-bg;
+  border: none;
+  border-radius: $btn-border-radius;
+}
+::ng-deep .modal-dialog{
+  max-width: 80%;
+  width: 80% !important;
+}
 // iPhone media query start
 
 // iPhone 6, 7, & 8 in portrait & landscape
@@ -160,6 +261,9 @@ table tbody tr:hover td span{
   .table>thead>tr>th{
     font-size:10px;
   } 
+  #prod-modal{
+    width: 85%;
+  }
 }
 
  // iPhone 6, 7, & 8 Plus in portrait & landscape
@@ -173,6 +277,9 @@ table tbody tr:hover td span{
   .table>thead>tr>th{
     font-size:10px;
   } 
+  #prod-modal{
+    width: 85%;
+  }
 }
 
 
@@ -187,6 +294,9 @@ table tbody tr:hover td span{
   .table>thead>tr>th{
     font-size:10px;
   } 
+  #prod-modal{
+    width: 85%;
+  }
 }
 
 
@@ -201,6 +311,9 @@ table tbody tr:hover td span{
   .table>thead>tr>th{
     font-size:10px;
   } 
+  #prod-modal{
+    width: 85%;
+  }
 }
 // iPhone 2G-4S in portrait
 @media only screen and (min-width: 320px) and (max-width: 480px) { 
@@ -213,6 +326,9 @@ table tbody tr:hover td span{
   .table>thead>tr>th{
     font-size:10px;
   } 
+  #prod-modal{
+    width: 85%;
+  }
 }
 
 // iPhone media query end
