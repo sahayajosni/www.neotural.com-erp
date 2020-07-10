@@ -15,6 +15,7 @@ import { VendorService } from "./services/vendor.service";
 import { VendorDetailsService } from "./services/vendorDetails.service";
 import { MAT_TABS_CONFIG } from "@angular/material";
 import { VendorDetailsComponent } from './components/vendor-details/vendor-details.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { VendorDetailsComponent } from './components/vendor-details/vendor-detai
     CommonModule,
     VendorAndCustomerRoutingModule,
     CoreModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    NgbModule,
   ],
   providers: [
     CustomerService,
