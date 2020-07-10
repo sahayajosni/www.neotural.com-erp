@@ -1,10 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Input,
-  OnDestroy
-} from "@angular/core";
+import { Component, OnInit, OnChanges, Input, ViewChild ,ElementRef,Inject,Optional,OnDestroy } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Employee } from "./employee-list.model";
@@ -18,6 +14,8 @@ import { CommonService } from "../../../../../core/common/_services/common.servi
 import {formatDate } from '@angular/common';
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as _ from 'lodash';
 
 @Component({
   selector: "app-employee-list",
@@ -42,6 +40,11 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   isSortIdAsc: boolean = true;
   isSortNameDesc: boolean = false;
   isSortNameAsc: boolean = true;
+
+  model:any = {};
+  imageError: string;
+  isImageSaved: boolean;
+  cardImageBase64: string;
   
   constructor(
     private employeeService: EmployeeService,
@@ -53,6 +56,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     public commonService: CommonService,
     public router: Router,
     private SpinnerService: NgxSpinnerService,
+    config: NgbModalConfig, private modalService: NgbModal,
+    private _sanitizer: DomSanitizer,
 
   ) {
   }
@@ -179,8 +184,10 @@ enable: boolean;
     }
   }
 
-  addEmployee() {
-    if(this.snackBar.open) {
+  addEmployee(addemployee) {
+    this.modalService.open(addemployee, { windowClass: 'employee-class'});
+
+    /* if(this.snackBar.open) {
       this.snackBar.dismiss();
     }
      let data = {};
@@ -197,7 +204,7 @@ enable: boolean;
       data: data,
       disableClose: true,
      // hasBackdrop: true
-    })
+    }) */
     //.afterClosed().subscribe(result => {
     //  this.allemplist();
    // });
@@ -290,4 +297,98 @@ enable: boolean;
   enableAbsentIcon(value: boolean, index: number) {
     this.isAbsentMouseover[index] = value;
   }
+
+  saveEmployee() { 
+    this.model.profilepic=this.cardImageBase64;
+    this.employeeService.save(this.model)
+      .subscribe(
+      data => {
+        setTimeout(() => {
+          this.snackBar.open("Employee created Successfully", "", {
+            panelClass: ["success"],
+            verticalPosition: 'top'      
+          });
+        });
+        this.modalService.dismissAll();
+        this.allemplist();
+      },
+      error => {
+        setTimeout(() => {
+          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            panelClass: ["error"],
+            verticalPosition: 'top'      
+          });
+        });  
+      }
+    );
+  }
+
+  addEmplyeeFields() {
+    this.model.name = '';
+    this.model.rank = '';
+    this.model.phonenumber = '';
+    this.model.address = '';
+    this.model.email = '';
+    this.model.dob = '';
+    this.model.contractnumber = '';
+    this.model.npwp = '';
+    this.model.bpjs = '';
+    this.model.monthlysalary = '';
+    this.model.workHour = '';
+    this.model.annualLeave = '';
+    this.model.departmentname = '';
+    this.model.location = '';
+  }
+
+  fileChangeEvent(fileInput: any) {
+    this.imageError = null;
+    if (fileInput.target.files && fileInput.target.files[0]) {
+        // Size Filter Bytes
+        const max_size = 20971520;
+        const allowed_types = ['image/png', 'image/jpeg'];
+        const max_height = 1200;
+        const max_width = 600;
+
+        if (fileInput.target.files[0].size > max_size) {
+          this.imageError =
+              'Maximum size allowed is ' + max_size / 1000 + 'Mb';
+          return false;
+        }
+
+        if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
+          this.imageError = 'Only Images are allowed ( JPG | PNG )';
+          return false;
+        }
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          const image = new Image();
+          image.src = e.target.result;
+          image.onload = rs => {
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+          console.log(img_height, img_width);
+          if (img_height > max_height && img_width > max_width) {
+            this.imageError =
+                'Maximum dimentions allowed ' +
+                max_height +
+                '*' +
+                max_width +
+                'px';
+            return false;
+          } else {
+            const imgBase64Path = e.target.result;
+            this.cardImageBase64 = imgBase64Path;
+            this.isImageSaved = true;
+          }
+        };
+      };
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
+  }
+
+  removeImage() {
+    this.cardImageBase64 = null;
+    this.isImageSaved = false;
+  }
+
 }

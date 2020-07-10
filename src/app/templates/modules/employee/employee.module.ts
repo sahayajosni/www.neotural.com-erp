@@ -59,6 +59,7 @@ import { FormsModule } from "@angular/forms";
 import { EmployeeCardComponent } from "./components/employee-card/employee-card.component";
 import { EmployeeAbsentCardComponent } from "./components/employee-absent-card/employee-absent-card.component";
 import { EmployeeChecinCheckoutComponent } from "./components/employee-checkin-checkout/employee-checkin-checkout.component";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -113,6 +114,7 @@ import { EmployeeChecinCheckoutComponent } from "./components/employee-checkin-c
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    NgbModule,
     DataTablesModule.forRoot()
   ],
   entryComponents: [EmployeeReportComponent, 
