@@ -756,7 +756,7 @@ export class AddnewproductComponent {
         this.dialogRef.close();
        // if(this.product.status=="success"){
           setTimeout(() => {
-            this.snackBar.open("Productr saved Successfully", "", {
+            this.snackBar.open("Product saved Successfully", "", {
               panelClass: ["success"],
               verticalPosition: 'top'      
             });
@@ -1334,6 +1334,12 @@ export class CategoryItemComponent implements OnInit {
   isImageSaved3:boolean;
   
   imageError: string;
+  inputproductcode:string;
+  vendorcode:string;
+  public div1 = false;
+  public div2 = false;
+  public div3 = false;
+  public div4 = false;
   productImage: Array<any> = [];
   imageIndex0:boolean = false;
   imageIndex1:boolean = false;
@@ -1368,6 +1374,7 @@ export class CategoryItemComponent implements OnInit {
     private snackBar: MatSnackBar,
     private printDialogService: PrintDialogService,
     config: NgbModalConfig, private modalService: NgbModal,
+    private _sanitizer: DomSanitizer,
 
     ) { 
 
@@ -1438,7 +1445,8 @@ export class CategoryItemComponent implements OnInit {
 
   allcategorylist(){
     this.categorylist="";
-    this.catprodservice.load()
+    //this.catprodservice.load()
+    this.catprodservice.loadCategoryName()
     .subscribe(
       data => {
         this.categorylist = data;
@@ -1456,11 +1464,15 @@ export class CategoryItemComponent implements OnInit {
   }
 
   allvendorlist(){
-    this.vendorservice.load()
+    /* this.vendorservice.load()
      .subscribe(
         data => {
-          this.vendornamelist = data;
-          console.log("category name"+this.vendornamelist);
+          this.vendornamelist = data; */
+      this.vendorservice.loadvendornamecode()
+      .subscribe(
+          data => {
+            this.vendornamelist = data;
+          console.log("Vendor name"+this.vendornamelist);
         },
        error => {	
         setTimeout(() => {
@@ -1822,7 +1834,11 @@ productlist(number: string){
     );
   }
 
+  prodheaderlabel:any;
+  prodbtnlabel:any;
   addNewProduct(addnewproduct){
+    this.prodheaderlabel = "Add New Product";
+    this.prodbtnlabel = "Add";
     this.modalService.open(addnewproduct, { windowClass: 'addproduct-class'});
 
     // this.modalService.open(addnewproduct);
@@ -1906,6 +1922,7 @@ productlist(number: string){
                         console.log("First Time");
                         this.productImage.push(this.imgBase64Path);
                         this.isImageSaved0 = true;
+                        this.div1 = false;
                         this.imageIndex1=true;
                         console.log("First time Base 64 array value-->"+this.productImage[0]);
                       }
@@ -1974,13 +1991,17 @@ productlist(number: string){
                   this.isImageSaved3 = true;
                   console.log("Fourth time Base 64 array value-->"+this.productImage[1]);
                 }
-            }
-                 
-              }
-            };
+              }else{	
+              this.productImage.push(this.model.productImage[0]);	
+              this.productImage.push(this.model.productImage[1]);	
+              this.productImage.push(this.model.productImage[2]);	
+              this.productImage.push(this.model.productImage[3]);	
+            }    
+          }
         };
+      };
 
-        reader.readAsDataURL(fileInput.target.files[0]);
+      reader.readAsDataURL(fileInput.target.files[0]);
     }
   }
 
@@ -2025,35 +2046,66 @@ productlist(number: string){
     }
   }
 
-  saveAddNewProduct(category: string){
-    this.model.productImage = this.productImage;
-    console.log("Selling Price -->"+this.model.sellingprice);
-    this.catprodservice.producsave(this.model)
-    .subscribe(
-      data => {
-        this.product = data; 
-        this.modalService.dismissAll();
-        setTimeout(() => {
-          this.snackBar.open("Productr saved Successfully", "", {
-            panelClass: ["success"],
-            verticalPosition: 'top'      
+  saveNewProduct(prodbtnlabel: string){
+    if(prodbtnlabel == "Add"){
+      this.model.productImage = this.productImage;
+      console.log("Selling Price -->"+this.model.sellingprice);
+      this.catprodservice.producsave(this.model)
+      .subscribe(
+        data => {
+          this.product = data; 
+          setTimeout(() => {
+            this.snackBar.open("Product saved Successfully", "", {
+              panelClass: ["success"],
+              verticalPosition: 'top'      
+            });
           });
-        });
-        this.model.sellingprice = 0;
-      },
-      error => {
-        setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
-            panelClass: ["error"],
-            verticalPosition: 'top'      
+          this.model.sellingprice = 0;
+          this.modalService.dismissAll();
+        },
+        error => {
+          setTimeout(() => {
+            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+              panelClass: ["error"],
+              verticalPosition: 'top'      
+            });
+          });   
+      
+        }
+      ); 
+    }else if(prodbtnlabel == "Update"){
+      console.log("Product Code-->"+this.inputproductcode);
+      this.model.productImage = this.productImage;
+      this.model.prodcode=this.inputproductcode;
+      this.catprodservice.setItem(this.model)
+      .subscribe(
+        data => {
+          this.product =   data;
+          setTimeout(() => {
+            this.snackBar.open("Product Updated Successfully", "", {
+              panelClass: ["success"],
+              verticalPosition: 'top'      
+            });
           });
-        });   
-		
-      }
-    ); 
+          this.modalService.dismissAll();
+          console.log("saveproducteditdelete"); 
+        },
+        error => {
+          setTimeout(() => {
+            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+              panelClass: ["error"],
+              verticalPosition: 'top'      
+            });
+          });      
+        }
+      );
+    }
+    
   }
 
   productEdit(){
+    this.prodheaderlabel = "Edit Product";
+    this.prodbtnlabel = "Update";
     this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
@@ -2070,9 +2122,75 @@ productlist(number: string){
     }); 
   }
 
-  allproducteditcall(prodcode: string,vendorcode:string){  
+  allproducteditcall(prodcode: string,vendorcode:string,addnewproduct){  
     console.log("allproducteditcall");
-    this.dialogConfig.disableClose = true;
+
+    this.inputproductcode = prodcode;
+    this.model.vendorcode = vendorcode;
+
+    this.catprodservice.loadEditItem(this.model.vendorcode)
+    .subscribe(
+      data => {
+        this.allproducedittlist = data;
+        console.log("productedit code -->"+this.allproducedittlist[0].prodcode);
+        for(let k=0;k<this.allproducedittlist.length;k++){
+          if(this.allproducedittlist[k].prodcode==this.inputproductcode){
+            this.model.productname=this.allproducedittlist[k].productname;
+            this.model.description=this.allproducedittlist[k].description;
+            this.model.price=this.allproducedittlist[k].price;
+            this.model.tax=this.allproducedittlist[k].tax;
+            this.model.margin=this.allproducedittlist[k].margin;
+            this.model.sellingprice=this.allproducedittlist[k].sellingprice;
+            this.model.vendorcode=this.allproducedittlist[k].vendorcode;
+            this.model.vendorname=this.allproducedittlist[k].vendorname;
+            this.model.categorycode=this.allproducedittlist[k].categorycode;
+            this.model.categoryname=this.allproducedittlist[k].categoryname;
+            console.log("category name -->"+this.model.categoryname);
+            console.log("category code -->"+this.model.categorycode);
+            this.model.categorycode=this.allproducedittlist[k].categoryname+"-"+this.allproducedittlist[k].categorycode;
+            console.log("category code & name -->"+this.model.categorycode);
+            console.log("vendor name -->"+this.model.vendorname);
+            console.log("vendor code -->"+this.model.vendorcode);
+            this.model.vendorcode=this.allproducedittlist[k].vendorname+"-"+this.allproducedittlist[k].vendorcode;
+            console.log("vendor name & code -->"+this.model.vendorcode);
+            this.model.unit=this.allproducedittlist[k].unit;
+            this.model.productImage=this.allproducedittlist[k].productImage;
+            if(this.model.productImage[0]!=undefined){
+              this.div1 = true;
+              this.isImageSaved0 = false;
+            }           
+
+            if(this.model.productImage[1]!=undefined){
+              this.div2 = true;
+              this.isImageSaved1 = false;
+            }
+            if(this.model.productImage[2]!=undefined){
+              this.div3 = true;
+              this.isImageSaved2 = false;
+            }
+            if(this.model.productImage[3]!=undefined){
+              this.div4 = true;
+              this.isImageSaved3 = false;
+            }
+          }
+        }
+        this.model.prodcode=this.allproducedittlist[0].prodcode;
+      },
+      error => {
+        setTimeout(() => {
+          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            panelClass: ["error"],
+            verticalPosition: 'top'      
+          });
+        });   
+		
+      }
+    );
+
+    this.prodheaderlabel = "Edit Product";
+    this.prodbtnlabel = "Update";
+    this.modalService.open(addnewproduct, { windowClass: 'addproduct-class'});
+    /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
       'top': '1000',
@@ -2086,9 +2204,14 @@ productlist(number: string){
     .afterClosed().subscribe(result => {
       this.allproductList();
 
-    });
+    });*/
 
   }
+
+  getImage(imgData) {
+      return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
+  }
+
   allproductdelete(prodcode: string){
     console.log("detete product");
     this.catprodservice.productremove(prodcode)
@@ -2121,7 +2244,7 @@ productlist(number: string){
           });
         });      
       }
-    );
+    ); 
   }
 
 }
