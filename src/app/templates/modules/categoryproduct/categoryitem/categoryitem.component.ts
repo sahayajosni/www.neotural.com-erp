@@ -2062,6 +2062,7 @@ productlist(number: string){
           });
           this.model.sellingprice = 0;
           this.modalService.dismissAll();
+          this.allproductList();
         },
         error => {
           setTimeout(() => {
@@ -2088,6 +2089,7 @@ productlist(number: string){
             });
           });
           this.modalService.dismissAll();
+          this.allproductList();
           console.log("saveproducteditdelete"); 
         },
         error => {
