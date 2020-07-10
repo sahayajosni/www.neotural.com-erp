@@ -1823,7 +1823,9 @@ productlist(number: string){
   }
 
   addNewProduct(addnewproduct){
-    this.modalService.open(addnewproduct);
+    this.modalService.open(addnewproduct, { windowClass: 'addproduct-class'});
+
+    // this.modalService.open(addnewproduct);
 
     /*this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;

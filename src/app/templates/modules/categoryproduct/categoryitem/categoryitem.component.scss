@@ -251,9 +251,18 @@ table tbody tr:hover td span{
   float: right;
 }
 // add product
-::ng-deep  .modal-dialog {
+::ng-deep  .addproduct-class .modal-dialog {
   max-width: 80%;
-  width: 75% !important;
+  width: 70% !important;
+  padding-top: 50px !important;;
+  padding-bottom: 50px !important;;
+
+}
+// add product
+::ng-deep  .addproduct-class .modal-content {
+  padding-top: 10px !important;;
+  padding-bottom: 10px !important;;
+  background:$po-order-form-bg;
 
 }
 // add category
