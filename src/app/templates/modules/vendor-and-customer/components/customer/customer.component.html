@@ -9,7 +9,7 @@
         <div class="col-8">
           <div style="float: right;">
             <button  class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;"
-              (click)="addCustomer(null,null,null,null,null,null,null,null)">
+              (click)="addCustomer(customer)">
               <span class="fas fa-plus"></span> Add New Customer 
             </button>
             <img src="assets/images/print.png" style="margin-right: 10px;" class="img-fluid logo" alt="print"/>
@@ -55,8 +55,8 @@
                 <td class="txt-right">{{item.phoneNumber}}
                   <span class="edit-delete-icon user-icon">
                     <span class="fas fa-trash" (click)="deleteVendorCustomer(item.custcode)"></span>
-                    <span class="fas fa-pen mar-let-40px" (click)="addCustomer(item.id,item.custcode,item.customerName,
-                    item.country,item.address,item.email,item.city,item.phoneNumber,item.customerbase64)"></span>
+                    <span class="fas fa-pen mar-let-40px" (click)="editCustomer(item.id,item.custcode,item.customerName,
+                    item.country,item.address,item.email,item.city,item.phoneNumber,item.customerbase64,customer)"></span>
                   </span>
                 </td>
               </tr>
@@ -173,3 +173,103 @@
     [isEditMode]="isEditMode"
   ></app-vendor-and-customer-detail>
 </ng-container>
+
+
+<ng-template #customer let-c="close" let-d="dismiss">
+  <div class="modal-header employee-class">
+    <!-- <h4 class="modal-title" id="modal-basic-title">Hi there!</h4> -->
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true" class="close-x">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body employee-class">
+    <div class="container">
+      <form name="registerForm" (ngSubmit)="registerForm.form.valid && save()"
+        #registerForm="ngForm" novalidate>  
+        <div class="row">
+          <div class="col-4">
+            <fieldset class="form-group"> 
+              <div class="custom-file fileInputProfileWrap">
+                  <p class="error">{{imageError}}</p>
+                  <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile">
+                  <div class="img-space">  
+                    <div *ngIf="div1 && !isImageSaved">
+                      <img id="addproductpic-box" [src]="getImage(model.customerbase64)" 
+                        onerror="this.src='/assets/images/no-image.png'" class="img-responsive" />
+                    </div> 
+                    <div *ngIf="isImageSaved">
+                      <img id="addproductpic-box" [src]="cardImageBase64" />
+                    </div>  
+                    <div *ngIf="!isImageSaved && !div1">    
+                      <img id="addproductpic-box" src="./../../assets/images/placeholder.png" class="img-responsive"> 
+                    </div>
+                  </div>
+              </div>
+            </fieldset>
+            <a class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
+    
+            <div> </div>
+          </div>
+          <div class="col-4">
+            <label class="heading">Customer Name</label>
+            <input type="text" id="textbox1" name="customerName"  [(ngModel)]="this.model.customerName" 
+            #customerName="ngModel" value="{{model.customerName}}" autocomplete="off" required/>
+    
+            <div *ngIf="customerName.errors && (customerName.dirty || customerName.touched) ||
+              (registerForm.submitted && !customerName.valid )">
+              <span [hidden]="!customerName.errors.required" class="spanerror">
+                  Required field cannot be left blank
+              </span>
+            </div>  
+
+            <label class="heading">Phone Number </label>
+            <input type="text" id="textbox1" name="phoneNumber" [(ngModel)]="this.model.phoneNumber" 
+            #phoneNumber="ngModel" autocomplete="off" required/>
+
+            <div *ngIf="phoneNumber.errors && (phoneNumber.dirty || phoneNumber.touched) ||
+              (registerForm.submitted && !phoneNumber.valid )">
+              <span [hidden]="!phoneNumber.errors.required" class="spanerror">
+                  Required field cannot be left blank
+              </span>
+            </div>   
+
+            <label class="heading">Address</label>
+            <input type="text" name="address" id="textbox4" [(ngModel)]="this.model.address" 
+              #address="ngModel" value="{{model.address}}" autocomplete="off"/>
+
+            <div> </div>
+
+          </div>
+          <div class="col-4">
+            <label class="heading">Email </label>
+            <input type="text" name="email" id="textbox7" [(ngModel)]="this.model.email" 
+              #email="ngModel" value="{{model.email}}" autocomplete="off"/>
+
+            <label class="heading">Country </label>
+            <select name="country" id="textbox" [(ngModel)]="this.model.country" 
+              #country="ngModel" value="{{model.country}}" class="m-t-5px">
+            <option value="India">India</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Malaysia">Malaysia</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Australia">Australia</option>
+            <option value="US">US</option>
+            <option value="UK">UK</option>
+            <option value="Others">Others</option>
+
+          </select>
+            <label class="heading">City </label>
+            <input type="text" name="city" id="textbox9" [(ngModel)]="this.model.city" 
+              #city="ngModel" value="{{model.city}}" autocomplete="off"/>
+      
+            <div> </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-dark">{{btnname}}</button>
+          <button id="cancelbtn" (click)="emptyFields()" *ngIf="btnname === 'Add'">Reset</button>
+        </div>  
+      </form>
+    </div>
+  </div>
+</ng-template>

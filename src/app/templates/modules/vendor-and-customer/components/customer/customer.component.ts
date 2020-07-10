@@ -21,6 +21,9 @@ import { CustomerService } from "../../services/customer.service";
 import { Customer, Vendor } from "src/app/core/common/_models";
 import { PrintDialogService } from "src/app/core/services/print-dialog/print-dialog.service";
 import {MatDialog, MatDialogConfig} from "@angular/material";
+import * as _ from 'lodash';
+import { DomSanitizer } from '@angular/platform-browser';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-customer",
@@ -57,12 +60,23 @@ export class CustomerComponent implements OnInit {
   customer: Customer;
   button:string;
 
+  imageError:string;
+  isImageSaved:boolean;
+  cardImageBase64: string;
+  model: any = {};
+  btnname:string;
+  name:string;
+  public div1 = false;
+  dialogTxt:string;
+
   constructor(
     private vendorService: VendorService,
     private customerService: CustomerService,
     private snackBar: MatSnackBar,
     private printDialogService: PrintDialogService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private _sanitizer: DomSanitizer,
+    config: NgbModalConfig, private modalService: NgbModal,
   ) {}
 
   ngOnInit() {
@@ -113,9 +127,11 @@ export class CustomerComponent implements OnInit {
     );
   }
 
-  addCustomer(id:string,custcode:string,customerName:string,country:string,
-    address:string,email:string,city:string,phoneNumber:string,customerbase64:string) {
-    let data: any;
+  addCustomer(customer){
+    this.btnname = "Add";
+
+    this.modalService.open(customer, { windowClass: 'customer-class'});
+    /* let data: any;
     if (id !== null) {
       this.button = "Update";
     } else {
@@ -142,8 +158,126 @@ export class CustomerComponent implements OnInit {
     });                
     dialogRef.afterClosed().subscribe(result => {
       this.getAllCustomerDetails();
-    });
+    }); */
    
+  }
+
+  getImage(imgData) {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
+  }
+
+  fileChangeEvent(fileInput: any) {
+    this.imageError = null;
+    if (fileInput.target.files && fileInput.target.files[0]) {
+        // Size Filter Bytes
+        const max_size = 20971520;
+        const allowed_types = ['image/png', 'image/jpeg'];
+        const max_height = 15200;
+        const max_width = 25600;
+
+        if (fileInput.target.files[0].size > max_size) {
+          this.imageError =
+              'Maximum size allowed is ' + max_size / 1000 + 'Mb';
+          return false;
+        }
+
+        if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
+          this.imageError = 'Only Images are allowed ( JPG | PNG )';
+          return false;
+        }
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          const image = new Image();
+          image.src = e.target.result;
+          image.onload = rs => {
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+          console.log(img_height, img_width);
+          if (img_height > max_height && img_width > max_width) {
+            this.imageError =
+                'Maximum dimentions allowed ' +
+                max_height +
+                '*' +
+                max_width +
+                'px';
+            return false;
+          } else {
+            const imgBase64Path = e.target.result;
+            this.cardImageBase64 = imgBase64Path;
+            if(this.cardImageBase64!=null){
+              console.log("no value...");
+            }
+            this.isImageSaved = true;
+          }
+        };
+      };
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
+  }
+
+  removeImage() {
+    this.cardImageBase64 = null;
+    this.isImageSaved = false;
+  }
+
+  save(){
+    this.model.customerbase64 = this.cardImageBase64;
+    if(this.model.id !== null){
+      this.dialogTxt = "Updated";  
+    }else {
+      this.dialogTxt = "Added";  
+    }
+    this.customerService.save(this.model)
+    .subscribe(
+      data => {
+        setTimeout(() => {
+          this.snackBar.open("Customer " +this.dialogTxt+ " Successfully", "", {
+            panelClass: ["success"],
+            verticalPosition: 'top'      
+          });
+        });
+        this.modalService.dismissAll();
+        this.getAllCustomerDetails();
+      },
+      error => {
+        setTimeout(() => {
+          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            panelClass: ["error"],
+            verticalPosition: 'top'      
+          });
+        });  
+      }
+    );
+  }
+
+  emptyFields() {
+    this.model.customerName = '';
+    this.model.address = '';
+    this.model.phoneNumber = '';
+    this.model.mobileNumber = '';
+    this.model.email = '';
+    this.model.country = '';
+    this.model.city = '';
+  }
+
+
+  editCustomer(id:string,custcode:string,customerName:string,country:string,address:string,
+    email:string,city:string,phoneNumber:string,customerbase64:string,customer) {
+      this.model.id = id;
+      this.model.custcode = custcode;
+      this.model.customerName = customerName;
+      this.model.country = country;
+      this.model.address = address;
+      this.model.email = email;
+      this.model.city = city;
+      this.model.phoneNumber = phoneNumber;
+      this.model.customerbase64 = customerbase64;
+      this.btnname = "Update";
+      if(this.model.customerbase64!=undefined){
+        this.div1 = true;
+        this.isImageSaved = false;
+      }   
+      this.modalService.open(customer, { windowClass: 'customer-class'});
   }
 
   toggleVendorDetailView(code?, edit?) {

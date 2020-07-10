@@ -74,7 +74,7 @@ table tbody tr:hover td span{
   width: 50px!important;
 }
 
-//---- Customer and Vendor Add Css ::-webkit-meter-even-less-good-value
+//---- Vendor Add Css 
 .ng-valid[required], .ng-valid.required  {
   border-left: 5px solid #42A948; /* green */
 }
@@ -195,6 +195,12 @@ button[type="submit"]{
   background: $btn-bg;
   border: none;
   border-radius: $btn-border-radius;
+}
+.btn-danger{
+  margin-left: 15px;
+}
+button:active {
+  background-color: $btn-bg;
 }
 // iPhone media query start
 

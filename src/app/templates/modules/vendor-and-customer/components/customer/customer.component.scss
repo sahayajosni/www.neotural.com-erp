@@ -125,7 +125,133 @@ input[type=checkbox]:checked:before{
   cursor: pointer;
   margin-left: 30px;
 }
+//---- Customer Add Css 
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
 
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+.spanerror{
+  background-color: $error-code;
+  font-size: 12px;
+}
+
+::ng-deep .customer-class .modal-dialog {
+  max-width: 80%;
+  width: 70% !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+::ng-deep .customer-class .modal-content {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background:$po-order-form-bg;
+}
+
+label{
+  color:$white !important;
+  font-family: $font-family !important;
+  width: 100% !important;
+}
+.heading {
+  color:$table-header-font !important;;
+}
+input, select, textarea {
+  width: 90%;
+  padding: 5px;
+  background: none;
+  border-radius: 4px;
+  resize: vertical;
+  color:white;
+  border: 1px solid $header-bg; 
+  margin: 0px 0px 3px 0px;
+  background:$po-order-form-bg;
+}
+
+button[type="submit"]{
+  background: $btn-bg;
+  width: 12%;
+  border: none;
+  border-radius: 20px;
+  border-radius: $btn-border-radius;
+  padding: 0rem 1.5rem;
+  font-family: $font-family;
+  color: white;
+  height: 35px;
+}
+button:active {
+  background-color: $btn-bg;
+}
+.image-wrap {
+  padding: 10px;
+  //border: solid 1px #e0e0e0;
+  display: inline-block;
+}
+
+.img-space {
+  // border: dashed 1px #d3d3d3;
+  border-radius: 8px;
+  // background-color: #f2f2f2;
+  background-color: $po-order-form-bg;
+  height: auto;
+  width: 85%;
+  padding: 10px;
+  min-height:175px;
+}
+
+.img-space img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  cursor: pointer;
+}
+
+.fileInputProfileWrap {
+  width: 100%;
+  height: auto;
+}
+
+.fileInputProfile {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  opacity: 0;
+}
+.fileInputProfile[disabled] + .img-space{
+  pointer-events: none;
+  cursor: not-allowed!important;
+}
+
+#addproductpic-box {
+  height: 200px;
+  width: 200px;
+  text-align: center;
+  border: none;
+  box-shadow: none;
+}
+#cancelbtn{
+  width: 120px;
+  margin-left: 15px;
+  height: 35px;
+  background: $btn-bg;
+  border: none;
+  border-radius: $btn-border-radius;
+}
+.btn-danger{
+  margin-left: 15px;
+}
 // iPhone media query start
 
 // iPhone 6, 7, & 8 in portrait & landscape
