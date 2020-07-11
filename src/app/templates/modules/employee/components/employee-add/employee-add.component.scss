@@ -24,6 +24,13 @@ label{
   color:$table-header-font !important;
   width: 100%;
 }
+
+::ng-deep .success{
+  background-color: $validation-green;
+  color:white !important; 
+  border: none !important;
+}
+
 input, select, textarea {
   width: 95%;
   padding: 5px;

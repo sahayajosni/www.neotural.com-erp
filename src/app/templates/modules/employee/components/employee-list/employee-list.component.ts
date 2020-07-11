@@ -111,7 +111,11 @@ enable: boolean;
       }
     );
   }
-
+  onClick()
+  {
+    console.log("onClick");
+    this.snackBar.dismiss();
+  }
   deleteEmployee(employeecode: string) {
     this.employeeService.remove(employeecode).subscribe(
       data => {

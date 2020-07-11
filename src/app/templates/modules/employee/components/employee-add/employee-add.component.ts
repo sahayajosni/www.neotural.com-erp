@@ -39,9 +39,10 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
       .subscribe(
       data => {
         setTimeout(() => {
-          this.snackBar.open("Employee created Successfully", "", {
+          this.snackBar.open("Success! Register Employee", "", {
             panelClass: ["success"],
-            verticalPosition: 'top'      
+            verticalPosition: 'top',
+            duration: undefined    
           });
         });
         this.modalService.dismissAll();
