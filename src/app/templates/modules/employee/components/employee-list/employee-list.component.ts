@@ -184,7 +184,7 @@ enable: boolean;
     }
   }
 
-  addEmployee(addemployee) {
+  addEmployee() {
     this.modalService.open(EmployeeAddComponent, { windowClass: 'employee-class'});
 
     /* if(this.snackBar.open) {
