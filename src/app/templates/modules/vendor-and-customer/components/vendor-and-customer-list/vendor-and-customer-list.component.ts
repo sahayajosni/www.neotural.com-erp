@@ -133,7 +133,7 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
           this.enable = false;
           setTimeout(() => {
             this.snackBar.open("Vendor data is empty", "dismiss", {
-              duration: 300000, // 5 mints
+              duration: undefined, // 5 mints
               panelClass: ["warning"],
               verticalPosition: "top",
               horizontalPosition: 'center'

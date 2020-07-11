@@ -101,7 +101,7 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
     if(this.model.todate > this.todayDate){
       setTimeout(() => {
         this.snackBar.open("ToDate was exceeded on today.No Record Found.", "dismiss", {
-          duration: 3000, 
+          duration: undefined, 
           panelClass: ["warning"],
           verticalPosition: "top",
           horizontalPosition: 'center'

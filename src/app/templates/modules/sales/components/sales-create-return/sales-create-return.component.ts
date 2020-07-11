@@ -47,7 +47,7 @@ export class SalesCreateReturnComponent implements OnInit {
           "Qty cannot be more than Invoiced Qty.",
           "dismss",
           {
-            duration: 20000, 
+            duration: undefined, 
             panelClass: ["warning"],
             verticalPosition: "top",
           }
@@ -59,7 +59,7 @@ export class SalesCreateReturnComponent implements OnInit {
           "Qty must be valid.",
           "dismss",
           {
-            duration: 20000, 
+            duration: undefined, 
             panelClass: ["warning"],
             verticalPosition: "top",
           }
@@ -123,7 +123,7 @@ export class SalesCreateReturnComponent implements OnInit {
         "Qty cannot be more than Invoiced Qty.",
         "dismss",
         {
-          duration: 20000, 
+          duration: undefined, 
           panelClass: ["warning"],
           verticalPosition: "top",
         }
@@ -134,7 +134,7 @@ export class SalesCreateReturnComponent implements OnInit {
           "Qty must be valid.",
           "dismss",
           {
-            duration: 20000, 
+            duration: undefined, 
             panelClass: ["warning"],
             verticalPosition: "top",
           }

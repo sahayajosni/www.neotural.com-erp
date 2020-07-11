@@ -144,7 +144,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
       } if (this.model.zeroquantity == 0){
         setTimeout(() => {
           this.snackBar.open("Quantity must be Valid", "dismiss", {
-            duration: 20000, 
+            duration: undefined, 
             panelClass: ["warning"],
             verticalPosition: "top",
             horizontalPosition: 'center'
