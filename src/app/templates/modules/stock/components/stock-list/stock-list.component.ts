@@ -83,6 +83,7 @@ export class StockListComponent implements OnInit {
 				setTimeout(() => {
 					this.snackBar.open("Stock Updated Successfully", "", {
 						panelClass: ["success"],
+						duration: undefined, 
 						verticalPosition: 'top'      
 					});
 				});

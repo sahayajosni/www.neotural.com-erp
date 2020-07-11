@@ -19,7 +19,6 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
   constructor( 
     private employeeService: EmployeeService,   
     private snackBar: MatSnackBar,
-    private dialogRef: MatDialogRef<EmployeeAddComponent>
     ) { }
 
   ngOnInit() {
@@ -42,7 +41,7 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
             verticalPosition: 'top'      
           });
         });
-        this.addEmployeeClose();
+        // this.addEmployeeClose();
         this.employeeService.load();
       },
       error => {
@@ -56,9 +55,9 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
     );
   }
 
-  addEmployeeClose() {
-    this.dialogRef.close();
-  }
+  // addEmployeeClose() {
+  //   this.dialogRef.close();
+  // }
 
   addEmplyeeFields() {
     this.model.name = '';

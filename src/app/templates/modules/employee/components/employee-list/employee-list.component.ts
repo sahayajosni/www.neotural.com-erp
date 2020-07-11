@@ -185,7 +185,7 @@ enable: boolean;
   }
 
   addEmployee(addemployee) {
-    this.modalService.open(addemployee, { windowClass: 'employee-class'});
+    this.modalService.open(EmployeeAddComponent, { windowClass: 'employee-class'});
 
     /* if(this.snackBar.open) {
       this.snackBar.dismiss();
