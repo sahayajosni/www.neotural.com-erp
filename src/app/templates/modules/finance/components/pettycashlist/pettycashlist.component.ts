@@ -39,7 +39,7 @@ export class PettycashlistComponent implements OnInit {
           this.enable = false;
           setTimeout(() => {
             this.snackBar.open("Petty Cash data is empty", "dismiss", {
-              duration: 300000, // 3mints
+              duration: undefined, // 3mints
               panelClass: ["warning"],
               verticalPosition: "top",
               horizontalPosition: 'center'

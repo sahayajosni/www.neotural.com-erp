@@ -39,7 +39,7 @@ import {
     MatSnackBarModule
   ],
   providers: [
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 1500 } }
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: undefined } }
   ]
 })
 export class CustomMaterialModule {}

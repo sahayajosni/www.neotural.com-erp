@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, ViewChild ,ElementRef,Inject,Optional,OnDestroy } from '@angular/core';
+import { Component, OnInit,HostListener, OnChanges, Input, ViewChild ,ElementRef,Inject,Optional,OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -114,11 +114,18 @@ enable: boolean;
       }
     );
   }
-  onClick()
-  {
-    console.log("onClick");
-    this.snackBar.dismiss();
-  }
+  // onClick()
+  // {
+  //   console.log("onClick");
+  //   this.snackBar.dismiss();
+  // }
+
+    // @HostListener('document:click', ['$event'])
+    // documentClick(event: MouseEvent) {
+    //     // your click logic
+    //     console.log("onClick");
+    //     this.snackBar.dismiss();
+    // }
   deleteEmployee(employeecode: string) {
     this.employeeService.remove(employeecode).subscribe(
       data => {

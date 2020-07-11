@@ -152,7 +152,7 @@ export class SalesorderComponent implements OnInit {
       }if(this.model.zeroquantity == 0){
         setTimeout(() => {
           this.snackBar.open("Quantity must be Valid", "dismiss", {
-            duration: 20000, 
+            duration: undefined, 
             panelClass: ["warning"],
             verticalPosition: "top",
             horizontalPosition: 'center'
@@ -171,7 +171,7 @@ export class SalesorderComponent implements OnInit {
               this.model.aboveqty = 'above';
               setTimeout(() => {
                 this.snackBar.open("Quantity must be equal or below available Quantity", "dismiss", {
-                  duration: 20000, 
+                  duration: undefined, 
                   panelClass: ["warning"],
                   verticalPosition: "top",
                   horizontalPosition: 'center'
