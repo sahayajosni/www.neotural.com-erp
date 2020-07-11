@@ -3,10 +3,8 @@
 * {
   box-sizing: border-box;
 }
-::ng-deep .mat-dialog-container {
-  overflow: hidden !important;
-  border-radius: $dialog-border-radius;
-}
+
+//---- Add Employee ::-webkit-inner-spin-button
 .ng-valid[required], .ng-valid.required  {
   border-left: 5px solid #42A948; /* green */
 }
@@ -14,61 +12,20 @@
 .ng-invalid:not(form)  {
   border-left: 5px solid #a94442; /* red */
 }
-
-span{
-  color:white;
-  font-size: 12px;
-  margin: 5px 0px;
-}
 .spanerror{
   background-color: $error-code;
-}
-.grid-container {
-  position: relative;
-}
-#x {
-  position: absolute;
-  width:30px;
-  margin: 0px -15px 0px 0px;
-  background: #16222B;
-  border: red;
-  color: white;
-  top: -10px;
-  right: -10px;
-  border-radius: 25px;
-}
-.row{
-  background:$po-order-form-bg;
+  font-size: 12px;
 }
 label{
   color:$white !important;
   font-family: $font-family !important;
 }
-//input[type="date"]  {
-  //background-color: red;
-//}
 .heading {
-  color:$table-header-font !important;
-}
-
-.heading1 {
   color:$table-header-font !important;
   width: 100%;
 }
-
-button{
-  width: 140px;
-  height: 35px;
-  background: $btn-bg;
-  border: none;
-  border-radius: $btn-border-radius;
-}
-#cancelbtn{
-  width: 120px;
-  margin-left: 15px;
-}
 input, select, textarea {
-  width: 80%;
+  width: 95%;
   padding: 5px;
   background: none;
   border-radius: 4px;
@@ -78,16 +35,50 @@ input, select, textarea {
   margin: 0px 0px 3px 0px;
   background:$po-order-form-bg;
 }
-
-
-/* Create three equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 10px;
+input[type=text]:focus{
+  background:$po-order-form-bg;
+  outline: none;
+  color: $white;
+}
+button[type="submit"]{
+  background: $btn-bg;
+  width: 12%;
+  border: none;
+  border-radius: 20px;
+  border-radius: $btn-border-radius;
+  padding: 0rem 1.5rem;
+  font-family: $font-family;
+  color: white;
+  height: 35px;
+}
+::ng-deep .employee-class .modal-dialog {
+  max-width: 80%;
+  width: 70% !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+::ng-deep .employee-class .modal-content {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background:$po-order-form-bg;
 }
 
-// Image upload 
+#cancelbtn{
+  width: 120px;
+  margin-left: 15px;
+  height: 35px;
+  background: $btn-bg;
+  border: none;
+  border-radius: $btn-border-radius;
+}
 
 .image-wrap {
   padding: 10px;
@@ -130,3 +121,99 @@ input, select, textarea {
   pointer-events: none;
   cursor: not-allowed!important;
 }
+
+// iPhone media query start
+
+// iPhone 6, 7, & 8 in portrait & landscape
+@media only screen and (min-width: 375px) and (max-width: 667px) { 
+  h3 {
+     font-size:12px;
+  }
+  .table>tbody>tr>td{
+    font-size:10px;
+  }
+  .table>thead>tr>th{
+    font-size:10px;
+  } 
+}
+
+ // iPhone 6, 7, & 8 Plus in portrait & landscape
+@media only screen and (min-width: 414px) and (max-width: 736px) { 
+  h3 {
+     font-size:12px;
+  }
+  .table>tbody>tr>td{
+    font-size:10px;
+  }
+  .table>thead>tr>th{
+    font-size:10px;
+  } 
+}
+
+
+ // iPhone X in landscape & iPhone X in portrait
+@media only screen and (min-width: 375px) and (max-width: 812px) { 
+  h3 {
+     font-size:12px;
+  }
+  .table>tbody>tr>td{
+    font-size:10px;
+  }
+  .table>thead>tr>th{
+    font-size:10px;
+  } 
+}
+
+
+// iPhone 5 & 5S in portrait & landscape
+@media only screen and (min-width: 320px) and (max-width: 568px) { 
+  h3 {
+     font-size:12px;
+  }
+  .table>tbody>tr>td{
+    font-size:10px;
+  }
+  .table>thead>tr>th{
+    font-size:10px;
+  } 
+}
+ // iPhone 2G-4S in portrait
+ @media only screen and (min-width: 320px) and (max-width: 480px) { 
+  h3 {
+     font-size:12px;
+  }
+  .table>tbody>tr>td{
+    font-size:10px;
+  }
+  .table>thead>tr>th{
+    font-size:10px;
+  } 
+}
+
+ // iPhone media query end
+
+ // Galaxy S6
+
+ // Xperia Z3
+
+ // Lumia 920
+
+ // Nexus 6
+
+ // Iphone 6 Plus
+
+ // Galaxy Note 4 
+
+ // Galaxy Note II 
+
+ // iPad Air
+
+ // Galaxy Tab 2 10.1
+
+ // Galaxy Nexus 7
+
+ // Kindle Fire
+
+ // Kindle Fire HD 7"
+
+ // Kindle Fire HD 8.9"

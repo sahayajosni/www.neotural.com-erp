@@ -22,6 +22,7 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
     ) { }
 
   ngOnInit() {
+    console.log("Add employee");
     this.addEmplyeeFields();
   }
 
