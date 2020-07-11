@@ -4,6 +4,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import {MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import * as _ from 'lodash';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-employee-add',
@@ -19,6 +20,7 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
   constructor( 
     private employeeService: EmployeeService,   
     private snackBar: MatSnackBar,
+    private modalService: NgbModal,
     ) { }
 
   ngOnInit() {
@@ -42,8 +44,9 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
             verticalPosition: 'top'      
           });
         });
+        this.modalService.dismissAll();
         // this.addEmployeeClose();
-        this.employeeService.load();
+      // .. this.employeeService.load();
       },
       error => {
         setTimeout(() => {
