@@ -14,3 +14,9 @@
       border-radius: $btn-border-radius;
       border: none;
     }
+
+    ::ng-deep .success{
+      background-color: $validation-green;
+      color:white !important; 
+      border: none !important;
+    }
