@@ -1,9 +1,9 @@
-import { MatDialog  } from '@angular/material';
+import { MatDialog, MatSnackBar  } from '@angular/material';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './core/common/_services';
 import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
-import { Component, ViewChild, ViewContainerRef, TemplateRef, ElementRef, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, HostListener,TemplateRef, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -28,6 +28,7 @@ export class AppComponent implements OnInit{
     private authenticationService:AuthenticationService,
     private dialog: MatDialog,
     private viewContainerRef: ViewContainerRef,
+    private snackBar: MatSnackBar,
     private idle: Idle, private keepalive: Keepalive) {
      
       console.log(authenticationService.getToken());
@@ -94,6 +95,12 @@ ngOnInit() {
         }, 500);
 }  
 
+@HostListener('document:click', ['$event'])
+documentClick(event: MouseEvent) {
+    // your click logic
+    console.log("onClick");
+    this.snackBar.dismiss();
+}
 reset() {
 this.idle.watch();
 this.idleState = 'Started.';
