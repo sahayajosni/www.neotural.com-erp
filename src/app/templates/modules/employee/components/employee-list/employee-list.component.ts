@@ -87,7 +87,7 @@ enable: boolean;
           this.enable = false;
           setTimeout(() => {
             this.snackBar.open("Employee data is empty", "dismiss", {
-              duration: 300000, // 5 mints
+              duration: undefined,   
               panelClass: ["warning"],
               verticalPosition: "top",
               horizontalPosition: 'center'
