@@ -28,7 +28,8 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: "app-customer",
   templateUrl: "./customer.component.html",
-  styleUrls: ["./customer.component.scss"]
+  styleUrls: ["./customer.component.scss"],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class CustomerComponent implements OnInit {
   @Input() tabChange: boolean = false;
@@ -77,7 +78,10 @@ export class CustomerComponent implements OnInit {
     private dialog: MatDialog,
     private _sanitizer: DomSanitizer,
     config: NgbModalConfig, private modalService: NgbModal,
-  ) {}
+  ) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   ngOnInit() {
     // this.getAllVendorDetails();
@@ -127,10 +131,25 @@ export class CustomerComponent implements OnInit {
     );
   }
 
-  addCustomer(customer){
-    this.btnname = "Add";
+  addCustomer(id:string,custcode:string,customerName:string,country:string,address:string,
+    email:string,city:string,phoneNumber:string,customerbase64:string){
 
-    this.modalService.open(customer, { windowClass: 'customer-class'});
+    const modalRef = this.modalService.open(CustomerAddComponent, { windowClass: 'vendor-class'});
+    if (id !== null) {
+      this.button = "Update";
+    } else {
+      this.button = "Add";
+    }
+    let data = { dialogText: this.button, id: id, custcode: custcode, 
+      customerName: customerName, country: country, email: email, address: address,
+      city: city, phoneNumber: phoneNumber, customerbase64: customerbase64 }
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then((result) => {
+      this.ngOnInit();
+    }, (reason) => {
+    });
+
     /* let data: any;
     if (id !== null) {
       this.button = "Update";
@@ -300,7 +319,7 @@ export class CustomerComponent implements OnInit {
       data => {
         this.customer = data;
         setTimeout(() => {
-          this.snackBar.open("Customer is detleted successfully", "", {
+          this.snackBar.open("Customer is deleted successfully", "", {
             panelClass: ["success"],
             verticalPosition: "top"
           });

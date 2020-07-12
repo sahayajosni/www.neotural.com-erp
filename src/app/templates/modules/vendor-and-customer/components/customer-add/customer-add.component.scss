@@ -7,22 +7,7 @@
   overflow: hidden !important;
   border-radius: $dialog-border-radius;
 }
-.ng-valid[required], .ng-valid.required  {
-  border-left: 5px solid #42A948; /* green */
-}
 
-.ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; /* red */
-}
-
-span{
-  color:white;
-  font-size: 12px;
-  margin: 5px 0px;
-}
-.spanerror{
-  background-color: $error-code;
-}
 .grid-container {
   position: relative;
 }
@@ -40,6 +25,39 @@ span{
 .row{
   background:$po-order-form-bg;
 }
+//---- Vendor Add Css 
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+.spanerror{
+  background-color: $error-code;
+  font-size: 12px;
+}
+
+::ng-deep .vendor-class .modal-dialog {
+  max-width: 80%;
+  width: 70% !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+::ng-deep .vendor-class .modal-content {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background:$po-order-form-bg;
+}
+
 label{
   color:$white !important;
   font-family: $font-family !important;
@@ -48,16 +66,8 @@ label{
 .heading {
   color:$table-header-font !important;;
 }
-
-button{
-  width: 140px;
-  height: 35px;
-  background: $btn-bg;
-  border: none;
-  border-radius: $btn-border-radius;
-}
 input, select, textarea {
-  width: 80%;
+  width: 90%;
   padding: 5px;
   background: none;
   border-radius: 4px;
@@ -68,15 +78,17 @@ input, select, textarea {
   background:$po-order-form-bg;
 }
 
-
-/* Create three equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 10px;
+button[type="submit"]{
+  background: $btn-bg;
+  width: 12%;
+  border: none;
+  border-radius: 20px;
+  border-radius: $btn-border-radius;
+  padding: 0rem 1.5rem;
+  font-family: $font-family;
+  color: white;
+  height: 35px;
 }
-
-// Image upload 
 
 .image-wrap {
   padding: 10px;
@@ -121,13 +133,20 @@ input, select, textarea {
 }
 
 #addproductpic-box {
-  height: 150px;
-  width: 150px;
+  height: 200px;
+  width: 200px;
   text-align: center;
   border: none;
   box-shadow: none;
 }
 #cancelbtn{
   width: 120px;
+  margin-left: 15px;
+  height: 35px;
+  background: $btn-bg;
+  border: none;
+  border-radius: $btn-border-radius;
+}
+.btn-danger{
   margin-left: 15px;
 }

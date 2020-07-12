@@ -9,7 +9,7 @@
         <div class="col-8">
           <div style="float: right;">
             <button  class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;"
-              (click)="addCustomer(customer)">
+              (click)="addCustomer(null,null,null,null,null,null,null,null,null)">
               <span class="fas fa-plus"></span> Add New Customer 
             </button>
             <img src="assets/images/print.png" style="margin-right: 10px;" class="img-fluid logo" alt="print"/>
@@ -55,8 +55,8 @@
                 <td class="txt-right">{{item.phoneNumber}}
                   <span class="edit-delete-icon user-icon">
                     <span class="fas fa-trash" (click)="deleteVendorCustomer(item.custcode)"></span>
-                    <span class="fas fa-pen mar-let-40px" (click)="editCustomer(item.id,item.custcode,item.customerName,
-                    item.country,item.address,item.email,item.city,item.phoneNumber,item.customerbase64,customer)"></span>
+                    <span class="fas fa-pen mar-let-40px" (click)="addCustomer(item.id,item.custcode,item.customerName,
+                    item.country,item.address,item.email,item.city,item.phoneNumber,item.customerbase64)"></span>
                   </span>
                 </td>
               </tr>

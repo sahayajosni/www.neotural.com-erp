@@ -20,7 +20,8 @@ import * as _ from 'lodash';
 @Component({
   selector: "app-employee-list",
   templateUrl: "./employee-list.component.html",
-  styleUrls: ["./employee-list.component.scss"]
+  styleUrls: ["./employee-list.component.scss"],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class EmployeeListComponent implements OnInit, OnDestroy {
   employeesDS: any = {};
@@ -60,6 +61,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     private _sanitizer: DomSanitizer,
 
   ) {
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
 
   ngOnInit() { 
@@ -196,8 +199,15 @@ enable: boolean;
   }
 
   addEmployee() {
-    this.modalService.open(EmployeeAddComponent, { windowClass: 'employee-class'});
+    const modalRef = this.modalService.open(EmployeeAddComponent, { windowClass: 'employee-class'});
+    this.allemplist();
+    let data: any;
+    modalRef.componentInstance.passedData= data;
+    modalRef.result.then(result => {
+      this.allemplist();
+    });
 
+    
     /* if(this.snackBar.open) {
       this.snackBar.dismiss();
     }

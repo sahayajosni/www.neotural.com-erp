@@ -5,6 +5,7 @@ import {MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource} f
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import * as _ from 'lodash';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-employee-add',
@@ -21,6 +22,7 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
     private employeeService: EmployeeService,   
     private snackBar: MatSnackBar,
     private modalService: NgbModal,
+    public activeModal: NgbActiveModal
     ) { }
 
   ngOnInit() {

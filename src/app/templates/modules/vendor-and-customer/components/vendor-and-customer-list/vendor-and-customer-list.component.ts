@@ -28,7 +28,8 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: "app-vendor-and-customer-list",
   templateUrl: "./vendor-and-customer-list.component.html",
-  styleUrls: ["./vendor-and-customer-list.component.scss"]
+  styleUrls: ["./vendor-and-customer-list.component.scss"],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
 
@@ -98,7 +99,10 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
     private _sanitizer: DomSanitizer,
     config: NgbModalConfig, private modalService: NgbModal,
 
-  ) {}
+  ) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   ngOnInit() {
      this.getAllVendorDetails();
@@ -186,8 +190,15 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
   addVendor(vendor){
     this.btnname = "Add";
 
-    this.modalService.open(vendor, { windowClass: 'vendor-class'});
+    const modalRef = this.modalService.open(CustomerAddComponent, { windowClass: 'vendor-class'});
 
+    let data = { key: 'vendor' }
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then((result) => {
+      this.ngOnInit();
+    }, (reason) => {
+    });
 
     /* if(this.snackBar.open) {
       this.snackBar.dismiss();
