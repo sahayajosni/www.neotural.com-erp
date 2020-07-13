@@ -2,21 +2,29 @@
 
 .modal-content{
   background-color:     $po-order-form-bg  !important;
-  }
-  .btnlogout{
-      background-color:     $btn-bg  !important;
-    }
+}
+.btnlogout{
+    background-color:     $btn-bg  !important;
+}
 
-    button[name="btn"] {
-      background: $btn-bg;
-      padding: 8px 40px;
-      font-family: $font-family;
-      border-radius: $btn-border-radius;
-      border: none;
-    }
+button[name="btn"] {
+  background: $btn-bg;
+  padding: 8px 40px;
+  font-family: $font-family;
+  border-radius: $btn-border-radius;
+  border: none;
+}
 
-    ::ng-deep .success{
-      background-color: $validation-green;
-      color:white !important; 
-      border: none !important;
-    }
+::ng-deep .success{
+  background-color: $validation-green;
+  color:white !important; 
+  border: none !important;
+}
+
+::ng-deep .warning{
+  border: none !important;
+}
+
+::ng-deep .error{
+  border: none !important;
+}
