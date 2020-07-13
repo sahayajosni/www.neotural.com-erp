@@ -3,18 +3,24 @@ import { Router } from '@angular/router';
 import { CategoryproductService } from '../services/categoryproduct.service';
 import { MatSnackBar, MatDialog, MatDialogConfig } from "@angular/material";
 import { AddnewcategoryComponent } from '../categoryitem/categoryitem.component';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  styleUrls: ['./category.component.scss'],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class CategoryComponent implements OnInit {
   constructor(private router: Router,
     private dialog: MatDialog,
     private catprodservice: CategoryproductService,
-    private snackBar: MatSnackBar
-  ) { }
+    private snackBar: MatSnackBar,
+    config: NgbModalConfig, private modalService: NgbModal,
+  ) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   categorylist:any = {};
   model:any = {};
@@ -56,9 +62,18 @@ export class CategoryComponent implements OnInit {
   }
 
   categoryedit(categorycode:string,name:string,desc:string){
+    const modalRef = this.modalService.open(AddnewcategoryComponent, { windowClass: 'my-class'});
+   
+    let data = { categorycode: categorycode, name: name, desc: desc }
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(function(){
+      this.loadCategory();
+    });
+
     //alert(code);
     //alert(name);
-    this.dialogConfig.disableClose = true;
+    /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
       'top': '100',
@@ -74,7 +89,7 @@ export class CategoryComponent implements OnInit {
     })
     .afterClosed().subscribe(result => {
       this.loadCategory();
-    }); 
+    });  */
     
   }
 

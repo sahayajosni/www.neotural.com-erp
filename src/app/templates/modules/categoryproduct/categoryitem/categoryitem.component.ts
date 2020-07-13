@@ -31,16 +31,19 @@ export class AddnewcategoryComponent {
   description:string;
   btnlabel:string;
   show:boolean;
+  @Input() fromParent: UsersData;
 
   constructor(
     private catprodservice: CategoryproductService,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData,
-    public dialogRef: MatDialogRef<AddnewcategoryComponent>,
-    private snackBar: MatSnackBar
+    //public dialogRef: MatDialogRef<AddnewcategoryComponent>,
+    private snackBar: MatSnackBar,
+    public activeModal: NgbActiveModal,
+    private modalService: NgbModal,
 
     ) {
       console.log(data);
-      this.local_data = {...data};
+      /* this.local_data = {...data};
       this.categorycode = this.local_data.categorycode;
       this.name = this.local_data.name;
       this.description = this.local_data.desc;
@@ -55,39 +58,42 @@ export class AddnewcategoryComponent {
         this.btnlabel="Save";
         this.show=false;
         //alert("No code");
-      }
+      } */
     }
 
-    addCategoryClose() {
-      this.dialogRef.close();
+    ngOnInit() {
+      this.categorycode = this.fromParent.categorycode;
+      this.name = this.fromParent.name;
+      this.description = this.fromParent.desc;
+      this.model.categorycode = this.categorycode;
+      this.model.name = this.name;
+      this.model.description = this.description;
+      if(this.categorycode!=null){
+        this.btnlabel="Update";
+        this.show=true;
+      }else {
+        this.btnlabel="Save";
+        this.show=false;
+      } 
+      
     }
+
     saveCategory(){
       console.log("Inside saveCategory method");
       console.log("Category Name-->"+this.model.categorycode);
       console.log("Category Name-->"+this.model.name);
       console.log("Category Desc-->"+this.model.description);
-
       this.catprodservice.save(this.model)
       .subscribe(
         data => {
-        //  this.category =   data; 
-        //   console.log("Response-->"+data);
-          this.dialogRef.close();
           setTimeout(() => {
             this.snackBar.open("Category Saved Successfully", "", {
               panelClass: ["success"],
-              verticalPosition: 'top'      
+              verticalPosition: 'top',
+              duration: undefined,      
             });
           });
-
-        /*if(this.category.status=="failure"){
-          setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
-              panelClass: ["error"],
-              verticalPosition: 'top'      
-            });
-          }); 
-        } */
+          this.modalService.dismissAll();
       },
       error => {
         setTimeout(() => {
@@ -96,12 +102,12 @@ export class AddnewcategoryComponent {
             verticalPosition: 'top'      
           });
         }); 
-      }
-    );  
-  }
-  close(e) {
+      });  
+    }
+    
+  /* close(e) {
     this.dialogRef.close();
-  }
+  } */
 }
 // addnewcategory end
 
@@ -212,6 +218,7 @@ export interface UsersData {
   vendorcode: string;
   prodheaderlabel: string;
   prodbtnlabel: string;
+  btnlabel: string;
 }
 
 // add promostion start
@@ -1381,9 +1388,6 @@ export class CategoryItemComponent implements OnInit {
   public productTable = false;
   inputproductcode:string;
 
-  btnlabel:string;
-  show:boolean;
-
   // All Product
   displayedColumns: string[] = [
     'productname',
@@ -1728,11 +1732,18 @@ productlist(number: string){
     this.editdeletediv=true;
    // this.discountdetails=false;
   }
-  addNewCategory(content){
+  addNewCategory(){
     //this.successdialog = 'block';
-    this.btnlabel = 'Save';
-    this.modalService.open(content, { windowClass: 'my-class'});
+    let categorycode = null;
+    const modalRef = this.modalService.open(AddnewcategoryComponent, { windowClass: 'my-class'});
 
+    let data = { categorycode: categorycode }
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(function(){
+      this.loadCategory();
+    });
+    
     // this.dialogConfig.disableClose = true;
     // this.dialogConfig.autoFocus = true;
     // this.dialogConfig.position = {
@@ -1753,32 +1764,6 @@ productlist(number: string){
     //   this.allcategorylist();
     // }
     // );
-  }
-
-  saveCategory(){
-    console.log("Inside saveCategory method");
-    console.log("Category Name-->"+this.model.categorycode);
-    console.log("Category Name-->"+this.model.name);
-    console.log("Category Desc-->"+this.model.description);
-    this.catprodservice.save(this.model)
-    .subscribe(
-      data => {
-        setTimeout(() => {
-          this.snackBar.open("Category Saved Successfully", "", {
-            panelClass: ["success"],
-            verticalPosition: 'top'      
-          });
-        });
-        this.modalService.dismissAll();
-    },
-    error => {
-      setTimeout(() => {
-        this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
-          panelClass: ["error"],
-          verticalPosition: 'top'      
-        });
-      }); 
-    });  
   }
 
   addpromotion(title:string,show:string){
