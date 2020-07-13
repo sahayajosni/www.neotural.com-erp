@@ -246,25 +246,17 @@ export class AddpromotionComponent {
   discountLabel:boolean;
 
   local_data:any;
+  @Input() fromParent: UsersData;
   constructor(
-    public dialogRef: MatDialogRef<AddpromotionComponent>,
+    //public dialogRef: MatDialogRef<AddpromotionComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData,
     private catprodservice: CategoryproductService,
     private completerService: CompleterService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public activeModal: NgbActiveModal,
+    private modalService: NgbModal,
     ) {
-      console.log(data);
-      this.local_data = {...data};
-      this.title = this.local_data.title;
-      this.key = this.local_data.key;
-      if(this.key == "freegift") {
-        this.discountLabel = false;
-        this.freegiftLabel = true;
-      }
-      if(this.key == "discount") {
-        this.discountLabel = true;
-        this.freegiftLabel = false;
-      } 
+      
       this.catprodservice.load()
       .subscribe(
          data => {
@@ -300,8 +292,17 @@ export class AddpromotionComponent {
  
     }
 
-    addPromotionClose() {
-      this.dialogRef.close();
+    ngOnInit(){
+      this.title = this.fromParent.title;
+      this.key = this.fromParent.key;
+      if(this.key == "freegift") {
+        this.discountLabel = false;
+        this.freegiftLabel = true;
+      }
+      if(this.key == "discount") {
+        this.discountLabel = true;
+        this.freegiftLabel = false;
+      } 
     }
 
     savePromotion(){
@@ -317,13 +318,21 @@ export class AddpromotionComponent {
       this.catprodservice.addpromotionsave(this.model)
       .subscribe(
         data => {
-          this.discount =   data; 
-          this.dialogRef.close();
-          if(this.discount.status=="success"){
+          this.discount =  data; 
+          this.modalService.dismissAll();
+          setTimeout(() => {
+            this.snackBar.open("Promotion created Successfully", "dismss", {
+              panelClass: ["success"],
+              verticalPosition: 'top',
+              duration: undefined     
+            });
+          });
+          /*if(this.discount.status=="success"){
             setTimeout(() => {
               this.snackBar.open("Promotion created Successfully", "dismss", {
                 panelClass: ["success"],
-                verticalPosition: 'top'      
+                verticalPosition: 'top',
+                duration: undefined     
               });
             });
            
@@ -335,7 +344,7 @@ export class AddpromotionComponent {
                 verticalPosition: 'top'      
               });
             });   
-          }
+          } */
         },
         error => {
           setTimeout(() => {
@@ -366,9 +375,6 @@ export class AddpromotionComponent {
       this.otherShow = true;
     }
 
-    close(e) {
-      this.dialogRef.close();
-    }
 }
 // add promostion end
 
@@ -1767,9 +1773,16 @@ productlist(number: string){
   }
 
   addpromotion(title:string,show:string){
-    //this.successdialog = 'block';
+    const modalRef = this.modalService.open(AddpromotionComponent, { windowClass: 'promotion-class'});
+  
+    let data = {title: title, key: show}
 
-    this.dialogConfig.disableClose = true;
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(function(){
+      this.alldiscountList();
+    });
+
+    /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
       'top': '1000',
@@ -1785,8 +1798,7 @@ productlist(number: string){
     })
     .afterClosed().subscribe(result => {
       this.alldiscountList();
-    });
-      
+    }); */      
   }
 
   

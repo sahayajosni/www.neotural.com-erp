@@ -202,7 +202,7 @@ input[type=search] {
   color: white;
   width: 100%;
   height: 30px;
-  margin: 0px 0px 5px -20px;
+  margin: -20px 0px 5px -20px;
   padding-left: 32px;
   line-height: 1.42857143;
   border-radius: 4px;
@@ -230,4 +230,24 @@ input[type=search] {
 .spanerror{
   background-color: $error-code;
   margin: -5px 0px 0px -20px;
+}
+
+.close-x{
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+
+::ng-deep .promotion-class .modal-dialog {
+  max-width: 80%;
+  width: 60% !important;
 }
