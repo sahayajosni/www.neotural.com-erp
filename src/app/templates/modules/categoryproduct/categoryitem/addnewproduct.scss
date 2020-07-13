@@ -13,30 +13,13 @@
   border-left: 5px solid #a94442; /* red */
 }
 
-span{
-  color:white;
-  font-size: 12px;
-  margin: 5px 0px;
+.close-x{
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
 }
-#x {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  margin: -5px -5px 0px 0px;
-  /* background: #16222B; */
-  border: red;
-  color: white;
-  top: -10px;
-  right: -10px;
-  border-radius: 25px;
-}
-::ng-deep .addnewproduct .mat-dialog-container {
-  background:$po-order-form-bg;
-  //width: 180vh;
-  //height: 95vh; 
-  border-radius: $dialog-border-radius;
-  //padding: 17px;
-}
+
 .heading {
   color:$table-header-font !important;
 }
@@ -102,6 +85,42 @@ input[type=submit]:hover {
   content: "";
   display: table;
   clear: both;
+}
+
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+// add product
+::ng-deep .addproduct-class .modal-dialog {
+  max-width: 80%;
+  width: 70% !important;
+  padding-top: 50px !important;;
+  padding-bottom: 50px !important;;
+}
+// add product
+::ng-deep .addproduct-class .modal-content {
+  padding-top: 10px !important;;
+  padding-bottom: 10px !important;;
+  background:$po-order-form-bg;
+}
+button[type="submit"]{
+  background: $btn-bg;
+  width: 30%;
+  border: none;
+  border-radius: 20px;
+  border-radius: $btn-border-radius;
+  padding: 0.5rem 1.5rem;
+  font-family: $font-family;
+  color: white;
+  height: 35px;
+}
+#prodheader{
+  margin-left: 5rem;
 }
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */

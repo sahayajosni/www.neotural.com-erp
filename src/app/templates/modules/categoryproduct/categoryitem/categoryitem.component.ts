@@ -12,6 +12,7 @@ import { Discount } from '../../../../core/common/_models/discount';
 import { PrintDialogService } from "src/app/core/services/print-dialog/print-dialog.service";
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 // addnewcategory start
 @Component({
@@ -207,6 +208,10 @@ export interface UsersData {
   categorycode: string;
   name: string;
   desc:string;
+  prodcode:string;
+  vendorcode: string;
+  prodheaderlabel: string;
+  prodbtnlabel: string;
 }
 
 // add promostion start
@@ -497,6 +502,7 @@ export class DiscountdeleteComponent {
 export class AddnewproductComponent {
   model: any = {};
   allcategorylist:any = {};
+  categorylist:any = {};
   vendornamelist: any = {};
   allUnitlist:any = {};
   unitlist: any = {};
@@ -504,18 +510,50 @@ export class AddnewproductComponent {
   category:Category;
   product:Product;
   selectedFiles: any = {};
+  allproducedittlist:any = {};
+
+  isImageSaved0: boolean;
+  isImageSaved1:boolean;
+  isImageSaved2: boolean;
+  isImageSaved3:boolean;
+  
+  imageError: string;
+  inputproductcode:string;
+  vendorcode:string;
+  public div1 = false;
+  public div2 = false;
+  public div3 = false;
+  public div4 = false;
+  productImage: Array<any> = [];
+  imageIndex0:boolean = false;
+  imageIndex1:boolean = false;
+  imageIndex2:boolean = false;
+  imageIndex3:boolean = false;
+
+  imgBase64Path:any;
+  @Input() fromParent: UsersData;
+  prodheaderlabel: string;
+  prodbtnlabel: string;
 
   constructor(
-    public dialogRef: MatDialogRef<AddnewproductComponent>,
+    //public dialogRef: MatDialogRef<AddnewproductComponent>,
     private catprodservice: CategoryproductService,
     private vendorservice: VendorService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private router: Router, config: NgbModalConfig, 
+    private modalService: NgbModal,
+    private _sanitizer: DomSanitizer,
+    public activeModal: NgbActiveModal,
 
-    ) {
-      this.catprodservice.load()
+    ) { 
+      
+      //this.catprodservice.load()
+      this.categorylist="";
+      this.catprodservice.loadCategoryName()
       .subscribe(
         data => {
-          this.allcategorylist = data;
+          this.categorylist = data;
         },
         error => {	
           setTimeout(() => {
@@ -527,7 +565,8 @@ export class AddnewproductComponent {
         }
      );
 
-     this.vendorservice.load()
+     //this.vendorservice.load()
+     this.vendorservice.loadvendornamecode()
      .subscribe(
         data => {
           this.vendornamelist = data;
@@ -561,25 +600,13 @@ export class AddnewproductComponent {
       );
       this.model.sellingprice = 0;
   }
-  /*fileChangeEvent(event) {
-    this.selectedFiles = event.target.files;
-    for (let i = 0; i < event.target.files; i++) {
-      this.selectedFiles.push(event.target.files[i]);
-    }
-  }*/
-  isImageSaved0: boolean;
-  isImageSaved1:boolean;
-  isImageSaved2: boolean;
-  isImageSaved3:boolean;
-  
-  imageError: string;
-  productImage: Array<any> = [];
-  imageIndex0:boolean = false;
-  imageIndex1:boolean = false;
-  imageIndex2:boolean = false;
-  imageIndex3:boolean = false;
 
-  imgBase64Path:any;
+  ngOnInit() {
+    this.prodheaderlabel = this.fromParent.prodheaderlabel;
+    this.prodbtnlabel = this.fromParent.prodbtnlabel;
+    this.allproducteditcall(this.fromParent.prodcode,this.fromParent.vendorcode);
+  }
+
   fileChangeEvent(fileInput: any,imageNumber:number) {
     console.log("Add Product");
     this.imageError = null;
@@ -623,6 +650,7 @@ export class AddnewproductComponent {
                         console.log("First Time");
                         this.productImage.push(this.imgBase64Path);
                         this.isImageSaved0 = true;
+                        this.div1 = false;
                         this.imageIndex1=true;
                         console.log("First time Base 64 array value-->"+this.productImage[0]);
                       }
@@ -691,18 +719,17 @@ export class AddnewproductComponent {
                   this.isImageSaved3 = true;
                   console.log("Fourth time Base 64 array value-->"+this.productImage[1]);
                 }
+              }else{	
+                this.productImage.push(this.model.productImage[0]);	
+                this.productImage.push(this.model.productImage[1]);	
+                this.productImage.push(this.model.productImage[2]);	
+                this.productImage.push(this.model.productImage[3]);	
+              }      
             }
-                 
-              }
-            };
-        };
-
-        reader.readAsDataURL(fileInput.target.files[0]);
+          };
+      };
+      reader.readAsDataURL(fileInput.target.files[0]);
     }
-  }
-
-  addProductClose() {
-    this.dialogRef.close();
   }
 
   removeImage(i:number) {
@@ -746,26 +773,24 @@ export class AddnewproductComponent {
     }
   }
 
-  saveAddNewProduct(category: string){
-    this.model.productImage = this.productImage;
-    console.log("Selling Price -->"+this.model.sellingprice);
-    this.catprodservice.producsave(this.model)
-    .subscribe(
-      data => {
-        this.product =   data; 
-        this.dialogRef.close();
-       // if(this.product.status=="success"){
+  saveNewProduct(prodbtnlabel: string){
+    if(prodbtnlabel == "Add"){
+      this.model.productImage = this.productImage;
+      console.log("Selling Price -->"+this.model.sellingprice);
+      this.catprodservice.producsave(this.model)
+      .subscribe(
+        data => {
+          this.product = data; 
           setTimeout(() => {
             this.snackBar.open("Product saved Successfully", "", {
               panelClass: ["success"],
               verticalPosition: 'top'      
             });
           });
-
-     
           this.model.sellingprice = 0;
-      //  } 
-    /*   if(this.product.status=="failure"){
+          this.modalService.dismissAll();
+        },
+        error => {
           setTimeout(() => {
             this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
               panelClass: ["error"],
@@ -773,7 +798,93 @@ export class AddnewproductComponent {
             });
           });   
       
-        } */
+        }
+      ); 
+    }else if(prodbtnlabel == "Update"){
+      console.log("Product Code-->"+this.inputproductcode);
+      this.model.productImage = this.productImage;
+      this.model.prodcode=this.inputproductcode;
+      this.catprodservice.setItem(this.model)
+      .subscribe(
+        data => {
+          this.product =   data;
+          setTimeout(() => {
+            this.snackBar.open("Product Updated Successfully", "", {
+              panelClass: ["success"],
+              verticalPosition: 'top'      
+            });
+          });
+          this.modalService.dismissAll();
+          console.log(" --- productedit ----"); 
+        },
+        error => {
+          setTimeout(() => {
+            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+              panelClass: ["error"],
+              verticalPosition: 'top'      
+            });
+          });      
+        }
+      );
+    }
+  }
+
+  getImage(imgData) {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
+  }
+
+  allproducteditcall(prodcode: string,vendorcode:string){  
+    console.log("allproducteditcall");
+    this.inputproductcode = prodcode;
+    this.model.vendorcode = vendorcode;
+
+    this.catprodservice.loadEditItem(this.model.vendorcode)
+    .subscribe(
+      data => {
+        this.allproducedittlist = data;
+        console.log("productedit code -->"+this.allproducedittlist[0].prodcode);
+        for(let k=0;k<this.allproducedittlist.length;k++){
+          if(this.allproducedittlist[k].prodcode==this.inputproductcode){
+            this.model.productname=this.allproducedittlist[k].productname;
+            this.model.description=this.allproducedittlist[k].description;
+            this.model.price=this.allproducedittlist[k].price;
+            this.model.tax=this.allproducedittlist[k].tax;
+            this.model.margin=this.allproducedittlist[k].margin;
+            this.model.sellingprice=this.allproducedittlist[k].sellingprice;
+            this.model.vendorcode=this.allproducedittlist[k].vendorcode;
+            this.model.vendorname=this.allproducedittlist[k].vendorname;
+            this.model.categorycode=this.allproducedittlist[k].categorycode;
+            this.model.categoryname=this.allproducedittlist[k].categoryname;
+            console.log("category name -->"+this.model.categoryname);
+            console.log("category code -->"+this.model.categorycode);
+            this.model.categorycode=this.allproducedittlist[k].categoryname+"-"+this.allproducedittlist[k].categorycode;
+            console.log("category code & name -->"+this.model.categorycode);
+            console.log("vendor name -->"+this.model.vendorname);
+            console.log("vendor code -->"+this.model.vendorcode);
+            this.model.vendorcode=this.allproducedittlist[k].vendorname+"-"+this.allproducedittlist[k].vendorcode;
+            console.log("vendor name & code -->"+this.model.vendorcode);
+            this.model.unit=this.allproducedittlist[k].unit;
+            this.model.productImage=this.allproducedittlist[k].productImage;
+            if(this.model.productImage[0]!=undefined){
+              this.div1 = true;
+              this.isImageSaved0 = false;
+            }           
+
+            if(this.model.productImage[1]!=undefined){
+              this.div2 = true;
+              this.isImageSaved1 = false;
+            }
+            if(this.model.productImage[2]!=undefined){
+              this.div3 = true;
+              this.isImageSaved2 = false;
+            }
+            if(this.model.productImage[3]!=undefined){
+              this.div4 = true;
+              this.isImageSaved3 = false;
+            }
+          }
+        }
+        this.model.prodcode=this.allproducedittlist[0].prodcode;
       },
       error => {
         setTimeout(() => {
@@ -784,11 +895,9 @@ export class AddnewproductComponent {
         });   
 		
       }
-    ); 
-    }
-    close(e) {
-    this.dialogRef.close();
+    );
   }
+
 }
 // addnewproduct end
 
@@ -1259,25 +1368,18 @@ export class CategorytableComponent {
 })
 export class CategoryItemComponent implements OnInit {
   allproductlist : any= {};// Product;  
-  product:Product;
   categorylist: any= {};
-  allproducedittlist:any;
+  product:Product;
+  model: any = {};
   alldiscountlist: any= {};
   allfreegiftlist: any= {};
   dialogConfig = new MatDialogConfig();
   isDtInitialized:boolean = false;
-  model: any = {};
   discount:Discount;
   itemtitle:string="All Items";
   loadinggif:boolean = false;
   public productTable = false;
-
-  vendornamelist: any = {};
-  allUnitlist:any = {};
-  unitlist: any = {};
-  data: any = {};
-  category:Category;
-  selectedFiles: any = {};
+  inputproductcode:string;
 
   btnlabel:string;
   show:boolean;
@@ -1328,26 +1430,6 @@ export class CategoryItemComponent implements OnInit {
   public alldetails='none';
   public freegiftdetails='none';
 
-  isImageSaved0: boolean;
-  isImageSaved1:boolean;
-  isImageSaved2: boolean;
-  isImageSaved3:boolean;
-  
-  imageError: string;
-  inputproductcode:string;
-  vendorcode:string;
-  public div1 = false;
-  public div2 = false;
-  public div3 = false;
-  public div4 = false;
-  productImage: Array<any> = [];
-  imageIndex0:boolean = false;
-  imageIndex1:boolean = false;
-  imageIndex2:boolean = false;
-  imageIndex3:boolean = false;
-
-  imgBase64Path:any;
-
   successdialog = 'none';
    // masterlist
    masterlist:  any =[
@@ -1382,8 +1464,8 @@ export class CategoryItemComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       // customize default values of modals used by this component tree
-    config.backdrop = 'static';
-    config.keyboard = false;
+      config.backdrop = 'static';
+      config.keyboard = false;
     }
 
    
@@ -1399,24 +1481,6 @@ export class CategoryItemComponent implements OnInit {
     //this.alldetails='block';
     this.alldiscountList();
     this.allfreegiftList();
-    this.allvendorlist();
-
-    let id = "all";
-    this.catprodservice.loadUnitList(id)
-    .subscribe(
-      data => {
-        this.allUnitlist = data;
-      },
-      error => {
-        setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
-            panelClass: ["error"],
-            verticalPosition: 'top'      
-          });
-        });   
-      }
-    );
-    this.model.sellingprice = 0;
 
   /*  for (let i = 1; i < 100; i++) {
       let newName = {
@@ -1463,27 +1527,6 @@ export class CategoryItemComponent implements OnInit {
     );
   }
 
-  allvendorlist(){
-    /* this.vendorservice.load()
-     .subscribe(
-        data => {
-          this.vendornamelist = data; */
-      this.vendorservice.loadvendornamecode()
-      .subscribe(
-          data => {
-            this.vendornamelist = data;
-          console.log("Vendor name"+this.vendornamelist);
-        },
-       error => {	
-        setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
-            panelClass: ["error"],
-            verticalPosition: 'top'      
-          });
-        });   
-      }
-     );
-  }
   allproductList(){
     this.loadinggif=true;
     this.productTable = false;
@@ -1836,11 +1879,16 @@ productlist(number: string){
 
   prodheaderlabel:any;
   prodbtnlabel:any;
-  addNewProduct(addnewproduct){
+  addNewProduct(){
     this.prodheaderlabel = "Add New Product";
     this.prodbtnlabel = "Add";
-    this.modalService.open(addnewproduct, { windowClass: 'addproduct-class'});
+    let data = { prodheaderlabel: this.prodheaderlabel, prodbtnlabel: this.prodbtnlabel }
 
+    const modalRef = this.modalService.open(AddnewproductComponent, { windowClass: 'addproduct-class'});
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(function(){
+      this.getAllCustomerDetails();
+    });
     // this.modalService.open(addnewproduct);
 
     /*this.dialogConfig.disableClose = true;
@@ -1879,232 +1927,6 @@ productlist(number: string){
     }); */
   }
 
-  fileChangeEvent(fileInput: any,imageNumber:number) {
-    console.log("Add Product");
-    this.imageError = null;
-    if (fileInput.target.files && fileInput.target.files[0]) {
-        // Size Filter Bytes
-        const max_size = 20971520;
-        const allowed_types = ['image/png', 'image/jpeg'];
-        const max_height = 15200;
-        const max_width = 25600;
-
-        if (fileInput.target.files[0].size > max_size) {
-            this.imageError =
-                'Maximum size allowed is ' + max_size / 1000 + 'Mb';
-
-            return false;
-        }
-
-      
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-            const image = new Image();
-            image.src = e.target.result;
-            image.onload = rs => {
-                const img_height = rs.currentTarget['height'];
-                const img_width = rs.currentTarget['width'];
-
-                console.log(img_height, img_width);
-
-
-                if (img_height > max_height && img_width > max_width) {
-                 
-                    return false;
-                } else {
-                    this.imgBase64Path = e.target.result;
-                   // this.cardImageBase64 = imgBase64Path;
-                   if(this.productImage[imageNumber]!=null){
-                     console.log("no value...");
-                   }
-                   if(imageNumber==0){
-                      if(this.imageIndex1==false){
-                        console.log("First Time");
-                        this.productImage.push(this.imgBase64Path);
-                        this.isImageSaved0 = true;
-                        this.div1 = false;
-                        this.imageIndex1=true;
-                        console.log("First time Base 64 array value-->"+this.productImage[0]);
-                      }
-                      else{
-                        console.log("else");
-                        console.log("Second time Before update Base 64 array value-->"+this.productImage[0]);
-                        console.log("Second time Base 64-->"+this.imgBase64Path);
-                        this.productImage[0] = this.imgBase64Path;
-                        this.isImageSaved0 = true;
-                        console.log("Second time Base 64 array value-->"+this.productImage[0]);
-                        //this.imageIndex1=true;
-                      }
-                  }
-                  // Second Image
-                  if(imageNumber==1){
-                    if(this.imageIndex1==false){
-                      console.log("First Time");
-                      this.productImage.push(this.imgBase64Path);
-                      this.isImageSaved1 = true;
-                      this.imageIndex1=true;
-                      console.log("First time Base 64 array value-->"+this.productImage[1]);
-                    }
-                    else{
-                      console.log("else");
-                      console.log("Second time Before update Base 64 array value-->"+this.productImage[1]);
-                      console.log("Second time Base 64-->"+this.imgBase64Path);
-                      this.productImage[1] = this.imgBase64Path;
-                      this.isImageSaved1 = true;
-                      console.log("Second time Base 64 array value-->"+this.productImage[1]);
-                    }
-                }
-
-                // Third Image
-                if(imageNumber==2){
-                  if(this.imageIndex2==false){
-                    console.log("First Time");
-                    this.productImage.push(this.imgBase64Path);
-                    this.isImageSaved2 = true;
-                    this.imageIndex2=true;
-                    console.log("First time Base 64 array value-->"+this.productImage[2]);
-                  }
-                  else{
-                    console.log("else");
-                    console.log("Third time Before update Base 64 array value-->"+this.productImage[2]);
-                    console.log("Third time Base 64-->"+this.imgBase64Path);
-                    this.productImage[2] = this.imgBase64Path;
-                    this.isImageSaved2 = true;
-                    console.log("Third time Base 64 array value-->"+this.productImage[2]);
-                  }
-              }
-
-              // Fourth Image
-              if(imageNumber==3){
-                if(this.imageIndex3==false){
-                  console.log("First Time");
-                  this.productImage.push(this.imgBase64Path);
-                  this.isImageSaved3 = true;
-                  this.imageIndex3=true;
-                  console.log("First time Base 64 array value-->"+this.productImage[1]);
-                }
-                else{
-                  console.log("else");
-                  console.log("Fourth time Before update Base 64 array value-->"+this.productImage[3]);
-                  console.log("Fourth time Base 64-->"+this.imgBase64Path);
-                  this.productImage[3] = this.imgBase64Path;
-                  this.isImageSaved3 = true;
-                  console.log("Fourth time Base 64 array value-->"+this.productImage[1]);
-                }
-              }else{	
-              this.productImage.push(this.model.productImage[0]);	
-              this.productImage.push(this.model.productImage[1]);	
-              this.productImage.push(this.model.productImage[2]);	
-              this.productImage.push(this.model.productImage[3]);	
-            }    
-          }
-        };
-      };
-
-      reader.readAsDataURL(fileInput.target.files[0]);
-    }
-  }
-
-  removeImage(i:number) {
-    this.productImage[i]=null;
-    if(i==0){
-      this.isImageSaved0 = false;
-    }
-    if(i==1){
-      this.isImageSaved1 = false;
-    }
-    if(i==2){
-      this.isImageSaved2 = false;
-    }
-    if(i==3){
-      this.isImageSaved3 = false;
-    }
-  }
-
-  marginPrice:any;
-  taxPrice:any;
-  getSellingPrice(price:string,tax:string,margin:string){
-    console.log("price-->"+price + "--- Tax --->"+tax+"-- Margin ---->"+margin);
-    if(tax == null || tax == undefined){
-      if(margin == null || tax == undefined){
-        this.model.sellingprice = price;
-      }else{
-        this.marginPrice = Number.parseInt(price) * (Number.parseInt(margin)/100);
-        this.model.sellingprice = Number.parseInt(price)+Number.parseInt(this.marginPrice);
-      }
-    }else if(margin == null || tax == undefined){
-      if(tax == null || tax == undefined){
-        this.model.sellingprice = price;
-      }else{
-        this.marginPrice = Number.parseInt(price) * (Number.parseInt(tax)/100);
-        this.model.sellingprice = Number.parseInt(price)+Number.parseInt(this.marginPrice);
-      }
-    }else{
-      this.marginPrice = Number.parseInt(price) * (Number.parseInt(margin)/100);
-      this.taxPrice = Number.parseInt(price) * (Number.parseInt(tax)/100);
-      this.model.sellingprice = Number.parseInt(price)+Number.parseInt(this.marginPrice)+Number.parseInt(this.taxPrice);
-    }
-  }
-
-  saveNewProduct(prodbtnlabel: string){
-    if(prodbtnlabel == "Add"){
-      this.model.productImage = this.productImage;
-      console.log("Selling Price -->"+this.model.sellingprice);
-      this.catprodservice.producsave(this.model)
-      .subscribe(
-        data => {
-          this.product = data; 
-          setTimeout(() => {
-            this.snackBar.open("Product saved Successfully", "", {
-              panelClass: ["success"],
-              verticalPosition: 'top'      
-            });
-          });
-          this.model.sellingprice = 0;
-          this.modalService.dismissAll();
-          this.allproductList();
-        },
-        error => {
-          setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
-              panelClass: ["error"],
-              verticalPosition: 'top'      
-            });
-          });   
-      
-        }
-      ); 
-    }else if(prodbtnlabel == "Update"){
-      console.log("Product Code-->"+this.inputproductcode);
-      this.model.productImage = this.productImage;
-      this.model.prodcode=this.inputproductcode;
-      this.catprodservice.setItem(this.model)
-      .subscribe(
-        data => {
-          this.product =   data;
-          setTimeout(() => {
-            this.snackBar.open("Product Updated Successfully", "", {
-              panelClass: ["success"],
-              verticalPosition: 'top'      
-            });
-          });
-          this.modalService.dismissAll();
-          this.allproductList();
-          console.log("saveproducteditdelete"); 
-        },
-        error => {
-          setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
-              panelClass: ["error"],
-              verticalPosition: 'top'      
-            });
-          });      
-        }
-      );
-    }
-    
-  }
-
   productEdit(){
     this.prodheaderlabel = "Edit Product";
     this.prodbtnlabel = "Update";
@@ -2124,74 +1946,24 @@ productlist(number: string){
     }); 
   }
 
-  allproducteditcall(prodcode: string,vendorcode:string,addnewproduct){  
+  allproducteditcall(prodcode: string,vendorcode:string){  
     console.log("allproducteditcall");
 
     this.inputproductcode = prodcode;
     this.model.vendorcode = vendorcode;
 
-    this.catprodservice.loadEditItem(this.model.vendorcode)
-    .subscribe(
-      data => {
-        this.allproducedittlist = data;
-        console.log("productedit code -->"+this.allproducedittlist[0].prodcode);
-        for(let k=0;k<this.allproducedittlist.length;k++){
-          if(this.allproducedittlist[k].prodcode==this.inputproductcode){
-            this.model.productname=this.allproducedittlist[k].productname;
-            this.model.description=this.allproducedittlist[k].description;
-            this.model.price=this.allproducedittlist[k].price;
-            this.model.tax=this.allproducedittlist[k].tax;
-            this.model.margin=this.allproducedittlist[k].margin;
-            this.model.sellingprice=this.allproducedittlist[k].sellingprice;
-            this.model.vendorcode=this.allproducedittlist[k].vendorcode;
-            this.model.vendorname=this.allproducedittlist[k].vendorname;
-            this.model.categorycode=this.allproducedittlist[k].categorycode;
-            this.model.categoryname=this.allproducedittlist[k].categoryname;
-            console.log("category name -->"+this.model.categoryname);
-            console.log("category code -->"+this.model.categorycode);
-            this.model.categorycode=this.allproducedittlist[k].categoryname+"-"+this.allproducedittlist[k].categorycode;
-            console.log("category code & name -->"+this.model.categorycode);
-            console.log("vendor name -->"+this.model.vendorname);
-            console.log("vendor code -->"+this.model.vendorcode);
-            this.model.vendorcode=this.allproducedittlist[k].vendorname+"-"+this.allproducedittlist[k].vendorcode;
-            console.log("vendor name & code -->"+this.model.vendorcode);
-            this.model.unit=this.allproducedittlist[k].unit;
-            this.model.productImage=this.allproducedittlist[k].productImage;
-            if(this.model.productImage[0]!=undefined){
-              this.div1 = true;
-              this.isImageSaved0 = false;
-            }           
-
-            if(this.model.productImage[1]!=undefined){
-              this.div2 = true;
-              this.isImageSaved1 = false;
-            }
-            if(this.model.productImage[2]!=undefined){
-              this.div3 = true;
-              this.isImageSaved2 = false;
-            }
-            if(this.model.productImage[3]!=undefined){
-              this.div4 = true;
-              this.isImageSaved3 = false;
-            }
-          }
-        }
-        this.model.prodcode=this.allproducedittlist[0].prodcode;
-      },
-      error => {
-        setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
-            panelClass: ["error"],
-            verticalPosition: 'top'      
-          });
-        });   
-		
-      }
-    );
-
     this.prodheaderlabel = "Edit Product";
     this.prodbtnlabel = "Update";
-    this.modalService.open(addnewproduct, { windowClass: 'addproduct-class'});
+    let data = { prodheaderlabel: this.prodheaderlabel, prodbtnlabel: this.prodbtnlabel,
+      prodcode: prodcode, vendorcode: vendorcode }
+    
+    const modalRef = this.modalService.open(AddnewproductComponent, { windowClass: 'addproduct-class'});
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(function(){
+      this.allproductList();
+    });
+
+
     /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
@@ -2208,10 +1980,6 @@ productlist(number: string){
 
     });*/
 
-  }
-
-  getImage(imgData) {
-      return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
   }
 
   allproductdelete(prodcode: string){
