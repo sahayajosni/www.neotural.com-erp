@@ -135,6 +135,7 @@ export class CustomerComponent implements OnInit {
     email:string,city:string,phoneNumber:string,customerbase64:string){
 
     const modalRef = this.modalService.open(CustomerAddComponent, { windowClass: 'vendor-class'});
+   
     if (id !== null) {
       this.button = "Update";
     } else {
@@ -145,11 +146,12 @@ export class CustomerComponent implements OnInit {
       city: city, phoneNumber: phoneNumber, customerbase64: customerbase64 }
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then((result) => {
-      this.ngOnInit();
-    }, (reason) => {
+    modalRef.result.then(function(){
+      this.getAllCustomerDetails();
     });
 
+
+   
     /* let data: any;
     if (id !== null) {
       this.button = "Update";
