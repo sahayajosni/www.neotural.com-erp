@@ -11,6 +11,7 @@ import {
 import { SalesorderComponent } from "../salesorder/salesorder.component";
 import { SalesCreateInvoiceComponent } from "./../sales-create-invoice/sales-create-invoice.component";
 import { SalesCreateReturnComponent } from '../sales-create-return/sales-create-return.component';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-saleslist",
@@ -18,6 +19,7 @@ import { SalesCreateReturnComponent } from '../sales-create-return/sales-create-
   styleUrls: [
     "./sales-list.component.scss"
   ],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class SalesListComponent implements OnInit, OnDestroy {
   salesOrderList: any;
@@ -45,8 +47,12 @@ export class SalesListComponent implements OnInit, OnDestroy {
   constructor(
     private salesService: SalesService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    config: NgbModalConfig, private modalService: NgbModal,
+  ) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   ngOnInit() {
     this.getSalesOrderLists();
@@ -132,6 +138,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
             {
               panelClass: ["error"],
               verticalPosition: "top",
+              duration: undefined
             }
           );
         });
@@ -203,8 +210,10 @@ export class SalesListComponent implements OnInit, OnDestroy {
                         this.snackBar.open("Sales was Returned already.", "dismss", {
                           panelClass: ["warn"],
                           verticalPosition: "top",
+                          duration: undefined
                         });
                       });
+                      break;  
                     }else{
                       this.isCreateReturn = true;
                     }
@@ -399,6 +408,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
 
   createReturn() {
     console.log("createReturn");
+    const modalRef = this.modalService.open(SalesCreateReturnComponent, { windowClass: 'modal-class'});
     let data: any;
     data = {
       customername: this.prodArr[0].customername,
@@ -409,7 +419,16 @@ export class SalesListComponent implements OnInit, OnDestroy {
       subtotal: this.prodArr[0].subtotal,
       socode: this.prodArr[0].socode
     };
-    this.dialogConfig.disableClose = true;
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(function(){
+      this.ngOnInit();
+      let indexx = this.prodArr.indexOf(this.prodArr[0].socode);
+      this.prodArr.splice(indexx, 1);
+      this.isCreateReturn = false;
+      this.isAddSalesOrder = true; 
+    });
+    /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
     };
@@ -431,7 +450,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
       this.prodArr.splice(indexx, 1);
       this.isCreateReturn = false;
       this.isAddSalesOrder = true; 
-    });
+    }); */
     this.checkedInfo.target.checked = false;
     this.isAddSalesOrder = true;
   }

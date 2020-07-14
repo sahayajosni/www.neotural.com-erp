@@ -1,8 +1,20 @@
-import { Component, Inject, OnChanges, OnInit } from "@angular/core";
+import { Component, Inject, OnChanges,Optional, OnInit,Input } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { MatDialogRef } from '@angular/material';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { SalesService } from "../../services/sales.service";
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+export interface UsersData{
+  customername:string;
+  customercode:string;
+  productname:string;
+  invqty:string;
+  date:string,
+  subtotal:string;
+  socode:string;
+}
 
 @Component({
   selector: 'app-sales-create-return',
@@ -16,30 +28,39 @@ export class SalesCreateReturnComponent implements OnInit {
   paymentType:string;
   returnType:string;
   quantity:number;
-
+  @Input() fromParent : UsersData;
 
   constructor(    
-    public dialogRef: MatDialogRef<SalesCreateReturnComponent>,
-    @Inject(MAT_DIALOG_DATA) public data, 
+    //public dialogRef: MatDialogRef<SalesCreateReturnComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data,  
     private salesService:SalesService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public activeModal: NgbActiveModal,
+    private modalService: NgbModal,
   ) { 
-      this.model.customername = this.data.customername;
+      /* this.model.customername = this.data.customername;
       this.model.customercode = this.data.customercode;
       this.model.productname = this.data.productname;
       this.model.invqty = this.data.invqty;
       this.model.date = this.data.date;
       this.model.subtotal = this.data.subtotal;
-      this.model.socode = this.data.socode;
+      this.model.socode = this.data.socode; */
   }
 
   ngOnInit() {
+    this.model.customername = this.fromParent.customername;
+    this.model.customercode = this.fromParent.customercode;
+    this.model.productname = this.fromParent.productname;
+    this.model.invqty = this.fromParent.invqty;
+    this.model.date = this.fromParent.date;
+    this.model.subtotal = this.fromParent.subtotal;
+    this.model.socode = this.fromParent.socode;
   }
 
   getPrice(quantity:number){
-    if(this.snackBar.open) {
+    /* if(this.snackBar.open) {
       this.snackBar.dismiss();
-    }
+    } */
     let price = this.model.subtotal/quantity;
     if(this.model.quantity > this.model.invqty){
       setTimeout(() => {
@@ -74,7 +95,7 @@ export class SalesCreateReturnComponent implements OnInit {
   }
 
   close() {
-    this.dialogRef.close();
+    //this.dialogRef.close();
   }
 
   getPaymentValid(paymentType:string){
@@ -103,10 +124,9 @@ export class SalesCreateReturnComponent implements OnInit {
 
   addReturn() {
 
-    if(this.snackBar.open) {
+    /* if(this.snackBar.open) {
       this.snackBar.dismiss();
-    }
-
+    } */
     if(this.model.itemstatus == null){
       console.log("ItemStatus not chosen");
       document.getElementById("damaged").style.background = '#c18484';
@@ -157,6 +177,7 @@ export class SalesCreateReturnComponent implements OnInit {
       this.salesService.createReturn(invoice).subscribe(
         (respose) => {
           if (respose === null) {
+            this.modalService.dismissAll();
             setTimeout(() => {
               this.snackBar.open(
                 "Sales Return Created Successfully",

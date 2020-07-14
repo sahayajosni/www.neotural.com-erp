@@ -55,6 +55,7 @@ import { SalesreportComponent } from "./components/salesreport/salesreport.compo
 import { SalesListComponent } from "./components/sales-list/sales-list.component";
 import { SalesCreateInvoiceComponent } from './components/sales-create-invoice/sales-create-invoice.component';
 import { SalesCreateReturnComponent } from './components/sales-create-return/sales-create-return.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -113,7 +114,8 @@ import { SalesCreateReturnComponent } from './components/sales-create-return/sal
     MatTooltipModule,
     MatTreeModule,
     MatPaginatorModule,
-    Ng2CompleterModule
+    Ng2CompleterModule,
+    NgbModule,
   ],
   providers: [SalesService, PurchaseService],
   entryComponents: [SalesorderComponent,
