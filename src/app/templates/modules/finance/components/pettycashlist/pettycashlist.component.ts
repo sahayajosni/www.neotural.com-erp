@@ -3,11 +3,14 @@ import { Router } from '@angular/router';
 import { FinanceService } from "../../services/finance.service";
 import { MatSnackBar, MatDialogConfig, MatDialog } from "@angular/material";
 import { AddPettycashComponent } from '../addpettycash/addpettycash.component';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-pettycashlist',
   templateUrl: './pettycashlist.component.html',
-  styleUrls: ['./pettycashlist.component.scss']
+  styleUrls: ['./pettycashlist.component.scss'],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class PettycashlistComponent implements OnInit {
   model: any = {};
@@ -22,9 +25,12 @@ export class PettycashlistComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
     private financeService:FinanceService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private SpinnerService: NgxSpinnerService,
+    config: NgbModalConfig, private modalService: NgbModal,
   ) {
-    
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
 
   
@@ -53,17 +59,21 @@ export class PettycashlistComponent implements OnInit {
     );
   }
   ngOnInit() {   
+    this.SpinnerService.show();  
     this.load();
+    setTimeout(() => {
+      this.SpinnerService.hide();
+    }, 100);
   }
 
   addPetty(id:string,description:string,addedDate:string,type:string,
     toPerson:string,totalAmount:string,currency:string,invoicenumber:string){
 
-    if(this.snackBar.open) {
+    /* if(this.snackBar.open) {
       this.snackBar.dismiss();
-    }
+    } */
+    const modalRef = this.modalService.open(AddPettycashComponent, { windowClass: 'petty-class'});
 
-    let data: any;
     if (id !== null) {
       this.title = "Edit Petty Cash";
       this.button = "Update";
@@ -71,11 +81,16 @@ export class PettycashlistComponent implements OnInit {
       this.title = "Add Petty Cash";
       this.button = "Add";
     }
-    data = { dialogTitle: this.title, dialogText: this.button, id: id,
+    let data = { dialogTitle: this.title, dialogText: this.button, id: id,
       description: description, addedDate: addedDate, type: type,toPerson: toPerson, 
-      totalAmount: totalAmount,currency: currency,invoicenumber: invoicenumber };
+      totalAmount: totalAmount,currency: currency,invoicenumber: invoicenumber }
 
-    this.dialogConfig.disableClose = true;
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(function(){
+      this.load();
+    });
+
+    /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
       top: "1000",
@@ -94,7 +109,7 @@ export class PettycashlistComponent implements OnInit {
     });                
     dialogRef.afterClosed().subscribe(result => {
       this.load();
-    });
+    }); */
   }
 
   pettydelete(id:string){
@@ -107,6 +122,7 @@ export class PettycashlistComponent implements OnInit {
             {
               panelClass: ["success"],
               verticalPosition: "top",
+              duration: undefined
             }
           );
         });

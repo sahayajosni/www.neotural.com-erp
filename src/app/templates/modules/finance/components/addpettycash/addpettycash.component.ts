@@ -1,10 +1,12 @@
 import { Router } from '@angular/router';
 import { MatSnackBar } from "@angular/material";
 import { FinanceService } from "../../services/finance.service";
-import { Component, OnInit, Inject,Optional } from '@angular/core';
+import { Component, OnInit, Inject,Optional,Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-// categoryeditdelete end
+// pettycash end
 export interface UsersData {
   id: number;
   description: string;
@@ -14,6 +16,8 @@ export interface UsersData {
   totalAmount: string;
   dialogText: string;
   dialogTitle: string;
+  currency: string;
+  invoicenumber: string;
 }
 
 
@@ -29,15 +33,18 @@ export class AddPettycashComponent implements OnInit {
   dialogText:string;
   typeList:any = {};
   currencyList:any = {};
+  @Input() fromParent: UsersData;
 
   constructor(
     private router: Router,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData,
-    public dialogRef: MatDialogRef<AddPettycashComponent>,
+    //public dialogRef: MatDialogRef<AddPettycashComponent>,
     private financeService: FinanceService,
     private snackBar: MatSnackBar,
+    public activeModal: NgbActiveModal,
+    private modalService: NgbModal,
   ) { 
-    console.log(data);
+    /* console.log(data);
     this.local_data = {...data};
     this.model.id=this.local_data.id;
     this.model.description=this.local_data.description;
@@ -51,19 +58,34 @@ export class AddPettycashComponent implements OnInit {
       this.showbackbtn=false;
     }else{
       this.showbackbtn=true;
-    }
+    } */
   }
 
   ngOnInit() {
     this.typeList = ['Credit','Debit'];
     this.currencyList = ['AED','AUD','USD','IDR','MYR'];
 
+    this.model.dialogTitle = this.fromParent.dialogTitle;
+    this.model.dialogText = this.fromParent.dialogText;
+
+    if (this.fromParent.id !== undefined) {
+      this.model.id=this.fromParent.id;
+      this.model.description=this.fromParent.description;
+      this.model.addedDate=this.fromParent.addedDate;
+      this.model.type=this.fromParent.type;
+      this.model.toPerson=this.fromParent.toPerson;
+      this.model.totalAmount=this.fromParent.totalAmount;    
+      this.model.currency=this.fromParent.currency; 
+      this.model.invoicenumber=this.fromParent.invoicenumber;
+    }else{
+
+    }
     
   }
 
-  addPettyClose(){
+  /* addPettyClose(){
     this.dialogRef.close();
-  }
+  } */
 
   pettyCash(btn:any){
     if(btn == "Add"){
@@ -83,19 +105,22 @@ export class AddPettycashComponent implements OnInit {
     this.financeService.save(this.model)
       .subscribe(
       data => {
+        this.modalService.dismissAll();
         setTimeout(() => {
           this.snackBar.open("Petty Cash Saved Successfully", "", {
             panelClass: ["success"],
-            verticalPosition: 'top'      
+            verticalPosition: 'top',
+            duration: undefined      
           });
         });
-        this.addPettyClose();
+        //this.addPettyClose();
       },
       error => {
         setTimeout(() => {
           this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
             panelClass: ["error"],
-            verticalPosition: 'top'      
+            verticalPosition: 'top',
+            duration: undefined      
           });
         }); 
       }
@@ -114,19 +139,22 @@ export class AddPettycashComponent implements OnInit {
     this.financeService.save(this.model)
       .subscribe(
         data => {
+          this.modalService.dismissAll();
           setTimeout(() => {
             this.snackBar.open("Petty Cash Updated Successfully", "", {
               panelClass: ["success"],
-              verticalPosition: 'top'      
+              verticalPosition: 'top',
+              duration: undefined      
             });
           });
-          this.addPettyClose();
+          //this.addPettyClose();
       },
       error => {
         setTimeout(() => {
           this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
             panelClass: ["error"],
-            verticalPosition: 'top'      
+            verticalPosition: 'top',
+            duration: undefined      
           });
         }); 
       }

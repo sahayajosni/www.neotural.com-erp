@@ -56,6 +56,7 @@ import { InvoiceListComponent } from "./components/invoice-list/invoice-list.com
 import { ProfitandLossComponent } from "./components/profitandloss/profitandloss.component";
 
 import { FormsModule } from "@angular/forms";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import { FormsModule } from "@angular/forms";
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    NgbModule,
     DataTablesModule.forRoot()
   ],
   entryComponents: [ ],

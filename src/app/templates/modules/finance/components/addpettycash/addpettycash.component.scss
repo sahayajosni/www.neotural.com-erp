@@ -1,3 +1,5 @@
+
+
 @import "_base";
 
 .ng-valid[required], .ng-valid.required  {
@@ -71,7 +73,7 @@ span{
 
 #po-label{
   color:#7a8992;
-  width: 85%;
+  width: 100%;
   margin-bottom: 4px;
 }
 #po-price{
@@ -82,7 +84,7 @@ span{
 #po-textbox{
   color:$h2-bg;
   background: $po-order-form-bg;
-  width: 85%;
+  width: 100%;
   color: #fff; 
   padding: 0px 5px;
   margin-bottom: 15px;
@@ -97,7 +99,7 @@ select,input,textarea{
   border: 1px solid #2C4655;
 }
 #selected-box{
-  width: 85%;
+  width: 100%;
   background: $po-order-form-bg;
   color:$h2-bg;
   margin-bottom: 15px;
@@ -108,7 +110,7 @@ select,input,textarea{
 .m-t-15px{margin-top: 15px;}
 .m-t-20px{margin-top: 20px !important;}
 #options-box{
-  width: 85%;
+  width: 100%;
   height: 1.5rem;
   background: none;
   color:$h2-bg;
@@ -141,7 +143,7 @@ body {background-color: #16222B;}
     height: 3rem;
 }
 #date-borderbox{
-  width: 85%;
+  width: 100%;
   border: 1px solid  #2C4655;
   margin-bottom: 15px;
   height: 30px;
@@ -181,7 +183,30 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-.update-btn{width: 100px;
+.update-btn{
+  width: 100px;
   height: 30px;
-  line-height: 30px; font-weight: normal;
-  float: right;}
+  line-height: 30px; 
+  font-weight: normal;
+  float: right;
+}
+
+.close-x{
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+
+::ng-deep .petty-class .modal-dialog {
+  max-width: 80%;
+  width: 55% !important;
+}
