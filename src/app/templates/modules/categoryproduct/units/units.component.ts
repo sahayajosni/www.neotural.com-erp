@@ -3,18 +3,24 @@ import { Router } from '@angular/router';
 import { CategoryproductService } from '../services/categoryproduct.service';
 import { MatSnackBar, MatDialogConfig, MatDialog } from "@angular/material";
 import { AddunitsComponent } from '../addunits/addunits.component';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-units',
   templateUrl: './units.component.html',
-  styleUrls: ['./units.component.scss']
+  styleUrls: ['./units.component.scss'],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class UnitsComponent implements OnInit {
   constructor(private router: Router,
     private catprodservice: CategoryproductService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
-  ) { }
+    private snackBar: MatSnackBar,
+    config: NgbModalConfig, private modalService: NgbModal,
+  ) { 
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   unitlist:any = {};
   model:any = {};
@@ -60,7 +66,15 @@ export class UnitsComponent implements OnInit {
   unitedit(id:number,unitname:string,unitsymbol:string,quantityname:string,quantitysymbol:string,dimensionsymbol:string){
     this.model.rowId = "";
     this.model.rowId = "editRowId";
-    this.dialogConfig.disableClose = true;
+
+    const modalRef = this.modalService.open(AddunitsComponent, { windowClass: 'unit-class'});
+    let data = {id: id, unitname: unitname,unitsymbol: unitsymbol,quantityname:quantityname,quantitysymbol:quantitysymbol,dimensionsymbol:dimensionsymbol}
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(function(){
+      this.ngOnInit();
+    });
+    /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
       'top': '100',
@@ -80,7 +94,7 @@ export class UnitsComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
         this.ngOnInit();
-      });
+      }); */
   }
 
   unitdelete(id:string){
@@ -107,6 +121,14 @@ export class UnitsComponent implements OnInit {
   }
 
   addNewUnits(){
-    this.router.navigate(["category-and-product/addunits"]);
+    const modalRef = this.modalService.open(AddunitsComponent, { windowClass: 'unit-class'});
+    let id = null;
+    let data = {id: id}
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(function(){
+      this.ngOnInit();
+    });
+    //this.router.navigate(["category-and-product/addunits"]);
   }
 }

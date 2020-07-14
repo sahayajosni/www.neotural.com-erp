@@ -1,7 +1,9 @@
 import { Router } from '@angular/router';
 import { MatSnackBar, MAT_DIALOG_DATA } from "@angular/material";
 import { CategoryproductService } from '../services/categoryproduct.service';
-import { Component, OnInit, Inject,Optional } from '@angular/core';
+import { Component, OnInit, Inject,Optional,Input } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 // categoryeditdelete end
 export interface UsersData {
@@ -25,15 +27,18 @@ export class AddunitsComponent implements OnInit {
   model: any = {};
   local_data:any;
   showbackbtn:boolean;
-  btnsave:string;//="Save";
+  btnsave:string;
+  @Input() fromParent: UsersData;
 
   constructor(
     private router: Router,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData,
     private catprodservice: CategoryproductService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public activeModal: NgbActiveModal,
+    private modalService: NgbModal,
   ) { 
-    console.log(data);
+    /* console.log(data);
     this.local_data = {...data};
     this.model.id=this.local_data.id;
     this.model.unitname=this.local_data.unitname;
@@ -42,18 +47,29 @@ export class AddunitsComponent implements OnInit {
     this.model.quantitysymbol=this.local_data.quantitysymbol;
     this.model.dimensionsymbol=this.local_data.dimensionsymbol;    
     if(this.local_data.id!=null){
-     // alert("Yes Value Update");
       this.showbackbtn=false;
       this.btnsave="Update";
     }else{
-     // alert("No Value New");
       this.showbackbtn=true;
       this.btnsave="Save";
-     // this.showbackbtn=true;
-    }
+    } */
   }
 
-  ngOnInit() {
+  ngOnInit() {  
+    if(this.fromParent.id!=null){
+      this.showbackbtn = false;
+      this.btnsave = "Update";
+
+      this.model.id=this.fromParent.id;
+      this.model.unitname=this.fromParent.unitname;
+      this.model.unitsymbol=this.fromParent.unitsymbol;
+      this.model.quantityname=this.fromParent.quantityname;
+      this.model.quantitysymbol=this.fromParent.quantitysymbol;
+      this.model.dimensionsymbol=this.fromParent.dimensionsymbol;  
+    }else{
+      this.showbackbtn = false;
+      this.btnsave = "Save";
+    }
   }
 
   unitClose(){
@@ -83,6 +99,7 @@ export class AddunitsComponent implements OnInit {
               verticalPosition: 'top'      
             });
           });
+          this.modalService.dismissAll();
           this.unitClose();
       },
       error => {
@@ -105,6 +122,7 @@ export class AddunitsComponent implements OnInit {
     this.catprodservice.saveUnit(this.model)
       .subscribe(
         data => {
+          this.modalService.dismissAll();
           setTimeout(() => {
             this.snackBar.open("Unit Updated Successfully", "", {
               panelClass: ["success"],

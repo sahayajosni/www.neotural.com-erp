@@ -1,14 +1,11 @@
 
 @import "_base";
 
-
 ::ng-deep .mat-dialog-container {
   background:$po-order-form-bg !important;
   border-radius: $dialog-border-radius;
   color:$white;
 }
-
-@import "_base";
 
 h4{
   font-size: $header-label;
