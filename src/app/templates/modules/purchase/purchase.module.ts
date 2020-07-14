@@ -56,6 +56,7 @@ import { PurchaseListComponent } from "./components/purchase-list/purchase-list.
 import { VendorService } from 'src/app/templates/modules/vendor-and-customer/services/vendor.service';
 import { PurchaseCreateInvoiceComponent } from './components/purchase-create-invoice/purchase-create-invoice.component';
 import { PurchaseCreateReturnComponent } from './components/purchase-create-return/purchase-create-return.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { PurchaseCreateReturnComponent } from './components/purchase-create-retu
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgbModule,
   ],
   providers: [PurchaseService, VendorService],
   entryComponents: [PurchaseAddComponent, PurchaseCreateInvoiceComponent,PurchaseCreateReturnComponent]

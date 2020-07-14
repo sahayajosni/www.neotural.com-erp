@@ -55,12 +55,6 @@ input{
 .spanerror{
   margin-left: 0px !important;
 }
-span{
-  color: $white;
-  background-color:$error-code; 
-  font-size: 12px;
-  margin-left: 15px;
-}
 input[type=text], select, textarea {
   width: 50%;
   padding: 12px;
@@ -171,6 +165,36 @@ h5{
   float: left;
   margin-right: 20px;
 }
+
+::ng-deep .modal-class .modal-dialog {
+  max-width: 80%;
+  width: 70% !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+::ng-deep .modal-class .modal-content {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background:$po-order-form-bg;
+}
+.close-x{
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+}
+.modal-title{
+  margin-left: 25px;
+}
+
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
   .col-25, .col-75, input[type=submit] {

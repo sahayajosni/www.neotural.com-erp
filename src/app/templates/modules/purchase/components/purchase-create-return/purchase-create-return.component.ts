@@ -1,9 +1,20 @@
-import { Component, Inject, OnChanges, OnInit } from "@angular/core";
+import { Component, Inject, OnChanges,Optional, OnInit,Input } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { MatDialogRef } from '@angular/material';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { PurchaseService } from "../../services/purchase.service";
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+export interface UsersData{
+  vendorname:string;
+  vendorcode:string;
+  productname:string;
+  invqty:string;
+  date:string,
+  subtotal:string;
+  pocode:string;
+}
 
 @Component({
   selector: 'app-purchase-create-return',
@@ -16,23 +27,27 @@ export class PurchaseCreateReturnComponent implements OnInit {
   paymentType:string;
   returnType:string;
   quantity:number;
+  @Input() fromParent : UsersData;
 
   constructor(    
-    public dialogRef: MatDialogRef<PurchaseCreateReturnComponent>,
-    @Inject(MAT_DIALOG_DATA) public data, 
+    //public dialogRef: MatDialogRef<PurchaseCreateReturnComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data, 
     private purchaseService:PurchaseService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public activeModal: NgbActiveModal,
+    private modalService: NgbModal,
   ) { 
-      this.model.vendorname = this.data.vendorname;
-      this.model.vendorcode = this.data.vendorcode;
-      this.model.productname = this.data.productname;
-      this.model.invqty = this.data.invqty;
-      this.model.date = this.data.date;
-      this.model.subtotal = this.data.subtotal;
-      this.model.pocode = this.data.pocode;
+      
     }
 
   ngOnInit() {
+    this.model.vendorname = this.fromParent.vendorname;
+    this.model.vendorcode = this.fromParent.vendorcode;
+    this.model.productname = this.fromParent.productname;
+    this.model.invqty = this.fromParent.invqty;
+    this.model.date = this.fromParent.date;
+    this.model.subtotal = this.fromParent.subtotal;
+    this.model.pocode = this.fromParent.pocode;
   }
 
   getPrice(quantity:number){
@@ -73,7 +88,7 @@ export class PurchaseCreateReturnComponent implements OnInit {
   }
 
   close() {
-    this.dialogRef.close();
+    //this.dialogRef.close();
   }
 
   getPaymentValid(paymentType:string){
@@ -156,6 +171,7 @@ export class PurchaseCreateReturnComponent implements OnInit {
       this.purchaseService.createReturn(invoice).subscribe(
         (respose) => {
           if (respose === null) {
+            this.modalService.dismissAll();
             setTimeout(() => {
               this.snackBar.open(
                 "Purchase Return Created Successfully",

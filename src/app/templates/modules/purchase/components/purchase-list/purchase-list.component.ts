@@ -12,6 +12,7 @@ import { PurchaseAddComponent } from "../purchaseadd/purchaseadd.component";
 import { PurchaseCreateInvoiceComponent } from "./../purchase-create-invoice/purchase-create-invoice.component";
 import { PurchaseCreateReturnComponent } from '../purchase-create-return/purchase-create-return.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-purchaselist",
@@ -19,6 +20,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: [
     "./purchase-list.component.scss"
   ],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class PurchaseListComponent implements OnInit, OnDestroy {
   purchaseOrderList: any;
@@ -48,8 +50,11 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private SpinnerService: NgxSpinnerService,
-
-  ) {}
+    config: NgbModalConfig, private modalService: NgbModal,
+  ) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   ngOnInit() {
     this.SpinnerService.show();  
@@ -212,8 +217,10 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
                         this.snackBar.open("Purchase was Returned already.", "dismss", {
                           panelClass: ["warn"],
                           verticalPosition: "top",
+                          duration: undefined
                         });
                       });
+                      break;  
                     }else{
                       this.isCreateReturn = true;
                     }
@@ -407,6 +414,8 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
 
   createReturn() {
     console.log("createReturn");
+    const modalRef = this.modalService.open(PurchaseCreateReturnComponent, { windowClass: 'modal-class'});
+   
     let data: any;
     data = {
       vendorname: this.prodArr[0].vendorname,
@@ -417,7 +426,16 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
       subtotal: this.prodArr[0].subtotal,
       pocode: this.prodArr[0].pocode
     };
-    this.dialogConfig.disableClose = true;
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(function(){
+      this.ngOnInit();
+      let indexx = this.prodArr.indexOf(this.prodArr[0].pocode);
+      this.prodArr.splice(indexx, 1);
+      this.isCreateReturn = false;
+      this.isAddPurchaseOrder = true; 
+    });
+    /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
     };
@@ -440,7 +458,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
       this.prodArr.splice(indexx, 1);
       this.isCreateReturn = false;
       this.isAddPurchaseOrder = true; 
-     });
+     }); */
      this.checkedInfo.target.checked = false;
      this.isAddPurchaseOrder = true;
   }
