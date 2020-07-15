@@ -130,7 +130,7 @@
           <button id="add-btn" [disabled]="this.model.qty == 0 || this.model.aboveqty == 'above'">{{fromParent.dialogText}}</button>
         </div>
         <div class="update-btn" style="margin: 20px 0px;">
-          <button id="add-btn" (click)="cancelSales()">Reset</button>
+          <button id="add-btn" (click)="cancelSales()" *ngIf="fromParent.dialogText == 'Add Cart'">Reset</button>
         </div> 
 
       </div>

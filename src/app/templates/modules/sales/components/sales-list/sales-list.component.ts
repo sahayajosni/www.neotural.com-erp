@@ -256,7 +256,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(function(){
-      alert("After Close Dialog");
+      console.log("After Close Dialog");
       this.ngOnInit();
     });
     /* this.dialogConfig.disableClose = true;
