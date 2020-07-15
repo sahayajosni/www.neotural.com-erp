@@ -45,6 +45,7 @@ tbody {
   border-top:5px solid $main-bg;   
   color:$table-row-font-color;
   vertical-align: middle;
+  padding: 14px;
 }
 .table > tbody > tr:hover {
   background-color: $header-bg;

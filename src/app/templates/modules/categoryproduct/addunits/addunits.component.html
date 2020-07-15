@@ -9,11 +9,9 @@
 </div>
 <div class="modal-body employee-class">
   <div class="container">
-    <form
-      name="unitForm"
+    <form name="unitForm"
       (submit)="unitForm.form.valid && addUnit(btnsave)"
-      #unitForm="ngForm"
-      novalidate>
+      #unitForm="ngForm" novalidate>
       <div class="row">
         <div class="col-1"></div>
         <div class="col-11">
@@ -108,8 +106,8 @@
       <br/>
 
       <div class="row">
-        <div class="col-25"></div>
-        <div class="col-75">
+        <div class="col-4"></div>
+        <div class="col-7">
         <!-- <button  [disabled]="!unitForm.form.valid" class="save-button">SAVE</button> -->
           <button  class="save-button">{{btnsave}}</button>
 
