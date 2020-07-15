@@ -41,16 +41,15 @@ input {
   margin: 5px 0px 3px 0px;
 }
 button[type="submit"]{
-  background: $btn-bg;
-  width: 100%;
-  border: none;
-  border-radius: $btn-border-radius;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  padding: 12px;
-  font-family: $font-family;
   color: $white;
+  background: $btn-bg;
+  border: 1px solid $btn-bg;
+  margin-right: 10px;
+  font-family: $font-family;
+  border-radius: $btn-border-radius;
+  padding: $btn-padding;
+  font-style: normal;
+  font-size: $table-font-size;
 }
 label{
   color:$white;
