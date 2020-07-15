@@ -1,5 +1,12 @@
 <div class="modal-header employee-class">
-  <h4 class="modal-title" id="modal-basic-title">{{fromParent.dialogTitle}}</h4>
+  <div class="container">  
+    <div class="row">
+      <div class="col-6">
+        <h4 class="modal-title" id="modal-basic-title">{{fromParent.dialogTitle}}</h4>
+      </div>
+    </div>
+  </div>
+  
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true" class="close-x">&times;</span>
   </button>
