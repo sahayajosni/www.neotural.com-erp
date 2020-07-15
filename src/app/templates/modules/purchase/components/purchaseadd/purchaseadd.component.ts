@@ -5,6 +5,7 @@ import {
   AfterViewInit,
   Input,
   Inject,
+  Optional
 } from "@angular/core";
 import { formatDate } from "@angular/common";
 import { Purchase } from "src/app/core/common/_models";
@@ -15,6 +16,26 @@ import { MatDialog, MatDialogConfig } from "@angular/material";
 import { PurchaseService } from "../../services/purchase.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { VendorService } from "src/app/templates/modules/vendor-and-customer/services/vendor.service";
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+export interface UsersData{
+  dialogTitle:string;
+  qty:string;
+  unit:string;
+  categoryname:string; 
+  categorycode:string;
+  vendorname: string;
+  vendorcode:string;
+  productname:string;
+  productcode:string;
+  subtotal:string;
+  unitprice:string;
+  id:string;
+  date :string;
+  description:string;
+  status:string;
+}
 
 @Component({
   selector: "app-purchaseadd",
@@ -41,23 +62,27 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
   purchaseDate: any;
   public productchosendiv = false;
 
+  @Input() fromParent: UsersData;
+
   constructor(
     private dialog: MatDialog,
-    public dialogRef: MatDialogRef<PurchaseAddComponent>,
+    //public dialogRef: MatDialogRef<PurchaseAddComponent>,
     private purchaseService: PurchaseService,
     private router: Router,
     private alertService: AlertService,
     private snackBar: MatSnackBar,
     private renderer: Renderer2,
     private vendorservice: VendorService,
-    @Inject(MAT_DIALOG_DATA) public data
+    @Optional() @Inject(MAT_DIALOG_DATA) public data,
+    public activeModal: NgbActiveModal,
+    private modalService: NgbModal,    
   ) {
     this.purchaseDate = formatDate(this.currentDate, "dd/MMM/yyy", "en-US");
   }
 
   ngOnInit() {
     this.model.subtotal = 0;
-    this.editPurchaseOrder(this.data);
+    this.editPurchaseOrder(this.fromParent);
     this.purchasetable = false;
     //this.getcategoryList();
     this.model.sNo = 0;
@@ -296,6 +321,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
         .save(this.purchasesearcharray, this.model.deliveryCost)
         .subscribe(
           (res) => {
+            this.modalService.dismissAll();
             console.log("............1 ....");
             setTimeout(() => {
               this.snackBar.open(
@@ -407,7 +433,6 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
     } else {
       this.addPurchaseOrderData(addPurchaseData);
     }
-    this.addPurchaseOrderClose();
   }
 
   onSubTotalCalc(value: any, type: string) {
@@ -422,10 +447,6 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
       this.model.subtotal = value * Number.parseInt(this.model.price);
       document.getElementById("total").innerHTML = this.model.subtotal;
     }
-  }
-
-  addPurchaseOrderClose() {
-    this.dialogRef.close();
   }
 
   editPurchaseOrder(data: any) {
@@ -446,6 +467,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
     this.purchaseService.addPurchaseOrder(addPurchaseData).subscribe(
       (res) => {
         if (res === null) {
+          this.modalService.dismissAll();
           setTimeout(() => {
             this.snackBar.open(
               "Purchase Order created Successfully",
@@ -479,6 +501,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
       (res) => {
         if (res === null) {
           setTimeout(() => {
+            this.modalService.dismissAll();
             this.snackBar.open(
               "Purchase Order updated Successfully",
               "dismss",

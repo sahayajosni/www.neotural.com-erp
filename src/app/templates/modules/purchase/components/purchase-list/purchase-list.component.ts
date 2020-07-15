@@ -244,7 +244,8 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
   }
  
   addPurchaseOrder(id: string, item: any) {
-    
+
+    const modalRef = this.modalService.open(PurchaseAddComponent, { windowClass: 'modal-class'});
     let data: any;
     if (id !== null) {
       this.title = "Edit Purchase Order";
@@ -260,7 +261,13 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
       data = { dialogTitle: this.title, dialogText: this.button };
     }
 
-    this.dialogConfig.disableClose = true;
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(function(){
+      console.log("After Close PurchaseOrder Dialog");
+      this.ngOnInit();
+    });
+
+    /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
       top: "1000",
@@ -282,7 +289,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
         this.ngOnInit();
-      });
+      }); */
       this.checkedInfo.target.checked = false;
       this.isAddPurchaseOrder = true;
   }

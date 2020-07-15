@@ -7,16 +7,6 @@
 .ng-invalid:not(form)  {
   border-left: 5px solid #a94442; /* red */
 }
-#x {
-  position: absolute;
-  background: #16222B;
-  border: red;
-  color: white;
-  top: -10px;
-  right: -10px;
-  border-radius: 25px;
-
-}
 span{
   color:white;
   font-size: 12px;
@@ -29,19 +19,7 @@ span{
   background-color: $error-code;
   margin-left: 8.3vh;
 }
-::ng-deep .mat-dialog-container{
-  overflow: hidden !important;
-}
-.grid-container3 {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1rem auto 1rem;
-  grid-gap: 15px;
-  padding: 15px;
-  background:$po-order-form-bg;
-  border-radius: $dialog-border-radius; 
-  font-size: 14px;
-}
+
 #h2ID{
   color:$h2-bg;
   font-family: $font-family;
@@ -70,7 +48,7 @@ span{
 
 #po-label{
   color:#7a8992;
-  width: 85%;
+  width: 100%;
   margin-bottom: 4px;
 }
 #po-price{
@@ -81,7 +59,7 @@ span{
 #po-textbox{
   color:$h2-bg;
   background: $po-order-form-bg;
-  width: 85%;
+  width: 100%;
   color: #fff; 
   padding: 0px 5px;
   margin-bottom: 15px;
@@ -90,13 +68,12 @@ span{
 hr{
   width: 100%;
   background-color:#4D616D;
-  margin-top: 300px;
 }
 select,input{
   border: 1px solid  #2C4655;
 }
 #selected-box{
-  width: 85%;
+  width: 100%;
   background: $po-order-form-bg;
   color:$h2-bg;
   margin-bottom: 15px;
@@ -107,7 +84,7 @@ select,input{
 .m-t-15px{margin-top: 15px;}
 .m-t-20px{margin-top: 20px !important;}
 #options-box{
-  width: 85%;
+  width: 100%;
   height: 1.5rem;
   background: none;
   color:$h2-bg;
@@ -131,16 +108,8 @@ select,input{
 
 body {background-color: #16222B;}
 
-.grid-container4 {
-  display: grid;
-  grid-template-columns: 8rem auto auto;
-  grid-gap: 10px;
-  padding: 10px;
-    background: $po-order-form-bg;
-    height: 3rem;
-}
 #date-borderbox{
-  width: 85%;
+  width: 100%;
   border: 1px solid  #2C4655;
   margin-bottom: 15px;
   height: 30px;
@@ -167,14 +136,7 @@ body {background-color: #16222B;}
   cursor: not-allowed;
 }
 
-.mat-dialog-container{
-  background: inherit !important;
-}
-.ng-trigger-dialogContainer {
-  background: inherit !important;
-}
-
-  /* Chrome, Safari, Edge, Opera */
+/* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -191,4 +153,30 @@ input[type=number] {
   line-height: 30px; 
   font-weight: normal;
   float: right;
+}
+
+::ng-deep .modal-class .modal-dialog {
+  max-width: 80%;
+  width: 65% !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+::ng-deep .modal-class .modal-content {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background:$po-order-form-bg;
+}
+.close-x{
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
 }
