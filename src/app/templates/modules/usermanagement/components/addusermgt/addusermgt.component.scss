@@ -26,10 +26,6 @@ span{
 .spanerror{
   background-color: $error-code;
 }
-.spanerror1{
-  background-color: $error-code;
-  margin-left: 8.3vh;
-}
 ::ng-deep .mat-dialog-container{
   background: $po-order-form-bg;
   overflow: auto !important;
@@ -72,7 +68,7 @@ span{
 
 #po-label{
   color:#7a8992;
-  width: 85%;
+  width: 100%;
   margin-bottom: 4px;
 }
 #po-label2{
@@ -91,14 +87,14 @@ span{
 }
 #sub-label{
   color:#7a8992;
-  width: 85%;
+  width: 100%;
   margin-bottom: -5px;
   margin-top: 10px;
 }
 #po-textbox{
   color:$h2-bg;
   background: $po-order-form-bg;
-  width: 85%;
+  width: 100%;
   color: #fff; 
   padding: 0px 5px;
   margin-bottom: 15px;
@@ -120,7 +116,7 @@ select,input,textarea,ng-multiselect-dropdown{
   display: inline-block;
   border: none !important;
   color: $white;
-  width: 85%;
+  width: 100%;
   height: 30px;
   padding: 0px;
   cursor: pointer;
@@ -128,7 +124,7 @@ select,input,textarea,ng-multiselect-dropdown{
   margin: 15px 0px;
 }
 #selected-box{
-  width: 85%;
+  width: 100%;
   background: $po-order-form-bg;
   color:$h2-bg;
   margin-bottom: 15px;
@@ -164,13 +160,6 @@ body {background-color: #16222B;}
   padding: 10px;
   background: $po-order-form-bg;
   height: 3rem;
-}
-#date-borderbox{
-  width: 85%;
-  border: 1px solid  #2C4655;
-  margin-bottom: 15px;
-  height: 30px;
-  padding: 5px;
 }
 
 .text-field-align{padding: 1px 8px; height: 25px;}
@@ -250,4 +239,33 @@ input[type=checkbox]:checked:after {
   white-space: pre-wrap;
   color: $po-order-form-bg;
   height: 25ch;
+}
+
+::ng-deep .modal-class .modal-dialog {
+  max-width: 80%;
+  width: 70% !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+::ng-deep .modal-class .modal-content {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background:$po-order-form-bg;
+}
+.close-x{
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+}
+.modal-title{
+  margin-left: 25px;
 }

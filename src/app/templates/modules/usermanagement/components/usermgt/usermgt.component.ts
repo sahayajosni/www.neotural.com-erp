@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatDialogConfig, MatDialog } from "@angular/material";
 import { AddUserMgtComponent } from '../addusermgt/addusermgt.component';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-usermgt",
   templateUrl: "./usermgt.component.html",
-  styleUrls: ["./usermgt.component.scss"]
+  styleUrls: ["./usermgt.component.scss"],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class UserManagementComponent implements OnInit {
   activeTab: number = 0;
@@ -15,9 +17,11 @@ export class UserManagementComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    config: NgbModalConfig, private modalService: NgbModal,
   ) {
-    
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
 
 
@@ -34,7 +38,9 @@ export class UserManagementComponent implements OnInit {
   }
 
   addUserMgt(){
-    this.dialogConfig.disableClose = true;
+    const modalRef = this.modalService.open(AddUserMgtComponent, { windowClass: 'modal-class'});
+
+    /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
       top: "1000",
@@ -53,7 +59,7 @@ export class UserManagementComponent implements OnInit {
     });                
     dialogRef.afterClosed().subscribe(result => {
       this.ngOnInit();
-    });
+    }); */
   }
 
 

@@ -4,6 +4,8 @@ import { Component, OnInit, Inject,Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { UserManagementService } from "../../services/usermanagement.service";
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-addusermgt',
@@ -33,9 +35,11 @@ export class AddUserMgtComponent implements OnInit {
   
   constructor(
     private router: Router,
-    public dialogRef: MatDialogRef<AddUserMgtComponent>,
+    //public dialogRef: MatDialogRef<AddUserMgtComponent>,
     private snackBar: MatSnackBar,
-    private userMgtService: UserManagementService
+    private userMgtService: UserManagementService,
+    public activeModal: NgbActiveModal,
+    private modalService: NgbModal,
   ) { 
     
   }
@@ -121,10 +125,6 @@ export class AddUserMgtComponent implements OnInit {
     });
   }
 
-  userMgtClose(){
-    this.dialogRef.close();
-  }
-
   getPurchase(){
     this.purchase = true;
   }
@@ -165,6 +165,6 @@ export class AddUserMgtComponent implements OnInit {
       );
     });
 
-    this.dialogRef.close();
+    this.modalService.dismissAll();
   }
 }
