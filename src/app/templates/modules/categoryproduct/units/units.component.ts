@@ -71,9 +71,18 @@ export class UnitsComponent implements OnInit {
     let data = {id: id, unitname: unitname,unitsymbol: unitsymbol,quantityname:quantityname,quantitysymbol:quantitysymbol,dimensionsymbol:dimensionsymbol}
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(function(){
-      this.ngOnInit();
+    modalRef.result.then(
+      () => {
+        console.log("Close button clicked");
+        this.ngOnInit();
+      },
+      ()=> {
+        console.log("Close icon clicked or backdrop clicked");
+        this.ngOnInit();
     });
+    //modalRef.result.then(function(){
+      //this.ngOnInit();
+    //});
     /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {

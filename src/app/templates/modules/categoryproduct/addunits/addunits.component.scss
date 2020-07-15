@@ -53,12 +53,15 @@ label {
 }
 
 .save-button {
-  width: 90px;
-  height: 30px;
-  color: white;
-  background: #1186aa;
-  border: 1px solid #1186aa;
-  border-radius: 20px;
+  color: $white;
+  background: $btn-bg;
+  border: 1px solid $btn-bg;
+  margin-right: 10px;
+  font-family: $font-family;
+  border-radius: $btn-border-radius;
+  padding: $btn-padding;
+  font-style: normal;
+  font-size: $table-font-size;
 }
 .left-arrow {
   font-size: 25px;
