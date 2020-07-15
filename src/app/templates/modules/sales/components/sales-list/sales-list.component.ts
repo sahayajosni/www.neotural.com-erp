@@ -237,6 +237,8 @@ export class SalesListComponent implements OnInit, OnDestroy {
   }
  
   addSalesOrder(id: string, item: any) {
+    const modalRef = this.modalService.open(SalesorderComponent, { windowClass: 'modal-class'});
+
     let data: any;
     if (id !== null) {
       this.title = "Edit Sales Order";
@@ -252,7 +254,12 @@ export class SalesListComponent implements OnInit, OnDestroy {
       data = { dialogTitle: this.title, dialogText: this.button };
     }
 
-    this.dialogConfig.disableClose = true;
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(function(){
+      alert("After Close Dialog");
+      this.ngOnInit();
+    });
+    /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
       top: "1000",
@@ -274,7 +281,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
       dialogRef.afterClosed().subscribe(result => {
         console.log('The Sales Order dialog was closed');
         this.ngOnInit();
-      });
+      }); */
       this.checkedInfo.target.checked = false;
       this.isAddSalesOrder = true;
   }

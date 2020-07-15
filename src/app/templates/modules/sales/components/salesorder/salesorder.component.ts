@@ -5,6 +5,7 @@ import {
   AfterViewInit,
   Input,
   Inject,
+  Optional
 } from "@angular/core";
 import { Sales } from 'src/app/core/common/_models';
 import { AlertService } from 'src/app/core/common/_services';
@@ -16,6 +17,27 @@ import { PurchaseService } from 'src/app/templates/modules/purchase/services/pur
 import { SalesService } from '../../services/sales.service';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { formatDate } from "@angular/common";
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+export interface UsersData{
+  dialogTitle:string;
+  qty:string;
+  unit:string;
+  categoryname:string; 
+  categorycode:string;
+  customername:string;
+  customercode:string;
+  productname:string;
+  productcode:string;
+  subtotal:string;
+  unitprice:string;
+  id:string;
+  date :string;
+  description:string;
+  status:string;
+}
+
 
 @Component({
   selector: 'app-salesorder',
@@ -48,24 +70,29 @@ export class SalesorderComponent implements OnInit {
   public ErrorHandle = false;
   public nonStock = false;
   public Stock = false;
+
+  @Input() fromParent: UsersData;
+
   constructor(
     private dialog: MatDialog,
-    public dialogRef: MatDialogRef<SalesorderComponent>,
+    //public dialogRef: MatDialogRef<SalesorderComponent>,
     private purchaseService: PurchaseService,
     private salesService:SalesService,
     private router: Router,
     private alertService: AlertService,
     private snackBar: MatSnackBar,
     private renderer: Renderer2,
-    @Inject(MAT_DIALOG_DATA) public data    
+    @Optional() @Inject(MAT_DIALOG_DATA) public data,
+    public activeModal: NgbActiveModal,
+    private modalService: NgbModal,    
   ) { 
     this.salesDate = formatDate(this.currentDate, "dd/MMM/yyy", "en-US");
-    this.model.title = data.dialogTitle;
   }
 
   ngOnInit() {
+    this.model.title = this.fromParent.dialogTitle;
     this.model.subtotal = 0;
-    this.editSalesOrder(this.data);
+    this.editSalesOrder(this.fromParent);
     this.salestable = false;
     this.model.sNo = 0;
     this.model.deliveryCost = 0;
@@ -75,7 +102,7 @@ export class SalesorderComponent implements OnInit {
     this.getProductList();
     this.getCustomerLists();
     this.ErrorHandle = false;
-    this.productchosendiv = false;
+    //this.productchosendiv = false;
     this.noavailableqty = false;
     this.model.aboveqty = '';
   }
@@ -269,6 +296,7 @@ export class SalesorderComponent implements OnInit {
         res => {
           console.log('............1 ....');
             console.log('successfully created...');
+            this.modalService.dismissAll();
             setTimeout(() => {
              // this.snackBar.open("ATTENTION: Sales Order is being generated", "", {
               this.snackBar.open("Sales Order is being generated", "", {
@@ -392,11 +420,6 @@ export class SalesorderComponent implements OnInit {
     } else {
       this.addSalesOrderData(addSalesData);
     }
-    this.addSalesOrderClose();
-  }
-
-  addSalesOrderClose() {
-    this.dialogRef.close();
   }
 
   editSalesOrder(data: any) {
@@ -409,6 +432,14 @@ export class SalesorderComponent implements OnInit {
       this.model.subtotal = data.subtotal;
       this.model.netAmount = data.subtotal;
       this.model.unitPrice = data.subtotal / data.qty;
+      
+      this.salesService.getUnitPrice(this.model.productName,this.model.category).subscribe(
+        (data) => {
+          this.sales = data;
+          this.model.recentStock = this.sales.recentStock;
+        }
+      );
+      this.productchosendiv = true;
     }
   }
 
@@ -416,6 +447,7 @@ export class SalesorderComponent implements OnInit {
     this.salesService.addSalesOrder(addSalesData).subscribe(
       (res) => {
         if (res === null) {
+          this.modalService.dismissAll();
           setTimeout(() => {
             this.snackBar.open(
               "Sales Order created Successfully",
@@ -448,6 +480,7 @@ export class SalesorderComponent implements OnInit {
     this.salesService.updateSalesOrder(addSalesData).subscribe(
       (res) => {
         if (res === null) {
+          this.modalService.dismissAll();
           setTimeout(() => {
             this.snackBar.open(
               "Sales Order updated Successfully",
