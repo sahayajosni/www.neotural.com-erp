@@ -40,6 +40,12 @@ export class UserManagementComponent implements OnInit {
   addUserMgt(){
     const modalRef = this.modalService.open(AddUserMgtComponent, { windowClass: 'modal-class'});
 
+    modalRef.result.then((result) => {
+      this.ngOnInit();
+    }, (reason) => {
+      this.ngOnInit();
+    }); 
+
     /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {

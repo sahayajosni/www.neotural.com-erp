@@ -200,13 +200,14 @@ enable: boolean;
 
   addEmployee() {
     const modalRef = this.modalService.open(EmployeeAddComponent, { windowClass: 'employee-class'});
-    this.allemplist();
+
     let data: any;
     modalRef.componentInstance.passedData= data;
-    modalRef.result.then(result => {
+    modalRef.result.then((result) => {
       this.allemplist();
-    });
-
+    }, (reason) => {
+      this.allemplist();
+    }); 
     
     /* if(this.snackBar.open) {
       this.snackBar.dismiss();

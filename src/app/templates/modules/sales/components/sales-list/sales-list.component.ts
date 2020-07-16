@@ -255,10 +255,11 @@ export class SalesListComponent implements OnInit, OnDestroy {
     }
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(function(){
-      console.log("After Close Dialog");
-      this.ngOnInit();
-    });
+    modalRef.result.then((result) => {
+      this.getSalesOrderLists();
+    }, (reason) => {
+      this.getSalesOrderLists();
+    }); 
     /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
@@ -428,13 +429,19 @@ export class SalesListComponent implements OnInit, OnDestroy {
     };
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(function(){
-      this.ngOnInit();
+    modalRef.result.then((result) => {
+      this.getSalesOrderLists();
       let indexx = this.prodArr.indexOf(this.prodArr[0].socode);
       this.prodArr.splice(indexx, 1);
       this.isCreateReturn = false;
-      this.isAddSalesOrder = true; 
-    });
+      this.isAddSalesOrder = true;
+    }, (reason) => {
+      this.getSalesOrderLists();
+      let indexx = this.prodArr.indexOf(this.prodArr[0].socode);
+      this.prodArr.splice(indexx, 1);
+      this.isCreateReturn = false;
+      this.isAddSalesOrder = true;
+    }); 
     /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {

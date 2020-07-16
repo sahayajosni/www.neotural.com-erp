@@ -196,9 +196,10 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.ngOnInit();
+      this.getAllVendorDetails();
     }, (reason) => {
-    });
+      this.getAllVendorDetails();
+    }); 
 
     /* if(this.snackBar.open) {
       this.snackBar.dismiss();

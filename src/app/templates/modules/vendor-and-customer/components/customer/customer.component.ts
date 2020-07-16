@@ -146,9 +146,11 @@ export class CustomerComponent implements OnInit {
       city: city, phoneNumber: phoneNumber, customerbase64: customerbase64 }
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(function(){
+    modalRef.result.then((result) => {
       this.getAllCustomerDetails();
-    });
+    }, (reason) => {
+      this.getAllCustomerDetails();
+    }); 
 
 
    

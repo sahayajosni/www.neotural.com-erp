@@ -71,15 +71,11 @@ export class UnitsComponent implements OnInit {
     let data = {id: id, unitname: unitname,unitsymbol: unitsymbol,quantityname:quantityname,quantitysymbol:quantitysymbol,dimensionsymbol:dimensionsymbol}
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(
-      () => {
-        console.log("Close button clicked");
-        this.ngOnInit();
-      },
-      ()=> {
-        console.log("Close icon clicked or backdrop clicked");
-        this.ngOnInit();
-    });
+    modalRef.result.then((result) => {
+      this.loadUnits();
+    }, (reason) => {
+      this.loadUnits();
+    }); 
     //modalRef.result.then(function(){
       //this.ngOnInit();
     //});
@@ -135,9 +131,11 @@ export class UnitsComponent implements OnInit {
     let data = {id: id}
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(function(){
-      this.ngOnInit();
-    });
+    modalRef.result.then((result) => {
+      this.loadUnits();
+    }, (reason) => {
+      this.loadUnits();
+    }); 
     //this.router.navigate(["category-and-product/addunits"]);
   }
 }

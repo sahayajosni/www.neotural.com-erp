@@ -262,10 +262,11 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
     }
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(function(){
-      console.log("After Close PurchaseOrder Dialog");
-      this.ngOnInit();
-    });
+    modalRef.result.then((result) => {
+      this.getPurchaseOrderLists();
+    }, (reason) => {
+      this.getPurchaseOrderLists();
+    }); 
 
     /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
@@ -435,13 +436,19 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
     };
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(function(){
+    modalRef.result.then((result) => {
       this.ngOnInit();
       let indexx = this.prodArr.indexOf(this.prodArr[0].pocode);
       this.prodArr.splice(indexx, 1);
       this.isCreateReturn = false;
       this.isAddPurchaseOrder = true; 
-    });
+    }, (reason) => {
+      this.ngOnInit();
+      let indexx = this.prodArr.indexOf(this.prodArr[0].pocode);
+      this.prodArr.splice(indexx, 1);
+      this.isCreateReturn = false;
+      this.isAddPurchaseOrder = true; 
+    }); 
     /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
