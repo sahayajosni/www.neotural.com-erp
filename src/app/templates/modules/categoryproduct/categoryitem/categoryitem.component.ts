@@ -1746,9 +1746,11 @@ productlist(number: string){
     let data = { categorycode: categorycode }
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(function(){
-      this.loadCategory();
-    });
+    modalRef.result.then((result) => {
+      this.allproductList();
+    }, (reason) => {
+      this.allproductList();
+    }); 
     
     // this.dialogConfig.disableClose = true;
     // this.dialogConfig.autoFocus = true;
@@ -1778,9 +1780,11 @@ productlist(number: string){
     let data = {title: title, key: show}
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(function(){
-      this.alldiscountList();
-    });
+    modalRef.result.then((result) => {
+      this.allproductList();
+    }, (reason) => {
+      this.allproductList();
+    }); 
 
     /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
@@ -1883,9 +1887,11 @@ productlist(number: string){
 
     const modalRef = this.modalService.open(AddnewproductComponent, { windowClass: 'addproduct-class'});
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(function(){
-      this.getAllCustomerDetails();
-    });
+    modalRef.result.then((result) => {
+      this.allproductList();
+    }, (reason) => {
+      this.allproductList();
+    }); 
     // this.modalService.open(addnewproduct);
 
     /*this.dialogConfig.disableClose = true;
@@ -1956,10 +1962,11 @@ productlist(number: string){
     
     const modalRef = this.modalService.open(AddnewproductComponent, { windowClass: 'addproduct-class'});
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(function(){
+    modalRef.result.then((result) => {
       this.allproductList();
-    });
-
+    }, (reason) => {
+      this.allproductList();
+    }); 
 
     /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;

@@ -67,12 +67,11 @@ export class CategoryComponent implements OnInit {
     let data = { categorycode: categorycode, name: name, desc: desc }
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(function(){
+    modalRef.result.then((result) => {
       this.loadCategory();
-    });
-
-    //alert(code);
-    //alert(name);
+    }, (reason) => {
+      this.loadCategory();
+    }); 
     /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
