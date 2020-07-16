@@ -43,7 +43,7 @@ export class UnitsComponent implements OnInit {
         } else {
           this.enable = false;
           setTimeout(() => {
-            this.snackBar.open("Unit data is empty", "dismiss", {
+            this.snackBar.open("Unit data is empty", "", {
               duration: undefined,   
               panelClass: ["warning"],
               verticalPosition: "top",

@@ -136,7 +136,7 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
         } else {
           this.enable = false;
           setTimeout(() => {
-            this.snackBar.open("Vendor data is empty", "dismiss", {
+            this.snackBar.open("Vendor data is empty", "", {
               duration: undefined, // 5 mints
               panelClass: ["warning"],
               verticalPosition: "top",
@@ -151,7 +151,7 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismiss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top"

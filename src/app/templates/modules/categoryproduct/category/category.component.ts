@@ -41,7 +41,7 @@ export class CategoryComponent implements OnInit {
           }else{
             this.enable = false;
             setTimeout(() => {
-              this.snackBar.open("Category data is empty", "dismiss", {
+              this.snackBar.open("Category data is empty", "", {
                 duration: undefined,   
                 panelClass: ["warning"],
                 verticalPosition: "top",
