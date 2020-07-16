@@ -86,10 +86,12 @@ export class PettycashlistComponent implements OnInit {
       totalAmount: totalAmount,currency: currency,invoicenumber: invoicenumber }
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(function(){
+    modalRef.result.then((result) => {
       this.load();
-    });
-
+    }, (reason) => {
+      this.load();
+    });   
+    //return modalRef.result;
     /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
