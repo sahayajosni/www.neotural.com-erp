@@ -35,6 +35,8 @@ export interface UsersData{
   date :string;
   description:string;
   status:string;
+  dialogText: string;
+  //noavailableqty: string;
 }
 
 @Component({
@@ -61,7 +63,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
   currentDate = new Date();
   purchaseDate: any;
   public productchosendiv = false;
-
+  noavailableqty: boolean = false;
   @Input() fromParent: UsersData;
 
   constructor(

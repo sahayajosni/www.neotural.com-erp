@@ -36,6 +36,7 @@ export interface UsersData{
   date :string;
   description:string;
   status:string;
+  dialogText:string;
 }
 
 
