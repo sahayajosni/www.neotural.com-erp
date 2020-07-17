@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { ModalModule } from "ngx-bootstrap";
 
 // Modules
 import {
@@ -115,6 +116,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatTooltipModule,
     MatTreeModule,
     NgbModule,
+    ModalModule.forRoot(),
     DataTablesModule.forRoot()
   ],
   entryComponents: [EmployeeReportComponent, 

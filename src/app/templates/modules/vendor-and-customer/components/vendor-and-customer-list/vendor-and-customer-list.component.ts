@@ -29,7 +29,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: "app-vendor-and-customer-list",
   templateUrl: "./vendor-and-customer-list.component.html",
   styleUrls: ["./vendor-and-customer-list.component.scss"],
-  providers: [NgbModalConfig, NgbModal]
+  // providers: [NgbModalConfig, NgbModal]
 })
 export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
 

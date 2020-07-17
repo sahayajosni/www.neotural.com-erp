@@ -9,14 +9,14 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-units',
   templateUrl: './units.component.html',
   styleUrls: ['./units.component.scss'],
-  providers: [NgbModalConfig, NgbModal]
+  // providers: [NgbModalConfig, NgbModal]
 })
 export class UnitsComponent implements OnInit {
   constructor(private router: Router,
     private catprodservice: CategoryproductService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    config: NgbModalConfig, private modalService: NgbModal,
+     config: NgbModalConfig, private modalService: NgbModal,
   ) { 
     config.backdrop = 'static';
     config.keyboard = false;

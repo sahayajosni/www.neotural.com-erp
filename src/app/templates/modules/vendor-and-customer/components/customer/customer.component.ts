@@ -29,7 +29,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: "app-customer",
   templateUrl: "./customer.component.html",
   styleUrls: ["./customer.component.scss"],
-  providers: [NgbModalConfig, NgbModal]
+  // providers: [NgbModalConfig, NgbModal]
 })
 export class CustomerComponent implements OnInit {
   @Input() tabChange: boolean = false;

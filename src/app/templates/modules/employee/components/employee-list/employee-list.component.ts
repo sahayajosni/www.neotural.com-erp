@@ -21,7 +21,7 @@ import * as _ from 'lodash';
   selector: "app-employee-list",
   templateUrl: "./employee-list.component.html",
   styleUrls: ["./employee-list.component.scss"],
-  providers: [NgbModalConfig, NgbModal]
+  // providers: [NgbModalConfig, NgbModal]
 })
 export class EmployeeListComponent implements OnInit, OnDestroy {
   employeesDS: any = {};

@@ -57,6 +57,7 @@ import { VendorService } from 'src/app/templates/modules/vendor-and-customer/ser
 import { PurchaseCreateInvoiceComponent } from './components/purchase-create-invoice/purchase-create-invoice.component';
 import { PurchaseCreateReturnComponent } from './components/purchase-create-return/purchase-create-return.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from "ngx-bootstrap";
 
 @NgModule({
   declarations: [
@@ -115,6 +116,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatTreeModule,
     MatPaginatorModule,
     NgbModule,
+    ModalModule.forRoot(),
+
   ],
   providers: [PurchaseService, VendorService],
   entryComponents: [PurchaseAddComponent, PurchaseCreateInvoiceComponent,PurchaseCreateReturnComponent]

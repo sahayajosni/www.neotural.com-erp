@@ -56,6 +56,7 @@ import { FormsModule } from "@angular/forms";
 //import { CheckBoxComponent, CheckBoxModule } from '@syncfusion/ej2-angular-buttons';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from "ngx-bootstrap";
 
 @NgModule({
   declarations: [
@@ -109,7 +110,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     //MultiSelectModule,
     //CheckBoxModule,
     NgMultiSelectDropDownModule.forRoot(),
-    DataTablesModule.forRoot()
+    DataTablesModule.forRoot(),
+    ModalModule.forRoot(),
+
   ],
   entryComponents: [ ],
   providers: [UserManagementService]

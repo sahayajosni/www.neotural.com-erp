@@ -28,6 +28,7 @@ import { NavigationComponent } from "./core/components/navigation/navigation.com
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
 import { MomentModule } from 'angular2-moment'; // optional, provides moment-style pipes for date formatting
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     LandingpageComponent,
     NavigationComponent,
     DashboardWidgetComponent,
-    DataWidgetComponent
+    DataWidgetComponent,
+    
   ],
 
   imports: [
@@ -51,8 +53,10 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ModalModule.forRoot(),
     MomentModule,
     NgxSpinnerModule,
+    // NgbModal,
+    // NgbModalConfig
   ],
-  providers: [AlertService, AuthenticationService, UserService],
+  providers: [AlertService, AuthenticationService, UserService,NgbModalConfig, NgbModal],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

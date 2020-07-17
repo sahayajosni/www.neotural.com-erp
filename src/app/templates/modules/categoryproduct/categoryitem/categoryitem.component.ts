@@ -1384,7 +1384,7 @@ export class CategorytableComponent {
   selector: 'app-categoryitem',
   templateUrl: './categoryitem.component.html',
   styleUrls: ['./categoryitem.component.scss'],
-  providers: [NgbModalConfig, NgbModal]
+  // providers: [NgbModalConfig, NgbModal]
 
 })
 export class CategoryItemComponent implements OnInit {

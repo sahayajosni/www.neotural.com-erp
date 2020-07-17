@@ -20,7 +20,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: [
     "./purchase-list.component.scss"
   ],
-  providers: [NgbModalConfig, NgbModal]
+  // providers: [NgbModalConfig, NgbModal]
 })
 export class PurchaseListComponent implements OnInit, OnDestroy {
   purchaseOrderList: any;

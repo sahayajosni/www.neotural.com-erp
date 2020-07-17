@@ -10,7 +10,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-pettycashlist',
   templateUrl: './pettycashlist.component.html',
   styleUrls: ['./pettycashlist.component.scss'],
-  providers: [NgbModalConfig, NgbModal]
+  // providers: [NgbModalConfig, NgbModal]
 })
 export class PettycashlistComponent implements OnInit {
   model: any = {};

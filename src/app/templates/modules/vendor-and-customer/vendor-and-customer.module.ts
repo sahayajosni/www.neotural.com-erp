@@ -16,6 +16,7 @@ import { VendorDetailsService } from "./services/vendorDetails.service";
 import { MAT_TABS_CONFIG } from "@angular/material";
 import { VendorDetailsComponent } from './components/vendor-details/vendor-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from "ngx-bootstrap";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CoreModule,
     CustomMaterialModule,
     NgbModule,
+    ModalModule.forRoot(),
   ],
   providers: [
     CustomerService,
