@@ -13,6 +13,10 @@ import { PrintDialogService } from "src/app/core/services/print-dialog/print-dia
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {startWith, map} from 'rxjs/operators';
+
 
 // addnewcategory start
 @Component({
@@ -247,6 +251,7 @@ export class AddpromotionComponent {
 
   local_data:any;
   @Input() fromParent: UsersData;
+
   constructor(
     //public dialogRef: MatDialogRef<AddpromotionComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData,
@@ -321,7 +326,7 @@ export class AddpromotionComponent {
           this.discount =  data; 
           this.modalService.dismissAll();
           setTimeout(() => {
-            this.snackBar.open("Promotion created Successfully", "dismss", {
+            this.snackBar.open("Promotion created Successfully", "", {
               panelClass: ["success"],
               verticalPosition: 'top',
               duration: undefined     

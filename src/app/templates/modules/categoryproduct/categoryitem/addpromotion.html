@@ -60,29 +60,32 @@
                                 <ng2-completer style="margin-left: -20px;"
                                     placeholder="Search Product"
                                     [(ngModel)]="model.productname"
-                                    name="productname"
-                                    #productname="ngModel"
+                                    name="productname" #productname="ngModel"
                                     [datasource]="dataService"
-                                    [minSearchLength]="0"
-                                    id="textSize2" required>
+                                    [minSearchLength]="0" required>
                                 </ng2-completer>
-
-                                <div *ngIf="productname.errors  && (productname.dirty || productname.touched) ||
-                                    (addpromotionForm.submitted && !productname.valid )">
-                                    <span [hidden]="!productname.errors.required" class="spanerror">
-                                        Required field cannot be left blank
-                                    </span>
-                                </div>
-                                <!-- <input
-                                    class="search-text-box"
-                                    type="search"
-                                    [(ngModel)]="model.productname" 
-                                    name="productname"
-                                    #productname="ngModel"
-                                    autocomplete="on"
-                                    placeholder="Search Product"
-                                /> -->
                             </div>
+
+                            <div *ngIf="productname.errors  && (productname.dirty || productname.touched) ||
+                                (addpromotionForm.submitted && !productname.valid )">
+                                <span [hidden]="!productname.errors.required" class="spanerror">
+                                    Required field cannot be left blank
+                                </span>
+                            </div>
+
+                            <!-- <md-form>
+                                <input type="text" id="inputBoxVal" name="productname" 
+                                    [(ngModel)]="model.productname" placeholder="Search Product"
+                                    #productname="ngModel"  matInput [formControl]="control"
+                                    [matAutocomplete]="auto" required />
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option 
+                                        *ngFor="let option of allitemnamelist"
+                                        value="{{ option }}">{{ option }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </md-form> -->
+
                         </div>
                     </div>
                     <br/>
