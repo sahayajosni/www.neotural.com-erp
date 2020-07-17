@@ -54,6 +54,7 @@ import { AddPettycashComponent } from "./components/addpettycash/addpettycash.co
 import { ReturnListComponent } from "./components/return-list/return-list.component";
 import { InvoiceListComponent } from "./components/invoice-list/invoice-list.component";
 import { ProfitandLossComponent } from "./components/profitandloss/profitandloss.component";
+import { ModalModule } from "ngx-bootstrap";
 
 import { FormsModule } from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -108,6 +109,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatTooltipModule,
     MatTreeModule,
     NgbModule,
+    ModalModule.forRoot(),
     DataTablesModule.forRoot()
   ],
   entryComponents: [ ],

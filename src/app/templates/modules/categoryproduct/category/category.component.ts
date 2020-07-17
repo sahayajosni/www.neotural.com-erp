@@ -9,7 +9,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss'],
-  providers: [NgbModalConfig, NgbModal]
+  // providers: [NgbModalConfig, NgbModal]
 })
 export class CategoryComponent implements OnInit {
   constructor(private router: Router,

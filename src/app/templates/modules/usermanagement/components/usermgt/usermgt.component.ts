@@ -8,7 +8,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: "app-usermgt",
   templateUrl: "./usermgt.component.html",
   styleUrls: ["./usermgt.component.scss"],
-  providers: [NgbModalConfig, NgbModal]
+  // providers: [NgbModalConfig, NgbModal]
 })
 export class UserManagementComponent implements OnInit {
   activeTab: number = 0;

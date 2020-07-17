@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { ModalModule } from "ngx-bootstrap";
 
 import { CustomMaterialModule } from "src/app/core/material.module";
 import { CoreModule } from "../../../core/core.module";
@@ -116,6 +117,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatPaginatorModule,
     Ng2CompleterModule,
     NgbModule,
+    ModalModule.forRoot(),
+
   ],
   providers: [SalesService, PurchaseService],
   entryComponents: [SalesorderComponent,

@@ -19,7 +19,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: [
     "./sales-list.component.scss"
   ],
-  providers: [NgbModalConfig, NgbModal]
+  // providers: [NgbModalConfig, NgbModal]
 })
 export class SalesListComponent implements OnInit, OnDestroy {
   salesOrderList: any;
@@ -48,7 +48,8 @@ export class SalesListComponent implements OnInit, OnDestroy {
     private salesService: SalesService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
-    config: NgbModalConfig, private modalService: NgbModal,
+    config: NgbModalConfig, 
+    private modalService: NgbModal,
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
