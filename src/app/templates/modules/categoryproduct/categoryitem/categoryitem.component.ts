@@ -363,14 +363,17 @@ export class AddpromotionComponent {
     }
 
     freediscountBox(title:string){
+      this.model.discountType = '';
       if(title == "Add Free Gift"){
         this.freegiftShow = true;
         this.discountShow = false;
         this.otherShow = false;
+        this.model.discountType = "freegift";
       }else if(title == "Add Discount"){
         this.freegiftShow = false;
         this.discountShow = true;
         this.otherShow = false;
+        this.model.discountType = "discount";
       }
     }
 

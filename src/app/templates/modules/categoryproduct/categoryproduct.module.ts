@@ -52,9 +52,11 @@ import { AddunitsComponent } from './addunits/addunits.component';
 import { CategoryComponent } from './category/category.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PromotionListComponent } from './promotionlist/promotionlist.component';
 
 @NgModule({
-  declarations: [AddnewcategoryComponent,CategoryItemComponent,CategoryeditdeleteComponent,AddpromotionComponent,DiscounteditComponent, DiscountdeleteComponent,AddnewproductComponent,ProductviewComponent,ProducteditComponent,AllproducteditComponent,CategorytableComponent, UnitsComponent, AddunitsComponent, CategoryComponent],
+  declarations: [AddnewcategoryComponent,CategoryItemComponent,CategoryeditdeleteComponent,AddpromotionComponent,DiscounteditComponent, DiscountdeleteComponent,AddnewproductComponent,ProductviewComponent,ProducteditComponent,AllproducteditComponent,CategorytableComponent, 
+      UnitsComponent, AddunitsComponent, CategoryComponent,PromotionListComponent],
   imports: [
     FormsModule,
     MatFormFieldModule,

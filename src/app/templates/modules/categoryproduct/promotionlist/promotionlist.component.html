@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-2">
+    <label class="heading">Promotion Type</label>
+  </div>
+  <div class="col-7">
+    <input type="radio" class="regular-radio" value="discount" 
+      [(ngModel)]="model.promotionType" #promotionType="ngModel" name="promotionType"
+      (ngModelChange)="getpromotionlist(model.promotionType)">
+    <label for="damaged" id="radiolabel">Discount</label>
+    &nbsp;&nbsp;&nbsp;
+
+    <input type="radio" class="regular-radio" value="freegift" 
+      [(ngModel)]="model.promotionType" #promotionType="ngModel" name="promotionType"
+      (ngModelChange)="getpromotionlist(model.promotionType)">
+    <label for="expired" id="radiolabel">Freegift</label>
+  </div>
+</div>
+<div *ngIf="promotiondiv">
+  <br/>
+  <!--  FreeGift Table Start -->
+  <div  *ngIf="freegiftTable">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Category Name</th>
+          <th>Product Name</th>
+          <th>Free Gift</th>
+          <th>Promotion Period</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let f of freegiftList; let i = index"> 
+        <tr>
+          <td>{{f.categorycode}}</td>
+          <td>{{f.productname}}</td>
+          <td>{{f.freegift}}</td>
+          <td>{{f.fromdate_promotionperiod | date : 'dd-MM-yyyy'}} &nbsp; to &nbsp; {{f.todate_promotionperiod | date : 'dd-MM-yyyy'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--  FreeGift Table End -->
+
+  <!--  Discount Table Start -->
+  <div  *ngIf="discountTable">
+    <!-- <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <h4>Discount List</h4> 
+      </div>
+    </div> -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Category Name</th>
+          <th>Product Name</th>
+          <th>Discount Quantity</th>
+          <th>Promotion Period</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let d of discountList; let i = index"> 
+        <tr>
+          <td>{{d.categorycode}}</td>
+          <td>{{d.productname}}</td>
+          <td>{{d.qty}}</td>
+          <td>{{d.fromdate_promotionperiod | date : 'dd-MM-yyyy'}} &nbsp; to &nbsp; {{d.todate_promotionperiod | date : 'dd-MM-yyyy'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--  Discount Table End -->
+</div>
+
