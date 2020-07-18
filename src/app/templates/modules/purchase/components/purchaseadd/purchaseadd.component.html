@@ -81,7 +81,7 @@
             </select>
             <div *ngIf="productName.errors && (productName.dirty || productName.touched) ||
               (purchaseForm.submitted && !productName.valid )">
-              <span [hidden]="!productName.errors.required" class="spanerror1">
+              <span [hidden]="!productName.errors.required" class="spanerror">
                   Required field cannot be left blank
               </span>
             </div>

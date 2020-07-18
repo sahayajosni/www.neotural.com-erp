@@ -407,6 +407,11 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
     dialogRef.backdropClick().subscribe(result => {
       console.log('backdropClick');
       this.ngOnInit();
+      let indexx = this.prodArr.indexOf(this.prodArr[0].pocode);
+      this.prodArr.splice(indexx, 1);
+      this.isCreateInvoice = false;
+      this.isDeleteButton = false;
+      this.isAddPurchaseOrder = true; 
     }); 
     dialogRef.afterClosed().subscribe(result => {
       this.ngOnInit();
