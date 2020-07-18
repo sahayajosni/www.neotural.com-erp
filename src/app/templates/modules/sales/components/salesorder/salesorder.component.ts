@@ -317,7 +317,7 @@ export class SalesorderComponent implements OnInit {
         },
         error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -355,7 +355,7 @@ export class SalesorderComponent implements OnInit {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",
@@ -452,7 +452,7 @@ export class SalesorderComponent implements OnInit {
           setTimeout(() => {
             this.snackBar.open(
               "Sales Order created Successfully",
-              "dismss",
+              "",
               {
                 panelClass: ["success"],
                 verticalPosition: "top",
@@ -466,7 +466,7 @@ export class SalesorderComponent implements OnInit {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",
@@ -485,7 +485,7 @@ export class SalesorderComponent implements OnInit {
           setTimeout(() => {
             this.snackBar.open(
               "Sales Order updated Successfully",
-              "dismss",
+              "",
               {
                 panelClass: ["success"],
                 verticalPosition: "top",
@@ -498,7 +498,7 @@ export class SalesorderComponent implements OnInit {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",

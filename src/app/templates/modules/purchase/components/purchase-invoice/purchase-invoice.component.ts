@@ -54,7 +54,7 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
     },
     error => {
       setTimeout(() => {
-        this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+        this.snackBar.open("Network error: server is temporarily unavailable", "", {
           panelClass: ["error"],
           verticalPosition: 'top'      
         });
@@ -66,7 +66,7 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
   generatePdf(data: any){
     if (data === null) {
       setTimeout(() => {
-        this.snackBar.open("PDF data is empty", "dismss", {
+        this.snackBar.open("PDF data is empty", "", {
           panelClass: ["error"],
           verticalPosition: 'top'      
         });
@@ -152,7 +152,7 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
   getErrorMsg(isErrMsg: boolean) {
     if (isErrMsg) {
       setTimeout(() => {
-        this.snackBar.open("Select only one Invoice", "dismss", {
+        this.snackBar.open("Select only one Invoice", "", {
           panelClass: ["warn"],
           verticalPosition: "top",
         });
@@ -169,7 +169,7 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
           setTimeout(() => {
             this.snackBar.open(
               "Stock was added Successfully",
-              "dismss",
+              "",
               {
                 panelClass: ["success"],
                 verticalPosition: "top",
@@ -186,7 +186,7 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",

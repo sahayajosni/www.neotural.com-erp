@@ -23,21 +23,21 @@ export class CommonService {
     getSuccessErrorMsg(res: any, msg: string) {
       if (res === null) {
         setTimeout(() => {
-          this.snackBar.open(msg, "dismss", {
+          this.snackBar.open(msg, "", {
             panelClass: ["success"],
             verticalPosition: 'top'      
           });
         });
       } else if (res === 500) {
         setTimeout(() => {
-          this.snackBar.open("Internal server error", "dismss", {
+          this.snackBar.open("Internal server error", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
         });
       } else {
         setTimeout(() => {
-          this.snackBar.open("Bad request error", "dismss", {
+          this.snackBar.open("Bad request error", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -45,7 +45,7 @@ export class CommonService {
       }
        error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });

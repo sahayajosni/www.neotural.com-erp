@@ -157,7 +157,7 @@ export class AddUserMgtComponent implements OnInit {
     setTimeout(() => {
       this.snackBar.open(
         "User Login was created Successfully",
-        "dismss",
+        "",
         {
           panelClass: ["success"],
           verticalPosition: "top",

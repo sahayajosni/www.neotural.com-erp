@@ -96,7 +96,7 @@ export class SalesCreateInvoiceComponent implements OnInit {
           setTimeout(() => {
             this.snackBar.open(
               "Sales Invoice Created Successfully",
-              "dismss",
+              "",
               {
                 panelClass: ["success"],
                 verticalPosition: "top",
@@ -110,7 +110,7 @@ export class SalesCreateInvoiceComponent implements OnInit {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",

@@ -101,7 +101,7 @@ export class AddnewcategoryComponent {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -156,7 +156,7 @@ export class CategoryeditdeleteComponent {
           this.category =   data;  
           this.dialogRef.close();
           setTimeout(() => {
-            this.snackBar.open("Category Saved Successfully", "dismss", {
+            this.snackBar.open("Category Saved Successfully", "", {
               panelClass: ["success"],
               verticalPosition: 'top'      
             });
@@ -167,7 +167,7 @@ export class CategoryeditdeleteComponent {
         },
         error => {
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -191,7 +191,7 @@ export class CategoryeditdeleteComponent {
 
         }else if(this.category.status == "failure"){
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -200,7 +200,7 @@ export class CategoryeditdeleteComponent {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -270,7 +270,7 @@ export class AddpromotionComponent {
          },
         error => {
         	setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -287,7 +287,7 @@ export class AddpromotionComponent {
          },
         error => {
         	setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -334,7 +334,7 @@ export class AddpromotionComponent {
           });
           /*if(this.discount.status=="success"){
             setTimeout(() => {
-              this.snackBar.open("Promotion created Successfully", "dismss", {
+              this.snackBar.open("Promotion created Successfully", "", {
                 panelClass: ["success"],
                 verticalPosition: 'top',
                 duration: undefined     
@@ -344,7 +344,7 @@ export class AddpromotionComponent {
           } 
           if(this.discount.status=="failure"){
             setTimeout(() => {
-              this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+              this.snackBar.open("Network error: server is temporarily unavailable", "", {
                 panelClass: ["error"],
                 verticalPosition: 'top'      
               });
@@ -353,7 +353,7 @@ export class AddpromotionComponent {
         },
         error => {
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -415,7 +415,7 @@ export class DiscounteditComponent {
        error => {
         	
 		setTimeout(() => {
-      this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+      this.snackBar.open("Network error: server is temporarily unavailable", "", {
         panelClass: ["error"],
         verticalPosition: 'top'      
       });
@@ -450,7 +450,7 @@ export class DiscounteditComponent {
         error => {
          	
 		setTimeout(() => {
-      this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+      this.snackBar.open("Network error: server is temporarily unavailable", "", {
         panelClass: ["error"],
         verticalPosition: 'top'      
       });
@@ -467,7 +467,7 @@ export class DiscounteditComponent {
         this.discount =   data;
         this.dialogRef.close();
         setTimeout(() => {
-          this.snackBar.open("Discount Updated Successfully", "dismss", {
+          this.snackBar.open("Discount Updated Successfully", "", {
             panelClass: ["success"],
             verticalPosition: 'top'      
           });
@@ -478,7 +478,7 @@ export class DiscounteditComponent {
       error => {
 	
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -578,7 +578,7 @@ export class AddnewproductComponent {
         },
         error => {	
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -595,7 +595,7 @@ export class AddnewproductComponent {
         },
        error => {	
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -612,7 +612,7 @@ export class AddnewproductComponent {
         },
         error => {
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -813,7 +813,7 @@ export class AddnewproductComponent {
         },
         error => {
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -840,7 +840,7 @@ export class AddnewproductComponent {
         },
         error => {
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -909,7 +909,7 @@ export class AddnewproductComponent {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -980,7 +980,7 @@ export class AllproducteditComponent {
          },
         error => {
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -997,7 +997,7 @@ export class AllproducteditComponent {
          },
         error => {
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -1015,7 +1015,7 @@ export class AllproducteditComponent {
         },
         error => {
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -1075,7 +1075,7 @@ export class AllproducteditComponent {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -1282,7 +1282,7 @@ export class AllproducteditComponent {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -1338,7 +1338,7 @@ export class ProducteditComponent {
    //   }, 2000);
 
       setTimeout(() => {
-        this.snackBar.open("Saved Successfully", "dismss", {
+        this.snackBar.open("Saved Successfully", "", {
           panelClass: ["success"],
           verticalPosition: 'top'      
         });
@@ -1536,7 +1536,7 @@ export class CategoryItemComponent implements OnInit {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -1563,7 +1563,7 @@ export class CategoryItemComponent implements OnInit {
         this.loadinggif=false;
         this.productTable = true;
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -1584,7 +1584,7 @@ export class CategoryItemComponent implements OnInit {
       },
       error => {
           setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -1603,7 +1603,7 @@ export class CategoryItemComponent implements OnInit {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -1643,7 +1643,7 @@ export class CategoryItemComponent implements OnInit {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -1868,7 +1868,7 @@ productlist(number: string){
             });      
         }else if(this.discount.status == "failure"){
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -1878,7 +1878,7 @@ productlist(number: string){
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -2010,7 +2010,7 @@ productlist(number: string){
             this.allproductList();
           /*}else if(this.product.status == "failure"){
             setTimeout(() => {
-              this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+              this.snackBar.open("Network error: server is temporarily unavailable", "", {
                 panelClass: ["error"],
                 verticalPosition: 'top'      
               });
@@ -2020,7 +2020,7 @@ productlist(number: string){
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });

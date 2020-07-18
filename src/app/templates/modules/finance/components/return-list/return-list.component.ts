@@ -88,7 +88,7 @@ export class ReturnListComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",
@@ -111,7 +111,7 @@ export class ReturnListComponent implements OnInit, OnDestroy {
 
     if (this.returnArr.length > 1) {
       setTimeout(() => {
-        this.snackBar.open("Select only one CheckBox", "dismss", {
+        this.snackBar.open("Select only one CheckBox", "", {
           panelClass: ["warn"],
           verticalPosition: "top",
         });
@@ -154,7 +154,7 @@ export class ReturnListComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.snackBar.open(
             "Make Return Payment has been saved successfully",
-            "dismss",
+            "",
             {
               panelClass: ["success"],
               verticalPosition: "top",
@@ -164,14 +164,14 @@ export class ReturnListComponent implements OnInit, OnDestroy {
         this.getReturnList();
       } else if (data === 500) {
         setTimeout(() => {
-          this.snackBar.open("Internal server error", "dismss", {
+          this.snackBar.open("Internal server error", "", {
             panelClass: ["error"],
             verticalPosition: "top",
           });
         });
       } else {
         setTimeout(() => {
-          this.snackBar.open("Bad request data", "dismss", {
+          this.snackBar.open("Bad request data", "", {
             panelClass: ["error"],
             verticalPosition: "top",
           });
@@ -189,7 +189,7 @@ export class ReturnListComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.snackBar.open(
             "Receive Return Payment has been saved successfully",
-            "dismss",
+            "",
             {
               panelClass: ["success"],
               verticalPosition: "top",
@@ -199,14 +199,14 @@ export class ReturnListComponent implements OnInit, OnDestroy {
         this.getReturnList();
       } else if (data === 500) {
         setTimeout(() => {
-          this.snackBar.open("Internal server error", "dismss", {
+          this.snackBar.open("Internal server error", "", {
             panelClass: ["error"],
             verticalPosition: "top",
           });
         });
       } else {
         setTimeout(() => {
-          this.snackBar.open("Bad request data", "dismss", {
+          this.snackBar.open("Bad request data", "", {
             panelClass: ["error"],
             verticalPosition: "top",
           });

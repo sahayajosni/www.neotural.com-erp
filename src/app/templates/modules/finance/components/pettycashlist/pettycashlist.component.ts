@@ -120,7 +120,7 @@ export class PettycashlistComponent implements OnInit {
         setTimeout(() => {
           this.snackBar.open(
             "Petty Cash has been deleted successfully",
-            "dismss",
+            "",
             {
               panelClass: ["success"],
               verticalPosition: "top",
@@ -131,14 +131,14 @@ export class PettycashlistComponent implements OnInit {
         this.load();
       } else if (data === 500) {
         setTimeout(() => {
-          this.snackBar.open("Internal server error", "dismss", {
+          this.snackBar.open("Internal server error", "", {
             panelClass: ["error"],
             verticalPosition: "top",
           });
         });
       } else {
         setTimeout(() => {
-          this.snackBar.open("Bad request data", "dismss", {
+          this.snackBar.open("Bad request data", "", {
             panelClass: ["error"],
             verticalPosition: "top",
           });

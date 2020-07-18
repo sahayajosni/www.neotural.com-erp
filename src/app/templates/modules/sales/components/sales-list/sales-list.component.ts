@@ -135,7 +135,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",
@@ -208,7 +208,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
                     if(this.soreturnList[i].socode == this.prodArr[0].socode ){
                       this.isCreateReturn = false;
                       setTimeout(() => {
-                        this.snackBar.open("Sales was Returned already.", "dismss", {
+                        this.snackBar.open("Sales was Returned already.", "", {
                           panelClass: ["warn"],
                           verticalPosition: "top",
                           duration: undefined
@@ -292,7 +292,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
     // console.log('isErrMsg', isErrMsg)
     if (isErrMsg) {
       setTimeout(() => {
-        this.snackBar.open("Select only one customer", "dismss", {
+        this.snackBar.open("Select only one customer", "", {
           panelClass: ["warn"],
           verticalPosition: "top",
         });
@@ -348,7 +348,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.snackBar.open(
             "Sales order has been deleted successfully",
-            "dismss",
+            "",
             {
               panelClass: ["success"],
               verticalPosition: "top",
@@ -358,14 +358,14 @@ export class SalesListComponent implements OnInit, OnDestroy {
         this.getSalesOrderLists();
       } else if (data === 500) {
         setTimeout(() => {
-          this.snackBar.open("Internal server error", "dismss", {
+          this.snackBar.open("Internal server error", "", {
             panelClass: ["error"],
             verticalPosition: "top",
           });
         });
       } else {
         setTimeout(() => {
-          this.snackBar.open("Bad request data", "dismss", {
+          this.snackBar.open("Bad request data", "", {
             panelClass: ["error"],
             verticalPosition: "top",
           });

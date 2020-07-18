@@ -41,7 +41,7 @@ export class ViewInvoice {
         },
         error => {
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -65,7 +65,7 @@ export class ViewInvoice {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -121,7 +121,7 @@ export class EditInvoice {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -137,7 +137,7 @@ export class EditInvoice {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -182,7 +182,7 @@ export class EditInvoice {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -202,7 +202,7 @@ export class EditInvoice {
         this.model = data;
         if(this.model.status == "Success"){
           setTimeout(() => {
-            this.snackBar.open("Sales Invoice deleted Successfully", "dismss", {
+            this.snackBar.open("Sales Invoice deleted Successfully", "", {
               panelClass: ["success"],
               verticalPosition: 'top'      
             });
@@ -210,7 +210,7 @@ export class EditInvoice {
           this.model.currentStatus = this.data.status;
         }else{
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -220,7 +220,7 @@ export class EditInvoice {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -256,7 +256,7 @@ export class EditInvoice {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -356,7 +356,7 @@ export class SalesinvoiceComponent implements OnInit {
     },
     error => {
       setTimeout(() => {
-        this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+        this.snackBar.open("Network error: server is temporarily unavailable", "", {
           panelClass: ["error"],
           verticalPosition: 'top'      
         });
@@ -368,7 +368,7 @@ export class SalesinvoiceComponent implements OnInit {
   generatePdf(data: any){
     if (data === null) {
       setTimeout(() => {
-        this.snackBar.open("PDF data is empty", "dismss", {
+        this.snackBar.open("PDF data is empty", "", {
           panelClass: ["error"],
           verticalPosition: 'top'      
         });

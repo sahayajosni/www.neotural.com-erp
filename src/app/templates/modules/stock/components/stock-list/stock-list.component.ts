@@ -56,7 +56,7 @@ export class StockListComponent implements OnInit {
 			},
 			error => {
 				setTimeout(() => {
-					this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+					this.snackBar.open("Network error: server is temporarily unavailable", "", {
 						panelClass: ["error"],
 						verticalPosition: 'top'      
 					});
@@ -91,7 +91,7 @@ export class StockListComponent implements OnInit {
 			},
 			error => {
 				setTimeout(() => {
-					this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+					this.snackBar.open("Network error: server is temporarily unavailable", "", {
 						panelClass: ["error"],
 						verticalPosition: 'top'      
 					});

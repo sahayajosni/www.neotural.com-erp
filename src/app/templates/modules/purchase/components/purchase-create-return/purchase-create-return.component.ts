@@ -59,7 +59,7 @@ export class PurchaseCreateReturnComponent implements OnInit {
       setTimeout(() => {
         this.snackBar.open(
           "Qty cannot be more than Invoiced Qty.",
-          "dismss",
+          "",
           {
             duration: undefined,   
             panelClass: ["warning"],
@@ -71,7 +71,7 @@ export class PurchaseCreateReturnComponent implements OnInit {
       setTimeout(() => {
         this.snackBar.open(
           "Qty must be valid.",
-          "dismss",
+          "",
           {
             duration: undefined, 
             panelClass: ["warning"],
@@ -135,7 +135,7 @@ export class PurchaseCreateReturnComponent implements OnInit {
     }else if(this.model.quantity > this.model.invqty){
       this.snackBar.open(
         "Qty cannot be more than Invoiced Qty.",
-        "dismss",
+        "",
         {
           duration: undefined, 
           panelClass: ["warning"],
@@ -146,7 +146,7 @@ export class PurchaseCreateReturnComponent implements OnInit {
       setTimeout(() => {
         this.snackBar.open(
           "Qty must be valid.",
-          "dismss",
+          "",
           {
             duration: undefined, 
             panelClass: ["warning"],
@@ -175,7 +175,7 @@ export class PurchaseCreateReturnComponent implements OnInit {
             setTimeout(() => {
               this.snackBar.open(
                 "Purchase Return Created Successfully",
-                "dismss",
+                "",
                 {
                   panelClass: ["success"],
                   verticalPosition: "top",
@@ -190,7 +190,7 @@ export class PurchaseCreateReturnComponent implements OnInit {
           setTimeout(() => {
             this.snackBar.open(
               "Network error: server is temporarily unavailable",
-              "dismss",
+              "",
               {
                 panelClass: ["error"],
                 verticalPosition: "top",

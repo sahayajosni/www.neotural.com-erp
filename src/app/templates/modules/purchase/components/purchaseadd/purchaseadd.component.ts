@@ -111,7 +111,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",
@@ -135,7 +135,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",
@@ -267,7 +267,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",
@@ -328,7 +328,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
             setTimeout(() => {
               this.snackBar.open(
                 "Purchase Order created Successfully",
-                "dismss",
+                "",
                 {
                   panelClass: ["success"],
                   verticalPosition: "top",
@@ -349,7 +349,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
             setTimeout(() => {
               this.snackBar.open(
                 "Network error: server is temporarily unavailable",
-                "dismss",
+                "",
                 {
                   panelClass: ["error"],
                   verticalPosition: "top",
@@ -370,7 +370,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",
@@ -473,7 +473,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
           setTimeout(() => {
             this.snackBar.open(
               "Purchase Order created Successfully",
-              "dismss",
+              "",
               {
                 panelClass: ["success"],
                 verticalPosition: "top",
@@ -487,7 +487,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",
@@ -506,7 +506,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
             this.modalService.dismissAll();
             this.snackBar.open(
               "Purchase Order updated Successfully",
-              "dismss",
+              "",
               {
                 panelClass: ["success"],
                 verticalPosition: "top",
@@ -519,7 +519,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",

@@ -126,7 +126,7 @@ export class VendorAndCustomerDetailComponent implements OnInit {
           setTimeout(() => {
             this.snackBar.open(
               "Network error: server is temporarily unavailable",
-              "dismss",
+              "",
               {
                 panelClass: ["error"],
                 verticalPosition: "top"
@@ -139,7 +139,7 @@ export class VendorAndCustomerDetailComponent implements OnInit {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top"
@@ -157,7 +157,7 @@ export class VendorAndCustomerDetailComponent implements OnInit {
         console.log("Response -->" + this.vendor.status);
         if (this.vendor.status == "success") {
           setTimeout(() => {
-            this.snackBar.open("Sales Order created Successfully", "dismss", {
+            this.snackBar.open("Sales Order created Successfully", "", {
               panelClass: ["success"],
               verticalPosition: "top"
             });
@@ -167,7 +167,7 @@ export class VendorAndCustomerDetailComponent implements OnInit {
           setTimeout(() => {
             this.snackBar.open(
               "Network error: server is temporarily unavailable",
-              "dismss",
+              "",
               {
                 panelClass: ["error"],
                 verticalPosition: "top"
@@ -180,7 +180,7 @@ export class VendorAndCustomerDetailComponent implements OnInit {
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top"

@@ -72,7 +72,7 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
           this.SpinnerService.hide();
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top",
@@ -129,7 +129,7 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
             this.SpinnerService.hide();
             this.snackBar.open(
               "Network error: server is temporarily unavailable",
-              "dismss",
+              "",
               {
                 panelClass: ["error"],
                 verticalPosition: "top",
