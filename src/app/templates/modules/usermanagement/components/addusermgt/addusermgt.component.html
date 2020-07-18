@@ -38,7 +38,7 @@
             </span>
           </div>
 
-          <label id="po-label2">Menu</label>
+          <label id="po-label2">Please Choose Menu</label>
           <br/>
           <input id="dashboard" type="checkbox" value="Dashboard" 
               [(ngModel)]="model.menuItem1" #menuItem1="ngModel" name="menuItem1">   
@@ -74,10 +74,6 @@
           <input id="finance" type="checkbox" value="Finance" 
               [(ngModel)]="model.menuItem8" #menuItem8="ngModel" name="menuItem8">   
           <label for="Finance" id="menu-label">Finance</label>
-          <br/>         
-          <input id="usermgt" type="checkbox" value="User Management" 
-              [(ngModel)]="model.menuItem9" #menuItem9="ngModel" name="menuItem9">   
-          <label for="User Management" id="menu-label">User Management</label>
           <br/>  
           
         </div>
@@ -96,7 +92,7 @@
 
           <div class="newline">Purchase</div>
       
-          <label *ngIf="purchase" id="sub-label">Purchase SubMenu</label>
+          <!-- <label *ngIf="purchase" id="sub-label">Purchase SubMenu</label> -->
           <ng-multiselect-dropdown id="purmultiselect" *ngIf="purchase"
               [data]="purdropdownList"
               [(ngModel)]="selectedItems"
@@ -107,7 +103,7 @@
           </ng-multiselect-dropdown>
           <br/>
 
-          <label *ngIf="product" id="sub-label">Product SubMenu</label>
+          <!-- <label *ngIf="product" id="sub-label">Product SubMenu</label> -->
           <ng-multiselect-dropdown id="prodmultiselect" *ngIf="product"
               [data]="proddropdownList"
               [(ngModel)]="selectedItems"
@@ -118,7 +114,7 @@
           </ng-multiselect-dropdown>
           <br/>
 
-          <label *ngIf="sales" id="sub-label">Sales SubMenu</label>
+          <!-- <label *ngIf="sales" id="sub-label">Sales SubMenu</label> -->
           <ng-multiselect-dropdown id="salemultiselect" *ngIf="sales"
               [data]="saledropdownList"
               [(ngModel)]="selectedItems"

@@ -264,5 +264,11 @@ input:-webkit-autofill {
 
 ::ng-deep .promotion-class .modal-dialog {
   max-width: 80%;
-  width: 60% !important;
+  width: 40% !important;
+}
+
+::ng-deep .promotion-class .modal-content {
+  padding-top: 10px !important;;
+  padding-bottom: 10px !important;;
+  background:$po-order-form-bg;
 }

@@ -54,12 +54,6 @@ button[type="submit"]{
 label{
   color:$white;
 }
-/* Style the container for inputs */
-.container {
-  position: relative;
-  background:$po-order-form-bg;
-  padding: 20px;
-}
 
 .cdk-overlay-pane.my-dialog {
   position: relative!important;
@@ -81,4 +75,13 @@ label{
 ::ng-deep .my-class .modal-dialog {
   max-width: 50%;
   width: 30% !important;
+}
+
+#spaceBar{
+  margin-top: 10px;
+}
+::ng-deep .my-class .modal-content {
+  padding-top: 10px !important;;
+  padding-bottom: 10px !important;;
+  background:$po-order-form-bg;
 }

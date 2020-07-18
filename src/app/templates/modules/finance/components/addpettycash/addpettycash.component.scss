@@ -210,3 +210,9 @@ input[type=number] {
   max-width: 80%;
   width: 55% !important;
 }
+
+::ng-deep .petty-class .modal-content {
+  padding-top: 10px !important;;
+  padding-bottom: 10px !important;;
+  background:$po-order-form-bg;
+}
