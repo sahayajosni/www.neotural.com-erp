@@ -123,3 +123,61 @@ h5{
     }
 
 }
+
+.panel-title > a.collapsed:before {
+    float: right !important;
+    content:"\f067";
+    
+    #datepicker {
+        visibility: hidden;  
+    }
+}
+.panel-title > a:before {
+    float: right !important;
+    font-family: FontAwesome;
+    content:"\f068"; 
+    padding-right: 5px;
+
+    #datepicker {
+        visibility: visible;  
+    }
+}
+
+#editinput{
+    background: #1c313e;
+    width: 100%;
+    height: 30px;
+    border: 1px solid #2C4655 !important;
+    color: white;
+}
+#editinput1{
+    background: #1c313e;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+    border: 1px solid #2C4655 !important;
+    color: white;
+}
+
+.fa-check{
+    margin-top: 10px;
+    float: left;
+    cursor: pointer;
+}
+
+.fa-times{
+    margin-top: 10px;
+    float: right;
+    cursor: pointer;
+}   
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
+}

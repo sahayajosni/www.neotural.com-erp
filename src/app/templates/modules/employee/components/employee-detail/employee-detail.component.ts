@@ -12,6 +12,7 @@ import { CommonService } from "../../../../../core/common/_services/common.servi
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Employee } from 'src/app/core/common/_models';
 
 @Component({
   selector: "app-employee-detail",
@@ -23,13 +24,15 @@ export class EmployeeDetailComponent implements OnInit {
   attendanceDetails = [];
   employeeDet: any;
   events: string[] = [];
-  
-   constructor(
+  employee:Employee = new Employee;
+
+  constructor(
     private employeeService: EmployeeService,
     private snackBar: MatSnackBar,
     public commonService: CommonService,
     private _sanitizer: DomSanitizer,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -51,6 +54,7 @@ export class EmployeeDetailComponent implements OnInit {
     this.employeeService.getEmployeeDetail(empCode).subscribe((res: any) => {
       if (res.length > 0) {
         this.employeeDet = res[0];
+        this.employeeDet.editable = false;
         const item = {date:this.commonService.getTodayDate(),type:'M',employeecode: empCode};
         this.employeeService.getAbsentLists(item).subscribe((data: any) => { 
           if (data.length > 0) { 
@@ -78,4 +82,64 @@ export class EmployeeDetailComponent implements OnInit {
     //picker.open();
     console.log('picker', picker)
   }
+
+   toggle(ref){
+    console.log(ref.opened);
+  }
+
+  editEmp(employeeDet: any){
+    employeeDet.editable = !employeeDet.editable;
+  }
+
+  update(employeeDet: any){
+    this.employeeService.save(employeeDet)
+		.subscribe(
+			data => {
+				this.employee =  data; 
+				setTimeout(() => {
+					this.snackBar.open("Employee Updated Successfully", "", {
+						panelClass: ["success"],
+						verticalPosition: 'top'      
+					});
+				});
+				this.ngOnInit();
+			},
+			error => {
+				setTimeout(() => {
+					this.snackBar.open("Network error: server is temporarily unavailable", "", {
+						panelClass: ["error"],
+						verticalPosition: 'top'      
+					});
+				}); 
+			}
+		); 
+  }
+
+  cancelEmp(employeeDet: any){
+    employeeDet.editable = false;
+  }
+
+  removeEmp(employeecode:string) {
+    this.employeeService.remove(employeecode)
+    .subscribe(
+      data => {
+        setTimeout(() => {
+          this.snackBar.open("Employee Removed Successfully", "", {
+            panelClass: ["success"],
+            verticalPosition: 'top'      
+          });
+        });
+        this.router.navigate(['/employment']);
+      },
+      error => {
+        setTimeout(() => {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
+            panelClass: ["error"],
+            verticalPosition: 'top'      
+          });
+        });  
+      }
+    );
+  }
+
 }
