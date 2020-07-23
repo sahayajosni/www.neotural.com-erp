@@ -54,6 +54,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PromotionListComponent } from './promotionlist/promotionlist.component';
 
+import { GridModule, PDFModule, ExcelModule } from '@progress/kendo-angular-grid';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+
 @NgModule({
   declarations: [AddnewcategoryComponent,CategoryItemComponent,CategoryeditdeleteComponent,AddpromotionComponent,DiscounteditComponent, DiscountdeleteComponent,AddnewproductComponent,ProductviewComponent,ProducteditComponent,AllproducteditComponent,CategorytableComponent, 
       UnitsComponent, AddunitsComponent, CategoryComponent,PromotionListComponent],
@@ -106,7 +109,12 @@ import { PromotionListComponent } from './promotionlist/promotionlist.component'
     //RouterModule.forChild(routes) ,
     Ng2CompleterModule,
     NgbModule,
-    CategoryProductRoutingModule
+    CategoryProductRoutingModule,
+
+    GridModule,
+    InputsModule,
+    PDFModule,
+    ExcelModule,
   ],
   exports: [CategoryItemComponent],
   bootstrap: [CategoryItemComponent],

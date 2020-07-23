@@ -13,12 +13,22 @@ import {MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource} f
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
+import { DataBindingDirective } from '@progress/kendo-angular-grid';
+import { process } from '@progress/kendo-data-query';
+
 @Component({
   selector: "app-promotionlist",
   templateUrl: "./promotionlist.component.html",
   styleUrls: ["./promotionlist.component.scss"]
 })
 export class PromotionListComponent implements OnInit {
+	@ViewChild(DataBindingDirective,{static:false}) dataBinding: DataBindingDirective;
+    public gridData: any[];
+    public gridView: any[];
+
+    public mySelection: string[] = [];
+
+
 	constructor(private router: Router,
 		private dialog: MatDialog,
 		private catprodservice: CategoryproductService,
@@ -84,6 +94,8 @@ export class PromotionListComponent implements OnInit {
 			.subscribe(
 			data => {
 				this.discountList = data;
+				this.gridData = this.discountList;
+				this.gridView = this.gridData;
 				if(this.discountList.length == 0){
 					this.discountTable = false;
 				}else{
@@ -101,5 +113,41 @@ export class PromotionListComponent implements OnInit {
 		);
 	}
 
+	public onFilter(inputValue: string): void {
+        this.gridView = process(this.gridData, {
+            filter: {
+                logic: "or",
+                filters: [
+                    {
+                        field: 'categorycode',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'productname',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'qty',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'fromdate_promotionperiod',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'todate_promotionperiod',
+                        operator: 'contains',
+                        value: inputValue
+                    }
+                ],
+            }
+        }).data;
+
+        this.dataBinding.skip = 0;
+    }
 
 }

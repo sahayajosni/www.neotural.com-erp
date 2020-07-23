@@ -20,7 +20,7 @@
   <br/>
   <!--  FreeGift Table Start -->
   <div  *ngIf="freegiftTable">
-    <table class="table">
+    <table class="table" id="table">
       <thead>
         <tr>
           <th>Category Name</th>
@@ -49,7 +49,7 @@
         <h4>Discount List</h4> 
       </div>
     </div> -->
-    <table class="table">
+    <!-- <table class="table" id="table">
       <thead>
         <tr>
           <th>Category Name</th>
@@ -66,7 +66,54 @@
           <td>{{d.fromdate_promotionperiod | date : 'dd-MM-yyyy'}} &nbsp; to &nbsp; {{d.todate_promotionperiod | date : 'dd-MM-yyyy'}}</td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
+    <kendo-grid
+        [kendoGridBinding]="gridView"
+        kendoGridSelectBy="id"
+        [selectedKeys]="mySelection"
+        [pageSize]="20"
+        [pageable]="true"
+        [sortable]="true"
+        [groupable]="true"
+        [reorderable]="true"
+        [resizable]="true"
+        [height]="480"
+        [columnMenu]="{ filter: true }" >
+        <ng-template kendoGridToolbarTemplate>
+            <input placeholder="Search in all columns..." kendoTextBox (input)="onFilter($event.target.value)"/>
+            <button kendoGridExcelCommand type="button" icon="file-excel" style="float:right;">Export to Excel</button>
+            <button kendoGridPDFCommand icon="file-pdf" style="float:right;">Export to PDF</button>
+        </ng-template>
+
+            <kendo-grid-column [headerStyle]="{'background-color': '#17252F','color': '#97A4AC','line-height': '1em',
+              'border-top' : '0px solid #15222B','border-bottom' : '10px solid #15222B' }"
+              [style]="{'background-color': '#1A2D39','color': '#fff','border-top': '5px solid #15222B'}"
+              field="categorycode" title="Category Name" [width]="130">
+            </kendo-grid-column>
+            <kendo-grid-column [headerStyle]="{'background-color': '#17252F','color': '#97A4AC','line-height': '1em',
+              'border-top' : '0px solid #15222B','border-bottom' : '10px solid #15222B' }"
+              [style]="{'background-color': '#1A2D39','color': '#fff','border-top': '5px solid #15222B'}"
+              field="productname" title="Product Name" [width]="200">
+            </kendo-grid-column>
+            <kendo-grid-column [headerStyle]="{'background-color': '#17252F','color': '#97A4AC','line-height': '1em',
+              'border-top' : '0px solid #15222B','border-bottom' : '10px solid #15222B' }"
+              [style]="{'background-color': '#1A2D39','color': '#fff','border-top': '5px solid #15222B'}"
+              field="qty" title="Promoton Quantity" [width]="130">
+            </kendo-grid-column>
+            <kendo-grid-column [headerStyle]="{'background-color': '#17252F','color': '#97A4AC','line-height': '1em',
+              'border-top' : '0px solid #15222B','border-bottom' : '10px solid #15222B' }"
+              [style]="{'background-color': '#1A2D39','color': '#fff','border-top': '5px solid #15222B'}"
+              field="fromdate_promotionperiod" title="From Promotion Period" [width]="200">
+            </kendo-grid-column>
+            <kendo-grid-column [headerStyle]="{'background-color': '#17252F','color': '#97A4AC','line-height': '1em',
+              'border-top' : '0px solid #15222B','border-bottom' : '10px solid #15222B' }"
+              [style]="{'background-color': '#1A2D39','color': '#fff','border-top': '5px solid #15222B'}"
+              field="todate_promotionperiod" title="To Promotion Period" [width]="200">
+            </kendo-grid-column>
+
+        <kendo-grid-pdf fileName="Discount.pdf" [repeatHeaders]="true"></kendo-grid-pdf>
+        <kendo-grid-excel fileName="Discount.xlsx"></kendo-grid-excel>
+    </kendo-grid>
   </div>
   <!--  Discount Table End -->
 </div>

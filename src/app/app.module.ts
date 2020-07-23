@@ -29,6 +29,10 @@ import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the
 import { MomentModule } from 'angular2-moment'; // optional, provides moment-style pipes for date formatting
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { GridModule } from '@progress/kendo-angular-grid';
+
+
 
 @NgModule({
   declarations: [
@@ -53,6 +57,8 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
     ModalModule.forRoot(),
     MomentModule,
     NgxSpinnerModule,
+    InputsModule,
+    GridModule,
     // NgbModal,
     // NgbModalConfig
   ],
