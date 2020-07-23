@@ -33,7 +33,8 @@ export class EmployeeDetailComponent implements OnInit {
     private _sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -142,4 +143,9 @@ export class EmployeeDetailComponent implements OnInit {
     );
   }
 
+  printEmp(){
+    
+  }
+
 }
+

@@ -155,13 +155,13 @@
   </button>
 </div> -->
 
-<div class="container-fluid" *ngIf="employeeDet !== undefined">
+<div class="container-fluid" *ngIf="employeeDet !== undefined" id="doNotPrint">
   <div class="row back-colr">
   <div class="container">
   <div> <a [routerLink]= "['/employment']" style="color: #fff;"><i class="fas fa-chevron-left left-arrow"></i></a><h3 style="float:left;"> {{employeeDet.name}}</h3> 
   <!--<button style="float:right;" class="button button5"> Add Purchase Order</button>-->
  <div style="float: right;">
- <img src="assets/images/print.png" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Print"/>
+ <img src="assets/images/print.png" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Print" (click)="printEmp()" />
 <img src="assets/images/edit.PNG" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Edit" (click)="editEmp(employeeDet)"/>
 <img src="assets/images/bar.PNG" style="margin-right: 15px;margin-left: 15px;cursor: pointer;" class="img-fluid logo" />
 <img src="assets/images/delete.PNG" class="img-fluid logo" alt="Delete" style="cursor: pointer;" (click)="removeEmp(employeeDet.employeecode)" />
@@ -275,15 +275,19 @@
     
   </h4>
       <div id="collapse2" class="panel-collapse collapse">
-        <div class="col-md-6 float-left">
+        <div class="col-md-6 float-left" id="datepicker">
           <!-- <img src="assets/images/calender.png" style="float: left;" /> -->
-          <input mdInput [matDatepicker]="picker" placeholder="Choose a date" #picker id="picker" (dateInput)="addEvent('input', $event, picker)" (dateChange)="addEvent('change', $event, picker)" [(ngModel)]="_picker" [ngModelOptions]="{standalone: true}" (keydown)="false"> 
-          <mat-datepicker-toggle mdSuffix [for]="picker"></mat-datepicker-toggle>
+          <!-- <input [matDatepicker]="picker" placeholder="Choose a date" #picker id="picker" (dateInput)="addEvent('input', $event, picker)" (dateChange)="addEvent('change', $event, picker)" [(ngModel)]="_picker" [ngModelOptions]="{standalone: true}" (keydown)="false"> 
+          <mat-datepicker-toggle mdSuffix [for]="picker" ></mat-datepicker-toggle>
           <mat-datepicker #ref (opened)="toggle(ref)"
-          (closed)="toggle(ref)" #picker></mat-datepicker>
+          (closed)="toggle(ref)" #picker></mat-datepicker> -->
+
+          <input type="date" placeholder="Choose a date"
+            style="background-color:#1B2931;color: white;" 
+            placeholder="Choose a date" id="picker" (dateInput)="addEvent('input', $event, picker)" (dateChange)="addEvent('change', $event, picker)" [(ngModel)]="_picker" [ngModelOptions]="{standalone: true}" (keydown)="false"> 
 
         </div>
-        <div class="col-md-6 float-left" id="datepicker">
+        <div class="col-md-6 float-left">
 <div style="font-size: 14px;">October 24, 2019</div>
 <textarea class="form-control text-area-style" rows="5" id="comment">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in
 </textarea>
@@ -293,7 +297,7 @@ margin-top: 20px;"/>
         <div style="clear: both;"></div>
       </div>
 </div>
-   <div class="col-md-12 col-xs-12 col-sm-12 side-wapper m-t-20 p-t-10">
+<div class="col-md-12 col-xs-12 col-sm-12 side-wapper m-t-20 p-t-10">
      
   <h4 class="panel-title" style="color: rgba(85,112,129,1); margin-bottom: 20px;">
     <a class="collapsed" data-toggle="collapse" data-target="#collapse3" style="cursor:pointer;color: #fff; font-size: 18px;">Attendance Details</a></h4>
@@ -362,3 +366,202 @@ margin-top: 20px;"/>
 </div>
     </div>
   </div>
+
+
+
+<ng-template #elseTemplate> 
+  <div class="container-fluid" *ngIf="employeeDet !== undefined" id="printEmpDet">
+  <div class="row back-colr">
+  <div class="container">
+ 
+  
+  <div class="col-md-12 col-xs-12 col-sm-12" style="clear:both;position: relative;
+  top: 10px;">
+  <div class="col-md-3 col-xs-12 col-sm-3 side-wapper">
+  
+    <div class="org-header">
+      <div>
+        <img [src]="getImage(employeeDet.profilepic)" onerror="this.src='/assets/images/no-image.png'" />
+      </div>
+      <div>
+          <!-- <h5>{{employeeDet.rank}}</h5> -->
+          <h2 *ngIf="!employeeDet.editable">{{employeeDet.rank}}</h2>
+          <input type="text" id="editinput1" [(ngModel)]="employeeDet.rank" #rank="ngModel"
+              name="rank" *ngIf="employeeDet.editable" />
+          <span>{{employeeDet.employeecode}}</span>
+      </div>
+  </div>
+
+    <!-- <div class="profile-div">
+      <div class="text-profile">{{employeeDet.rank}}<br />
+      {{employeeDet.employeecode}}</div>
+    </div> -->
+  
+  <div style="clear:both"></div>
+  <div style="margin-left:5px;">
+  <div style="color: rgba(85,112,129,1);margin-top:25px;">Phone</div>
+    <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.phonenumber}}</div>
+    <input type="text" id="editinput" [(ngModel)]="employeeDet.phonenumber" #phonenumber="ngModel"
+        name="phonenumber" *ngIf="employeeDet.editable" />
+	  <div style="color: rgba(85,112,129,1); margin-top:25px;">Email</div>
+    <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.email}}</div>
+    <input type="text" id="editinput" [(ngModel)]="employeeDet.email" #email="ngModel"
+      name="email" *ngIf="employeeDet.editable" />
+	  <div style="color: rgba(85,112,129,1); margin-top:25px;">Address </div>
+      <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.address}}</div>
+      <input type="text" id="editinput" [(ngModel)]="employeeDet.address" #address="ngModel"
+      name="address" *ngIf="employeeDet.editable" />
+ <div style="color: rgba(85,112,129,1); margin-top:25px;">Birthday</div>
+      <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.dob}}</div>
+      <input type="text" id="editinput" [(ngModel)]="employeeDet.dob" #dob="ngModel"
+      name="dob" *ngIf="employeeDet.editable" />
+	   <div style="color: rgba(85,112,129,1); margin-top:25px;">NPWP</div>
+      <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.npwp}}</div>
+      <input type="text" id="editinput" [(ngModel)]="employeeDet.npwp" #npwp="ngModel"
+      name="npwp" *ngIf="employeeDet.editable" />
+	   <div style="color: rgba(85,112,129,1); margin-top:25px;">BPJS</div>
+      <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.bpjs}}</div>
+      <input type="text" id="editinput" [(ngModel)]="employeeDet.bpjs" #bpjs="ngModel"
+      name="bpjs" *ngIf="employeeDet.editable" />
+  </div>
+
+  
+  </div>
+   <div class="col-md-9 col-xs-12 col-sm-9 float-left" style="position: relative;
+    left: 30px;">
+  <div class="col-md-12 col-xs-12 col-sm-12 side-wapper p-t-20">
+ 
+      
+
+  <h4 class="panel-title" style="color: rgba(85,112,129,1); margin-bottom: 20px;">
+    
+    <a class="collapsed" style="cursor:pointer;cursor: pointer;
+    color: #fff; font-size: 18px;">Employment Details</a></h4>
+  
+    <div id="collapse1" class="panel-collapse collapse">
+  <div class="col-md-3 float-left">
+  <div class="ble-colr">Joined on</div>
+  <div>{{employeeDet.addeddate}}</div>
+  </div>
+  <div class="col-md-3 float-left">
+  <div class="ble-colr">Monthly Salary</div>
+  <div>{{employeeDet.monthlysalary}}</div>
+  </div>
+  <div class="col-md-3 float-left">
+  <div class="ble-colr">Overtime Salary</div>
+  <div>-</div>
+  </div>
+  <div class="col-md-3 float-left">
+  <div class="ble-colr">Contract Document</div>
+  <div>CN-99-23430.pdf</div>
+  </div>
+  
+  <div style="clear: both;"></div>
+  </div>
+  
+</div>
+<div class="col-md-12 col-xs-12 col-sm-12 side-wapper m-t-20 p-t-10" (click)="showDailyReport()">
+ <h4 class="panel-title" style="color: rgba(85,112,129,1); margin-bottom: 20px;">
+    <a style="cursor:pointer;cursor: pointer;
+    color: #fff; font-size: 18px;" id="dailyrepcollapse">Daily Report</a>
+    <!-- <input matInput [matDatepicker]="dp" placeholder="Select minimum date" style="visibility: hidden;">
+   <mat-datepicker-toggle matSuffix [for]="dp">
+    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+  </mat-datepicker-toggle>
+  <mat-datepicker #dp disabled="false"></mat-datepicker>   -->
+    
+    
+  </h4>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="col-md-6 float-left" id="datepicker">
+          <!-- <img src="assets/images/calender.png" style="float: left;" /> -->
+          <!-- <input [matDatepicker]="picker" placeholder="Choose a date" #picker id="picker" (dateInput)="addEvent('input', $event, picker)" (dateChange)="addEvent('change', $event, picker)" [(ngModel)]="_picker" [ngModelOptions]="{standalone: true}" (keydown)="false"> 
+          <mat-datepicker-toggle mdSuffix [for]="picker" ></mat-datepicker-toggle>
+          <mat-datepicker #ref (opened)="toggle(ref)"
+          (closed)="toggle(ref)" #picker></mat-datepicker> -->
+
+          <input type="date" placeholder="Choose a date"
+            style="background-color:#1B2931;color: white;" 
+            placeholder="Choose a date" id="picker" (dateInput)="addEvent('input', $event, picker)" (dateChange)="addEvent('change', $event, picker)" [(ngModel)]="_picker" [ngModelOptions]="{standalone: true}" (keydown)="false"> 
+
+        </div>
+        <div class="col-md-6 float-left">
+<div style="font-size: 14px;">October 24, 2019</div>
+<textarea class="form-control text-area-style" rows="5" id="comment">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in
+</textarea>
+<img src="assets/images/edit.png" class="img-fluid logo" alt="Edit" style="float: right;margin-right: 10px;
+margin-top: 20px;"/>
+</div>
+        <div style="clear: both;"></div>
+      </div>
+</div>
+<div class="col-md-12 col-xs-12 col-sm-12 side-wapper m-t-20 p-t-10">
+     
+  <h4 class="panel-title" style="color: rgba(85,112,129,1); margin-bottom: 20px;">
+    <a style="cursor:pointer;color: #fff; font-size: 18px;">Attendance Details</a></h4>
+    <div id="collapse3" class="panel-collapse collapse">
+  <div class="col-md-3 float-left">
+  <div class="ble-colr">Work</div>
+  <div>{{employeeDet.workHour}}</div>
+  </div>
+  <div class="col-md-3 float-left">
+  <div class="ble-colr">Annual Leave</div>
+  <div>{{employeeDet.annualLeave}}</div>
+  </div>
+  <div class="col-md-3 float-left">
+  <div class="ble-colr">Days Absent</div>
+  <div>-</div>
+  </div>
+  <div class="col-md-3 float-left">
+  <div class="ble-colr">Absent Deduction</div>
+  <div>-</div>
+  </div>
+
+  <div style="clear: both;"></div>
+</div>
+</div>
+<div class="col-md-12 col-xs-12 col-sm-12 side-wapper">
+    <div class="profile-div">
+  <div class="col-md-12 m-b-20px"><h5 class="float-left">{{commonService.getTodayDate() | date : 'MMMM'}} Absent Card</h5> 
+    <img src="assets/images/print1.PNG" style="float: right;" class="img-fluid logo" alt="print"/></div>
+    <div class="clr-both"></div>
+  <ng-container *ngIf="attendanceDetails.length > 0">
+    <div class="col-md-12" *ngFor="let item of attendanceDetails">
+      <div class="m-t-10">
+      <div class="col-md-2 float-left date-div">
+        <div style="font-size: 14px;">{{item.date}}</div>
+      </div>
+       <div *ngIf="item.absent === null" class="col-md-5 float-left last-div">
+        <div *ngIf="item.checkouttime === null" style="color:#17af7d;font-size: 14px;padding-top: 5px;">9:00 AM</div>
+        <div *ngIf="item.checkintime !== null">
+          <div style="color:red; font-size: 14px;">{{item.checkouttime}}</div>
+          <div style="font-size: 14px;">{{item.checkoutreason}}</div>
+        </div>
+      </div>
+      <div *ngIf="item.absent === null" class="col-md-4 float-left time-div">
+        <div *ngIf="item.checkintime === null" style="color:#17af7d;font-size: 14px;padding-top: 5px;">9:00 AM</div>
+        <div *ngIf="item.checkintime !== null">
+          <div style="color:red;font-size: 14px;">{{item.checkintime}}</div>
+          <div style="font-size: 14px;">{{item.checkinreason}}</div>
+        </div>
+      </div>
+    </div>
+      <div *ngIf="item.absent === 'yes'" class="col-md-9 float-left middle-div">
+        <div>
+          <span style="color:red;font-size: 14px;">ABSENT</span>
+          <span style="color:red;font-size: 14px; text-align: center;">{{item.reason}}</span>
+        </div>
+      </div>
+    </div>
+    <div style="clear: both;"></div>
+  </ng-container>
+    </div>
+  </div>
+  
+  </div>
+  </div>
+    
+</div>
+    </div>
+  </div>
+</ng-template>
