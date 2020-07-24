@@ -413,4 +413,8 @@ enable: boolean;
     this.isImageSaved = false;
   }
 
+  getImage(imgData) {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
+  }
+
 }
