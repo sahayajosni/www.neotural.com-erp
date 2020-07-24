@@ -148,6 +148,8 @@ export class PromotionListComponent implements OnInit {
         }).data;
 
         this.dataBinding.skip = 0;
-    }
+	}
+	
+	
 
 }

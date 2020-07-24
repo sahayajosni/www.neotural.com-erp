@@ -104,7 +104,37 @@ tr[ng-click] {
   clear: both;
 }
 
+::ng-deep .k-grid-header,::ng-deep .k-grid-toolbar,::ng-deep .k-grouping-header,::ng-deep .k-grid-add-row,::ng-deep .k-grid-footer,::ng-deep .k-grid-content,
+::ng-deep .k-grid-content-locked,::ng-deep .k-pager-wrap {
+  background-color: $po-order-form-bg;
+}
+.k-grid tbody tr span{
+  display: none;
+}
 
+.k-grid tbody tr:hover span{
+  display: block !important;
+}
+
+.edit-delete-icon {
+  display: none;
+  background: $table-invoived-row-bg;
+  position: relative;
+  height: 20px;
+  top: 0px;
+  margin-top: -18px;
+}
+
+.fa-pen {
+  float: right;
+  cursor: pointer;
+}
+
+.fa-trash {
+  float: right;
+  margin-left: 20px; 
+  cursor: pointer;
+}
 // iPhone media query start
 
 // iPhone 6, 7, & 8 in portrait & landscape
