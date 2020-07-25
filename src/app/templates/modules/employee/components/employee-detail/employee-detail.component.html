@@ -162,6 +162,7 @@
   <!--<button style="float:right;" class="button button5"> Add Purchase Order</button>-->
  <div style="float: right;">
  <img src="assets/images/print.png" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Print" (click)="printEmp()" />
+ <img src="assets/images/bar.PNG" style="margin-right: 15px;margin-left: 15px;cursor: pointer;" class="img-fluid logo" />
 <img src="assets/images/edit.PNG" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Edit" (click)="editEmp(employeeDet)"/>
 <img src="assets/images/bar.PNG" style="margin-right: 15px;margin-left: 15px;cursor: pointer;" class="img-fluid logo" />
 <img src="assets/images/delete.PNG" class="img-fluid logo" alt="Delete" style="cursor: pointer;" (click)="removeEmp(employeeDet.employeecode)" />
@@ -178,7 +179,7 @@
       </div>
       <div>
           <!-- <h5>{{employeeDet.rank}}</h5> -->
-          <h2 *ngIf="!employeeDet.editable">{{employeeDet.rank}}</h2>
+          <h5 *ngIf="!employeeDet.editable">{{employeeDet.rank}}</h5>
           <input type="text" id="editinput1" [(ngModel)]="employeeDet.rank" #rank="ngModel"
               name="rank" *ngIf="employeeDet.editable" />
           <span>{{employeeDet.employeecode}}</span>
