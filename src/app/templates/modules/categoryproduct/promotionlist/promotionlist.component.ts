@@ -47,8 +47,10 @@ export class PromotionListComponent implements OnInit {
 	public promotiondiv = false;
 
 	ngOnInit() {
+		this.loadDiscount();
 		this.SpinnerService.show();  
-		this.promotiondiv = false;
+		this.promotiondiv = true;
+		this.discountTable = true;
 		setTimeout(() => {
 			this.SpinnerService.hide();
 		}, 100);
@@ -58,6 +60,8 @@ export class PromotionListComponent implements OnInit {
 		this.promotiondiv = true;
 		if(promotionType == "discount"){
 			this.loadDiscount();
+			//this.freegiftTable = false;
+			//let discountType = "discount";
 		}else if(promotionType == "freegift"){
 			this.loadFreegift();
 		}

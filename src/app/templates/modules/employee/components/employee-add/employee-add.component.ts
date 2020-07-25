@@ -6,6 +6,7 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import * as _ from 'lodash';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-add',
@@ -27,7 +28,7 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     console.log("Add employee");
-    this.addEmplyeeFields();
+    //this.addEmplyeeFields();
   }
 
   ngAfterViewInit() {
@@ -66,21 +67,22 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
   //   this.dialogRef.close();
   // }
 
-  addEmplyeeFields() {
-    this.model.name = '';
-    this.model.rank = '';
-    this.model.phonenumber = '';
-    this.model.address = '';
-    this.model.email = '';
-    this.model.dob = '';
-    this.model.contractnumber = '';
-    this.model.npwp = '';
-    this.model.bpjs = '';
-    this.model.monthlysalary = '';
-    this.model.workHour = '';
-    this.model.annualLeave = '';
-    this.model.departmentname = '';
-    this.model.location = '';
+  resetEmployeeRegistrationForm(form: FormGroup) {
+     form.reset();
+    // this.model.name = '';
+    // this.model.rank = '';
+    // this.model.phonenumber = '';
+    // this.model.address = '';
+    // this.model.email = '';
+    // this.model.dob = '';
+    // this.model.contractnumber = '';
+    // this.model.npwp = '';
+    // this.model.bpjs = '';
+    // this.model.monthlysalary = '';
+    // this.model.workHour = '';
+    // this.model.annualLeave = '';
+    // this.model.departmentname = '';
+    // this.model.location = '';
   }
 
   fileChangeEvent(fileInput: any) {

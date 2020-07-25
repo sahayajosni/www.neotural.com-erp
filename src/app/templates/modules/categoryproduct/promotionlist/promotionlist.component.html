@@ -90,8 +90,14 @@
         [columnMenu]="{ filter: true }" >
         <ng-template kendoGridToolbarTemplate>
             <input placeholder="Search in all columns..." kendoTextBox (input)="onFilter($event.target.value)"/>
-            <button kendoGridExcelCommand type="button" icon="file-excel" style="float:right;">Export to Excel</button>
-            <button kendoGridPDFCommand icon="file-pdf" style="float:right;">Export to PDF</button>
+            <button kendoGridExcelCommand type="button" icon="file-excel" style="float:right; border-color: none;
+            color: none;
+            background-color: none;
+            background-image: none;">Export to Excel</button>
+            <button kendoGridPDFCommand icon="file-pdf" style="float:right; border-color: none;
+            color: none;
+            background-color: none;
+            background-image: none;">Export to PDF</button>
         </ng-template>
 
         <kendo-grid-column [headerStyle]="{'background-color': '#17252F','color': '#97A4AC','line-height': '1em',
