@@ -18,6 +18,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { VendorService } from "src/app/templates/modules/vendor-and-customer/services/vendor.service";
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup } from '@angular/forms';
 
 export interface UsersData{
   dialogTitle:string;
@@ -198,19 +199,19 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
     }
   }
 
-  cancelPurchase(){
-    console.log("------ Cancel Purchase -------");
+  resetPurchase(form: FormGroup) {
+    form.reset();
     this.fieldArray = [];
-    this.purchasetable = false;
+    /* this.purchasetable = false;
     this.model.vendorName = '';
     this.model.productName = '';
-    this.model.category = '';
-    this.model.sNo = 0;
-    this.model.subTotal = 0.00;
     this.model.deliveryCost = '';   
     this.model.qty = '';
     this.model.unit = '';
     this.model.unitPrice = '';
+    this.model.category = ''; */
+    this.model.sNo = 0;
+    this.model.subTotal = 0.00;
     this.model.netAmount = 0.00;
     this.productchosendiv = false;
   }

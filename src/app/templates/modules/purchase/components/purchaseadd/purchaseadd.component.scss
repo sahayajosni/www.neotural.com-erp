@@ -77,8 +77,8 @@ select,input{
   background: $po-order-form-bg;
   color:$h2-bg;
   margin-bottom: 15px;
-  height: 30px;
-  padding: 5px;
+  height: 32px;
+  padding: 0px 5px;
 }
 .m-t-5px{margin-top: 5px;}
 .m-t-15px{margin-top: 15px;}
@@ -179,4 +179,15 @@ input[type=number] {
   font-weight: 700;
   color: #000;
   text-shadow: 0 1px 0 #fff;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
 }
