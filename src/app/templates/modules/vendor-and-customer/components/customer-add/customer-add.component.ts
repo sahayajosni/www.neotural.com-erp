@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup } from '@angular/forms';
 
 export interface UsersData{
   key:string;
@@ -73,7 +74,6 @@ export class CustomerAddComponent implements OnInit {
       this.name="customerName";
       this.showTasksOf="customer";
     }
-    this.emptyFields();
     this.editCustomer(this.fromParent);
   }
 
@@ -209,14 +209,15 @@ export class CustomerAddComponent implements OnInit {
     }
   }
 
-  emptyFields() {
-    this.model.customerName = '';
+  resetRegistrationForm(form: FormGroup) {
+    form.reset();
+    /* this.model.customerName = '';
     this.model.vendorName = '';
     this.model.address = '';
     this.model.phoneNumber = '';
     this.model.mobileNumber = '';
     this.model.email = '';
     this.model.country = '';
-    this.model.city = '';
+    this.model.city = ''; */
   }
 }

@@ -106,7 +106,7 @@
       </div>
       <div class="modal-footer">
         <button type="submit" id="cancelbtn" class="btn btn-outline-dark">{{btnname}}</button>
-        <button id="cancelbtn" (click)="emptyFields()" *ngIf="btnname == 'Add'">Reset</button>
+        <button id="cancelbtn" (click)="resetRegistrationForm(registerForm)" *ngIf="btnname == 'Add'">Reset</button>
       </div>  
     </form>
   </div>
