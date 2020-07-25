@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from "src/environments/environment";
 import { API_ENDPOINTS } from "./../vendor.config";
 import { Vendor } from "../../../../core/common/_models";
+import { Product } from "../../../../core/common/_models";
 
 @Injectable()
 export class VendorDetailsService {   
@@ -49,5 +50,26 @@ constructor(private http: HttpClient) { }
     removeVendor(vendorcode:string){
         return this.http.delete(`${environment.apiUrl}${API_ENDPOINTS.remove}`+'?vendorcode='+vendorcode);
     }
+
+    //category Load
+    loadCategoryName() {
+      return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.loadCategoryName}`);
+    }
+  
+    //Load Unit
+    loadUnitList(id: string){
+        console.log("Load Unit List..");
+        return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.loadUnitList}`+'?id='+id);
+    }
+
+    //Save Product
+    productsave(product: Product) {
+        console.log("product service call....");
+        return this.http.post<Product>(
+          `${environment.apiUrl}${API_ENDPOINTS.productsave}`,
+          product
+        ); 
+    }
+
 
 }

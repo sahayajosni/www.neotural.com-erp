@@ -1,3 +1,5 @@
+@import "_base";
+
 .vendor-details-container,
 .vendor-details-container div {
     box-sizing: border-box;
@@ -376,4 +378,18 @@
     margin-top: 10px;
     float: right;
     cursor: pointer;
+}
+
+
+.create-button {
+    float: right;
+    color: $white;
+    background: $btn-bg;
+    border: 1px solid $btn-bg;
+    margin-right: 10px;
+    font-family: $font-family;
+    border-radius: $btn-border-radius;
+    padding: $btn-padding;
+    font-style: normal;
+    font-size: $table-font-size;
 }

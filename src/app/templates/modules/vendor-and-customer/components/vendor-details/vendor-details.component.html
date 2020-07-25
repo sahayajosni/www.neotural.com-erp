@@ -87,25 +87,36 @@
     </div>
     <div class="vendor-categories">
         <div class="vendor-category-header">
-            <div class="drop-down" #dropDwn>
-                <h2>{{selectedCategory}}</h2>
-                <a class="drop-down-arrow" (click)="categoyDropDownHandler(); false;">&#9660;</a>
-                <ul [class.show]="dropDownView" *ngIf="categoriesForFilter.length">
-                    <li><a [routerLink]="" (click)="selectCategory({name:'All Categories'})" class="menu-item"> All Categories</a></li>
-                    <li  *ngFor="let category of categoriesForFilter; let i = index"  (mouseenter)="showEditMenu(i)" (mouseleave)="showEditMenu(-1)" >
-                        <a *ngIf="onEdit !== i"  [routerLink]="" (click)="selectCategory(category)" class="menu-item">{{category.name}}</a>
-                        <span [class.show]="i === editIndex" [class.edit]="isLabelEdited" (click)="isLabelEdited ? updateMenu(category) : editMenu(i)" class="menu-edit"></span>
-                        <div *ngIf="onEdit === i"><input class="input" (input)="menuLabelChange($event)" type="text" value="{{category.name}}"></div>
-                    </li>
-                    <li class="addCategory">
-                        <div *ngIf="isAddCategory">
-                            <input type="text" [(ngModel)]="newCateogry">
-                            <span class="menu-add" (click)="addCategory()"></span>
-                        </div>
-                        <a [routerLink]="" (click)="showAddCategory()">+ Add Category</a>
-                    </li>
-                </ul>
-                
+            <div class="row">
+                <div class="col-6">
+                    <div class="drop-down" #dropDwn>
+                        <h2>{{selectedCategory}}</h2>
+                        <a class="drop-down-arrow" (click)="categoyDropDownHandler(); false;">&#9660;</a>
+                        <ul [class.show]="dropDownView" *ngIf="categoriesForFilter.length">
+                            <li><a [routerLink]="" (click)="selectCategory({name:'All Categories'})" class="menu-item"> All Categories</a></li>
+                            <li  *ngFor="let category of categoriesForFilter; let i = index"  (mouseenter)="showEditMenu(i)" (mouseleave)="showEditMenu(-1)" >
+                                <a *ngIf="onEdit !== i"  [routerLink]="" (click)="selectCategory(category)" class="menu-item">{{category.name}}</a>
+                                <span [class.show]="i === editIndex" [class.edit]="isLabelEdited" (click)="isLabelEdited ? updateMenu(category) : editMenu(i)" class="menu-edit"></span>
+                                <div *ngIf="onEdit === i"><input class="input" (input)="menuLabelChange($event)" type="text" value="{{category.name}}"></div>
+                            </li>
+                            <li class="addCategory">
+                                <div *ngIf="isAddCategory">
+                                    <input type="text" [(ngModel)]="newCateogry">
+                                    <span class="menu-add" (click)="addCategory()"></span>
+                                </div>
+                                <a [routerLink]="" (click)="showAddCategory()">+ Add Category</a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div style="float: right;">
+                        <button class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;" (click)="addProduct(data)">
+                        <span class="fas fa-plus"></span> Add Product 
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="vendor-category-content">

@@ -9,5 +9,9 @@ export const API_ENDPOINTS = {
   //loadallcategoryItems:'/item/load?category=all',
   loadallcategoryItems:'/item/load/',
   loadallcategories:'category/load',
-  postnewcategory: `category/save`
+  postnewcategory: `category/save`,
+
+  loadCategoryName: `/category/loadCategoryName`,
+  loadUnitList:'item/loadunits',
+  productsave: `/item/productsave`,
 };

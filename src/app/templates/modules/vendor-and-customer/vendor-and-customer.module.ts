@@ -18,6 +18,9 @@ import { VendorDetailsComponent } from './components/vendor-details/vendor-detai
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from "ngx-bootstrap";
 
+import { AddnewproductComponent } from "./components/addnewproduct/addnewproduct.component";
+
+
 @NgModule({
   declarations: [
     VendorAndCustomerComponent,
@@ -25,7 +28,8 @@ import { ModalModule } from "ngx-bootstrap";
     VendorAndCustomerDetailComponent,
     CustomerComponent,
     CustomerAddComponent,
-    VendorDetailsComponent
+    VendorDetailsComponent,
+    AddnewproductComponent
   ],
   imports: [
     CommonModule,
