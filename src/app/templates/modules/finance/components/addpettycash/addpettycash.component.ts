@@ -5,6 +5,7 @@ import { Component, OnInit, Inject,Optional,Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup } from '@angular/forms';
 
 // pettycash end
 export interface UsersData {
@@ -160,5 +161,9 @@ export class AddPettycashComponent implements OnInit {
       }
     ); 
   } 
+
+  resetPetty(form: FormGroup) {
+    form.reset();
+  }
 
 }

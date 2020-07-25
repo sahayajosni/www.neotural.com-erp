@@ -98,7 +98,7 @@
       </div>
       <div class="modal-footer">
         <button type="submit" id="add-btn">{{fromParent.dialogText}}</button>
-        <button id="add-btn" (click)="emptyFields()" *ngIf="fromParent.dialogText == 'Add'">Reset</button>
+        <button id="add-btn" (click)="resetPetty(pettyForm)" *ngIf="fromParent.dialogText == 'Add'">Reset</button>
       </div>
     </form>
   </div>
