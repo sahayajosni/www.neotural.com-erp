@@ -19,6 +19,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { formatDate } from "@angular/common";
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup } from '@angular/forms';
 
 export interface UsersData{
   dialogTitle:string;
@@ -326,21 +327,22 @@ export class SalesorderComponent implements OnInit {
     }
   }
 
-  cancelSales(){
+  resetSales(form: FormGroup) {
+    form.reset();
     console.log("------ Cancel Sales -------");
     this.fieldArray = [];
     this.salestable = false;
-    this.model.customerName = '';
+    /* this.model.customerName = '';
     this.model.productName = '';
-    this.model.category = '';
-    this.model.sNo = 0;
-    this.model.totalItem = 0;
-    this.model.subTotal = 0.00;
     this.model.deliveryCost = '';   
     this.model.qty = '';
     this.model.unit = '';
     this.model.recentStock = '';
     this.model.unitPrice = '';
+    this.model.category = ''; */
+    this.model.sNo = 0;
+    this.model.totalItem = 0;
+    this.model.subTotal = 0.00;
     this.model.netAmount = 0.00;
     this.productchosendiv = false;
     this.noavailableqty = false;
