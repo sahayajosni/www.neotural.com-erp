@@ -123,14 +123,15 @@ select,input,textarea{
 }
 
 #add-btn{
-  width: 90px;
-  border: 1px solid #1186aa;
   background: $btn-bg;
+  width: 90px;
+  border: none;
+  border-radius: $btn-border-radius;
+  padding: 0rem 1.5rem;
+  font-family: $font-family;
   color:$h2-bg;
-  font-weight: bold;
-  border-radius: 20px;
+  height: 35px;
 }
-
 
 body {background-color: #16222B;}
 
