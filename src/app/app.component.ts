@@ -99,7 +99,9 @@ ngOnInit() {
 documentClick(event: MouseEvent) {
     // your click logic
     console.log("onClick");
+    if(this.snackBar) {
     this.snackBar.dismiss();
+  }
 }
 reset() {
 this.idle.watch();
