@@ -23,12 +23,12 @@
           <table class="table">
             <thead>
               <tr>
-                <th>
-                  <!-- <div class="custom-control custom-checkbox">
+                <!-- <th>
+                  <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input1" id="customChecks2">
                     <label class="custom-control-label1" for="customCheck2"></label>
-                  </div> -->
-                </th>
+                  </div>
+                </th> -->
                 <th style="cursor:pointer;">ID #</th>
                 <th style="cursor:pointer;">Name</th>
                 <th style="cursor:pointer;">Country</th>
@@ -41,11 +41,11 @@
             <tbody *ngFor="let item of customersDS; let i = index"
               id="purchase-order-row-id{{i}}"> 
               <tr>
-                <td>
+                <!-- <td>
                   <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input1">
                   </div>
-                </td>
+                </td> -->
                 <td>{{item.custcode}}</td>
                 <td>{{item.customerName}}</td>
                 <td>{{item.country}}</td>
