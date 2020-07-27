@@ -18,7 +18,6 @@
           <th class="txt-right">Delivery Cost</th>
           <th class="txt-right">Total</th>
           <th>Status</th>
-          <th class="txt-right"></th>
         </tr>
       </thead>
       <tbody class="purchase-order-row-invoiced" *ngFor="let item of invoiceList"> 
@@ -30,8 +29,7 @@
           <td class="txt-right">{{item.subtotal}}</td>
           <td class="txt-right">{{item.deliveryprice}}</td>
           <td class="txt-right">{{item.totalprice}}</td>
-          <td>{{item.status}}</td>
-          <td class="txt-right">
+          <td>{{item.status}}
             <span class="edit-delete-icon invoice-view">
               <a href="javascript:0" (click)="generatePdf(item.base64)" class="pdf-icon"><i  class="fa">&#xf1c1;</i></a>
             </span>

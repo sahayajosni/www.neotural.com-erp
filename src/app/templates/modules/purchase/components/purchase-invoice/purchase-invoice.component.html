@@ -33,7 +33,6 @@
           <th class="txt-right">Total</th>
           <th>Invoice Status</th>
           <th>Stock Status</th>
-          <th class="txt-right"></th>
         </tr>
       </thead>
       <tbody class="purchase-order-row-invoiced" *ngFor="let item of invoiceList; let i = index"> 
@@ -55,8 +54,7 @@
           <td class="txt-right">{{item.deliveryprice}}</td>
           <td class="txt-right">{{item.totalprice}}</td>
           <td>{{item.status}}</td>
-          <td>{{item.stockstatus}}</td>
-          <td class="txt-right">
+          <td>{{item.stockstatus}}
             <span class="edit-delete-icon invoice-view">
               <a href="javascript:0" (click)="generatePdf(item.base64)" class="pdf-icon"><i  class="fa">&#xf1c1;</i></a>
             </span>
