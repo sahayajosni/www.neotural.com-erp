@@ -20,7 +20,7 @@
     <table class="table" *ngIf="enable">
       <thead>
         <tr>
-          <th class="wid-50px" style="width: 4% !important;"></th> 
+          <th style="width: 4% !important;"></th> 
           <th>ID #
               <i *ngIf="!isSortIdDesc" class="sort-by-desc" (click)="sortByOrder('code','desc')"></i>
               <i class="sort-by-asc" *ngIf="!isSortIdAsc" (click)="sortByOrder('code','asc')"></i>
@@ -34,13 +34,13 @@
           <th>Joined Date</th>
           <th class="txt-right">Phone</th>
           <th></th>
-          <th class="wid-90px">Status</th>
+          <th class="wid-75px">Status</th>
         </tr>
       </thead>
       <tbody *ngFor="let item of employeesDS; let i = index"
         (dblclick)= "router.navigateByUrl('/employment/viewEmployee/'+item.employeecode)"> 
         <tr>
-          <td class="wid-50px" style="width: 4% !important;">
+          <td style="width: 4% !important;">
             <img [src]="getImage(item.profilepic)" onerror="this.src='/assets/images/no-image.png'" class="emplogo" />
           </td>
           <td>{{item.employeecode}}</td>
