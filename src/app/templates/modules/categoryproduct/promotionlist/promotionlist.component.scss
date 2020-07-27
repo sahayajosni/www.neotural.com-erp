@@ -105,8 +105,8 @@ tr[ng-click] {
 }
 
 ::ng-deep .k-grid-header,::ng-deep .k-grid-toolbar,::ng-deep .k-grouping-header,::ng-deep .k-grid-add-row,::ng-deep .k-grid-footer,::ng-deep .k-grid-content,
-::ng-deep .k-grid-content-locked,::ng-deep .k-pager-wrap {
-  background-color: $po-order-form-bg;
+::ng-deep .k-grid-content-locked,::ng-deep .k-pager-wrap,::ng-deep .k-textbox {
+  background-color: $po-order-form-bg !important;
 }
 .k-grid tbody tr span{
   display: none;
@@ -114,6 +114,10 @@ tr[ng-click] {
 
 .k-grid tbody tr:hover span{
   display: block !important;
+}
+::ng-deep .k-textbox {
+  border: 1px solid $header-bg !important; 
+  color: $white !important;
 }
 
 .edit-delete-icon {

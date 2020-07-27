@@ -25,9 +25,11 @@ export class PromotionListComponent implements OnInit {
 	@ViewChild(DataBindingDirective,{static:false}) dataBinding: DataBindingDirective;
     public gridData: any[];
     public gridView: any[];
-
     public mySelection: string[] = [];
 
+	public freegiftgridData: any[];
+    public freegiftgridView: any[];
+    public freegiftSelection: string[] = [];
 
 	constructor(private router: Router,
 		private dialog: MatDialog,
@@ -74,6 +76,8 @@ export class PromotionListComponent implements OnInit {
 			.subscribe(
 			data => {
 				this.freegiftList = data;
+				this.freegiftgridData = this.freegiftList;
+				this.freegiftgridView = this.freegiftgridData;
 				if(this.freegiftList.length == 0){
 					this.freegiftTable = false;
 				}else{
@@ -89,6 +93,43 @@ export class PromotionListComponent implements OnInit {
 				});   
 			}
 		);
+	}
+
+	public onFreegiftFilter(inputValue: string): void {
+        this.freegiftgridView = process(this.freegiftgridData, {
+            filter: {
+                logic: "or",
+                filters: [
+                    {
+                        field: 'categorycode',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'productname',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'freegift',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'fromdate_promotionperiod',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'todate_promotionperiod',
+                        operator: 'contains',
+                        value: inputValue
+                    }
+                ],
+            }
+        }).data;
+
+        this.dataBinding.skip = 0;
 	}
 
 	loadDiscount(){
@@ -115,9 +156,9 @@ export class PromotionListComponent implements OnInit {
 				});   
 			}
 		);
-	}
+	}	
 
-	public onFilter(inputValue: string): void {
+	public onDiscountFilter(inputValue: string): void {
         this.gridView = process(this.gridData, {
             filter: {
                 logic: "or",
@@ -153,7 +194,6 @@ export class PromotionListComponent implements OnInit {
 
         this.dataBinding.skip = 0;
 	}
-	
 	
 
 }

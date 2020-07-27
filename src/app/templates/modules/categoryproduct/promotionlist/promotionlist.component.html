@@ -20,24 +20,55 @@
   <br/>
   <!--  FreeGift Table Start -->
   <div  *ngIf="freegiftTable">
-    <table class="table" id="table">
-      <thead>
-        <tr>
-          <th>Category Name</th>
-          <th>Product Name</th>
-          <th>Free Gift</th>
-          <th>Promotion Period</th>
-        </tr>
-    </thead>
-    <tbody *ngFor="let f of freegiftList; let i = index"> 
-        <tr>
-          <td>{{f.categorycode}}</td>
-          <td>{{f.productname}}</td>
-          <td>{{f.freegift}}</td>
-          <td>{{f.fromdate_promotionperiod | date : 'dd-MM-yyyy'}} &nbsp; to &nbsp; {{f.todate_promotionperiod | date : 'dd-MM-yyyy'}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <kendo-grid id="grid" class="k-grid"
+        [kendoGridBinding]="freegiftgridView"
+        kendoGridSelectBy="id"
+        [selectedKeys]="freegiftSelection"
+        [pageSize]="20"
+        [pageable]="true"
+        [sortable]="true"
+        [resizable]="true"
+        [columnMenu]="{ filter: true }" >
+        <ng-template kendoGridToolbarTemplate>
+            <input placeholder="Search in all columns..." kendoTextBox (input)="onFreegiftFilter($event.target.value)" style="border-color: 1px solid #2C4655 !important;" />
+            <button kendoGridExcelCommand type="button" icon="file-excel" style="float:right; border-color: none;
+            color: none;background-color: none;
+            background-image: none;">Export to Excel</button>
+            <button kendoGridPDFCommand icon="file-pdf" style="float:right; border-color: none;
+            color: none;background-color: none;
+            background-image: none;">Export to PDF</button>
+        </ng-template>
+
+        <kendo-grid-column [headerStyle]="{'background-color': '#17252F','color': '#97A4AC','line-height': '1em',
+          'border-top' : '0px solid #15222B'}"
+          [style]="{'background-color': '#1A2D39','color': '#fff','border-top': '5px solid #15222B'}"
+          field="categorycode" title="Category Name" [width]="130">
+        </kendo-grid-column>
+        <kendo-grid-column [headerStyle]="{'background-color': '#17252F','color': '#97A4AC','line-height': '1em',
+          'border-top' : '0px solid #15222B'}"
+          [style]="{'background-color': '#1A2D39','color': '#fff','border-top': '5px solid #15222B'}"
+          field="productname" title="Product Name" [width]="200">
+        </kendo-grid-column>
+        <kendo-grid-column [headerStyle]="{'background-color': '#17252F','color': '#97A4AC','line-height': '1em',
+          'border-top' : '0px solid #15222B'}"
+          [style]="{'background-color': '#1A2D39','color': '#fff','border-top': '5px solid #15222B'}"
+          field="freegift" title="Free Gift" [width]="130">
+        </kendo-grid-column>
+        <kendo-grid-column [headerStyle]="{'background-color': '#17252F','color': '#97A4AC','line-height': '1em',
+          'border-top' : '0px solid #15222B'}"
+          [style]="{'background-color': '#1A2D39','color': '#fff','border-top': '5px solid #15222B'}"
+          field="fromdate_promotionperiod" title="From Promotion Period" [width]="200">
+        </kendo-grid-column>
+        <kendo-grid-column [headerStyle]="{'background-color': '#17252F','color': '#97A4AC','line-height': '1em',
+          'border-top' : '0px solid #15222B'}"
+          [style]="{'background-color': '#1A2D39','color': '#fff','border-top': '5px solid #15222B'}"
+          field="todate_promotionperiod" title="To Promotion Period" [width]="200">
+        </kendo-grid-column>
+        
+        <kendo-grid-pdf fileName="FreeGift.pdf" [repeatHeaders]="true"></kendo-grid-pdf>
+        <kendo-grid-excel fileName="FreeGift.xlsx"></kendo-grid-excel>
+    </kendo-grid>
+    
   </div>
   <!--  FreeGift Table End -->
 
@@ -89,7 +120,7 @@
         [resizable]="true"
         [columnMenu]="{ filter: true }" >
         <ng-template kendoGridToolbarTemplate>
-            <input placeholder="Search in all columns..." kendoTextBox (input)="onFilter($event.target.value)"/>
+            <input placeholder="Search in all columns..." kendoTextBox (input)="onDiscountFilter($event.target.value)" style="border-color: 1px solid #2C4655 !important;" />
             <button kendoGridExcelCommand type="button" icon="file-excel" style="float:right; border-color: none;
             color: none;
             background-color: none;
