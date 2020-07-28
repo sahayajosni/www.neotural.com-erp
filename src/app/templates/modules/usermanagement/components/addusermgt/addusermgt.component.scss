@@ -106,12 +106,21 @@ hr{
   background-color:#4D616D;
   margin-top: 300px;
 }
-select,input,textarea,ng-multiselect-dropdown{
+select,input,textarea {
   border: 1px solid #2C4655;
 }
 ::ng-deep .dropdown-list{
   margin-top: 0px !important;
+  background: $po-order-form-bg !important;
+  border: 1px solid #2C4655 !important;
 }
+::ng-deep .multiselect-dropdown,::ng-deep .dropdown-btn {
+  border: 1px solid #2C4655 !important;
+}
+::ng-deep .multiselect-item-checkbox{
+  color: #7a8992 !important;
+}
+
 #purmultiselect,#prodmultiselect,#salemultiselect {
   display: inline-block;
   border: none !important;
@@ -121,7 +130,7 @@ select,input,textarea,ng-multiselect-dropdown{
   padding: 0px;
   cursor: pointer;
   background-image: none;
-  margin: 15px 0px;
+  margin: 12px 0px;
 }
 #selected-box{
   width: 100%;
@@ -238,7 +247,7 @@ input[type=checkbox]:checked:after {
 .newline{
   white-space: pre-wrap;
   color: $po-order-form-bg;
-  height: 25ch;
+  height: 43%;
 }
 
 ::ng-deep .modal-class .modal-dialog {

@@ -6,6 +6,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { UserManagementService } from "../../services/usermanagement.service";
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-addusermgt',
@@ -21,7 +22,7 @@ export class AddUserMgtComponent implements OnInit {
   saledropdownList:any = [];
   selectedItems:any = [];
   dropdownSettings:any = {};
-  model:any = {};
+  model: any = {};
   departmentList:any = {};
 
   public purchase = false;
@@ -69,7 +70,9 @@ export class AddUserMgtComponent implements OnInit {
       { item_id: 1, item_text: 'Orders' },
       { item_id: 2, item_text: 'Invoices' },
       { item_id: 3, item_text: 'Customer' },
-      { item_id: 4, item_text: 'Return' }
+      { item_id: 4, item_text: 'Return' },
+      { item_id: 5, item_text: 'Promotion' }
+
     ];
 
     this.dropdownSettings = {
@@ -78,12 +81,12 @@ export class AddUserMgtComponent implements OnInit {
       textField: 'item_text',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 4,
+      itemsShowLimit: 3,
       allowSearchFilter: this.showFilter,
       closeDropDownOnSelection: true,
     };
   }
-  
+
   onPurchaseSelect(item: any) {
     console.log('Purchase onItemSelect'+item);
     this.purchaseArray.push({
@@ -125,16 +128,29 @@ export class AddUserMgtComponent implements OnInit {
     });
   }
 
-  getPurchase(){
-    this.purchase = true;
+  getPurchase(isPurchaseChecked: boolean){
+    console.log("Is Purchase Check Boolean --->"+isPurchaseChecked);
+    if (isPurchaseChecked) {
+      this.purchase = true;
+    }else{
+      this.purchase = false;
+    }
   }
 
-  getProduct(){
-    this.product = true;
+  getProduct(isProductChecked: boolean){
+    if (isProductChecked) {
+      this.product = true;
+    }else{
+      this.product = false;
+    }
   }
 
-  getSales(){
-    this.sales = true;
+  getSales(isSalesChecked: boolean){
+    if (isSalesChecked) {
+      this.sales = true;
+    }else{
+      this.sales = false;
+    }
   }
 
   saveUserMgt(){

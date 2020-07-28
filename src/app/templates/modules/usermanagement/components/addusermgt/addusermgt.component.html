@@ -9,13 +9,15 @@
 <div class="modal-body">
   <div class="container">
     <form name="userForm" (ngSubmit)="userForm.form.valid && saveUserMgt()"
-      #userForm="ngForm" novalidate>   
+      #userForm="ngForm" novalidate> 
+
+	  
       <div class="row">
         <div class="col-6">
+
           <label id="po-label">User Name  </label>
           <input type="text" id="po-textbox" class="m-t-5px" [(ngModel)]="model.username"
             #username="ngModel" name="username" required />
-
           <div *ngIf="username.errors  && (username.dirty || username.touched) ||
             (userForm.submitted && !username.valid )">
             <span [hidden]="!username.errors.required" class="spanerror">
@@ -29,8 +31,7 @@
             <option *ngFor="let itemType of departmentList" value="{{ itemType.departmentname }}">
               {{ itemType.departmentname }}
             </option>
-          </select>
-          
+          </select>          
           <div *ngIf="departmentname.errors  && (departmentname.dirty || departmentname.touched) ||
             (userForm.submitted && !departmentname.valid )">
             <span [hidden]="!departmentname.errors.required" class="spanerror">
@@ -38,6 +39,24 @@
             </span>
           </div>
 
+        </div>
+        <div class="col-6">
+
+          <label id="po-label">Password</label>
+          <input type="{{ passwordtype }}" id="po-textbox" class="m-t-5px" [(ngModel)]="model.password"
+            name="password" #password="ngModel" required/>   
+          <div *ngIf="password.errors  && (password.dirty || password.touched) ||
+            (userForm.submitted && !password.valid )">
+            <span [hidden]="!password.errors.required" class="spanerror">
+              Required field cannot be left blank
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
           <label id="po-label2">Please Choose Menu</label>
           <br/>
           <input id="dashboard" type="checkbox" value="Dashboard" 
@@ -52,80 +71,85 @@
               [(ngModel)]="model.menuItem3" #menuItem3="ngModel" name="menuItem3">
           <label for="Vendor" id="menu-label">Vendor</label>
           <br/> 
+        </div>
+        <div class="col-6"></div>
+      </div>
+    
+      <div class="row">
+        <div class="col-6">
           <input id="purchases" type="checkbox" value="Purchases" 
               [(ngModel)]="model.menuItem4" #menuItem4="ngModel" name="menuItem4"
-              (ngModelChange)="getPurchase()">   
+              (click)="getPurchase($event.target.checked)">   
           <label for="Purchases" id="menu-label">Purchases</label>
           <br/>  
+        </div>
+        <div class="col-6">
+          <ng-multiselect-dropdown id="purmultiselect" *ngIf="purchase"
+            [data]="purdropdownList"
+            [(ngModel)]="selectedItems"
+            [settings]="dropdownSettings"
+            [disabled]="disabled" 
+            (onSelect)="onPurchaseSelect($event)"
+            (onSelectAll)="onPurSelectAll($event)">
+          </ng-multiselect-dropdown>
+          <br/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
           <input id="product" type="checkbox" value="Product" 
               [(ngModel)]="model.menuItem5" #menuItem5="ngModel" name="menuItem5"
-              (ngModelChange)="getProduct()">   
+              (click)="getProduct($event.target.checked)">   
           <label for="Product" id="menu-label">Product</label>
-          <br/>  
+          <br/>   
+        </div>
+        <div class="col-6">
+          <ng-multiselect-dropdown id="prodmultiselect" *ngIf="product"
+            [data]="proddropdownList"
+            [(ngModel)]="selectedItems"
+            [settings]="dropdownSettings"
+            [disabled]="disabled"
+            (onSelect)="onProductSelect($event)"
+            (onSelectAll)="onprodSelectAll($event)">
+          </ng-multiselect-dropdown>
+          <br/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
           <input id="sales" type="checkbox" value="Sales" 
               [(ngModel)]="model.menuItem6" #menuItem6="ngModel" name="menuItem6"
-              (ngModelChange)="getSales()">   
+              (click)="getSales($event.target.checked)">   
           <label for="Sales" id="menu-label">Sales</label>
-          <br/> 
+          <br/>   
+        </div>
+        <div class="col-6">
+          <ng-multiselect-dropdown id="salemultiselect" *ngIf="sales"
+            [data]="saledropdownList"
+            [(ngModel)]="selectedItems"
+            [settings]="dropdownSettings"
+            [disabled]="disabled"
+            (onSelect)="onSalesSelect($event)"
+            (onSelectAll)="onSalesAll($event)">     
+          </ng-multiselect-dropdown> 
+          <br/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
           <input id="stock" type="checkbox" value="Stock" 
-              [(ngModel)]="model.menuItem7" #menuItem7="ngModel" name="menuItem7">   
+            [(ngModel)]="model.menuItem7" #menuItem7="ngModel" name="menuItem7">   
           <label for="Stock" id="menu-label">Stock</label>
           <br/>   
           <input id="finance" type="checkbox" value="Finance" 
               [(ngModel)]="model.menuItem8" #menuItem8="ngModel" name="menuItem8">   
           <label for="Finance" id="menu-label">Finance</label>
           <br/>  
-          
         </div>
-        <div class="col-6">
-          <label id="po-label">Password</label>
-          <input type="{{ passwordtype }}" id="po-textbox" class="m-t-5px" [(ngModel)]="model.password"
-            name="password" #password="ngModel" required/>
-          
-          <div *ngIf="password.errors  && (password.dirty || password.touched) ||
-            (userForm.submitted && !password.valid )">
-            <span [hidden]="!password.errors.required" class="spanerror">
-              Required field cannot be left blank
-            </span>
-          </div>
-          <br/>
-
-          <div class="newline">Purchase</div>
-      
-          <!-- <label *ngIf="purchase" id="sub-label">Purchase SubMenu</label> -->
-          <ng-multiselect-dropdown id="purmultiselect" *ngIf="purchase"
-              [data]="purdropdownList"
-              [(ngModel)]="selectedItems"
-              [settings]="dropdownSettings"
-              [disabled]="disabled" 
-              (onSelect)="onPurchaseSelect($event)"
-              (onSelectAll)="onPurSelectAll($event)">
-          </ng-multiselect-dropdown>
-          <br/>
-
-          <!-- <label *ngIf="product" id="sub-label">Product SubMenu</label> -->
-          <ng-multiselect-dropdown id="prodmultiselect" *ngIf="product"
-              [data]="proddropdownList"
-              [(ngModel)]="selectedItems"
-              [settings]="dropdownSettings"
-              [disabled]="disabled"
-              (onSelect)="onProductSelect($event)"
-              (onSelectAll)="onprodSelectAll($event)">
-          </ng-multiselect-dropdown>
-          <br/>
-
-          <!-- <label *ngIf="sales" id="sub-label">Sales SubMenu</label> -->
-          <ng-multiselect-dropdown id="salemultiselect" *ngIf="sales"
-              [data]="saledropdownList"
-              [(ngModel)]="selectedItems"
-              [settings]="dropdownSettings"
-              [disabled]="disabled"
-              (onSelect)="onSalesSelect($event)"
-              (onSelectAll)="onSalesAll($event)">
-          </ng-multiselect-dropdown>
-          <br/>
-
-        </div>
+        <div class="col-6"></div>
       </div>
 
       <div class="row">
@@ -134,8 +158,9 @@
               <button id="add-btn">Add</button>
             </div>
         </div>
-      </div>         
+      </div>   
 
-    </form>
-  </div>
+	  </form>
+	</div>
 </div>
+		
