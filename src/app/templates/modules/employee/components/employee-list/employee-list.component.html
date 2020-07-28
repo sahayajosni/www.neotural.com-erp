@@ -41,7 +41,19 @@
         (dblclick)= "router.navigateByUrl('/employment/viewEmployee/'+item.employeecode)"> 
         <tr>
           <td style="width: 4% !important;">
-            <img [src]="getImage(item.profilepic)" onerror="this.src='/assets/images/no-image.png'" class="emplogo" />
+            
+            <div *ngIf="item.profilepic; else employeeNoImage">
+              <img  [src]="getImage(item.profilepic)" onerror="this.src='/assets/images/no-image.png'" class="emplogo" />
+            </div>
+            
+            <ng-template #employeeNoImage>
+              <img  [src]="'/assets/images/no-image.png'" class="emplogo" />
+            </ng-template>
+           
+            <!-- <img *ngIf="item.profilepic; else noImage"" [src]="getImage(item.profilepic)" onerror="this.src='/assets/images/no-image.png'" class="emplogo" />
+            <ng-template #noImage>
+              <img  [src]="/assets/images/no-image.png" onerror="this.src='/assets/images/no-image.png'" class="emplogo" />
+</ng-template> -->
           </td>
           <td>{{item.employeecode}}</td>
           <td>{{item.name}}</td>

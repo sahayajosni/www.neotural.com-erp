@@ -175,7 +175,14 @@
   
     <div class="org-header">
       <div>
-        <img [src]="getImage(employeeDet.profilepic)" onerror="this.src='/assets/images/no-image.png'" />
+        <div *ngIf="employeeDet.profilepic; else employeeNoImage">
+          <img  [src]="getImage(employeeDet.profilepic)" onerror="this.src='/assets/images/no-image.png'" class="emplogo" />
+        </div>
+        
+        <ng-template #employeeNoImage>
+          <img  [src]="'/assets/images/no-image.png'" class="emplogo" />
+        </ng-template>
+        <!-- <img [src]="getImage(employeeDet.profilepic)" onerror="this.src='/assets/images/no-image.png'" /> -->
       </div>
       <div>
           <!-- <h5>{{employeeDet.rank}}</h5> -->
