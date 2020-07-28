@@ -197,7 +197,7 @@ enable: boolean;
       this.employees.paginator.firstPage();
     }
   }
-
+  localpath = "/assets/images/no-image.png";
   addEmployee() {
     const modalRef = this.modalService.open(EmployeeAddComponent, { windowClass: 'employee-class'});
 
