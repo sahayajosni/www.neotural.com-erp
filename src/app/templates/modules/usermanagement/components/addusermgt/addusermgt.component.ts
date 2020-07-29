@@ -21,7 +21,9 @@ export class AddUserMgtComponent implements OnInit {
   proddropdownList:any = [];
   saledropdownList:any = [];
   selectedItems:any = [];
-  dropdownSettings:any = {};
+  purchasedropdownSettings:any = {};
+  productdropdownSettings:any = {};
+  salesdropdownSettings:any = {};
   model: any = {};
   departmentList:any = {};
 
@@ -55,30 +57,52 @@ export class AddUserMgtComponent implements OnInit {
     );
 
     this.purdropdownList = [
-      { item_id: 1, item_text: 'Orders' },
-      { item_id: 2, item_text: 'Invoices' },
-      { item_id: 3, item_text: 'Return' }
+      { purchase_item_id: 1, purchase_item_text: 'Orders' },
+      { purchase_item_id: 2, purchase_item_text: 'Invoices' },
+      { purchase_item_id: 3, purchase_item_text: 'Return' }
     ];
 
     this.proddropdownList = [
-      { item_id: 1, item_text: 'product' },
-      { item_id: 2, item_text: 'units' },
-      { item_id: 3, item_text: 'category' }
+      { product_item_id: 1, product_item_text: 'product' },
+      { product_item_id: 2, product_item_text: 'units' },
+      { product_item_id: 3, product_item_text: 'category' }
     ];
 
     this.saledropdownList = [
-      { item_id: 1, item_text: 'Orders' },
-      { item_id: 2, item_text: 'Invoices' },
-      { item_id: 3, item_text: 'Customer' },
-      { item_id: 4, item_text: 'Return' },
-      { item_id: 5, item_text: 'Promotion' }
+      { sales_item_id: 1, sales_item_text: 'Orders' },
+      { sales_item_id: 2, sales_item_text: 'Invoices' },
+      { sales_item_id: 3, sales_item_text: 'Customer' },
+      { sales_item_id: 4, sales_item_text: 'Return' },
+      { sales_item_id: 5, sales_item_text: 'Promotion' }
 
     ];
 
-    this.dropdownSettings = {
+    this.purchasedropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'purchase_item_id',
+      textField: 'purchase_item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: this.showFilter,
+      closeDropDownOnSelection: true,
+    };
+
+    this.productdropdownSettings = {
+      singleSelection: false,
+      idField: 'product_item_id',
+      textField: 'product_item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: this.showFilter,
+      closeDropDownOnSelection: true,
+    };
+
+    this.salesdropdownSettings = {
+      singleSelection: false,
+      idField: 'sales_item_id',
+      textField: 'sales_item_text',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
@@ -87,30 +111,32 @@ export class AddUserMgtComponent implements OnInit {
     };
   }
 
-  onPurchaseSelect(item: any) {
-    console.log('Purchase onItemSelect'+item);
+  onPurchaseSelect(puritem: any) {
+    console.log('Purchase onItemSelect'+puritem);
     this.purchaseArray.push({
-      pursubmenu : item
+      pursubmenu : puritem
     });
   }
-  onPurSelectAll(items: any) {
-    console.log('purchase onSelectAll'+items);
+  onPurSelectAll(puritems: any) {
+    console.log('purchase onSelectAll'+puritems);
+    //this.members.push({ item_id: member, item_text: member });
+
     this.purchaseArray.push({
-      pursubmenu : items
+      pursubmenu : puritems
     });
   }
 
-  onProductSelect(item: any) {
-    console.log('Product onItemSelect'+item);
+  onProductSelect(proditem: any) {
+    console.log('Product onItemSelect'+proditem);
     this.prodArray.push({
-      productsubmenu : item
+      productsubmenu : proditem
     });
   }
 
-  onprodSelectAll(items: any) {
-    console.log('product onSelectAll'+items);
+  onprodSelectAll(proditems: any) {
+    console.log('product onSelectAll'+proditems);
     this.prodArray.push({
-      productsubmenu : items
+      productsubmenu : proditems
     });
   }
 

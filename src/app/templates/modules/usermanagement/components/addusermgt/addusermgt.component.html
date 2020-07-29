@@ -26,12 +26,13 @@
           </div>
 
           <label id="po-label">Department</label>
-          <select id="selected-box" [(ngModel)]="model.departmentname" name="departmentname" #departmentname="ngModel" required>
-            <option>-- Select --</option>
-            <option *ngFor="let itemType of departmentList" value="{{ itemType.departmentname }}">
-              {{ itemType.departmentname }}
+          <select id="selected-box" class="form-control" [(ngModel)]="model.departmentname" #departmentname="ngModel" name="departmentname"
+            autocomplete="off" required >
+            <option id="options-box" [ngValue]="undefined" hidden selected> Select Department </option>
+            <option id="options-box" *ngFor="let itemname of departmentList" 
+              value="{{ itemname.departmentname }}"> {{itemname.departmentname}} 
             </option>
-          </select>          
+          </select>        
           <div *ngIf="departmentname.errors  && (departmentname.dirty || departmentname.touched) ||
             (userForm.submitted && !departmentname.valid )">
             <span [hidden]="!departmentname.errors.required" class="spanerror">
@@ -87,7 +88,7 @@
           <ng-multiselect-dropdown id="purmultiselect" *ngIf="purchase"
             [data]="purdropdownList"
             [(ngModel)]="selectedItems"
-            [settings]="dropdownSettings"
+            [settings]="purchasedropdownSettings"
             [disabled]="disabled" 
             (onSelect)="onPurchaseSelect($event)"
             (onSelectAll)="onPurSelectAll($event)">
@@ -108,7 +109,7 @@
           <ng-multiselect-dropdown id="prodmultiselect" *ngIf="product"
             [data]="proddropdownList"
             [(ngModel)]="selectedItems"
-            [settings]="dropdownSettings"
+            [settings]="productdropdownSettings"
             [disabled]="disabled"
             (onSelect)="onProductSelect($event)"
             (onSelectAll)="onprodSelectAll($event)">
@@ -129,7 +130,7 @@
           <ng-multiselect-dropdown id="salemultiselect" *ngIf="sales"
             [data]="saledropdownList"
             [(ngModel)]="selectedItems"
-            [settings]="dropdownSettings"
+            [settings]="salesdropdownSettings"
             [disabled]="disabled"
             (onSelect)="onSalesSelect($event)"
             (onSelectAll)="onSalesAll($event)">     
