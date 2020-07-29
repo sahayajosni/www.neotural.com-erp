@@ -33,7 +33,18 @@
       <tbody *ngFor="let item of vendorsDS; let i = index" (dblclick)= "goToVendorDetails(item)"> 
         <tr>
           <td style="width: 4% !important;">
-            <img [src]="getImage(item.vendorbase64)" onerror="this.src='/assets/images/no-image.png'" class="vendorlogo" />
+            <!-- <img [src]="getImage(item.vendorbase64)" onerror="this.src='/assets/images/no-image.png'" class="vendorlogo" /> -->
+
+            <div *ngIf="item.vendorbase64; else vendorNoImage">
+              <img  [src]="getImage(item.vendorbase64)" onerror="this.src='/assets/images/no-image.png'" class="vendorlogo" />
+            </div>
+            
+            <ng-template #vendorNoImage>
+              <img  [src]="'/assets/images/no-image.png'" class="vendorlogo" />
+            </ng-template>
+
+
+
             <!-- <img src="assets/images/employee.png" class="img-fluid logo" alt="Employee" /> -->
           </td>
           <td>{{item.vendorcode}}</td>
