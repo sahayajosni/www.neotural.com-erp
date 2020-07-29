@@ -23,6 +23,7 @@ import { VendorDetailsComponent } from './../vendor-details/vendor-details.compo
 import { CustomerAddComponent } from './../customer-add/customer-add.component';
 import * as _ from 'lodash';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -97,6 +98,7 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
     private printDialogService: PrintDialogService,
     private dialog: MatDialog,
     private _sanitizer: DomSanitizer,
+    private SpinnerService: NgxSpinnerService,
     config: NgbModalConfig, private modalService: NgbModal,
 
   ) {
@@ -105,7 +107,11 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-     this.getAllVendorDetails();
+    this.SpinnerService.show();  
+    this.getAllVendorDetails();
+    setTimeout(() => {
+      //this.SpinnerService.hide();
+    }, 100);
    //  this.removeScrollBar();
     // this.goToVendorDetails(null);
   }
@@ -131,6 +137,7 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
     this.vendorService.load().subscribe(
       (data: Vendor[]) => {
         this.vendorsDS = data;
+        this.SpinnerService.hide();
         if(this.vendorsDS.length > 0) {
           this.enable = true;
         } else {

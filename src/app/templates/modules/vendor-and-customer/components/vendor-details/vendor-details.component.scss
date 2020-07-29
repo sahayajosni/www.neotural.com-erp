@@ -12,6 +12,7 @@
     display: flex;
     padding: 20px;
     padding-left: 30px;
+    background: #15222b;
 
     & a.close {
             border-radius: 50%;
@@ -35,6 +36,7 @@
     box-shadow: 0 0 12px #0c141a !important;
     font-size: 12px;
     color: #fcfdfe;
+    background: #15222b;
     flex-basis: auto
 
     span{
@@ -131,7 +133,7 @@
     box-shadow: 0 0 12px #0c141a !important;
     padding: 20px;
     color: #fff;
-    
+    background: #15222b;
 
     .vendor-category-header {
         position: relative;
