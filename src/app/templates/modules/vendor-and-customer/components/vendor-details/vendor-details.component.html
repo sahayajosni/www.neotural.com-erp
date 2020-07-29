@@ -3,7 +3,17 @@
     <div class="vendor-selected" >
         <div class="org-header">
             <div>
-                <img [src]="data.vendorbase64" onerror="this.src='/assets/images/no-image.png'" />
+                <!-- <img [src]="data.vendorbase64" onerror="this.src='/assets/images/no-image.png'" /> -->
+
+                
+            <div *ngIf="data.vendorbase64; else vendorNoImage">
+                <img  [src]="data.vendorbase64" onerror="this.src='/assets/images/no-image.png'" />
+              </div>
+              
+              <ng-template #vendorNoImage>
+                <img  [src]="'/assets/images/no-image.png'" />
+              </ng-template>
+
             </div>
             <div>
                 <h2 *ngIf="!data.editable">{{data.vendorName}}</h2>
@@ -127,9 +137,19 @@
 
             <div class="category-items" >
                 <div class="category-item" *ngFor="let item of allCategoryItems">
-                    <div class="item-image">
-                        <img [src]="getImage(item.productImage)" onerror="this.src='/assets/images/no-image.png'" />
-                    </div>
+                    <div class="item-image" *ngIf="item.productImage; else vendorItemNoImage">
+                        <!-- <img [src]="getImage(item.productImage)" onerror="this.src='/assets/images/no-image.png'" /> -->
+
+                        <!-- <div *ngIf="item.productImage; else vendorItemNoImage"> -->
+                            <img  [src]="getImage(item.productImage)" onerror="this.src='/assets/images/no-image.png'" />
+                          </div>
+                          
+                          <ng-template #vendorItemNoImage>
+                            <img  [src]="'/assets/images/no-image.png'" />
+                          </ng-template>
+
+
+                    <!-- </div> -->
                     <div class="item-content">
                         <div class="info">
                             <div><span>{{item.prodcode}}</span> <span>{{item.categoryname}}</span></div>
