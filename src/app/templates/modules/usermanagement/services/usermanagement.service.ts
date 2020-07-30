@@ -12,5 +12,12 @@ export class UserManagementService {
   loadDepartment() {
     return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.LOAD_DEPARTMENT}`);
   }
+
+  save(userArray: Array<any>){
+    return this.http.post(
+        `${environment.apiUrl}${API_ENDPOINTS.save}`,
+        userArray
+    );     
+  }
  
 }
