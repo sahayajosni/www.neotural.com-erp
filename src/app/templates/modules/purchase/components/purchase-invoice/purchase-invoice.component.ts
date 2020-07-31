@@ -166,21 +166,12 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
     this.model.invoiceNumber = this.invArr[0].invoicenumber;
     this.purchaseservice.createStock(this.model.invoiceNumber).subscribe(
       (respose) => {
-          setTimeout(() => {
-            this.snackBar.open(
-              "Stock was added Successfully",
-              "",
-              {
-                panelClass: ["success"],
-                verticalPosition: "top",
-              }
-            );
-
-          });
-          
-          this.checkedInfo.target.checked = false;
-          this.isAddStock = false;
-          this.getInvoiceLists();
+          this.snackBar.open("Stock was added Successfully", "", {
+              panelClass: ["success"],
+              verticalPosition: "top",
+            }
+          );
+        this.getInvoiceLists();
       },
       (error) => {
         setTimeout(() => {
