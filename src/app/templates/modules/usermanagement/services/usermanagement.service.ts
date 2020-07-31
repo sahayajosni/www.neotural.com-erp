@@ -19,5 +19,9 @@ export class UserManagementService {
         userArray
     );     
   }
+
+  load() {
+    return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.load}`);
+  }
  
 }

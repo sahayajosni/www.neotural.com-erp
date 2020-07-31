@@ -267,33 +267,48 @@ export class AddUserMgtComponent implements OnInit {
 
     this.menuArray.push( this.model.menuItem1,this.model.menuItem2,this.model.menuItem3,this.model.menuItem4,
       this.purchaseArray,this.model.menuItem5,this.prodArray,this.model.menuItem6,this.salesArray, 
-      this.model.menuItem7,this.model.menuItem8 )
+      this.model.menuItem7,this.model.menuItem8 );
+
+      var filteredarray = this.menuArray.filter(function (el) {
+        return el != null;
+      }); 
+      
+      console.log(filteredarray);
     
     this.userArray.push({ username : this.model.username,password : this.model.password,
-      departmentname:this.model.departmentname,menuArray: this.menuArray });
+      departmentname:this.model.departmentname,menuArray: filteredarray });
     
     /* this.menuArray.push({ username : this.model.username,password : this.model.password,
       departmentname:this.model.departmentname,menuItem1 : this.model.menuItem1,menuItem2 : this.model.menuItem2,
       menuItem3 : this.model.menuItem3, menuItem4 : this.model.menuItem4,purchasesubmenu : this.purchaseArray,
       menuItem5 : this.model.menuItem5,productsubmenu : this.prodArray, menuItem6 : this.model.menuItem6,
       salessubmenu : this.salesArray, menuItem7 : this.model.menuItem7, menuItem8 : this.model.menuItem8 }); */
-
-    this.userMgtService.save(this.userArray)
-    .subscribe(
-      (res) => {
-        this.modalService.dismissAll();
-        setTimeout(() => {
-          this.snackBar.open(
-            "User was created Successfully",
-            "",
-            {
-              panelClass: ["success"],
-              verticalPosition: "top",
-            }
-          );
-        });
     
-      });
+    if(this.menuArray.length > 0){
+      this.userMgtService.save(this.userArray)
+      .subscribe(
+        (res) => {
+          this.modalService.dismissAll();
+          setTimeout(() => {
+            this.snackBar.open(
+              "User was created Successfully",
+              "",
+              {
+                panelClass: ["success"],
+                verticalPosition: "top",
+              }
+            );
+          });
+      
+        });
+
+        this.menuArray = [];
+        this.purchaseArray = [];
+        this.prodArray = [];
+        this.salesArray = [];
+    }else{
+
+    }
     this.modalService.dismissAll();
   }
 }

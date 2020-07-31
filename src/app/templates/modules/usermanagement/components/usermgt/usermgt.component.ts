@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatDialogConfig, MatDialog } from "@angular/material";
 import { AddUserMgtComponent } from '../addusermgt/addusermgt.component';
+import { UserManagementService } from "../../services/usermanagement.service";
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -14,10 +15,13 @@ export class UserManagementComponent implements OnInit {
   activeTab: number = 0;
   dialogConfig = new MatDialogConfig();
 
+  userList: any = [];
+
   constructor(
     private dialog: MatDialog,
     private router: Router,
     private snackBar: MatSnackBar,
+    private userMgtService: UserManagementService,
     config: NgbModalConfig, private modalService: NgbModal,
   ) {
     config.backdrop = 'static';
@@ -26,7 +30,16 @@ export class UserManagementComponent implements OnInit {
 
 
   ngOnInit() {
-    
+    this.load();
+  }
+
+  load(){
+    this.userMgtService.load().subscribe(
+      data => { 
+        this.userList = data;
+      },
+      error => { }
+    );
   }
 
   tabChanged(event) {
@@ -40,10 +53,12 @@ export class UserManagementComponent implements OnInit {
   addUserMgt(){
     const modalRef = this.modalService.open(AddUserMgtComponent, { windowClass: 'modal-class'});
 
+    let data: any;
+    modalRef.componentInstance.passedData= data;
     modalRef.result.then((result) => {
-      this.ngOnInit();
+      this.load();
     }, (reason) => {
-      this.ngOnInit();
+      this.load();
     }); 
 
     /* this.dialogConfig.disableClose = true;

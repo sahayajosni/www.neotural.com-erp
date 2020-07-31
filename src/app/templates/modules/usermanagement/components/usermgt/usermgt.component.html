@@ -10,3 +10,22 @@
         </div>
     </div>    
 </div>
+
+<table class="table" id="table">
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Password</th>
+        <th>Department Name</th>
+        <th>Menus</th>
+      </tr>
+  </thead>
+  <tbody *ngFor="let u of userList; let i = index"> 
+      <tr>
+        <td>{{u.username}}</td>
+        <td>{{u.password}}</td>
+        <td>{{u.departmentname}}</td>
+        <td>{{u.menuItem}}</td>
+      </tr>
+    </tbody>
+  </table>
