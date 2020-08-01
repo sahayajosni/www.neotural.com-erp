@@ -116,7 +116,14 @@
                         <input type="text" id="price-box" 
                             [(ngModel)]="model.price" value="{{model.price}}"
                             #price="ngModel" (ngModelChange)="getSellingPrice(model.price,model.tax,model.margin)"
-                                placeholder="IDR X.XXX.XXX" name="price" autocomplete="off"/>
+                                placeholder="IDR X.XXX.XXX" name="price" autocomplete="off" required />
+
+                        <div *ngIf="price.errors  && (price.dirty || price.touched) ||
+                            (productForm.submitted && !price.valid )">
+                            <span [hidden]="!price.errors.required" class="spanerror">
+                                Required field cannot be left blank
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
