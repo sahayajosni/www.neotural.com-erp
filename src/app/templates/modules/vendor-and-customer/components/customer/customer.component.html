@@ -23,12 +23,7 @@
           <table class="table">
             <thead>
               <tr>
-                <!-- <th>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input1" id="customChecks2">
-                    <label class="custom-control-label1" for="customCheck2"></label>
-                  </div>
-                </th> -->
+                <th> </th>
                 <th style="cursor:pointer;">ID #</th>
                 <th style="cursor:pointer;">Name</th>
                 <th style="cursor:pointer;">Country</th>
@@ -41,11 +36,15 @@
             <tbody *ngFor="let item of customersDS; let i = index"
               id="purchase-order-row-id{{i}}"> 
               <tr>
-                <!-- <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input1">
-                  </div>
-                </td> -->
+                <td>
+                  <!-- <div *ngIf="item.customerbase64; else customerNoImage"> -->
+                    <img [src]="getImage(item.customerbase64)" onerror="this.src='/assets/images/no-image.png'" class="customerlogo" />
+                  <!-- </div> 
+                  
+                  <ng-template #vendorNoImage>
+                    <img  [src]="'/assets/images/no-image.png'" class="vendorlogo" />
+                  </ng-template> -->
+                </td>
                 <td>{{item.custcode}}</td>
                 <td>{{item.customerName}}</td>
                 <td>{{item.country}}</td>
