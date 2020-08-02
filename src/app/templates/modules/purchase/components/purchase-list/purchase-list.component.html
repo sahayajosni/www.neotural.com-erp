@@ -14,12 +14,14 @@
       </button>
       <button  
         [disabled]="!isCreateInvoice ? true:false" 
-        class="create-button" [ngStyle]="getCreateInvoiceStyle()"
-        (click)="createInvoice()">Create Invoice
+        class="create-button" placement="left" ngbTooltip="Create Purchase Invoice" 
+        [ngStyle]="getCreateInvoiceStyle()"
+        (click)="createInvoice()"> <span class="fas fa-plus"></span> Invoice
       </button>
   
-      <button  (click)="addPurchaseOrder(null,null)" [disabled]="isAddPurchaseOrder" class="create-button" [ngStyle]="getAddPurchaseOrderStyle()">
-        <span class="fas fa-plus"></span> Add Purchase Order 
+      <button  (click)="addPurchaseOrder(null,null)" placement="left" ngbTooltip="Add Purchase Order"
+      [disabled]="isAddPurchaseOrder" class="create-button" [ngStyle]="getAddPurchaseOrderStyle()">
+        <span class="fas fa-plus"></span> Add
       </button>
     </div>
   </div>
@@ -77,8 +79,8 @@
           <td class="txt-right">{{item.qty}}</td>
           <td class="txt-right wid-130px">{{item.subtotal}}
             <span class="edit-delete-icon user-icon" *ngIf="isCheckedArr.length === 0 && item.status === 'Open'">
-              <span class="fas fa-pen mar-let-40px" (click)="addPurchaseOrder(item.id, item)" ></span>
-              <span class="fas fa-trash" (click)="removePurchaseOrder(item.id)"></span>
+              <span class="fas fa-pen mar-let-40px" placement="bottom" ngbTooltip="Modifiy Purchase Order" (click)="addPurchaseOrder(item.id, item)" ></span>
+              <span class="fas fa-trash" placement="bottom" ngbTooltip="Remove Purchase Order" (click)="removePurchaseOrder(item.id)"></span>
             </span>
           </td>
         </tr>

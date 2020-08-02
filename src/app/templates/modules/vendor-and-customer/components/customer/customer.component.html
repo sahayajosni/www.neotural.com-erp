@@ -37,13 +37,14 @@
               id="purchase-order-row-id{{i}}"> 
               <tr>
                 <td>
-                  <!-- <div *ngIf="item.customerbase64; else customerNoImage"> -->
-                    <img [src]="getImage(item.customerbase64)" onerror="this.src='/assets/images/no-image.png'" class="customerlogo" />
-                  <!-- </div> 
+                  <div *ngIf="item.customerbase64; else customerNoImage"> 
+                    <img [src]="getImage(item.customerbase64)" onerror="this.src='/assets/images/no-image.png'" 
+                    class="customerlogo" />
+                   </div> 
                   
-                  <ng-template #vendorNoImage>
-                    <img  [src]="'/assets/images/no-image.png'" class="vendorlogo" />
-                  </ng-template> -->
+                  <ng-template #customerNoImage>
+                    <img  [src]="'/assets/images/no-image.png'" class="customerlogo" />
+                  </ng-template> 
                 </td>
                 <td>{{item.custcode}}</td>
                 <td>{{item.customerName}}</td>
