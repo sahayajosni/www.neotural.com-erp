@@ -39,8 +39,8 @@
             </span>
 
             <span class="edit-delete-icon user-icon" *ngIf="c.editable">
-              <span class="fas fa-check" (click)="updateStock(c.id,c.recentStock)" ></span>
               <span class="fas fa-times" (click)="cancelStock(c)" ></span>
+              <span class="fas fa-check" (click)="updateStock(c.id,c.recentStock)" ></span>
             </span>
           </td>
         </tr>
