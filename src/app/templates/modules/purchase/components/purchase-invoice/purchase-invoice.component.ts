@@ -171,7 +171,8 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
               verticalPosition: "top",
             }
           );
-          this.isCheckedArr[0].checked;
+          this.isCheckedArr = [];
+          this.invArr = [];
           this.isAddStock = false;
         this.getInvoiceLists();
       },
