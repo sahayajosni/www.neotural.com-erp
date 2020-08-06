@@ -56,6 +56,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.isCheckedArr = [];
     this.getSalesOrderLists();
    // this.removeScrollBar();
   }
@@ -431,13 +432,13 @@ export class SalesListComponent implements OnInit, OnDestroy {
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.getSalesOrderLists();
+      this.ngOnInit();
       let indexx = this.prodArr.indexOf(this.prodArr[0].socode);
       this.prodArr.splice(indexx, 1);
       this.isCreateReturn = false;
       this.isAddSalesOrder = true;
     }, (reason) => {
-      this.getSalesOrderLists();
+      this.ngOnInit();
       let indexx = this.prodArr.indexOf(this.prodArr[0].socode);
       this.prodArr.splice(indexx, 1);
       this.isCreateReturn = false;

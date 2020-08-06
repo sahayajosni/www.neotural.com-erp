@@ -58,6 +58,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.SpinnerService.show();  
+    this.isCheckedArr = [];
     this.getPurchaseOrderLists();
     setTimeout(() => {
         this.SpinnerService.hide();
@@ -447,6 +448,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
       this.prodArr.splice(indexx, 1);
       this.isCreateReturn = false;
       this.isAddPurchaseOrder = true; 
+      this.isCheckedArr = [];
     }, (reason) => {
       this.ngOnInit();
       let indexx = this.prodArr.indexOf(this.prodArr[0].pocode);
