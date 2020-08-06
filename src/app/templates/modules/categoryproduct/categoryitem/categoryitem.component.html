@@ -40,7 +40,15 @@
       </thead>
       <tbody *ngFor="let a of allproductlist; let i = index"> 
         <tr>
-          <td>{{i}}</td>
+          <td>
+            <div *ngIf="a.productImage[0]; else productNoImage">
+              <img  [src]="getImage(a.productImage[0])" onerror="this.src='/assets/images/no-image.png'" class="productlogo" />
+            </div>
+            
+            <ng-template #productNoImage>
+              <img  [src]="'/assets/images/no-image.png'" class="productlogo" />
+            </ng-template>
+          </td>
           <td>{{a.prodcode}}</td>
           <td>{{a.productname}}</td>
           <td>{{a.categoryname}}</td>

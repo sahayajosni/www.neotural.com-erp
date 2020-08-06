@@ -1519,7 +1519,9 @@ export class CategoryItemComponent implements OnInit {
   } */
   }
 
-  
+  getImage(imgData) {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
+  }
 
   printPage(data) {
     this.printDialogService.openDialog(data);
