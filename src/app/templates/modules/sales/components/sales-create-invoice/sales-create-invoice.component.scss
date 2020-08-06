@@ -4,7 +4,8 @@
 .purchase-invoice-view {
   display: flex;
   color: #5d6d76;
-  height: calc(100vh - 65px);
+  height: calc(100vh - 65px);  
+  background: $main-bg;
 
   h3 {
     color: #fff;
