@@ -31,5 +31,4 @@ export class Employee extends Common {
    overTime: string;
    commission: string;
    totalAmount: string;
-   
 }

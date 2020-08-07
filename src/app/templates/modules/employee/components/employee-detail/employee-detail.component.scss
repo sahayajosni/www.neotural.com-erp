@@ -69,7 +69,14 @@ h5{
     font-size: 13px;
     height: 170px; margin-top: 10px; text-align: left;
 }
-
+.daily-text-area-style{
+    background-color: #17252F;
+    color: #fff;
+    border: 1px solid #334F5F;
+    border-radius: 0px;
+    font-size: 13px;
+    height: 60px; margin-top: 10px; text-align: left;
+}
 ::ng-deep .mat-datepicker-popup { 
     /* Do you changes here */
     top:290px !important;
@@ -166,4 +173,19 @@ input:-webkit-autofill {
 @media print{
     #doNotPrint{display:none !important;}
     #printEmpDet{display: block !important;}
+}
+
+.edit-delete-icon {
+    height: 20px;
+    top: 0px;
+    margin-top: -18px;
+}
+.fa-pen,.fa-times {
+    float: right;
+    cursor: pointer;
+    margin-left: 15px;
+}
+.fa-check {
+    float: right;
+    cursor: pointer;
 }
