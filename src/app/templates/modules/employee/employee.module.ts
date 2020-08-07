@@ -60,6 +60,9 @@ import { EmployeeCardComponent } from "./components/employee-card/employee-card.
 import { EmployeeAbsentCardComponent } from "./components/employee-absent-card/employee-absent-card.component";
 import { EmployeeChecinCheckoutComponent } from "./components/employee-checkin-checkout/employee-checkin-checkout.component";
 
+import { ModalModule } from "ngx-bootstrap";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     EmployeeComponent,
@@ -113,6 +116,8 @@ import { EmployeeChecinCheckoutComponent } from "./components/employee-checkin-c
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    NgbModule,
+    ModalModule.forRoot(),
     DataTablesModule.forRoot()
   ],
   entryComponents: [EmployeeReportComponent, 

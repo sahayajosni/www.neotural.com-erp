@@ -4,6 +4,9 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import {MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import * as _ from 'lodash';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-add',
@@ -19,35 +22,36 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
   constructor( 
     private employeeService: EmployeeService,   
     private snackBar: MatSnackBar,
-    private dialogRef: MatDialogRef<EmployeeAddComponent>
-    ) { }
+    private modalService: NgbModal,
+    public activeModal: NgbActiveModal
+    //private dialogRef: MatDialogRef<EmployeeAddComponent>
+  ) { }
 
   ngOnInit() {
-    this.addEmplyeeFields();
+
   }
 
   ngAfterViewInit() {
     (<HTMLElement>document.querySelector('.mat-dialog-container')).style.background = 'inherit';
    }
 
-  cancelEmployee(){}
   saveEmployee() { 
     this.model.profilepic=this.cardImageBase64;
     this.employeeService.save(this.model)
       .subscribe(
       data => {
         setTimeout(() => {
-          this.snackBar.open("Employee created Successfully", "", {
+          this.snackBar.open("Success! Register Employee", "", {
             panelClass: ["success"],
-            verticalPosition: 'top'      
+            verticalPosition: 'top',
+            duration: undefined         
           });
         });
-        this.addEmployeeClose();
-        this.employeeService.load();
+        this.modalService.dismissAll();
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -56,12 +60,9 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
     );
   }
 
-  addEmployeeClose() {
-    this.dialogRef.close();
-  }
-
-  addEmplyeeFields() {
-    this.model.name = '';
+  resetEmployeeRegistrationForm(form: FormGroup) {
+    form.reset();
+    /* this.model.name = '';
     this.model.rank = '';
     this.model.phonenumber = '';
     this.model.address = '';
@@ -72,7 +73,7 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
     this.model.bpjs = '';
     this.model.monthlysalary = '';
     this.model.workHour = '';
-    this.model.annualLeave = '';
+    this.model.annualLeave = ''; */
   }
 
   fileChangeEvent(fileInput: any) {

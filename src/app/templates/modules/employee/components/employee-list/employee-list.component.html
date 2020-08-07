@@ -18,7 +18,7 @@
     <table class="table" *ngIf="enable">
       <thead>
         <tr>
-          <!-- <th class="wid-50px" style="width: 4% !important;"></th> -->
+          <th style="width: 4% !important;"></th> 
           <th>ID #
               <i *ngIf="!isSortIdDesc" class="sort-by-desc" (click)="sortByOrder('code','desc')"></i>
               <i class="sort-by-asc" *ngIf="!isSortIdAsc" (click)="sortByOrder('code','asc')"></i>
@@ -38,23 +38,29 @@
       <tbody *ngFor="let item of employeesDS; let i = index"
         (dblclick)= "router.navigateByUrl('/employment/viewEmployee/'+item.employeecode)"> 
         <tr>
-          <!-- <td class="wid-50px" style="width: 4% !important;">
-            <img src="assets/images/employee.png" class="img-fluid logo" alt="Employee" />
-          </td> -->
+          <td style="width: 4% !important;">
+            <div *ngIf="item.profilepic; else employeeNoImage">
+              <img  [src]="getImage(item.profilepic)" onerror="this.src='/assets/images/no-image.png'" class="emplogo" />
+            </div>
+            
+            <ng-template #employeeNoImage>
+              <img  [src]="'/assets/images/no-image.png'" class="emplogo" />
+            </ng-template>
+          </td>
           <td>{{item.employeecode}}</td>
           <td>{{item.name}}</td>
-          <td>{{item.rank}}</td>
-          <td>{{item.email}}</td>
-          <td>
-            <app-employee-absence *ngIf="isShowHideAbsent[i]" [absenceItem]="item" (closeAbsencePopup)="closePopup($event, i,'absence')" [getAbsentDetail]="getAbsentDetail"></app-employee-absence>
-            <app-employee-checkin-checkout *ngIf="isShowHideCheckinCheckout[i]" (closeCheckinCheckoutPopup)="closePopup($event, i,'checkinCheckout')" (enableAbsentIcon)="enableAbsentIcon($event, i)" [absenceItem]="item" [getAbsentDetail]="getAbsentDetail" [currentTime]="todayTime"></app-employee-checkin-checkout>
-            {{item.addeddate}}
-          </td>
+          <td style="width: 8%;">{{item.email}}</td>
           <td class="txt-right">
             <app-employee-report (closeDailyReport)="closePopup($event, i,'report')" *ngIf="showHideDailyReport[i]" [dailyReportItem]="item" [getDailyReportDetail]="getDailyReportDetail"></app-employee-report>
             {{item.phonenumber}}
           </td>
           <td></td>
+          <td>{{item.rank}}</td>
+          <td>
+            <app-employee-absence *ngIf="isShowHideAbsent[i]" [absenceItem]="item" (closeAbsencePopup)="closePopup($event, i,'absence')" [getAbsentDetail]="getAbsentDetail"></app-employee-absence>
+            <app-employee-checkin-checkout *ngIf="isShowHideCheckinCheckout[i]" (closeCheckinCheckoutPopup)="closePopup($event, i,'checkinCheckout')" (enableAbsentIcon)="enableAbsentIcon($event, i)" [absenceItem]="item" [getAbsentDetail]="getAbsentDetail" [currentTime]="todayTime"></app-employee-checkin-checkout>
+            {{item.addeddate}}
+          </td>
           <td class="wid-75px">{{item.status}}
             <span class="edit-delete-icon user-icon">
               <span class="fas fa-list-alt" (click)="dailyReport(i, item)"></span>

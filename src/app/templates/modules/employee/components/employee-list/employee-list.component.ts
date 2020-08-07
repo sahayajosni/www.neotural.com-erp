@@ -3,6 +3,7 @@ import {
   OnInit,
   ViewChild,
   Input,
+  Inject,Optional,
   OnDestroy
 } from "@angular/core";
 
@@ -17,6 +18,9 @@ import { EmployeeAddComponent } from "../employee-add/employee-add.component";
 import { CommonService } from "../../../../../core/common/_services/common.service";
 import {formatDate } from '@angular/common';
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as _ from 'lodash';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: "app-employee-list",
@@ -41,6 +45,11 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   isSortIdAsc: boolean = true;
   isSortNameDesc: boolean = false;
   isSortNameAsc: boolean = true;
+
+  model:any = {};
+  imageError: string;
+  isImageSaved: boolean;
+  cardImageBase64: string;
   
   constructor(
     private employeeService: EmployeeService,
@@ -50,8 +59,12 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     //private config: MatSnackBarConfig,
     private dialog: MatDialog,
     public commonService: CommonService,
-    public router: Router
+    public router: Router,
+    config: NgbModalConfig, private modalService: NgbModal,
+    private _sanitizer: DomSanitizer,
   ) {
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
 
   ngOnInit() { 
@@ -62,7 +75,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   printPage(data) {
     this.printDialogService.openDialog(data);
   }
-enable: boolean;
+
+  enable: boolean;
   allemplist() {
     this.employeeService.load().subscribe(
       data => { 
@@ -74,14 +88,13 @@ enable: boolean;
           this.enable = false;
           setTimeout(() => {
             this.snackBar.open("Employee data is empty", "dismiss", {
-              duration: 300000, // 5 mints
+              duration: undefined,
               panelClass: ["warning"],
               verticalPosition: "top",
               horizontalPosition: 'center'
             });
           });
         }
-       // alert(this.employeesDS.length);
         console.log(this.employeesDS);
       },
       error => {
@@ -172,10 +185,20 @@ enable: boolean;
   }
 
   addEmployee() {
+    const modalRef = this.modalService.open(EmployeeAddComponent, { windowClass: 'employee-class'});
+
+    let data: any;
+    modalRef.componentInstance.passedData= data;
+    modalRef.result.then((result) => {
+      this.allemplist();
+    }, (reason) => {
+      this.allemplist();
+    }); 
+
     if(this.snackBar.open) {
       this.snackBar.dismiss();
     }
-     let data = {};
+    /* let data = {};
     this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.position = {
@@ -189,7 +212,7 @@ enable: boolean;
       data: data,
       disableClose: true,
      // hasBackdrop: true
-    })
+    }) */
     //.afterClosed().subscribe(result => {
     //  this.allemplist();
    // });
@@ -282,4 +305,9 @@ enable: boolean;
   enableAbsentIcon(value: boolean, index: number) {
     this.isAbsentMouseover[index] = value;
   }
+
+  getImage(imgData) {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
+  }
+
 }

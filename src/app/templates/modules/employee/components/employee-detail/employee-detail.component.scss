@@ -69,7 +69,14 @@ h5{
     font-size: 13px;
     height: 170px; margin-top: 10px; text-align: left;
 }
-
+.daily-text-area-style{
+    background-color: #17252F;
+    color: #fff;
+    border: 1px solid #334F5F;
+    border-radius: 0px;
+    font-size: 13px;
+    height: 60px; margin-top: 10px; text-align: left;
+}
 ::ng-deep .mat-datepicker-popup { 
     /* Do you changes here */
     top:290px !important;
@@ -122,4 +129,58 @@ h5{
         }
     }
 
+}
+
+#editinput{
+    background: #1c313e;
+    width: 100%;
+    height: 30px;
+    border: 1px solid #2C4655 !important;
+    color: white;
+}
+#editinput1{
+    background: #1c313e;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+    border: 1px solid #2C4655 !important;
+    color: white;
+}
+
+.fa-check{
+    margin-top: 10px;
+    float: left;
+    cursor: pointer;
+}
+
+.fa-times{
+    margin-top: 10px;
+    float: right;
+    cursor: pointer;
+}   
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
+}
+
+.edit-delete-icon {
+    height: 20px;
+    top: 0px;
+    margin-top: -18px;
+}
+.fa-times {
+    float: right;
+    cursor: pointer;
+    margin-left: 15px;
+}
+.fa-check {
+    float: left;
+    cursor: pointer;
 }
