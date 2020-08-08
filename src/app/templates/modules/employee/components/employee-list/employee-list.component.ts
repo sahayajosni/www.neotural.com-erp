@@ -21,6 +21,7 @@ import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: "app-employee-list",
@@ -62,14 +63,15 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     public router: Router,
     config: NgbModalConfig, private modalService: NgbModal,
     private _sanitizer: DomSanitizer,
+    private SpinnerService: NgxSpinnerService,
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
   }
 
   ngOnInit() { 
+    this.SpinnerService.show();  
     this.allemplist();
-    //this.removeScrollBar();
   }
 
   printPage(data) {
@@ -81,9 +83,9 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.employeeService.load().subscribe(
       data => { 
         this.employeesDS = data;
+        this.SpinnerService.hide();
         if(this.employeesDS.length > 0) {
           this.enable = true;
-
         } else {
           this.enable = false;
           setTimeout(() => {
@@ -98,6 +100,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
         console.log(this.employeesDS);
       },
       error => {
+        this.SpinnerService.hide();
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",

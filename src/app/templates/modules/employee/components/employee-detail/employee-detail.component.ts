@@ -12,6 +12,7 @@ import { CommonService } from "../../../../../core/common/_services/common.servi
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Employee } from 'src/app/core/common/_models';
 
 @Component({
@@ -35,9 +36,11 @@ export class EmployeeDetailComponent implements OnInit {
     private _sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private SpinnerService: NgxSpinnerService,
   ) {}
 
   ngOnInit() {
+    this.SpinnerService.show();
     this.activatedRoute.params.subscribe(params => {
       this.viewEmployee(params.id);
     });
@@ -53,6 +56,7 @@ export class EmployeeDetailComponent implements OnInit {
   }
 
   viewEmployee(empCode: string) {
+    this.SpinnerService.hide();
     this.employeeService.getEmployeeDetail(empCode).subscribe((res: any) => {
       if (res.length > 0) {
         this.employeeDet = res[0];
