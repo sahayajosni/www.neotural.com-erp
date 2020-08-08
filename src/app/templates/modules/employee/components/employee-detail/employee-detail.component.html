@@ -157,7 +157,7 @@
 
 <div class="container-fluid" *ngIf="employeeDet !== undefined">
   <div class="row back-colr">
-  <div class="container">
+  <div class="container-fluid"> 
   <div> <a [routerLink]= "['/employment']" style="color: #fff;"><i class="fas fa-chevron-left left-arrow"></i></a><h3 style="float:left;"> {{employeeDet.name}}</h3> 
   <!--<button style="float:right;" class="button button5"> Add Purchase Order</button>-->
  <div style="float: right;">
@@ -168,7 +168,7 @@
 <img src="assets/images/delete.PNG" class="img-fluid logo" alt="Delete" style="cursor: pointer;" (click)="removeEmp(employeeDet.employeecode)" />
     </div>
   </div>
-  
+  </div>
   <div class="col-md-12 col-xs-12 col-sm-12" style="clear:both;position: relative;
   top: 10px;">
   <div class="col-md-3 col-xs-12 col-sm-3 side-wapper">
@@ -385,7 +385,7 @@
   </div>
   </div>
     
-</div>
+<!-- </div> -->
     </div>
   </div>
 
