@@ -21,6 +21,10 @@ import { CustomerService } from "../../services/customer.service";
 import { Customer, Vendor } from "src/app/core/common/_models";
 import { PrintDialogService } from "src/app/core/services/print-dialog/print-dialog.service";
 import {MatDialog, MatDialogConfig} from "@angular/material";
+import * as _ from 'lodash';
+import { DomSanitizer } from '@angular/platform-browser';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: "app-customer",
@@ -57,18 +61,31 @@ export class CustomerComponent implements OnInit {
   customer: Customer;
   button:string;
 
+  imageError:string;
+  isImageSaved:boolean;
+  cardImageBase64: string;
+  model: any = {};
+  btnname:string;
+  name:string;
+  public div1 = false;
+  dialogTxt:string;
+
   constructor(
     private vendorService: VendorService,
     private customerService: CustomerService,
     private snackBar: MatSnackBar,
     private printDialogService: PrintDialogService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private _sanitizer: DomSanitizer,
+    config: NgbModalConfig, private modalService: NgbModal,
+    private SpinnerService: NgxSpinnerService,
+  ) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   ngOnInit() {
-    // this.getAllVendorDetails();
-    // this.vendorsDS = this.getAllVendorDetails();
-    //this.vendors = new MatTableDataSource(this.vendorsDS);
+    this.SpinnerService.show(); 
     this.getAllCustomerDetails();
   }
 
@@ -94,15 +111,17 @@ export class CustomerComponent implements OnInit {
     console.log("getAllCustomerDetails");
     this.customerService.load().subscribe(
       (res) => {
+        this.SpinnerService.hide();
         this.customersDS = res;
        // this.customers = new MatTableDataSource(this.customersDS);
        // this.customers.paginator = this.paginator;
       },
       error => {
+        this.SpinnerService.hide();
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top"
@@ -113,9 +132,30 @@ export class CustomerComponent implements OnInit {
     );
   }
 
-  addCustomer(id:string,custcode:string,customerName:string,country:string,
-    address:string,email:string,city:string,phoneNumber:string,customerbase64:string) {
-    let data: any;
+  addCustomer(id:string,custcode:string,customerName:string,country:string,address:string,
+    email:string,city:string,phoneNumber:string,customerbase64:string){
+
+    const modalRef = this.modalService.open(CustomerAddComponent, { windowClass: 'vendor-class'});
+   
+    if (id !== null) {
+      this.button = "Update";
+    } else {
+      this.button = "Add";
+    }
+    let data = { dialogText: this.button, id: id, custcode: custcode, 
+      customerName: customerName, country: country, email: email, address: address,
+      city: city, phoneNumber: phoneNumber, customerbase64: customerbase64 }
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then((result) => {
+      this.getAllCustomerDetails();
+    }, (reason) => {
+      this.getAllCustomerDetails();
+    }); 
+
+
+   
+    /* let data: any;
     if (id !== null) {
       this.button = "Update";
     } else {
@@ -142,8 +182,42 @@ export class CustomerComponent implements OnInit {
     });                
     dialogRef.afterClosed().subscribe(result => {
       this.getAllCustomerDetails();
-    });
+    }); */
    
+  }
+
+  getImage(imgData) {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
+  }
+
+  emptyFields() {
+    this.model.customerName = '';
+    this.model.address = '';
+    this.model.phoneNumber = '';
+    this.model.mobileNumber = '';
+    this.model.email = '';
+    this.model.country = '';
+    this.model.city = '';
+  }
+
+
+  editCustomer(id:string,custcode:string,customerName:string,country:string,address:string,
+    email:string,city:string,phoneNumber:string,customerbase64:string,customer) {
+      this.model.id = id;
+      this.model.custcode = custcode;
+      this.model.customerName = customerName;
+      this.model.country = country;
+      this.model.address = address;
+      this.model.email = email;
+      this.model.city = city;
+      this.model.phoneNumber = phoneNumber;
+      this.model.customerbase64 = customerbase64;
+      this.btnname = "Update";
+      if(this.model.customerbase64!=undefined){
+        this.div1 = true;
+        this.isImageSaved = false;
+      }   
+      this.modalService.open(customer, { windowClass: 'customer-class'});
   }
 
   toggleVendorDetailView(code?, edit?) {
@@ -166,7 +240,7 @@ export class CustomerComponent implements OnInit {
       data => {
         this.customer = data;
         setTimeout(() => {
-          this.snackBar.open("Customer is detleted successfully", "", {
+          this.snackBar.open("Customer is deleted successfully", "", {
             panelClass: ["success"],
             verticalPosition: "top"
           });

@@ -1,3 +1,5 @@
+@import "_base";
+
 .vendor-details-container,
 .vendor-details-container div {
     box-sizing: border-box;
@@ -10,6 +12,7 @@
     display: flex;
     padding: 20px;
     padding-left: 30px;
+    background: #15222b;
 
     & a.close {
             border-radius: 50%;
@@ -33,6 +36,7 @@
     box-shadow: 0 0 12px #0c141a !important;
     font-size: 12px;
     color: #fcfdfe;
+    background: #15222b;
     flex-basis: auto
 
     span{
@@ -129,7 +133,7 @@
     box-shadow: 0 0 12px #0c141a !important;
     padding: 20px;
     color: #fff;
-    
+    background: #15222b;
 
     .vendor-category-header {
         position: relative;
@@ -376,4 +380,29 @@
     margin-top: 10px;
     float: right;
     cursor: pointer;
+}
+
+
+.create-button {
+    float: right;
+    color: $white;
+    background: $btn-bg;
+    border: 1px solid $btn-bg;
+    margin-right: 10px;
+    font-family: $font-family;
+    border-radius: $btn-border-radius;
+    padding: $btn-padding;
+    font-style: normal;
+    font-size: $table-font-size;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
 }

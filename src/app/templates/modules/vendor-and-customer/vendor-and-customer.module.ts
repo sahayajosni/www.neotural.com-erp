@@ -15,6 +15,11 @@ import { VendorService } from "./services/vendor.service";
 import { VendorDetailsService } from "./services/vendorDetails.service";
 import { MAT_TABS_CONFIG } from "@angular/material";
 import { VendorDetailsComponent } from './components/vendor-details/vendor-details.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from "ngx-bootstrap";
+
+import { AddnewproductComponent } from "./components/addnewproduct/addnewproduct.component";
+
 
 @NgModule({
   declarations: [
@@ -23,13 +28,16 @@ import { VendorDetailsComponent } from './components/vendor-details/vendor-detai
     VendorAndCustomerDetailComponent,
     CustomerComponent,
     CustomerAddComponent,
-    VendorDetailsComponent
+    VendorDetailsComponent,
+    AddnewproductComponent
   ],
   imports: [
     CommonModule,
     VendorAndCustomerRoutingModule,
     CoreModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    NgbModule,
+    ModalModule.forRoot(),
   ],
   providers: [
     CustomerService,

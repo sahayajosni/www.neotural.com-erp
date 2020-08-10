@@ -14,7 +14,7 @@ th {
 }
 th, td {
   text-align: left;
-  padding: 8px;
+  padding: 10px;
 }
 thead {
   background-color: $table-header-bg;
@@ -125,7 +125,14 @@ input[type=checkbox]:checked:before{
   cursor: pointer;
   margin-left: 30px;
 }
-
+button:active {
+  background-color: $btn-bg;
+}
+.customerlogo{
+  width: 35px;
+  height: 30px;
+  border-radius: 50%;
+}
 // iPhone media query start
 
 // iPhone 6, 7, & 8 in portrait & landscape

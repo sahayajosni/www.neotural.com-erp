@@ -9,7 +9,7 @@
         <div class="col-8">
           <div style="float: right;">
             <button  class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;"
-              (click)="addCustomer(null,null,null,null,null,null,null,null)">
+              (click)="addCustomer(null,null,null,null,null,null,null,null,null)">
               <span class="fas fa-plus"></span> Add New Customer 
             </button>
             <img src="assets/images/print.png" style="margin-right: 10px;" class="img-fluid logo" alt="print"/>
@@ -23,36 +23,38 @@
           <table class="table">
             <thead>
               <tr>
-                <th>
-                  <!-- <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input1" id="customChecks2">
-                    <label class="custom-control-label1" for="customCheck2"></label>
-                  </div> -->
-                </th>
+                <th> </th>
                 <th style="cursor:pointer;">ID #</th>
                 <th style="cursor:pointer;">Name</th>
+                <th style="width: 8%;">Email</th>
+                <th class="txt-right">Phone Number</th>
+                <th></th>
                 <th style="cursor:pointer;">Country</th>
-                <th>Email</th>
                 <th>Address</th>
                 <th>City</th>
-                <th class="txt-right">Phone Number</th>
               </tr>
             </thead>
             <tbody *ngFor="let item of customersDS; let i = index"
               id="purchase-order-row-id{{i}}"> 
               <tr>
                 <td>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input1">
-                  </div>
+                  <div *ngIf="item.customerbase64; else customerNoImage"> 
+                    <img [src]="getImage(item.customerbase64)" onerror="this.src='/assets/images/no-image.png'" 
+                    class="customerlogo" />
+                   </div> 
+                  
+                  <ng-template #customerNoImage>
+                    <img  [src]="'/assets/images/no-image.png'" class="customerlogo" />
+                  </ng-template> 
                 </td>
                 <td>{{item.custcode}}</td>
                 <td>{{item.customerName}}</td>
+                <td style="width: 8%;">{{item.email}}</td>
+                <td class="txt-right">{{item.phoneNumber}}</td>
+                <td></td>
                 <td>{{item.country}}</td>
-                <td>{{item.email}}</td>
                 <td>{{item.address}}</td>
-                <td>{{item.city}}</td>
-                <td class="txt-right">{{item.phoneNumber}}
+                <td>{{item.city}}
                   <span class="edit-delete-icon user-icon">
                     <span class="fas fa-trash" (click)="deleteVendorCustomer(item.custcode)"></span>
                     <span class="fas fa-pen mar-let-40px" (click)="addCustomer(item.id,item.custcode,item.customerName,

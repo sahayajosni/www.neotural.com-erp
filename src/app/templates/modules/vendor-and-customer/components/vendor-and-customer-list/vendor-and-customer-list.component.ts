@@ -21,7 +21,10 @@ import { Customer, Vendor } from "src/app/core/common/_models";
 import { PrintDialogService } from "src/app/core/services/print-dialog/print-dialog.service";
 import { VendorDetailsComponent } from './../vendor-details/vendor-details.component';
 import { CustomerAddComponent } from './../customer-add/customer-add.component';
-
+import * as _ from 'lodash';
+import { DomSanitizer } from '@angular/platform-browser';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-vendor-and-customer-list",
@@ -78,18 +81,33 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
   isSortCodeAsc: boolean = true;
   enable: boolean;
 
+  imageError:string;
+  isImageSaved:boolean;
+  cardImageBase64: string;
+  model: any = {};
+  btnname:string;
+  name:string;
+  public div1 = false;
+  dialogTxt:string;
+
   constructor(
     private vendorService: VendorService,
     private customerService: CustomerService,
     private snackBar: MatSnackBar,
     private printDialogService: PrintDialogService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private _sanitizer: DomSanitizer,
+    private SpinnerService: NgxSpinnerService,
+    config: NgbModalConfig, private modalService: NgbModal,
+
+  ) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   ngOnInit() {
-     this.getAllVendorDetails();
-   //  this.removeScrollBar();
-    // this.goToVendorDetails(null);
+    this.SpinnerService.show();  
+    this.getAllVendorDetails();
   }
  
   ngOnDestroy() {
@@ -113,13 +131,14 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
     this.vendorService.load().subscribe(
       (data: Vendor[]) => {
         this.vendorsDS = data;
+        this.SpinnerService.hide();
         if(this.vendorsDS.length > 0) {
           this.enable = true;
         } else {
           this.enable = false;
           setTimeout(() => {
-            this.snackBar.open("Vendor data is empty", "dismiss", {
-              duration: 300000, // 5 mints
+            this.snackBar.open("Vendor data is empty", "", {
+              duration: undefined, // 5 mints
               panelClass: ["warning"],
               verticalPosition: "top",
               horizontalPosition: 'center'
@@ -130,10 +149,11 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
         this.vendors.paginator = this.paginator;
       },
       error => {
+        this.SpinnerService.hide();
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
-            "dismiss",
+            "",
             {
               panelClass: ["error"],
               verticalPosition: "top"
@@ -169,8 +189,21 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
     });
   }
 
-  addVendor(){
-    if(this.snackBar.open) {
+  addVendor(vendor){
+    this.btnname = "Add";
+
+    const modalRef = this.modalService.open(CustomerAddComponent, { windowClass: 'vendor-class'});
+
+    let data = { key: 'vendor' }
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then((result) => {
+      this.getAllVendorDetails();
+    }, (reason) => {
+      this.getAllVendorDetails();
+    }); 
+
+    /* if(this.snackBar.open) {
       this.snackBar.dismiss();
     }
     let data = {key:"vendor"};
@@ -188,10 +221,102 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
     })
     .afterClosed().subscribe(result => {
       this.ngOnInit();
-    });
+    }); */
   }
 
-  
+  getImage(imgData) {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
+  }
+
+  fileChangeEvent(fileInput: any) {
+    this.imageError = null;
+    if (fileInput.target.files && fileInput.target.files[0]) {
+        // Size Filter Bytes
+        const max_size = 20971520;
+        const allowed_types = ['image/png', 'image/jpeg'];
+        const max_height = 15200;
+        const max_width = 25600;
+
+        if (fileInput.target.files[0].size > max_size) {
+          this.imageError =
+              'Maximum size allowed is ' + max_size / 1000 + 'Mb';
+          return false;
+        }
+
+        if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
+          this.imageError = 'Only Images are allowed ( JPG | PNG )';
+          return false;
+        }
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          const image = new Image();
+          image.src = e.target.result;
+          image.onload = rs => {
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+          console.log(img_height, img_width);
+          if (img_height > max_height && img_width > max_width) {
+            this.imageError =
+                'Maximum dimentions allowed ' +
+                max_height +
+                '*' +
+                max_width +
+                'px';
+            return false;
+          } else {
+            const imgBase64Path = e.target.result;
+            this.cardImageBase64 = imgBase64Path;
+            if(this.cardImageBase64!=null){
+              console.log("no value...");
+            }
+            this.isImageSaved = true;
+          }
+        };
+      };
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
+  }
+
+  removeImage() {
+    this.cardImageBase64 = null;
+    this.isImageSaved = false;
+  }
+
+  save(){
+    this.model.vendorbase64 = this.cardImageBase64;
+    this.vendorService.save(this.model)
+    .subscribe(
+      data => {
+        setTimeout(() => {
+          this.snackBar.open("Vendor created Successfully", "", {
+            panelClass: ["success"],
+            verticalPosition: 'top'      
+          });
+        });
+        this.modalService.dismissAll();
+        this.getAllVendorDetails();
+      },
+      error => {
+        setTimeout(() => {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
+            panelClass: ["error"],
+            verticalPosition: 'top'      
+          });
+        });  
+      }
+    );
+  }
+
+  emptyFields() {
+    this.model.vendorName = '';
+    this.model.address = '';
+    this.model.phoneNumber = '';
+    this.model.mobileNumber = '';
+    this.model.email = '';
+    this.model.country = '';
+    this.model.city = '';
+  }
+
   removeVendor(vendorcode:string){
     console.log("Remove Vendor......");
     this.vendorService.remove(vendorcode)
@@ -207,7 +332,7 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });

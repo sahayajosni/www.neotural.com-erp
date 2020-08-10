@@ -2,10 +2,13 @@ import { CustomerService } from "../../services/customer.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Component, OnInit,Inject,Optional } from '@angular/core';
+import { Component, OnInit,Inject,Optional,Input } from '@angular/core';
 import { VendorService } from '../../services/vendor.service';
 import * as _ from 'lodash';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup } from '@angular/forms';
 
 export interface UsersData{
   key:string;
@@ -40,6 +43,7 @@ export class CustomerAddComponent implements OnInit {
   showTasksOf:string;
   public div1 = false;
   dialogTxt:string;
+  @Input() fromParent: UsersData;
 
   constructor( 
     @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData,
@@ -47,29 +51,30 @@ export class CustomerAddComponent implements OnInit {
     private vendorService: VendorService, 
     private snackBar: MatSnackBar,
     private _sanitizer: DomSanitizer,
-    private dialogRef: MatDialogRef<CustomerAddComponent>
+    public activeModal: NgbActiveModal,
+    private modalService: NgbModal,
+    //private dialogRef: MatDialogRef<CustomerAddComponent>
     ) { 
-      this.local_data = {...data};
-      this.key = this.local_data.key;
-      if(this.key!=null){
-        console.log("Vendor Register");
-        this.type=true; // vendor
-        this.labelname="Vendor Name";
-        this.showTasksOf="vendor";
-        this.btnname = "Add";
-      }else {
-        console.log("Customer Register");
-        this.type=false; // customer
-        this.labelname="Customer Name";
-        this.name="customerName";
-        this.showTasksOf="customer";
-      }
-
+      
     }
 
   ngOnInit() {
-    this.emptyFields();
-    this.editCustomer(this.data);
+    //this.local_data = {...data};
+    this.key = this.fromParent.key;
+    if(this.key!=null){
+      console.log("Vendor Register");
+      this.type=true; // vendor
+      this.labelname="Vendor Name";
+      this.showTasksOf="vendor";
+      this.btnname = "Add";
+    }else {
+      console.log("Customer Register");
+      this.type=false; // customer
+      this.labelname="Customer Name";
+      this.name="customerName";
+      this.showTasksOf="customer";
+    }
+    this.editCustomer(this.fromParent);
   }
 
   editCustomer(data: any){
@@ -159,18 +164,16 @@ export class CustomerAddComponent implements OnInit {
       this.vendorService.save(this.model)
       .subscribe(
         data => {
-          setTimeout(() => {
-            this.snackBar.open("Vendor created Successfully", "", {
-              panelClass: ["success"],
-              verticalPosition: 'top'      
-            });
+          this.snackBar.open("Success! Register Vendor", "", {
+            panelClass: ["success"],
+            verticalPosition: 'top',
+            duration: undefined    
           });
-          this.dialogClose();
-          this.vendorService.load();
+          this.modalService.dismissAll();
         },
         error => {
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -180,25 +183,26 @@ export class CustomerAddComponent implements OnInit {
     }else if(labelname == "Customer Name"){
       this.model.customerbase64 = this.cardImageBase64;
       if(this.model.id !== null){
-        this.dialogTxt = "Updated";  
+        this.dialogTxt = "Updated"; 
+        if(this.cardImageBase64 != null){
+          this.model.customerbase64 = this.cardImageBase64;
+        } 
       }else {
         this.dialogTxt = "Added";  
       }
       this.customerService.save(this.model)
       .subscribe(
         data => {
-          setTimeout(() => {
-            this.snackBar.open("Customer " +this.dialogTxt+ " Successfully", "", {
-              panelClass: ["success"],
-              verticalPosition: 'top'      
-            });
+          this.snackBar.open("Success! "+this.dialogTxt+" Customer", "", {
+            panelClass: ["success"],
+            verticalPosition: 'top',
+            duration: undefined    
           });
-          this.dialogClose();
-          this.customerService.load();
+          this.modalService.dismissAll();
         },
         error => {
           setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
               panelClass: ["error"],
               verticalPosition: 'top'      
             });
@@ -208,18 +212,15 @@ export class CustomerAddComponent implements OnInit {
     }
   }
 
-  dialogClose() {
-    this.dialogRef.close();
-  }
-
-  emptyFields() {
-    this.model.customerName = '';
+  resetRegistrationForm(form: FormGroup) {
+    form.reset();
+    /* this.model.customerName = '';
     this.model.vendorName = '';
     this.model.address = '';
     this.model.phoneNumber = '';
     this.model.mobileNumber = '';
     this.model.email = '';
     this.model.country = '';
-    this.model.city = '';
+    this.model.city = ''; */
   }
 }

@@ -1,11 +1,12 @@
-import { Component, Inject, ElementRef, OnInit, HostListener, ViewChild } from '@angular/core';
+import { Component, Inject, ElementRef, OnInit, HostListener, ViewChild, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA  } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatSnackBar } from "@angular/material/snack-bar";
 
-
+import { AddnewproductComponent } from './../addnewproduct/addnewproduct.component';
 import { VendorDetailsService } from './../../services/vendorDetails.service';
 import { Vendor } from 'src/app/core/common/_models';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-vendor-details',
@@ -30,6 +31,8 @@ export class VendorDetailsComponent implements OnInit {
   isAddCategory = false;
   newCateogry = "";
   vendor:Vendor = new Vendor;
+  prodheaderlabel:any;
+  prodbtnlabel:any;
 
   @HostListener('document:click', ['$event']) closeNaviOnOutClick(event) {
 
@@ -48,12 +51,16 @@ export class VendorDetailsComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<VendorDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data,
     private _sanitizer: DomSanitizer,
     private vendorDetailsService:VendorDetailsService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    config: NgbModalConfig, private modalService: NgbModal,
 
-    ) { }
+    ) {
+      config.backdrop = 'static';
+      config.keyboard = false;
+    }
 
   ngOnInit() {
     console.log("Data e-->"+this.data);
@@ -188,7 +195,7 @@ export class VendorDetailsComponent implements OnInit {
           setTimeout(() => {
             this.snackBar.open(
               "Category added Successfully",
-              "dismss",
+              "",
               {
                 panelClass: ["success"],
                 verticalPosition: "top",
@@ -202,7 +209,7 @@ export class VendorDetailsComponent implements OnInit {
           setTimeout(() => {
             this.snackBar.open(
               "Network error: server is temporarily unavailable",
-              "dismss",
+              "",
               {
                 panelClass: ["error"],
                 verticalPosition: "top",
@@ -231,7 +238,7 @@ export class VendorDetailsComponent implements OnInit {
 			},
 			error => {
 				setTimeout(() => {
-					this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+					this.snackBar.open("Network error: server is temporarily unavailable", "", {
 						panelClass: ["error"],
 						verticalPosition: 'top'      
 					});
@@ -258,7 +265,7 @@ export class VendorDetailsComponent implements OnInit {
       },
       error => {
         setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "dismss", {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
             panelClass: ["error"],
             verticalPosition: 'top'      
           });
@@ -266,4 +273,20 @@ export class VendorDetailsComponent implements OnInit {
       }
     );
   }
+
+  addProduct(vendata: any){
+
+    this.prodheaderlabel = "Add New Product";
+    this.prodbtnlabel = "Add";
+    let data = { prodheaderlabel: this.prodheaderlabel, prodbtnlabel: this.prodbtnlabel,vendorcode: vendata.vendorcode, vendorName: vendata.vendorName }
+    
+    const modalRef = this.modalService.open(AddnewproductComponent, { windowClass: 'addproduct-class'});
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then((result) => {
+      this.ngOnInit();
+    }, (reason) => {
+      this.ngOnInit();
+    }); 
+  }
+
 }

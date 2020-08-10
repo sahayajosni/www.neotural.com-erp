@@ -3,7 +3,17 @@
     <div class="vendor-selected" >
         <div class="org-header">
             <div>
-                <img [src]="data.vendorbase64" onerror="this.src='/assets/images/no-image.png'" />
+                <!-- <img [src]="data.vendorbase64" onerror="this.src='/assets/images/no-image.png'" /> -->
+
+                
+            <div *ngIf="data.vendorbase64; else vendorNoImage">
+                <img  [src]="data.vendorbase64" onerror="this.src='/assets/images/no-image.png'" />
+              </div>
+              
+              <ng-template #vendorNoImage>
+                <img  [src]="'/assets/images/no-image.png'" />
+              </ng-template>
+
             </div>
             <div>
                 <h2 *ngIf="!data.editable">{{data.vendorName}}</h2>
@@ -76,7 +86,8 @@
         </div>
         <div class="org-footer" *ngIf="data.editable">
             <div class="row">
-                <div class="col-6">
+                <div class="col-4"></div>
+                <div class="col-4">
                     <div class="fas fa-check" (click)="update(data)"></div>
                     <div class="fas fa-times" (click)="cancelVendor(data)"></div>
                 </div>
@@ -86,25 +97,36 @@
     </div>
     <div class="vendor-categories">
         <div class="vendor-category-header">
-            <div class="drop-down" #dropDwn>
-                <h2>{{selectedCategory}}</h2>
-                <a class="drop-down-arrow" (click)="categoyDropDownHandler(); false;">&#9660;</a>
-                <ul [class.show]="dropDownView" *ngIf="categoriesForFilter.length">
-                    <li><a [routerLink]="" (click)="selectCategory({name:'All Categories'})" class="menu-item"> All Categories</a></li>
-                    <li  *ngFor="let category of categoriesForFilter; let i = index"  (mouseenter)="showEditMenu(i)" (mouseleave)="showEditMenu(-1)" >
-                        <a *ngIf="onEdit !== i"  [routerLink]="" (click)="selectCategory(category)" class="menu-item">{{category.name}}</a>
-                        <span [class.show]="i === editIndex" [class.edit]="isLabelEdited" (click)="isLabelEdited ? updateMenu(category) : editMenu(i)" class="menu-edit"></span>
-                        <div *ngIf="onEdit === i"><input class="input" (input)="menuLabelChange($event)" type="text" value="{{category.name}}"></div>
-                    </li>
-                    <li class="addCategory">
-                        <div *ngIf="isAddCategory">
-                            <input type="text" [(ngModel)]="newCateogry">
-                            <span class="menu-add" (click)="addCategory()"></span>
-                        </div>
-                        <a [routerLink]="" (click)="showAddCategory()">+ Add Category</a>
-                    </li>
-                </ul>
-                
+            <div class="row">
+                <div class="col-6">
+                    <div class="drop-down" #dropDwn>
+                        <h2>{{selectedCategory}}</h2>
+                        <a class="drop-down-arrow" (click)="categoyDropDownHandler(); false;">&#9660;</a>
+                        <ul [class.show]="dropDownView" *ngIf="categoriesForFilter.length">
+                            <li><a [routerLink]="" (click)="selectCategory({name:'All Categories'})" class="menu-item"> All Categories</a></li>
+                            <li  *ngFor="let category of categoriesForFilter; let i = index"  (mouseenter)="showEditMenu(i)" (mouseleave)="showEditMenu(-1)" >
+                                <a *ngIf="onEdit !== i"  [routerLink]="" (click)="selectCategory(category)" class="menu-item">{{category.name}}</a>
+                                <span [class.show]="i === editIndex" [class.edit]="isLabelEdited" (click)="isLabelEdited ? updateMenu(category) : editMenu(i)" class="menu-edit"></span>
+                                <div *ngIf="onEdit === i"><input class="input" (input)="menuLabelChange($event)" type="text" value="{{category.name}}"></div>
+                            </li>
+                            <li class="addCategory">
+                                <div *ngIf="isAddCategory">
+                                    <input type="text" [(ngModel)]="newCateogry">
+                                    <span class="menu-add" (click)="addCategory()"></span>
+                                </div>
+                                <a [routerLink]="" (click)="showAddCategory()">+ Add Category</a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div style="float: right;">
+                        <button class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;" (click)="addProduct(data)">
+                        <span class="fas fa-plus"></span> Add Product 
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="vendor-category-content">
@@ -115,9 +137,19 @@
 
             <div class="category-items" >
                 <div class="category-item" *ngFor="let item of allCategoryItems">
-                    <div class="item-image">
-                        <img [src]="getImage(item.productImage)" onerror="this.src='/assets/images/no-image.png'" />
-                    </div>
+                    <div class="item-image" *ngIf="item.productImage; else vendorItemNoImage">
+                        <!-- <img [src]="getImage(item.productImage)" onerror="this.src='/assets/images/no-image.png'" /> -->
+
+                        <!-- <div *ngIf="item.productImage; else vendorItemNoImage"> -->
+                            <img  [src]="getImage(item.productImage)" onerror="this.src='/assets/images/no-image.png'" />
+                          </div>
+                          
+                          <ng-template #vendorItemNoImage>
+                            <img  [src]="'/assets/images/no-image.png'" />
+                          </ng-template>
+
+
+                    <!-- </div> -->
                     <div class="item-content">
                         <div class="info">
                             <div><span>{{item.prodcode}}</span> <span>{{item.categoryname}}</span></div>
