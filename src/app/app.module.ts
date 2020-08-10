@@ -27,10 +27,10 @@ import { NavigationComponent } from "./core/components/navigation/navigation.com
 
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
 import { MomentModule } from 'angular2-moment'; // optional, provides moment-style pipes for date formatting
-import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxSpinnerModule,NgxSpinnerService  } from 'ngx-spinner';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { InputsModule } from '@progress/kendo-angular-inputs';
-import { GridModule } from '@progress/kendo-angular-grid';
+//import { InputsModule } from '@progress/kendo-angular-inputs';
+//import { GridModule } from '@progress/kendo-angular-grid';
 
 
 
@@ -57,12 +57,12 @@ import { GridModule } from '@progress/kendo-angular-grid';
     ModalModule.forRoot(),
     MomentModule,
     NgxSpinnerModule,
-    InputsModule,
-    GridModule,
+    //InputsModule,
+    //GridModule,
     // NgbModal,
     // NgbModalConfig
   ],
-  providers: [AlertService, AuthenticationService, UserService,NgbModalConfig, NgbModal],
+  providers: [AlertService, AuthenticationService, UserService,NgbModalConfig,NgxSpinnerService, NgbModal],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
