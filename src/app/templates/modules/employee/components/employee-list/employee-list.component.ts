@@ -68,11 +68,6 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   ngOnInit() { 
     this.SpinnerService.show();  
     this.allemplist();
-        setTimeout(() => {
-            this.SpinnerService.hide();
-        }, 100);
-
-    //this.removeScrollBar();
   }
 
   printPage(data) {
@@ -83,9 +78,9 @@ enable: boolean;
     this.employeeService.load().subscribe(
       data => { 
         this.employeesDS = data;
+        this.SpinnerService.hide();
         if(this.employeesDS.length > 0) {
           this.enable = true;
-
         } else {
           this.enable = false;
           setTimeout(() => {
@@ -101,6 +96,7 @@ enable: boolean;
         console.log(this.employeesDS);
       },
       error => {
+        this.SpinnerService.hide();
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",

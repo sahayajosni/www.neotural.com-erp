@@ -48,9 +48,7 @@ export class EmployeeDetailComponent implements OnInit {
   }
 
   getImage(imgData) {
-    //if (Array.isArray(imgData)){
-      return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
-    //}    
+    return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
   }
 
   viewEmployee(empCode: string) {
@@ -86,10 +84,6 @@ export class EmployeeDetailComponent implements OnInit {
     console.log('picker', picker)
   }
 
-   toggle(ref){
-    console.log(ref.opened);
-  }
-
   editEmp(employeeDet: any){
     employeeDet.editable = !employeeDet.editable;
   }
@@ -120,6 +114,7 @@ export class EmployeeDetailComponent implements OnInit {
 
   cancelEmp(employeeDet: any){
     employeeDet.editable = false;
+    this.ngOnInit();
   }
 
   removeEmp(employeecode:string) {
@@ -159,6 +154,7 @@ export class EmployeeDetailComponent implements OnInit {
         for (var i = 0; i < this.dailyReportList.length; i++) {
           this.dailyReportList[i].editable = false; 
         }
+        
       },
       error => {
         setTimeout(() => {
