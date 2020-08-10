@@ -12,6 +12,7 @@ import { CommonService } from "../../../../../core/common/_services/common.servi
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Employee } from 'src/app/core/common/_models';
 
 @Component({
@@ -27,18 +28,19 @@ export class EmployeeDetailComponent implements OnInit {
   employee:Employee = new Employee;
   model:any =[];
   dailyReportList:any = {};
-
-  constructor(
+  
+   constructor(
     private employeeService: EmployeeService,
     private snackBar: MatSnackBar,
     public commonService: CommonService,
     private _sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-  ) {
-  }
+    private SpinnerService: NgxSpinnerService,
+  ) {}
 
   ngOnInit() {
+    this.SpinnerService.show();
     this.activatedRoute.params.subscribe(params => {
       this.viewEmployee(params.id);
     });
@@ -48,14 +50,16 @@ export class EmployeeDetailComponent implements OnInit {
   }
 
   getImage(imgData) {
-    return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
+    //if (Array.isArray(imgData)){
+      return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
+    //}    
   }
 
   viewEmployee(empCode: string) {
+    this.SpinnerService.hide();
     this.employeeService.getEmployeeDetail(empCode).subscribe((res: any) => {
       if (res.length > 0) {
         this.employeeDet = res[0];
-        this.employeeDet.editable = false;
         const item = {date:this.commonService.getTodayDate(),type:'M',employeecode: empCode};
         this.employeeService.getAbsentLists(item).subscribe((data: any) => { 
           if (data.length > 0) { 
@@ -73,7 +77,7 @@ export class EmployeeDetailComponent implements OnInit {
       (<HTMLElement>document.querySelector('.mat-calendar')).style.width = '300px';
       (<HTMLElement>document.querySelector('.mat-calendar')).style.height = '0px';
       (<HTMLElement>document.querySelector('.mat-icon-button ')).style.visibility = 'hidden';
-     }, 500); 
+     }, 500);
   }
 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>,picker) {
@@ -140,10 +144,6 @@ export class EmployeeDetailComponent implements OnInit {
     );
   }
 
-  printEmp(){
-    
-  }
-
   getDailyReportLists(employeecode:string,date:string){
     this.model.employeecode = employeecode;
     this.model.date = date;
@@ -154,7 +154,6 @@ export class EmployeeDetailComponent implements OnInit {
         for (var i = 0; i < this.dailyReportList.length; i++) {
           this.dailyReportList[i].editable = false; 
         }
-        
       },
       error => {
         setTimeout(() => {
@@ -172,10 +171,11 @@ export class EmployeeDetailComponent implements OnInit {
 	}
 
 	cancelDailyReport(c:any){
-		c.editable = false;
-	}
-
-	updateDailyReport(id:string,report:number){
+    c.editable = false;
+    this.getDailyReportLists(this.employeeDet.employeecode,this.model.date);
+  }
+  
+  updateDailyReport(id:string,report:number){
 		this.model.id = id;
     this.model.report = report;
     this.employeeService.saveDailyReport(this.model).subscribe((res: any) => {
@@ -196,7 +196,6 @@ export class EmployeeDetailComponent implements OnInit {
         });
       }); 
     });
-	}
-
+  }
+  
 }
-

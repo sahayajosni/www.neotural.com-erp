@@ -155,9 +155,9 @@
   </button>
 </div> -->
 
-<div class="container-fluid" *ngIf="employeeDet !== undefined" id="doNotPrint">
+<div class="container-fluid" *ngIf="employeeDet !== undefined">
   <div class="row back-colr">
-  <div class="container">
+  <div class="container-fluid"> 
   <div> <a [routerLink]= "['/employment']" style="color: #fff;"><i class="fas fa-chevron-left left-arrow"></i></a><h3 style="float:left;"> {{employeeDet.name}}</h3> 
   <!--<button style="float:right;" class="button button5"> Add Purchase Order</button>-->
  <div style="float: right;">
@@ -168,7 +168,7 @@
 <img src="assets/images/delete.PNG" class="img-fluid logo" alt="Delete" style="cursor: pointer;" (click)="removeEmp(employeeDet.employeecode)" />
     </div>
   </div>
-  
+  </div>
   <div class="col-md-12 col-xs-12 col-sm-12" style="clear:both;position: relative;
   top: 10px;">
   <div class="col-md-3 col-xs-12 col-sm-3 side-wapper">
@@ -230,7 +230,7 @@
     <div class="row">
       <div class="col-4"></div>
       <div class="col-4">
-          <div class="fas fa-check" (click)="update(employeeDet)"></div>
+          <div class="fas fa-check" style="float: left;" (click)="update(employeeDet)"></div>
           <div class="fas fa-times" (click)="cancelEmp(employeeDet)"></div>
       </div>
     </div>
@@ -303,12 +303,12 @@
             <textarea class="form-control daily-text-area-style" rows="5" id="comment" [(ngModel)]="dRL.report" #report="ngModel"
               name="report" *ngIf="dRL.editable"></textarea> 
 
-              <div >
+              <div style="margin: 0px 5px 40px 0px;">
                 <img src="assets/images/edit.PNG" style="margin: 10px 0px 0px 20px;cursor: pointer;float: right;" class="img-fluid logo" alt="Edit" *ngIf="!dRL.editable" (click)="editDailyReport(dRL)"/>
 
                 <span class="edit-delete-icon user-icon" *ngIf="dRL.editable">
                   <span class="fas fa-times" (click)="cancelDailyReport(dRL)" ></span>
-                  <span class="fas fa-check" (click)="updateDailyReport(dRL.id,dRL.report)" ></span>
+                  <span class="fas fa-check" style="float: right;" (click)="updateDailyReport(dRL.id,dRL.report)" ></span>
                 </span>
               </div>
           </div>
@@ -385,6 +385,7 @@
   </div>
   </div>
     
-</div>
+<!-- </div> -->
     </div>
   </div>
+

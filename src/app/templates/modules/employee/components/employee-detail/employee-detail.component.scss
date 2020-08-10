@@ -170,22 +170,16 @@ input:-webkit-autofill {
   -webkit-text-fill-color: white !important;
 }
 
-@media print{
-    #doNotPrint{display:none !important;}
-    #printEmpDet{display: block !important;}
-}
-
 .edit-delete-icon {
     height: 20px;
     top: 0px;
     margin-top: -18px;
 }
-.fa-pen,.fa-times {
+.fa-times {
     float: right;
     cursor: pointer;
     margin-left: 15px;
 }
 .fa-check {
-    float: right;
     cursor: pointer;
 }
