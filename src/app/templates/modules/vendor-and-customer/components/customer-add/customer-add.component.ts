@@ -183,10 +183,7 @@ export class CustomerAddComponent implements OnInit {
     }else if(labelname == "Customer Name"){
       this.model.customerbase64 = this.cardImageBase64;
       if(this.model.id !== null){
-        this.dialogTxt = "Updated"; 
-        if(this.cardImageBase64 != null){
-          this.model.customerbase64 = this.cardImageBase64;
-        } 
+        this.dialogTxt = "Updated";  
       }else {
         this.dialogTxt = "Added";  
       }

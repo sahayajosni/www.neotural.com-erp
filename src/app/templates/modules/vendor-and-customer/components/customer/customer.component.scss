@@ -128,6 +128,66 @@ input[type=checkbox]:checked:before{
 button:active {
   background-color: $btn-bg;
 }
+.image-wrap {
+  padding: 10px;
+  //border: solid 1px #e0e0e0;
+  display: inline-block;
+}
+
+.img-space {
+  // border: dashed 1px #d3d3d3;
+  border-radius: 8px;
+  // background-color: #f2f2f2;
+  background-color: $po-order-form-bg;
+  height: auto;
+  width: 85%;
+  padding: 10px;
+  min-height:175px;
+}
+
+.img-space img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  cursor: pointer;
+}
+
+.fileInputProfileWrap {
+  width: 100%;
+  height: auto;
+}
+
+.fileInputProfile {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  opacity: 0;
+}
+.fileInputProfile[disabled] + .img-space{
+  pointer-events: none;
+  cursor: not-allowed!important;
+}
+
+#addproductpic-box {
+  height: 200px;
+  width: 200px;
+  text-align: center;
+  border: none;
+  box-shadow: none;
+}
+#cancelbtn{
+  width: 120px;
+  margin-left: 15px;
+  height: 35px;
+  background: $btn-bg;
+  border: none;
+  border-radius: $btn-border-radius;
+}
+.btn-danger{
+  margin-left: 15px;
+}
 .customerlogo{
   width: 35px;
   height: 30px;
