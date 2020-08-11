@@ -110,19 +110,18 @@ enable: boolean;
       }
     );
   }
-  // onClick()
-  // {
-  //   console.log("onClick");
-  //   this.snackBar.dismiss();
-  // }
+  
+filteredEmployees: any = {};
+private templist: Employee[];
 
-    // @HostListener('document:click', ['$event'])
-    // documentClick(event: MouseEvent) {
-    //     // your click logic
-    //     console.log("onClick");
-    //     this.snackBar.dismiss();
-    // }
-  deleteEmployee(employeecode: string) {
+    onSearchChange(searchValue: string): void {  
+      console.log(searchValue);
+      this.employeesDS = this.employeesDS.filter(employee =>
+      employee.name.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
+     
+    }
+ 
+    deleteEmployee(employeecode: string) {
     this.employeeService.remove(employeecode).subscribe(
       data => {
         this.employee = data;
@@ -412,5 +411,9 @@ enable: boolean;
   getImage(imgData) {
     return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
   }
-
+  
+  
+  // employeeNameSearch(){
+  //   console.log("Employee name search");
+  // }
 }
