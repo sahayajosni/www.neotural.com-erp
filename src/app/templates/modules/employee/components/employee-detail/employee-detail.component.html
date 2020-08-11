@@ -298,6 +298,18 @@
         </div>
         <div class="col-md-6 float-left">
           <div style="font-size: 14px;">{{ this.model.date | date : 'MMMM dd, yyyy' }}</div>
+          <textarea *ngIf="this.dailyReportList.length == 0 && this.model.editable != true" class="form-control daily-text-area-style" rows="5" id="comment" readonly> No Records Found. </textarea> 
+          <textarea class="form-control daily-text-area-style" rows="5" id="comment" [(ngModel)]="model.report" #report="ngModel"
+              name="report" *ngIf="this.dailyReportList.length == 0 && this.model.editable === true"></textarea> 
+          <div style="margin: 0px 5px 40px 0px;" *ngIf="this.dailyReportList.length == 0">
+            <img src="assets/images/edit.PNG" style="margin: 10px 0px 0px 20px;cursor: pointer;float: right;" class="img-fluid logo" alt="Edit" 
+              *ngIf="this.model.editable != true" (click)="editEmptyDailyReport()"/>
+
+            <span class="edit-delete-icon user-icon" *ngIf="this.model.editable === true">
+              <span class="fas fa-times" (click)="cancelEmptyDailyReport()" ></span>
+              <span class="fas fa-check" style="float: right;" (click)="saveDailyReport(this.model.report)" ></span>
+            </span>
+          </div>
           <div *ngFor="let dRL of dailyReportList">
             <textarea *ngIf="!dRL.editable" class="form-control daily-text-area-style" rows="5" id="comment" readonly> {{ dRL.report }} </textarea> 
             <textarea class="form-control daily-text-area-style" rows="5" id="comment" [(ngModel)]="dRL.report" #report="ngModel"

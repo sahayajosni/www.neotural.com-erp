@@ -44,6 +44,7 @@ export class EmployeeDetailComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.viewEmployee(params.id);
     });
+    this.model.report = "";
     // setTimeout(function () {
     //   (<HTMLElement>document.querySelector('#date-picker')).click();
     // }, 500);
@@ -145,6 +146,7 @@ export class EmployeeDetailComponent implements OnInit {
   }
 
   getDailyReportLists(employeecode:string,date:string){
+    this.model.report = "";
     this.model.employeecode = employeecode;
     this.model.date = date;
     this.employeeService.getDailyReportLists(this.model)
@@ -197,5 +199,29 @@ export class EmployeeDetailComponent implements OnInit {
       }); 
     });
   }
+
+  editEmptyDailyReport(){
+		this.model.editable = true;
+	}
+
+	cancelEmptyDailyReport(){
+    this.model.editable = false;
+    this.dailyReportList.length = 0;
+  }
   
+  saveDailyReport(report:any){
+    this.model.employeecode = this.employeeDet.employeecode;
+    this.model.report = report;
+    if (this.model.report !== '') { 
+      this.employeeService.saveDailyReport(this.model).subscribe((res: any) => {
+        this.snackBar.open("Daily Report Updated Successfully", "", {
+          panelClass: ["success"],
+          duration: undefined, 
+          verticalPosition: 'top'      
+        });
+      });
+    }
+  }
+
+
 }
