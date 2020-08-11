@@ -25,6 +25,8 @@ import * as _ from 'lodash';
 })
 export class EmployeeListComponent implements OnInit, OnDestroy {
   employeesDS: any = {};
+  employeesList: any = {};
+
   employees: MatTableDataSource<Employee>;
   employee;
   dialogConfig = new MatDialogConfig();
@@ -78,6 +80,7 @@ enable: boolean;
     this.employeeService.load().subscribe(
       data => { 
         this.employeesDS = data;
+        this.employeesList = this.employeesDS;
         this.SpinnerService.hide();
         if(this.employeesDS.length > 0) {
           this.enable = true;
@@ -114,7 +117,7 @@ enable: boolean;
 
     onSearchChange(searchValue: string): void {  
       console.log(searchValue);
-      this.employeesDS = this.employeesDS.filter(employee =>
+      this.employeesDS = this.employeesList.filter(employee =>
       employee.name.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
      
     }
