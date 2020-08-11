@@ -134,3 +134,21 @@ table tbody tr:hover td span{
   height: 33px;
   border-radius: 50%;
 }
+.search-box{
+  margin-left: 20px;
+}
+input[type=search] {
+  font-family: fontawesome;
+  width: 80%;
+  height: 100%;
+  border: 1px solid $table-header-bg;
+  box-shadow: none;
+  border-radius: 50px;
+  color: $table-row-font-color;
+  padding: 8px 40px 8px 15px;
+  background: $table-header-bg;
+}
+
+.fa-search{
+  margin: 3px 0px 0px 160px;
+}
