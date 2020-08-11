@@ -111,8 +111,6 @@ enable: boolean;
     );
   }
   
-filteredEmployees: any = {};
-private templist: Employee[];
 
     onSearchChange(searchValue: string): void {  
       console.log(searchValue);
