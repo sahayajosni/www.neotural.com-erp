@@ -63,7 +63,6 @@ export class EmployeeReportComponent implements OnInit {
     this.model.employeecode = this.dailyReportItem.employeecode;
     this.model.type = this.getDailyReportDetail === undefined ? 'save': 'update';
     this.model.date = this.commonService.getTodayDate();
-    let msg = '';
     this.isSaveDailyReport = true;
     if (this.model.report !== '') { 
           this.employeeService.saveDailyReport(this.model).subscribe((res: any) => {

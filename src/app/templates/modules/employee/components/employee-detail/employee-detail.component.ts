@@ -177,16 +177,15 @@ export class EmployeeDetailComponent implements OnInit {
     this.getDailyReportLists(this.employeeDet.employeecode,this.model.date);
   }
   
-  updateDailyReport(id:string,report:number){
-		this.model.id = id;
+  updateDailyReport(employeecode:string,date:string,report:string){
+    this.model.employeecode = employeecode;
     this.model.report = report;
+    this.model.date = date;
     this.employeeService.saveDailyReport(this.model).subscribe((res: any) => {
-      setTimeout(() => {
-        this.snackBar.open("Daily Report Updated Successfully", "", {
-          panelClass: ["success"],
-          duration: undefined, 
-          verticalPosition: 'top'      
-        });
+      this.snackBar.open("Daily Report Updated Successfully", "", {
+        panelClass: ["success"],
+        duration: undefined, 
+        verticalPosition: 'top'      
       });
       this.ngOnInit();
     },
