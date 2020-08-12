@@ -6,6 +6,7 @@ export const API_ENDPOINTS = {
   remove: `/employee/remove?employeecode={param}`,
   SAVE_DAILY_REPORT: `employee/saveDailyReport`,
   DAILY_REPORT_LISTS: `/employee/loadDailyReport`,
+  TODAY_REPORT_LISTS: `/employee/loadTodayReport`,
   UPDATE_DAILY_REPORT: `employee/updateDailyReport`, 
   SAVE_EMPLOYEE_ABSENT: `employee/saveAbsent`,
   UPDATE_EMPLOYEE_ABSENT: `employee/updateAbsent`,
