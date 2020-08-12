@@ -27,6 +27,9 @@ export class UnitsComponent implements OnInit {
   dialogConfig = new MatDialogConfig();
   enable: boolean;
 
+  filterunitList: any = {};
+
+
   ngOnInit() {
     this.model.rowId = "RowId";
     this.loadUnits();
@@ -38,6 +41,7 @@ export class UnitsComponent implements OnInit {
      .subscribe(
        data => {
          this.unitlist = data;
+         this.filterunitList = this.unitlist;
          if(this.unitlist.length > 0) {
           this.enable = true;
         } else {
@@ -138,4 +142,10 @@ export class UnitsComponent implements OnInit {
     }); 
     //this.router.navigate(["category-and-product/addunits"]);
   }
+
+  onSearchChange(searchValue: string): void {  
+    this.unitlist = this.filterunitList.filter(unit =>
+    unit.unitname.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
+  }
+
 }

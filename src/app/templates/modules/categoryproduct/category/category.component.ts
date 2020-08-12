@@ -12,6 +12,8 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   // providers: [NgbModalConfig, NgbModal]
 })
 export class CategoryComponent implements OnInit {
+  filtercategoryList: any = {};
+
   constructor(private router: Router,
     private dialog: MatDialog,
     private catprodservice: CategoryproductService,
@@ -36,6 +38,7 @@ export class CategoryComponent implements OnInit {
      .subscribe(
        data => {
           this.categorylist = data;
+          this.filtercategoryList = this.categorylist;
           if(this.categorylist.length > 0){
             this.enable = true;
           }else{
@@ -113,6 +116,11 @@ export class CategoryComponent implements OnInit {
         }); 
       }
     );
+  }
+
+  onSearchChange(searchValue: string): void {  
+    this.categorylist = this.filtercategoryList.filter(category =>
+      category.name.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
   }
 
 }
