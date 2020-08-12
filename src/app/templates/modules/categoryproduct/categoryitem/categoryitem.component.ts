@@ -1402,6 +1402,9 @@ export class CategoryItemComponent implements OnInit {
   public productTable = false;
   inputproductcode:string;
 
+  productfilterList: any = {};
+
+
   // All Product
   displayedColumns: string[] = [
     'productname',
@@ -1554,6 +1557,7 @@ export class CategoryItemComponent implements OnInit {
     .subscribe(
       data => {
         this.allproductlist = data;
+        this.productfilterList = this.allproductlist;
         this.loadinggif=false;
         this.productTable = true;
         console.log("Product length -->"+this.allproductlist.length);
@@ -2029,6 +2033,11 @@ productlist(number: string){
         });      
       }
     ); 
+  }
+
+  onSearchChange(searchValue: string): void {  
+    this.allproductlist = this.productfilterList.filter(product =>
+    product.productname.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
   }
 
 }
