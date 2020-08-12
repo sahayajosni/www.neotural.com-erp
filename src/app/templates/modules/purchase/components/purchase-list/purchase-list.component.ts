@@ -44,6 +44,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
 
   public purchaseTable = false;
   poreturnList: any = {};
+  purchaseList: any = {};
 
   constructor(
     private purchaseService: PurchaseService,
@@ -133,6 +134,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
     this.purchaseService.getPurchaseOrderLists().subscribe(
       (res: []) => {
         this.purchaseOrderList = res;
+        this.purchaseList = this.purchaseOrderList;
         if(this.purchaseOrderList.length == 0){
           this.purchaseTable = false;
         }else{
@@ -483,4 +485,10 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
      this.checkedInfo.target.checked = false;
      this.isAddPurchaseOrder = true;
   }
+
+  onSearchChange(searchValue: string): void {  
+    this.purchaseOrderList = this.purchaseList.filter(purchase =>
+    purchase.vendorname.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
+  }
+
 }
