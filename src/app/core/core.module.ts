@@ -15,6 +15,7 @@ import { HideInPrintDirective } from "./directives/hide-in-print/hide-in-print.d
 import { IdFilterPipe } from "./pipes/id-filter.pipe";
 import { CommonService } from "./common/_services/common.service";
 import { FooterComponent } from './components/footer/footer.component';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -30,8 +31,10 @@ import { FooterComponent } from './components/footer/footer.component';
     CommonModule,
     RouterModule,
     FormsModule,
+    NgbTypeaheadModule,    
     ReactiveFormsModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+
   ],
   exports: [
     HeaderComponent,
@@ -40,6 +43,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HideInPrintDirective,
     IdFilterPipe
   ],
-  providers: [CommonService]
+  providers: [CommonService    
+  ]
 })
 export class CoreModule {}

@@ -15,7 +15,9 @@
       alt="app logo" />
   </a>
 
-  <input class="global-search-box" type="input" [(ngModel)]="searchText" autocomplete="on" placeholder="Search here" />
+  <input class="global-search-box" type="input" [(ngModel)]="searchText" 
+  [ngbTypeahead]="search" 
+  autocomplete="on" placeholder="Search here" />
 
   <div class="user-config">
     <div class="user-info">
