@@ -91,6 +91,8 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
   public div1 = false;
   dialogTxt:string;
 
+  vendorList: any = {};
+
   constructor(
     private vendorService: VendorService,
     private customerService: CustomerService,
@@ -137,6 +139,7 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
     this.vendorService.load().subscribe(
       (data: Vendor[]) => {
         this.vendorsDS = data;
+        this.vendorList = this.vendorsDS;
         this.SpinnerService.hide();
         if(this.vendorsDS.length > 0) {
           this.enable = true;
@@ -345,4 +348,12 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+  	
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+    this.vendorsDS = this.vendorList.filter(vendor =>
+      vendor.vendorName.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
+  }
+
 }
