@@ -18,6 +18,8 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
   isAddStock: boolean = false;
   checkedInfo: any;
 
+  poinvoiceList: any = {};
+
   constructor(
     private purchaseservice: PurchaseService,
     private snackBar: MatSnackBar
@@ -46,6 +48,7 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
   getInvoiceLists() {
     this.purchaseservice.load().subscribe(res => { 
       this.invoiceList = res;
+      this.poinvoiceList = this.invoiceList;
       if(this.invoiceList.length == 0 ){
         this.invTale = false;
       }else{
@@ -189,6 +192,12 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
         });
       }
     );
+  }
+
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+    this.invoiceList = this.poinvoiceList.filter(poinvoice =>
+      poinvoice.vendorname.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
   }
 
 }
