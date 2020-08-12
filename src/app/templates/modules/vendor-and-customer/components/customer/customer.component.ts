@@ -24,6 +24,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material";
 import * as _ from 'lodash';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: "app-customer",
@@ -51,8 +52,6 @@ export class CustomerComponent implements OnInit {
   showDetail: boolean;
   vendorListshow: boolean;
   customerListshow: boolean;
-  //vendorsDS: Vendor[];
-  vendorsDS: any = {};
   customersDS: any;
   vendors: MatTableDataSource<Vendor>;
   vendor: Vendor;
@@ -70,6 +69,8 @@ export class CustomerComponent implements OnInit {
   public div1 = false;
   dialogTxt:string;
 
+  customerList: any = {};
+
   constructor(
     private vendorService: VendorService,
     private customerService: CustomerService,
@@ -78,15 +79,14 @@ export class CustomerComponent implements OnInit {
     private dialog: MatDialog,
     private _sanitizer: DomSanitizer,
     config: NgbModalConfig, private modalService: NgbModal,
+    private SpinnerService: NgxSpinnerService,
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
   }
 
   ngOnInit() {
-    // this.getAllVendorDetails();
-    // this.vendorsDS = this.getAllVendorDetails();
-    //this.vendors = new MatTableDataSource(this.vendorsDS);
+    this.SpinnerService.show();  
     this.getAllCustomerDetails();
   }
 
@@ -113,10 +113,13 @@ export class CustomerComponent implements OnInit {
     this.customerService.load().subscribe(
       (res) => {
         this.customersDS = res;
+        this.customerList = this.customersDS;
+        this.SpinnerService.hide();
        // this.customers = new MatTableDataSource(this.customersDS);
        // this.customers.paginator = this.paginator;
       },
       error => {
+        this.SpinnerService.hide();
         setTimeout(() => {
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
@@ -375,5 +378,11 @@ export class CustomerComponent implements OnInit {
 
   printPage(data) {
     this.printDialogService.openDialog(data);
+  }
+
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+    this.customersDS = this.customerList.filter(customer =>
+    customer.customerName.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
   }
 }
