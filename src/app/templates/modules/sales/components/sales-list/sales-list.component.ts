@@ -43,6 +43,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
 
   public salesTable = false;
   soreturnList: any = {};
+  filtersalesList: any = {};
 
   constructor(
     private salesService: SalesService,
@@ -126,6 +127,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
     this.salesService.getSalesOrderLists().subscribe(
       (res: []) => {
         this.salesOrderList = res;
+        this.filtersalesList = this.salesOrderList;
         if(this.salesOrderList.length == 0){
           this.salesTable = false;
         }else{
@@ -470,4 +472,11 @@ export class SalesListComponent implements OnInit, OnDestroy {
     this.checkedInfo.target.checked = false;
     this.isAddSalesOrder = true;
   }
+
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+    this.salesOrderList = this.filtersalesList.filter(sales =>
+    sales.customername.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
+  }
+
 }

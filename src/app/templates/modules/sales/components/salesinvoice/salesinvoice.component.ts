@@ -317,6 +317,8 @@ export class Filter {
 export class SalesinvoiceComponent implements OnInit {
   invoiceList: any;
   public invTale = false;
+  filtersaleslist: any = {};
+
   constructor(
     private salesService: SalesService,
     private snackBar: MatSnackBar
@@ -348,6 +350,7 @@ export class SalesinvoiceComponent implements OnInit {
   getInvoiceLists() {
     this.salesService.loadInvoice().subscribe(res => { 
       this.invoiceList = res;
+      this.filtersaleslist = this.invoiceList;
       if(this.invoiceList.length == 0 ){
         this.invTale = false;
       }else{
@@ -393,6 +396,12 @@ export class SalesinvoiceComponent implements OnInit {
         win.document.write(html);
       }, 0);
     }
+  }
+
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+    this.invoiceList = this.filtersaleslist.filter(invoice =>
+    invoice.customername.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
   }
 
 }

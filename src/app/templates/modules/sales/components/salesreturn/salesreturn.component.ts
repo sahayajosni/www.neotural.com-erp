@@ -23,6 +23,7 @@ export class SalesreturnComponent implements OnInit {
 
   fieldArray: Array<any> = [];
   returnarray: Array<any> = [];
+  filterList: any = {};
 
   constructor(
     private salesService: SalesService,
@@ -41,6 +42,7 @@ export class SalesreturnComponent implements OnInit {
     this.salesService.loadReturn()
       .subscribe(res => { 
         this.poreturnList = res;
+        this.filterList = this.poreturnList;
         if(this.poreturnList.length == 0){
           this.returntable = false;
         }else{
@@ -55,5 +57,10 @@ export class SalesreturnComponent implements OnInit {
     );
   }
 
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+    this.poreturnList = this.filterList.filter(salesret =>
+      salesret.customername.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
+  }
 
 }
