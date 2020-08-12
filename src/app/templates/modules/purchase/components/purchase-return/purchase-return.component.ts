@@ -19,6 +19,7 @@ export class PurchaseReturnComponent implements OnInit {
   dialogConfig = new MatDialogConfig();
   isDtInitialized:boolean = false;
   todayDate : Date = new Date();
+  purchasereturnList: any = {};
 
   public returntable = false;
 
@@ -42,6 +43,7 @@ export class PurchaseReturnComponent implements OnInit {
     this.purchaseService.loadReturn()
       .subscribe(res => { 
         this.poreturnList = res;
+        this.purchasereturnList = this.poreturnList;
         if(this.poreturnList.length == 0){
           this.returntable = false;
         }else{
@@ -56,6 +58,11 @@ export class PurchaseReturnComponent implements OnInit {
     );
   }
 
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+    this.poreturnList = this.purchasereturnList.filter(poreturn =>
+      poreturn.vendorname.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
+  }
   
 }
 
