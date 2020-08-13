@@ -28,6 +28,7 @@ export class ReturnListComponent implements OnInit, OnDestroy {
   isSortTypeAsc: boolean = true;
   isSortDateDesc: boolean = false;
   isSortDateAsc: boolean = true;
+  filterreturnList: any = {};
 
   constructor(
     private financeService: FinanceService,
@@ -76,6 +77,7 @@ export class ReturnListComponent implements OnInit, OnDestroy {
     this.financeService.getReturnList().subscribe(
       (res) => {
         this.returnList = res;
+        this.filterreturnList = this.returnList;
         this.returnList.sort((a, b) => b.fromdate.localeCompare(a.fromdate));
         this.loadinggif=false;
         if(this.returnList.length == 0){
@@ -233,6 +235,12 @@ export class ReturnListComponent implements OnInit, OnDestroy {
       this.isSortDateAsc = true;
       this.returnList.sort((a, b) => a.fromdate.localeCompare(b.fromdate));
     }
+  }
+
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+    this.returnList = this.filterreturnList.filter(financereturn =>
+      financereturn.invoicetype.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
   }
 
 }
