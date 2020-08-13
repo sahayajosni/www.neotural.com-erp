@@ -18,6 +18,7 @@ import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
   styleUrls: ["./stock-list.component.scss"]
 })
 export class StockListComponent implements OnInit {
+
 	constructor(private router: Router,
 		private dialog: MatDialog,
 		private stockService: StockService,
@@ -32,6 +33,7 @@ export class StockListComponent implements OnInit {
 	stock:Stock = new Stock();
 	public stockTable = false;
 	loadinggif:boolean = false;
+	filterstockList: any = {};
 
 	ngOnInit() {
 		this.loadStock();
@@ -44,6 +46,7 @@ export class StockListComponent implements OnInit {
 			.subscribe(
 			data => {
 				this.stockList = data;
+				this.filterstockList = this.stockList;
 				this.loadinggif=false;
 				if(this.stockList.length == 0){
 					this.stockTable = false;
@@ -99,4 +102,10 @@ export class StockListComponent implements OnInit {
 			}
 		); 
 	}
+
+	onSearchChange(searchValue: string): void {  
+		this.stockList = this.filterstockList.filter(employee =>
+		employee.itemname.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)   
+	}
+
 }
