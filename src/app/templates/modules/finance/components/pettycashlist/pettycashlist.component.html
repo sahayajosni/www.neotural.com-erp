@@ -10,6 +10,15 @@
 </div>
 
 <div class="row">
+  <div class="search-box">
+    <input class="global-search-box" type="search" id="search" name="search" 
+    (input)="onSearchChange($event.target.value)"
+    autocomplete="on" placeholder="Search" />
+    <i class="fas fa-search search-icon" aria-hidden="true"></i>
+  </div>
+</div>
+
+<div class="row">
   <br/>
   <div class="col-12" *ngIf="enable">
 

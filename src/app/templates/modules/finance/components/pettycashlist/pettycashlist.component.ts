@@ -20,6 +20,7 @@ export class PettycashlistComponent implements OnInit {
   title: string = "";
   button: string = "";
   enable: boolean;
+  filterpettyList: any = {};
 
   constructor(
     private dialog: MatDialog,
@@ -39,6 +40,7 @@ export class PettycashlistComponent implements OnInit {
     .subscribe(
       data => { 
         this.pettyCashList = data;
+        this.filterpettyList = this.pettyCashList;
         if(this.pettyCashList.length > 0) {
           this.enable = true;
         } else {
@@ -150,6 +152,12 @@ export class PettycashlistComponent implements OnInit {
   ngOnDestroy(){
     this.snackBar.dismiss();
     (<HTMLElement>document.querySelector('.mat-drawer-content')).style.overflow = 'auto';
+  }
+
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+    this.pettyCashList = this.filterpettyList.filter(petty =>
+    petty.type.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
   }
   
 }
