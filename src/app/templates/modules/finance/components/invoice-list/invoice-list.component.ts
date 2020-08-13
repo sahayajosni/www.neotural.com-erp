@@ -28,6 +28,7 @@ export class InvoiceListComponent implements OnInit, OnDestroy {
   isSortTypeAsc: boolean = true;
   isSortDateDesc: boolean = false;
   isSortDateAsc: boolean = true;
+  filterinvoiceList: any = {};
 
   constructor(
     private financeService: FinanceService,
@@ -76,6 +77,7 @@ export class InvoiceListComponent implements OnInit, OnDestroy {
     this.financeService.getInvoiceList().subscribe(
       (res) => {
         this.invoiceList = res;
+        this.filterinvoiceList = this.invoiceList;
         this.invoiceList.sort((a, b) => b.fromdate.localeCompare(a.fromdate));
         this.loadinggif=false;
         if(this.invoiceList.length == 0){
@@ -232,6 +234,12 @@ export class InvoiceListComponent implements OnInit, OnDestroy {
       this.isSortDateAsc = true;
       this.invoiceList.sort((a, b) => a.fromdate.localeCompare(b.fromdate));
     }
+  }
+
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+    this.invoiceList = this.filterinvoiceList.filter(employee =>
+    employee.invoicetype.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
   }
 
 }
