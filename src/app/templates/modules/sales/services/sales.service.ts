@@ -20,7 +20,6 @@ export class SalesService {
     loadCustomerList(){
       //  return this.http.get<Customer>(this.commonURL+'loadCustomer');
         return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.loadCustomer}`);
-
     }
     
     // Save 
@@ -29,7 +28,6 @@ export class SalesService {
         //return this.http.post<Sales>(this.commonURL+'save',salesarray);
         return this.http.post<Sales>(
             `${environment.apiUrl}${API_ENDPOINTS.save}`,salesarray);  
-
     }
 
     // Load 
@@ -150,4 +148,16 @@ export class SalesService {
     loadReturn(){
         return this.http.get<Sales>(`${environment.apiUrl}${API_ENDPOINTS.lOADRETURN}`);
     }
+
+    getTemplateDetails(templateType:string){
+        return this.http.get<Sales>(`${environment.apiUrl}${API_ENDPOINTS.getTemplateDetails+'?templateType='+templateType}`);
+    }
+
+    addTemplateDetails(data:any) {
+        return this.http.post(
+            `${environment.apiUrl}${API_ENDPOINTS.addTemplateDetails}`,
+            data
+        )
+    }
+
 }

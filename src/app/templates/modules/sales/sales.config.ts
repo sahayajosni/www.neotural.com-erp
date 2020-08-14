@@ -20,4 +20,6 @@ export const API_ENDPOINTS = {
   loadInvoice: `/sales/loadInvoice`,
   CREATE_RETURN:`/sales/createReturn`,
   lOADRETURN:`/sales/loadReturn`,
+  getTemplateDetails: `/sales/getTemplateDetails`,
+  addTemplateDetails: `/sales/addTemplateDetails`,
 };

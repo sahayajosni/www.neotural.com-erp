@@ -7,7 +7,6 @@ import { CoreModule } from "../../../core/core.module";
 import { SalesRoutingModule } from "./sales-routing.module";
 import { SalesComponent } from "./components/sales/sales.component";
 import { SalesorderComponent } from "./components/salesorder/salesorder.component";
-
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -57,6 +56,7 @@ import { SalesListComponent } from "./components/sales-list/sales-list.component
 import { SalesCreateInvoiceComponent } from './components/sales-create-invoice/sales-create-invoice.component';
 import { SalesCreateReturnComponent } from './components/sales-create-return/sales-create-return.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SalesTemplateComponent } from './components/sales-template/sales-template.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +67,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SalesreportComponent,
     SalesListComponent,
     SalesCreateInvoiceComponent,
-    SalesCreateReturnComponent
+    SalesCreateReturnComponent,
+    SalesTemplateComponent
   ],
   imports: [
     CommonModule,
@@ -122,6 +123,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   providers: [SalesService, PurchaseService],
   entryComponents: [SalesorderComponent,
-    SalesCreateInvoiceComponent,SalesCreateReturnComponent]
+    SalesCreateInvoiceComponent,SalesCreateReturnComponent,SalesTemplateComponent]
 })
 export class SalesModule {}

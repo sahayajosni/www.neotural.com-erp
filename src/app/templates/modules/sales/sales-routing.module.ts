@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { SalesComponent } from './components/sales/sales.component';
 import { SalesinvoiceComponent } from './components/salesinvoice/salesinvoice.component';
 import { SalesreturnComponent } from './components/salesreturn/salesreturn.component';
-
+import { SalesTemplateComponent } from './components/sales-template/sales-template.component';
 // const routes: Routes = [
 //   { path: "", component: SalesComponent, pathMatch: "full" }
 // ];
@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'return',
     component: SalesreturnComponent
+  },
+  {
+    path: 'template',
+    component: SalesTemplateComponent
   }
 ];
 

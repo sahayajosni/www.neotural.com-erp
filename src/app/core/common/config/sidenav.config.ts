@@ -107,6 +107,11 @@ export const SidenavItems: MenuItem[] = [
         id: "promotionlist",
         label: "Promotion",
         path: "/category-and-product/promotionlist",
+      },
+      {
+        id: "sales-template",
+        label: "Template",
+        path: "/sales/template",
       }
     ],
     submenu: true
