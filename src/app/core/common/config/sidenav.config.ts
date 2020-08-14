@@ -43,9 +43,14 @@ export const SidenavItems: MenuItem[] = [
       label: "Invoices",
       path: "/purchase/invoice",
       }, {
-        id: "purchase-invoice",
+        id: "purchase-return",
         label: "Returns",
         path: "/purchase/return",
+      },
+      {
+        id: "purchase-template",
+        label: "Template",
+        path: "/purchase/template",
       }],
     submenu: true
   },

@@ -10,4 +10,8 @@ export class Common {
   industry:string;
   invoiceNumber:string;
   userstatus:string;
+  companyname:string;
+  city:string;
+  templateType:string;
+  companylogo:string;
 }

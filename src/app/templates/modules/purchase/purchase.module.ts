@@ -56,6 +56,7 @@ import { PurchaseListComponent } from "./components/purchase-list/purchase-list.
 import { VendorService } from 'src/app/templates/modules/vendor-and-customer/services/vendor.service';
 import { PurchaseCreateInvoiceComponent } from './components/purchase-create-invoice/purchase-create-invoice.component';
 import { PurchaseCreateReturnComponent } from './components/purchase-create-return/purchase-create-return.component';
+import { PurchaseTemplateComponent } from './components/purchase-template/purchase-template.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from "ngx-bootstrap";
 
@@ -68,7 +69,8 @@ import { ModalModule } from "ngx-bootstrap";
     PurchasereportComponent,
     PurchaseListComponent,
     PurchaseCreateInvoiceComponent,
-    PurchaseCreateReturnComponent
+    PurchaseCreateReturnComponent,
+    PurchaseTemplateComponent
   ],
   imports: [
     CommonModule,
@@ -120,6 +122,6 @@ import { ModalModule } from "ngx-bootstrap";
 
   ],
   providers: [PurchaseService, VendorService],
-  entryComponents: [PurchaseAddComponent, PurchaseCreateInvoiceComponent,PurchaseCreateReturnComponent]
+  entryComponents: [PurchaseAddComponent, PurchaseCreateInvoiceComponent,PurchaseCreateReturnComponent,PurchaseTemplateComponent]
 })
 export class PurchaseModule {}

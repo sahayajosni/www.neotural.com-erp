@@ -24,7 +24,6 @@ export class PurchaseService {
     loadVendor(){
         //return this.http.get<Purchase>(this.commonURL+'loadVendor'); 
         return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.loadVendor}`);
-
     }
     // Save 
     save(purchasesearcharray: Array<any>,deliveryCost:string){
@@ -39,7 +38,6 @@ export class PurchaseService {
     load(){
         //return this.http.get<Purchase>(this.commonURL+'load');
         return this.http.get<Purchase>(`${environment.apiUrl}${API_ENDPOINTS.loadInvoice}`);
-
     }
 
     // get 
@@ -176,6 +174,17 @@ export class PurchaseService {
         return this.http.post(
             `${environment.apiUrl}${API_ENDPOINTS.CREATE_STOCK}`,
             invoiceNumber
+        )
+    }
+
+    getTemplateDetails(templateType:string){
+        return this.http.get<Purchase>(`${environment.apiUrl}${API_ENDPOINTS.getTemplateDetails+'?templateType='+templateType}`);
+    }
+
+    addTemplateDetails(data:any) {
+        return this.http.post(
+            `${environment.apiUrl}${API_ENDPOINTS.addTemplateDetails}`,
+            data
         )
     }
 }

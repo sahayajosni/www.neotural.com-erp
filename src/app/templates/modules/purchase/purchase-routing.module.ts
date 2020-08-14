@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { PurchaseComponent } from './components/purchase/purchase.component';
 import { PurchaseInvoiceComponent } from './components/purchase-invoice/purchase-invoice.component';
 import { PurchaseReturnComponent } from './components/purchase-return/purchase-return.component';
+import { PurchaseTemplateComponent } from './components/purchase-template/purchase-template.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'return',
     component: PurchaseReturnComponent
+  },
+  {
+    path: 'template',
+    component: PurchaseTemplateComponent
   }
 ];
 

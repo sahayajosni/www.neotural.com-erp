@@ -103,10 +103,19 @@ export class PurchaseCreateInvoiceComponent implements OnInit {
             );
 
           });
+        }else{
+          this.snackBar.open(
+            "Please fill out company details.",
+            "",
+            {
+              panelClass: ["success"],
+              verticalPosition: "top",
+            }
+          );
         }
       },
       (error) => {
-        setTimeout(() => {
+        if(error == null){
           this.snackBar.open(
             "Network error: server is temporarily unavailable",
             "",
@@ -115,7 +124,16 @@ export class PurchaseCreateInvoiceComponent implements OnInit {
               verticalPosition: "top",
             }
           );
-        });
+        }else{
+          this.snackBar.open(
+            "Please fill out company details.",
+            "",
+            {
+              panelClass: ["warning"],
+              verticalPosition: "top",
+            }
+          );
+        }
       }
     );
     
