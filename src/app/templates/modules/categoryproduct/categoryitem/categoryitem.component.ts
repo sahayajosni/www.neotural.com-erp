@@ -797,6 +797,7 @@ export class AddnewproductComponent {
   saveNewProduct(prodbtnlabel: string){
     if(prodbtnlabel == "Add"){
       this.model.productImage = this.productImage;
+      this.model.productImage1 = this.productImage[0];
       console.log("Selling Price -->"+this.model.sellingprice);
       this.catprodservice.producsave(this.model)
       .subscribe(
@@ -824,6 +825,7 @@ export class AddnewproductComponent {
     }else if(prodbtnlabel == "Update"){
       console.log("Product Code-->"+this.inputproductcode);
       this.model.productImage = this.productImage;
+      this.model.productImage1 = this.productImage[0];
       this.model.prodcode=this.inputproductcode;
       this.catprodservice.setItem(this.model)
       .subscribe(

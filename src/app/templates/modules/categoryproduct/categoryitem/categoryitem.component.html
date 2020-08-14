@@ -49,8 +49,8 @@
       <tbody *ngFor="let a of allproductlist; let i = index"> 
         <tr>
           <td>
-            <div *ngIf="a.productImage[0]; else productNoImage">
-              <img  [src]="getImage(a.productImage[0])" onerror="this.src='/assets/images/no-image.png'" class="productlogo" />
+            <div *ngIf="a.productImage1; else productNoImage">
+              <img  [src]="getImage(a.productImage1)" onerror="this.src='/assets/images/no-image.png'" class="productlogo" />
             </div>
             
             <ng-template #productNoImage>
