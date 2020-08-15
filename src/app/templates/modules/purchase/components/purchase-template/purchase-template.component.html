@@ -1,4 +1,10 @@
-
+<div style="border-style: dotted;
+    position: absolute;
+    top: 4%;
+    left: 20%;
+    width:  60%;
+    padding-bottom: 20px;
+">
 <div class="row" id="headerRow">
   <div class="col-4"></div>
   <div class="col-4">
@@ -27,15 +33,7 @@
               <img id="addproductpic-box" src="./../../assets/images/placeholder.png" class="img-responsive"> 
             </div>
           </div>
-
-          <!-- <div class="img-space">   
-            <ng-container *ngIf="isImageSaved; else elseTemplate">
-                <img [src]="cardImageBase64" />
-            </ng-container>
-            <ng-template #elseTemplate> 
-              <img id="imageplaceholder" src="./../../assets/images/placeholder.png" class="img-responsive"> 
-            </ng-template>
-          </div> -->
+       
       </div>
     </fieldset>
     <a class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved">Remove</a> 
@@ -45,23 +43,23 @@
     <table>
       <tr>
         <th scope="row" id="thead">Invoice Number</th>
-        <td id="tdbody">XXXX</td>
+        <td id="tdbody">INVP10000(sample)</td>
       </tr>
       <tr>
         <th scope="row" id="thead">Date </th>
-        <td id="tdbody">XXXX</td>
+        <td id="tdbody">04/08/2020(sample)</td>
       </tr>
       <tr>
           <th scope="row" id="thead">Terms</th>
-          <td id="tdbody">XXXX</td>
+          <td id="tdbody">10 days(sample)</td>
       </tr>
       <tr>
           <th scope="row" id="thead">Status</th>
-          <td id="tdbody">XXXX</td>
+          <td id="tdbody">delivered(sample)</td>
       </tr>
       <tr>
           <th scope="row" id="thead">Delivery Price</th>
-          <td id="tdbody">XXXX</td>
+          <td id="tdbody">100(sample)</td>
       </tr>
   </table>
   </div>
@@ -71,11 +69,11 @@
   <div class="col-lg-6" style="margin-left: inherit;">
     <div class="biilingdetails">
         <p style="font-weight: bold;text-decoration: underline;">Billing To:</p>
-        <p>XXXX</p>
-        <p>XXXX,</p>
-        <p>XXXX,</p>
-        <p>Phone : XXXX,</p>
-        <p>XXXX</p>
+        <p>Agro Jaya Komoditi,</p>
+        <p>Tembilahan Riau, Kunigan City,</p>
+        <p>Indonesia,</p>
+        <p>Phone : +62 81268060697,</p>
+        <p>Email : test@mail.com</p>
     </div>
   </div>
   <div class="col-6">
@@ -83,7 +81,7 @@
     #templateForm="ngForm" novalidate>  
       <div class="row" id="companyRow">
         <div class="col-6">
-          <label>Company Name :</label>
+          <label style="color:#97A4AC">Company Name :</label>
         </div>
         <div class="col-5">
           <input type="text" id="textbox" name="companyname"  [(ngModel)]="this.model.companyname" 
@@ -93,7 +91,7 @@
       </div>
       <div class="row" id="companyRow">
         <div class="col-6">
-          <label>Address :</label>
+          <label style="color:#97A4AC">Address 1:</label>
         </div>
         <div class="col-5">
           <input type="text" name="address" id="textbox" [(ngModel)]="this.model.address" 
@@ -103,7 +101,7 @@
       </div>
       <div class="row" id="companyRow">
         <div class="col-6">
-          <label>City Name :</label>
+          <label style="color:#97A4AC">Address 2:</label>
         </div>
         <div class="col-5">
           <input type="text" name="city" id="textbox" [(ngModel)]="this.model.city" 
@@ -113,7 +111,7 @@
       </div>
       <div class="row" id="companyRow">
         <div class="col-6">
-          <label>Country Name :</label>
+          <label style="color:#97A4AC">Country Name :</label>
         </div>
         <div class="col-5">
           <input type="text" name="country" id="textbox" [(ngModel)]="this.model.country" 
@@ -126,7 +124,7 @@
         <div class="col-8"></div>
         <div class="col-3">
           <button class="create-button">
-            <span class="fas fa-plus"></span> {{ btnlabel }}
+            {{ btnlabel }}
           </button>
         </div>
         <div class="col-1"></div>
@@ -141,7 +139,7 @@
     <thead>
       <tr>
         <th style="border: 1px solid black;">NO</th>
-        <th style="border: 1px solid black;">ID</th>
+        <th style="border: 1px solid black;">PRODUCT NAME</th>
         <th style="border: 1px solid black;">QTY</th>
         <th style="border: 1px solid black;">UNIT PRICE</th>
         <th style="border: 1px solid black;">TOTAL</th>
@@ -149,11 +147,11 @@
     </thead>
     <tbody> 
       <tr>
-        <td>1</td>
-        <td>XXXX</td>
-        <td>XXXX</td>
-        <td>XXXX</td>
-        <td>XXXX</td>
+        <td>1(sample)</td>
+        <td>iPhone(sample)</td>
+        <td>100(sample)</td>
+        <td>5000(sample)</td>
+        <td>500000(sample)</td>
       </tr>
     </tbody>
   </table>
@@ -171,15 +169,15 @@
     </thead>
     <tbody>
       <tr>
-        <td id="tdbody">XXXX</td>
-        <td id="tdbody">XXXX</td>
-        <td id="tdbody">XXXX</td>
-        <td id="tdbody">XXXX</td>
+        <td id="tdbody">5000000(sample)</td>
+        <td id="tdbody">0(sample)</td>
+        <td id="tdbody">100(sample)</td>
+        <td id="tdbody">5000100(sample)</td>
       </tr>
     </tbody>
   </table>
 </div>
-
+</div>
 
 
 

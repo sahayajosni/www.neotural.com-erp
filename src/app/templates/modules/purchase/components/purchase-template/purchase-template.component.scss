@@ -1,6 +1,9 @@
 
 @import "_base";
-
+* {
+  font-size: 13px;
+  color:darksalmon;
+}
 .ng-valid[required], .ng-valid.required  {
   border-left: 5px solid #42A948; /* green */
 }
@@ -51,7 +54,10 @@ p {
   margin-top: -20px;
   font-size: 14px;
 }
+h4 {
+  font-size: 20px;
 
+}
 .edit-delete-icon {
   display: none;
   background: $table-invoived-row-bg;
