@@ -16,6 +16,7 @@ export class CommonService {
         return this.todayDate;
     }
 
+  
     getCurrentTime() {
       return this.currentTime;
     }

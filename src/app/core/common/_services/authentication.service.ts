@@ -27,6 +27,11 @@ export class AuthenticationService {
     sessionStorage.setItem('TOKEN_NAME', token);
   }
 
+  loadIndex() {
+    ///return this.http.get(`${environment.apiUrl}${"/auth/login?searchKey=+searchKey"}`);
+    return this.http.get(`${environment.apiUrl}${"/auth/loadIndex"}`);
+  }
+
   login(uname: string, pwd: string) {
     localStorage.setItem("username", uname);
     localStorage.setItem("password", pwd);
