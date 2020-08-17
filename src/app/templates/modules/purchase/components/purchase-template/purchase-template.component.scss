@@ -56,7 +56,8 @@ p {
 }
 h4 {
   font-size: 20px;
-
+  text-align: center;
+  margin: 15px 0px;
 }
 .edit-delete-icon {
   display: none;
@@ -83,6 +84,7 @@ h4 {
 }
 label{
   float: right;
+  color:#97A4AC;
 }
 #companyRow{
   margin-bottom: 5px;
