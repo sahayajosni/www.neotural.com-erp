@@ -9,8 +9,8 @@
         <div class="col-8">
           <div style="float: right;">
             <button  class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;"
-              (click)="addCustomer(null,null,null,null,null,null,null,null,null)">
-              <span class="fas fa-plus"></span> Add New Customer 
+              (click)="addCustomer(null,null,null,null,null,null,null,null,null)" placement="bottom" ngbTooltip="Add New Customer">
+              <span class="fas fa-plus"></span> Add
             </button>
             <img src="assets/images/print.png" style="margin-right: 10px;" class="img-fluid logo" alt="print"/>
             <img src="assets/images/download.png" class="img-fluid logo" alt="download" />
@@ -40,7 +40,7 @@
                 <th></th>
                 <th style="cursor:pointer;">Country</th>
                 <th>Address</th>
-                <th>City</th>
+                <th style="width: 8%;">City</th>
               </tr>
             </thead>
             <tbody *ngFor="let item of customersDS; let i = index"
@@ -63,10 +63,10 @@
                 <td></td>
                 <td>{{item.country}}</td>
                 <td>{{item.address}}</td>
-                <td>{{item.city}}
+                <td style="width: 8%;">{{item.city}}
                   <span class="edit-delete-icon user-icon">
-                    <span class="fas fa-trash" (click)="deleteVendorCustomer(item.custcode)"></span>
-                    <span class="fas fa-pen mar-let-40px" (click)="addCustomer(item.id,item.custcode,item.customerName,
+                    <span class="fas fa-trash" placement="bottom" ngbTooltip="Delete Customer" (click)="deleteVendorCustomer(item.custcode)"></span>
+                    <span class="fas fa-pen mar-let-40px" placement="bottom" ngbTooltip="Edit Customer" (click)="addCustomer(item.id,item.custcode,item.customerName,
                     item.country,item.address,item.email,item.city,item.phoneNumber,item.customerbase64)"></span>
                   </span>
                 </td>

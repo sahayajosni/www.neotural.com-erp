@@ -40,6 +40,10 @@ tbody {
 .table > tbody > tr:hover, .table > tbody > tr:hover span  {
   background-color: $header-bg;
 }
+table tbody tr td span{
+  display: none;
+}
+
 table tbody tr:hover td span{
   display: block !important;
 }
@@ -49,11 +53,6 @@ tr[ng-click] {
 .txt-right{
   text-align: right;
 }
-.custom-control {
-  padding-left: 0px;
-  padding-top: 3px;
-}
-
 .create-button {
   float: right;
   color: $white;
