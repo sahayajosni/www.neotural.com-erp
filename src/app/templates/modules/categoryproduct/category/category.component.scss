@@ -99,18 +99,22 @@ table tbody tr:hover td span{
 }
 input[type=search] {
   font-family: fontawesome;
-  width: 65%;
+  width: 80%;
   height: 100%;
-  border: 1px solid $table-header-bg;
+  border: 1px solid #17262f;
   box-shadow: none;
   border-radius: 50px;
   color: $table-row-font-color;
   padding: 8px 40px 8px 15px;
-  background: $table-header-bg;
+  background: #17262f;
 }
-
+::placeholder{
+  color: #97A4AC;
+}
 .fa-search{
-  margin: 3px 0px 0px 160px;
+  margin: 3px 0px 0px 220px;
+  color: white;
+  font-size: 14px;
 }
 // iPhone media query start
 

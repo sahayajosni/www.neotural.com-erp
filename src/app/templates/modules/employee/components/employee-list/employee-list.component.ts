@@ -413,8 +413,4 @@ enable: boolean;
     return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
   }
   
-  
-  // employeeNameSearch(){
-  //   console.log("Employee name search");
-  // }
 }

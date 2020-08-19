@@ -18,7 +18,7 @@
   <div class="search-box">
     <input class="global-search-box" type="search" id="search" name="search" 
     (input)="onSearchChange($event.target.value)"
-    autocomplete="on" placeholder="Search" />
+    autocomplete="on" placeholder="Search Name " />
     <i class="fas fa-search search-icon" aria-hidden="true"></i>
   </div>
 </div>
@@ -37,7 +37,9 @@
               <i *ngIf="!isSortNameDesc" class="sort-by-desc" (click)="sortByOrder('name','desc')"></i>
               <i class="sort-by-asc" *ngIf="!isSortNameAsc" (click)="sortByOrder('name','asc')"></i>
           </th>
-          <th style="width: 8%;">Email</th>
+          <th style="width: 8%;">Email
+            <i class="fa fa-filter"></i>
+          </th>
           <th class="txt-right">Phone</th>
           <th></th>
           <th>Designation</th>
@@ -90,7 +92,3 @@
   </div>
 </div>
 </div>
-
-<!-- 
-<ng-template #addemployee let-c="close" let-d="dismiss">
-</ng-template> -->
