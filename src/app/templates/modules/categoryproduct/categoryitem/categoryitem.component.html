@@ -4,19 +4,19 @@
   </div>
   <div class="col-8">
     <div style="float: right;">
-      <button (click)="addNewCategory()" class="create-button">
+      <button (click)="addNewCategory()" class="create-button" placement="bottom" ngbTooltip="Add New Category">
         <span class="fas fa-plus"></span> Category 
       </button>
-      <button  (click)="addNewProduct()" class="create-button">
+      <button  (click)="addNewProduct()" class="create-button" placement="bottom" ngbTooltip="Add New Product">
         <span class="fas fa-plus"></span> 
-        Product 
+        Add 
       </button>
   
-      <button  (click)="addpromotion('Add Discount','discount')" class="create-button">
+      <button  (click)="addpromotion('Add Discount','discount')" class="create-button" placement="bottom" ngbTooltip="Add New Discount">
         <span class="fas fa-plus"></span> Discount 
       </button>
 
-      <button  (click)="addpromotion('Add Free Gift','freegift')" class="create-button">
+      <button  (click)="addpromotion('Add Free Gift','freegift')" class="create-button" placement="bottom" ngbTooltip="Add New Free Gift">
         <span class="fas fa-plus"></span> Free Gift 
       </button>
     </div>
@@ -71,8 +71,8 @@
           <td class="txt-right">{{a.margin}}</td>
           <td class="txt-right wid-100px">{{a.sellingprice}} 
             <span class="edit-delete-icon user-icon">
-              <span class="fas fa-pen mar-let-40px" (click)="allproducteditcall(a.prodcode,a.vendorcode)"></span>
-              <span class="fas fa-trash" (click)="allproductdelete(a.prodcode)"></span>
+              <span class="fas fa-pen mar-let-40px" placement="bottom" ngbTooltip="Edit Product" (click)="allproducteditcall(a.prodcode,a.vendorcode)"></span>
+              <span class="fas fa-trash" placement="bottom" ngbTooltip="Delete Product" (click)="allproductdelete(a.prodcode)"></span>
             </span>
           </td>
         </tr>

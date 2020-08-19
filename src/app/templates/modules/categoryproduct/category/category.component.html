@@ -34,8 +34,8 @@
             <td>{{c.name}}</td>
             <td>{{c.description}}
               <span class="edit-delete-icon user-icon">
-                <span (click)="categorydelete(c.categorycode)" class="fas fa-trash"></span>
-                <span (click)="categoryedit(c.categorycode,c.name,c.description)" class="fas fa-pen mar-let-40px"></span>
+                <span placement="bottom" ngbTooltip="Delete Category" (click)="categorydelete(c.categorycode)" class="fas fa-trash"></span>
+                <span placement="bottom" ngbTooltip="Edit Category" (click)="categoryedit(c.categorycode,c.name,c.description)" class="fas fa-pen mar-let-40px"></span>
               </span>
             </td>
       

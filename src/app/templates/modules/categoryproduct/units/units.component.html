@@ -6,8 +6,9 @@
   </div>
   <div class="col-8">
     <div style="float: right;">
-      <button class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;" (click)="addNewUnits()">
-        <span class="fas fa-plus"></span> Units 
+      <button class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;" 
+        placement="bottom" ngbTooltip="Add New Units" (click)="addNewUnits()">
+        <span class="fas fa-plus"></span> Add 
       </button>
     </div>
   </div>
@@ -43,8 +44,8 @@
           <td class="wid-130px">{{a.dimensionsymbol}} 
             <span class="edit-delete-icon user-icon">
               <span class="fas fa-pen mar-let-40px" (click)="unitedit(a.id,a.unitname,a.unitsymbol,
-                a.quantityname,a.quantitysymbol,a.dimensionsymbol)"></span>
-              <span class="fas fa-trash" (click)="unitdelete(a.id)"></span>
+                a.quantityname,a.quantitysymbol,a.dimensionsymbol)" placement="bottom" ngbTooltip="Edit Unit"></span>
+              <span class="fas fa-trash" (click)="unitdelete(a.id)" placement="bottom" ngbTooltip="Delete Unit"></span>
             </span>
           </td>
         </tr>
