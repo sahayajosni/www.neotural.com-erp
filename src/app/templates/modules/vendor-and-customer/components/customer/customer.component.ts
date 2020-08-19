@@ -37,6 +37,8 @@ export class CustomerComponent implements OnInit {
   @Input() componentType: string;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
+  enable:boolean;
+
   // To get the child component reference after *ngIf
   private vendorDetail: VendorAndCustomerDetailComponent;
   @ViewChild(VendorAndCustomerDetailComponent, { static: false }) set content(
@@ -115,6 +117,11 @@ export class CustomerComponent implements OnInit {
         this.customersDS = res;
         this.customerList = this.customersDS;
         this.SpinnerService.hide();
+        if(this.customersDS.length > 0){
+          this.enable = true;
+        }else {
+          this.enable = false;
+        }
        // this.customers = new MatTableDataSource(this.customersDS);
        // this.customers.paginator = this.paginator;
       },

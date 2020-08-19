@@ -19,7 +19,7 @@
       </div>
 
       <div class="row">
-        <div class="search-box">
+        <div class="search-box" *ngIf="enable">
           <input class="global-search-box" type="search" id="search" name="search" 
           (input)="onSearchChange($event.target.value)"
           autocomplete="on" placeholder="Search Customer" />
@@ -29,7 +29,7 @@
       
       <div class="row">
         <div class="col-12">
-          <table class="table">
+          <table class="table" *ngIf="enable">
             <thead>
               <tr>
                 <th> </th>

@@ -15,7 +15,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="search-box">
+  <div class="search-box" *ngIf="enable">
     <input class="global-search-box" type="search" id="search" name="search" 
     (input)="onSearchChange($event.target.value)"
     autocomplete="on" placeholder="Search Name " />
