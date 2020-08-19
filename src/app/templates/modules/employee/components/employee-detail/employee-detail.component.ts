@@ -28,8 +28,9 @@ export class EmployeeDetailComponent implements OnInit {
   employee:Employee = new Employee;
   model:any =[];
   dailyReportList:any = {};
-  
-   constructor(
+  @Input() getDailyReportDetail: any;
+
+  constructor(
     private employeeService: EmployeeService,
     private snackBar: MatSnackBar,
     public commonService: CommonService,
@@ -179,24 +180,28 @@ export class EmployeeDetailComponent implements OnInit {
   
   updateDailyReport(employeecode:string,date:string,report:string){
     this.model.employeecode = employeecode;
-    this.model.report = report;
+    this.model.type = this.getDailyReportDetail === undefined ? 'save': 'update';
     this.model.date = date;
-    this.employeeService.saveDailyReport(this.model).subscribe((res: any) => {
-      this.snackBar.open("Daily Report Updated Successfully", "", {
-        panelClass: ["success"],
-        duration: undefined, 
-        verticalPosition: 'top'      
-      });
-      this.ngOnInit();
-    },
-    error => {
-      setTimeout(() => {
-        this.snackBar.open("Network error: server is temporarily unavailable", "", {
-          panelClass: ["error"],
+    this.model.report = report;
+
+    if (this.model.report !== '') { 
+      this.employeeService.saveDailyReport(this.model).subscribe((res: any) => {
+        this.snackBar.open("Daily Report Updated Successfully", "", {
+          panelClass: ["success"],
+          duration: undefined, 
           verticalPosition: 'top'      
         });
-      }); 
-    });
+        this.ngOnInit();
+      },
+      error => {
+        setTimeout(() => {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
+            panelClass: ["error"],
+            verticalPosition: 'top'      
+          });
+        }); 
+      });
+    }
   }
 
   editEmptyDailyReport(){
@@ -211,8 +216,9 @@ export class EmployeeDetailComponent implements OnInit {
   saveDailyReport(report:any){
     this.model.employeecode = this.employeeDet.employeecode;
     this.model.report = report;
+    this.model.type = this.getDailyReportDetail === undefined ? 'save': 'update';
     if (this.model.report !== '') { 
-      this.employeeService.saveDailyReport(this.model).subscribe((res: any) => {
+      this.employeeService.updateDailyReport(this.model).subscribe((res: any) => {
         this.snackBar.open("Daily Report Updated Successfully", "", {
           panelClass: ["success"],
           duration: undefined, 
