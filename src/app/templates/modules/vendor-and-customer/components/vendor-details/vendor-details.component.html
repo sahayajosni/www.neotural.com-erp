@@ -81,15 +81,15 @@
 
         <div class="org-footer" *ngIf="!data.editable">
             <a [routerLink]="" class="icon-printer"></a>
-            <div class="icon-edit" (click)="editVendor(data)"></div>
-            <div class="icon-delete" (click)="deleteVendor(data.vendorcode)"></div>
+            <div class="icon-edit" placement="bottom" ngbTooltip="Edit Vendor" (click)="editVendor(data)"></div>
+            <div class="icon-delete" placement="bottom" ngbTooltip="Delete Vendor" (click)="deleteVendor(data.vendorcode)"></div>
         </div>
         <div class="org-footer" *ngIf="data.editable">
             <div class="row">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <div class="fas fa-check" (click)="update(data)"></div>
-                    <div class="fas fa-times" (click)="cancelVendor(data)"></div>
+                    <div class="fas fa-check" placement="bottom" ngbTooltip="Update Vendor" (click)="update(data)"></div>
+                    <div class="fas fa-times" placement="bottom" ngbTooltip="Cancel Vendor" (click)="cancelVendor(data)"></div>
                 </div>
             </div>
             
@@ -122,8 +122,8 @@
                 </div>
                 <div class="col-6">
                     <div style="float: right;">
-                        <button class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;" (click)="addProduct(data)">
-                        <span class="fas fa-plus"></span> Add Product 
+                        <button class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;" placement="bottom" ngbTooltip="Add Product" (click)="addProduct(data)">
+                            <span class="fas fa-plus"></span> Add 
                         </button>
                     </div>
                 </div>

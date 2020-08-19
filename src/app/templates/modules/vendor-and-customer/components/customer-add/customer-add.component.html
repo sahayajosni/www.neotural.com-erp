@@ -28,7 +28,7 @@
                 </div>
             </div>
           </fieldset>
-          <a class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
+          <a class="btn btn-danger" (click)="removeImage()" placement="bottom" ngbTooltip="Remove Image" *ngIf="isImageSaved">Remove</a>
   
           <div> </div>
         </div>
@@ -106,7 +106,7 @@
       </div>
       <div class="modal-footer">
         <button type="submit" id="cancelbtn" class="btn btn-outline-dark">{{btnname}}</button>
-        <button id="cancelbtn" (click)="resetRegistrationForm(registerForm)" *ngIf="btnname == 'Add'">Reset</button>
+        <button id="cancelbtn" (click)="resetRegistrationForm(registerForm)" placement="bottom" ngbTooltip="Reset form" *ngIf="btnname == 'Add'">Reset</button>
       </div>  
     </form>
   </div>
