@@ -7,6 +7,8 @@ import * as _ from 'lodash';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup } from '@angular/forms';
+import { AuthenticationService } from 'src/app/core/common/_services';
+import { HeaderComponent } from 'src/app/core/components/header/header.component';
 
 @Component({
   selector: 'app-employee-add',
@@ -14,19 +16,20 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./employee-add.component.scss']
 })
 export class EmployeeAddComponent implements OnInit, AfterViewInit {
-
+  headComp;
   model: any = {};
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
   constructor( 
+    private authenticationService:AuthenticationService,
     private employeeService: EmployeeService,   
     private snackBar: MatSnackBar,
     private modalService: NgbModal,
     public activeModal: NgbActiveModal
     ) { }
-
   ngOnInit() {
+    this.headComp = new HeaderComponent(null,null,null);
     console.log("Add employee");
     //this.addEmplyeeFields();
   }
@@ -36,7 +39,9 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
    }
 
   cancelEmployee(){}
+
   saveEmployee() { 
+
     this.model.profilepic=this.cardImageBase64;
     this.employeeService.save(this.model)
       .subscribe(
@@ -47,6 +52,7 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
             verticalPosition: 'top',
             duration: undefined    
           });
+          this.headComp.loadIndexValue();
         });
         this.modalService.dismissAll();
         // this.addEmployeeClose();

@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { InteractionService } from './../../common/_services/interaction.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../common/_services';
-import {Observable, Subject} from 'rxjs';
+import {Observable, Subject, Subscription} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 
@@ -15,7 +15,7 @@ let indexDataList = ['test','alex'];
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  private listener: Subscription;
   searchText:string;
   showMenu = false;
   public indexresponselist: any;
@@ -40,7 +40,9 @@ export class HeaderComponent implements OnInit {
       distinctUntilChanged(),
       map(term => term === '' ? []
         : this.indexData.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-    )
+   )
+
+    
   @HostListener('document:click', ['$event']) closeNaviOnOutClick(event) {
 
     this.optionListToggle(false);
@@ -61,7 +63,23 @@ export class HeaderComponent implements OnInit {
   constructor(private authenticationService:AuthenticationService,
     private router: Router,private interactionService: InteractionService) { }
   ngOnInit() {
-    this.authenticationService.loadIndex().subscribe(
+    this.loadIndexValue();
+    // this.listener = this.authenticationService.loadIndex().subscribe(
+    //   data => {         
+    //    this.indexresponselist = data;
+    //    for (var i in this.indexresponselist) {
+    //     this.indexData.push(this.indexresponselist[i].value);     
+    //   }
+    //  console.log("Index list size-->"+this.indexData.length);
+    //   },
+    //   error => {
+  
+    //   }
+    // );
+   }
+   loadIndexValue(){
+     console.log("Indexload is getting called..");
+     this.authenticationService.loadIndex().subscribe(
       data => {         
        this.indexresponselist = data;
        for (var i in this.indexresponselist) {
@@ -73,12 +91,14 @@ export class HeaderComponent implements OnInit {
   
       }
     );
+   
    }
-
   toggleSideNavi() {
     this.interactionService.toggleSideNavi();
   }
 
+  action(){
+  }
   optionListToggle(value) {
     this.showMenu = value;
   }

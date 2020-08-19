@@ -28,7 +28,9 @@ export class AuthenticationService {
   }
 
   loadIndex() {
-    ///return this.http.get(`${environment.apiUrl}${"/auth/login?searchKey=+searchKey"}`);
+    console.log("Index service is called.");
+    ///return this.http.get
+    (`${environment.apiUrl}${"/auth/login?searchKey=+searchKey"}`);
     return this.http.get(`${environment.apiUrl}${"/auth/loadIndex"}`);
   }
 
