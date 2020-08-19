@@ -4,25 +4,26 @@
   </div>
   <div class="col-8">
     <div style="float: right;">
-      <button id="delete" [disabled]="!isDeleteButton ? true:false" [ngStyle]="getDeleteButtonStyle()">
+      <button id="delete" [disabled]="!isDeleteButton ? true:false" [ngStyle]="getDeleteButtonStyle()" placement="bottom" ngbTooltip="Remove Sales">
         <i class="fas fa-trash"></i>
       </button>
       <button [disabled]="!isCreateReturn ? true:false"
-        (click)="createReturn()"
+        (click)="createReturn()" placement="bottom" ngbTooltip="Create Sales Return"
         class="create-button" [ngStyle]="getCreateReturnStyle()">
-            Create Return
+          Return
       </button>
       <button  
-          [disabled]="!isCreateInvoice ? true:false" 
-          class="create-button" 
-          [ngStyle]="getCreateInvoiceStyle()"
-          (click)="createInvoice()"
-          >
-        Create Invoice
+        [disabled]="!isCreateInvoice ? true:false" 
+        class="create-button" placement="bottom" ngbTooltip="Create Sales Invoice" 
+        [ngStyle]="getCreateInvoiceStyle()"
+        (click)="createInvoice()"
+        >
+        Invoice
       </button>
 
-      <button  (click)="addSalesOrder(null,null)" [disabled]="isAddSalesOrder" class="create-button" [ngStyle]="getAddSalesOrderStyle()">
-        <span class="fas fa-plus"></span> Add Sales Order 
+      <button  (click)="addSalesOrder(null,null)" [disabled]="isAddSalesOrder" class="create-button" 
+      placement="bottom" ngbTooltip="Add Sales Order" [ngStyle]="getAddSalesOrderStyle()">
+        <span class="fas fa-plus"></span> Add
       </button> 
     </div>
   </div>
@@ -89,8 +90,8 @@
           <td class="txt-right">{{item.qty}}</td>
           <td class="txt-right wid-130px">{{item.subtotal}}
             <span class="edit-delete-icon user-icon" *ngIf="isCheckedArr.length === 0 && item.status === 'Open'">
-              <span class="fas fa-pen mar-let-40px" (click)="addSalesOrder(item.id, item)" ></span>
-              <span class="fas fa-trash" (click)="removeSalesOrder(item.id)"></span>
+              <span class="fas fa-pen mar-let-40px" placement="bottom" ngbTooltip="Modify Sales Order" (click)="addSalesOrder(item.id, item)" ></span>
+              <span class="fas fa-trash" placement="bottom" ngbTooltip="Remove Sales Order" (click)="removeSalesOrder(item.id)"></span>
             </span>
           </td>
         </tr>

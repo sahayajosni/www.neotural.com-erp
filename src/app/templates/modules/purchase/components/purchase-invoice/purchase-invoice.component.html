@@ -5,9 +5,9 @@
   </div>
   <div class="col-8">
     <button [disabled]="!isAddStock ? true:false"
-      (click)="addStock()"
+      (click)="addStock()" placement="bottom" ngbTooltip="Add Stock"
       class="create-button" [ngStyle]="getaddStockStyle()">
-        Add Stock
+        Add
     </button>  
   </div>
 </div>

@@ -8,9 +8,9 @@
         <i class="fas fa-trash"></i>
       </button>
       <button [disabled]="!isCreateReturn ? true:false"
-        (click)="createReturn()"
+        (click)="createReturn()" placement="bottom" ngbTooltip="Create Purchase Return"
         class="create-button" [ngStyle]="getCreateReturnStyle()">
-          Create Return
+        Return
       </button>
       <button  
         [disabled]="!isCreateInvoice ? true:false" 
