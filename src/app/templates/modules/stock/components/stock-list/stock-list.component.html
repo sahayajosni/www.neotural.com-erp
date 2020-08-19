@@ -45,12 +45,12 @@
           <td>{{c.status}}</td>
           <td>{{c.unit}}
             <span class="edit-delete-icon user-icon" *ngIf="!c.editable">
-              <span class="fas fa-pen" (click)="editStock(c)" ></span>
+              <span class="fas fa-pen" placement="bottom" ngbTooltip="Modify Stock" (click)="editStock(c)" ></span>
             </span>
 
             <span class="edit-delete-icon user-icon" *ngIf="c.editable">
-              <span class="fas fa-times" (click)="cancelStock(c)" ></span>
-              <span class="fas fa-check" (click)="updateStock(c.id,c.recentStock)" ></span>
+              <span class="fas fa-times" placement="bottom" ngbTooltip="Cancel Stock" (click)="cancelStock(c)" ></span>
+              <span class="fas fa-check" placement="bottom" ngbTooltip="Update Stock" (click)="updateStock(c.id,c.recentStock)" ></span>
             </span>
           </td>
         </tr>
