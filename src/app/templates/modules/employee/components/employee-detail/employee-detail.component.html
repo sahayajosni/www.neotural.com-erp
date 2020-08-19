@@ -158,14 +158,19 @@
 <div class="container-fluid" *ngIf="employeeDet !== undefined">
   <div class="row back-colr">
   <div class="container-fluid"> 
-  <div> <a [routerLink]= "['/employment']" style="color: #fff;"><i class="fas fa-chevron-left left-arrow"></i></a><h3 style="float:left;"> {{employeeDet.name}}</h3> 
+  <div> <a [routerLink]= "['/employment']" style="color: #fff;">
+    <i class="fas fa-chevron-left left-arrow"></i></a>
+    <h3 style="float:left;"> {{employeeDet.name}}</h3> 
   <!--<button style="float:right;" class="button button5"> Add Purchase Order</button>-->
  <div style="float: right;">
- <img src="assets/images/print.png" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Print" (click)="printEmp()" />
+ <img src="assets/images/print.png" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Print" (click)="printEmp()" 
+  placement="bottom" ngbTooltip="Print Employee" />
  <img src="assets/images/bar.PNG" style="margin-right: 15px;margin-left: 15px;cursor: pointer;" class="img-fluid logo" />
-<img src="assets/images/edit.PNG" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Edit" (click)="editEmp(employeeDet)"/>
+<img src="assets/images/edit.PNG" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Edit" (click)="editEmp(employeeDet)"
+  placement="bottom" ngbTooltip="Edit Employee" />
 <img src="assets/images/bar.PNG" style="margin-right: 15px;margin-left: 15px;cursor: pointer;" class="img-fluid logo" />
-<img src="assets/images/delete.PNG" class="img-fluid logo" alt="Delete" style="cursor: pointer;" (click)="removeEmp(employeeDet.employeecode)" />
+<img src="assets/images/delete.PNG" class="img-fluid logo" alt="Delete" style="cursor: pointer;" (click)="removeEmp(employeeDet.employeecode)" 
+  placement="bottom" ngbTooltip="Delete Employee" />
     </div>
   </div>
   </div>
@@ -230,8 +235,8 @@
     <div class="row">
       <div class="col-4"></div>
       <div class="col-4">
-          <div class="fas fa-check" style="float: left;" (click)="update(employeeDet)"></div>
-          <div class="fas fa-times" (click)="cancelEmp(employeeDet)"></div>
+          <div class="fas fa-check" placement="bottom" ngbTooltip="Update Employee" style="float: left;" (click)="update(employeeDet)"></div>
+          <div class="fas fa-times" placement="bottom" ngbTooltip="Cancel Employee" (click)="cancelEmp(employeeDet)"></div>
       </div>
     </div>
   </div>
@@ -303,11 +308,11 @@
               name="report" *ngIf="this.dailyReportList.length == 0 && this.model.editable === true"></textarea> 
           <div style="margin: 0px 5px 40px 0px;" *ngIf="this.dailyReportList.length == 0">
             <img src="assets/images/edit.PNG" style="margin: 10px 0px 0px 20px;cursor: pointer;float: right;" class="img-fluid logo" alt="Edit" 
-              *ngIf="this.model.editable != true" (click)="editEmptyDailyReport()"/>
+              *ngIf="this.model.editable != true" (click)="editEmptyDailyReport()" placement="bottom" ngbTooltip="Edit Daily Report" />
 
             <span class="edit-delete-icon user-icon" *ngIf="this.model.editable === true">
-              <span class="fas fa-times" (click)="cancelEmptyDailyReport()" ></span>
-              <span class="fas fa-check" style="float: right;" (click)="saveDailyReport(this.model.report)" ></span>
+              <span class="fas fa-times" placement="bottom" ngbTooltip="Cancel Daily Report" (click)="cancelEmptyDailyReport()" ></span>
+              <span class="fas fa-check" style="float: right;" placement="bottom" ngbTooltip="Update Daily Report" (click)="saveDailyReport(this.model.report)" ></span>
             </span>
           </div>
           <div *ngFor="let dRL of dailyReportList">
@@ -316,11 +321,12 @@
               name="report" *ngIf="dRL.editable"></textarea> 
 
               <div style="margin: 0px 5px 40px 0px;">
-                <img src="assets/images/edit.PNG" style="margin: 10px 0px 0px 20px;cursor: pointer;float: right;" class="img-fluid logo" alt="Edit" *ngIf="!dRL.editable" (click)="editDailyReport(dRL)"/>
+                <img src="assets/images/edit.PNG" style="margin: 10px 0px 0px 20px;cursor: pointer;float: right;" placement="bottom" ngbTooltip="Edit Daily Report"  
+                class="img-fluid logo" alt="Edit" *ngIf="!dRL.editable" (click)="editDailyReport(dRL)"/>
 
                 <span class="edit-delete-icon user-icon" *ngIf="dRL.editable">
-                  <span class="fas fa-times" (click)="cancelDailyReport(dRL)" ></span>
-                  <span class="fas fa-check" style="float: right;" (click)="updateDailyReport(dRL.employeecode,dRL.date,dRL.report)" ></span>
+                  <span class="fas fa-times" (click)="cancelDailyReport(dRL)" placement="bottom" ngbTooltip="Cancel Daily Report" ></span>
+                  <span class="fas fa-check" style="float: right;" placement="bottom" ngbTooltip="Update Daily Report" (click)="updateDailyReport(dRL.employeecode,dRL.date,dRL.report)" ></span>
                 </span>
               </div>
           </div>
@@ -359,7 +365,8 @@
 <div class="col-md-12 col-xs-12 col-sm-12 side-wapper">
     <div class="profile-div">
   <div class="col-md-12 m-b-20px"><h5 class="float-left">{{commonService.getTodayDate() | date : 'MMMM'}} Absent Card</h5> 
-    <img src="assets/images/print1.PNG" style="float: right;" class="img-fluid logo" alt="print"/></div>
+    <!-- <img src="assets/images/print1.PNG" style="float: right;" class="img-fluid logo" alt="print"/> -->
+  </div>
     <div class="clr-both"></div>
   <ng-container *ngIf="attendanceDetails.length > 0">
     <div class="col-md-12" *ngFor="let item of attendanceDetails">

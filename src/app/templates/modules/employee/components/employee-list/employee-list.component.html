@@ -81,9 +81,9 @@
           </td>
           <td class="wid-75px">{{item.status}}
             <span class="edit-delete-icon user-icon">
-              <span class="fas fa-list-alt" (click)="dailyReport(i, item)"></span>
-              <span class="fas fa-user-clock" (click)="checkinCheckout(i, item)"></span>
-              <span class="fas fa-calendar-times" [ngClass]="isAbsentMouseover[i] ? 'absent-disabled' : ''" (mouseover)="absentMouseover(i, item)" (click)="absentPopup(i, item)"></span>
+              <span class="fas fa-list-alt" placement="bottom" ngbTooltip="Add Daily Report" (click)="dailyReport(i, item)"></span>
+              <span class="fas fa-user-clock" placement="bottom" ngbTooltip="Add Attendance" (click)="checkinCheckout(i, item)"></span>
+              <span class="fas fa-calendar-times" placement="bottom" ngbTooltip="Add Absence" [ngClass]="isAbsentMouseover[i] ? 'absent-disabled' : ''" (mouseover)="absentMouseover(i, item)" (click)="absentPopup(i, item)"></span>
             </span>
           </td>
         </tr>
