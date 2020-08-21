@@ -61,18 +61,18 @@
           <label id="po-label2">Please Choose Menu</label>
           <br/>
           <input id="dashboard" type="checkbox" value="Dashboard"
-            [(ngModel)]="model.menuItem1" #menuItem1="ngModel" name="menuItem1"
-            (ngModelChange)="getMenu1(model.menuItem1)">   
+            [(ngModel)]="model.menu1" #menu1="ngModel" name="menu1"
+            (ngModelChange)="getMenu1(model.menu1)">   
           <label for="Dashboard" id="menu-label">DashBoard</label>
           <br/>
           <input id="employee" type="checkbox" value="Employee" 
-              [(ngModel)]="model.menuItem2" #menuItem2="ngModel" name="menuItem2"
-              (ngModelChange)="getMenu2(model.menuItem2)">  
+              [(ngModel)]="model.menu2" #menu2="ngModel" name="menu2"
+              (ngModelChange)="getMenu2(model.menu2)">  
           <label for="Employee" id="menu-label">Employee</label>
           <br/>
           <input id="vendor" type="checkbox" value="Vendor"
-              [(ngModel)]="model.menuItem3" #menuItem3="ngModel" name="menuItem3"
-              (ngModelChange)="getMenu3(model.menuItem3)"> 
+              [(ngModel)]="model.menu3" #menu3="ngModel" name="menu3"
+              (ngModelChange)="getMenu3(model.menu3)"> 
           <label for="Vendor" id="menu-label">Vendor</label>
           <br/> 
         </div>
@@ -82,7 +82,7 @@
       <div class="row">
         <div class="col-6">
           <input id="purchases" type="checkbox" value="Purchases" 
-              [(ngModel)]="model.menuItem4" #menuItem4="ngModel" name="menuItem4"
+              [(ngModel)]="model.menu4" #menu4="ngModel" name="menu4"
               (click)="getPurchase($event.target.checked)">   
           <label for="Purchases" id="menu-label">Purchases</label>
           <br/>  
@@ -103,7 +103,7 @@
       <div class="row">
         <div class="col-6">
           <input id="product" type="checkbox" value="Product" 
-              [(ngModel)]="model.menuItem5" #menuItem5="ngModel" name="menuItem5"
+              [(ngModel)]="model.menu5" #menu5="ngModel" name="menu5"
               (click)="getProduct($event.target.checked)">   
           <label for="Product" id="menu-label">Product</label>
           <br/>   
@@ -124,7 +124,7 @@
       <div class="row">
         <div class="col-6">
           <input id="sales" type="checkbox" value="Sales" 
-              [(ngModel)]="model.menuItem6" #menuItem6="ngModel" name="menuItem6"
+              [(ngModel)]="model.menu6" #menu6="ngModel" name="menu6"
               (click)="getSales($event.target.checked)">   
           <label for="Sales" id="menu-label">Sales</label>
           <br/>   
@@ -146,13 +146,13 @@
       <div class="row">
         <div class="col-6">
           <input id="stock" type="checkbox" value="Stock" 
-            [(ngModel)]="model.menuItem7" #menuItem7="ngModel" name="menuItem7"
-            (ngModelChange)="getMenu7(model.menuItem7)">    
+            [(ngModel)]="model.menu7" #menu7="ngModel" name="menu7"
+            (ngModelChange)="getMenu7(model.menu7)">    
           <label for="Stock" id="menu-label">Stock</label>
           <br/>   
           <input id="finance" type="checkbox" value="Finance" 
-              [(ngModel)]="model.menuItem8" #menuItem8="ngModel" name="menuItem8"
-              (ngModelChange)="getMenu8(model.menuItem8)">       
+              [(ngModel)]="model.menu8" #menu8="ngModel" name="menu8"
+              (ngModelChange)="getMenu8(model.menu8)">       
           <label for="Finance" id="menu-label">Finance</label>
           <br/>  
         </div>

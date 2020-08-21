@@ -61,23 +61,23 @@ export class AddUserMgtComponent implements OnInit {
     );
 
     this.purdropdownList = [
-      { purchase_item_id: 1, purchase_item_text: 'Orders' },
-      { purchase_item_id: 2, purchase_item_text: 'Invoices' },
-      { purchase_item_id: 3, purchase_item_text: 'Return' }
+      { purchase_item_id: 'SUBMEN10001', purchase_item_text: 'Orders' },
+      { purchase_item_id: 'SUBMEN10002', purchase_item_text: 'Invoices' },
+      { purchase_item_id: 'SUBMEN10003', purchase_item_text: 'Return' }
     ];
 
     this.proddropdownList = [
-      { product_item_id: 1, product_item_text: 'product' },
-      { product_item_id: 2, product_item_text: 'units' },
-      { product_item_id: 3, product_item_text: 'category' }
+      { product_item_id: 'SUBMEN10004', product_item_text: 'product' },
+      { product_item_id: 'SUBMEN10005', product_item_text: 'units' },
+      { product_item_id: 'SUBMEN10006', product_item_text: 'category' }
     ];
 
     this.saledropdownList = [
-      { sales_item_id: 1, sales_item_text: 'Orders' },
-      { sales_item_id: 2, sales_item_text: 'Invoices' },
-      { sales_item_id: 3, sales_item_text: 'Customer' },
-      { sales_item_id: 4, sales_item_text: 'Return' },
-      { sales_item_id: 5, sales_item_text: 'Promotion' }
+      { sales_item_id: 'SUBMEN10007', sales_item_text: 'Orders' },
+      { sales_item_id: 'SUBMEN10008', sales_item_text: 'Invoices' },
+      { sales_item_id: 'SUBMEN10009', sales_item_text: 'Customer' },
+      { sales_item_id: 'SUBMEN10010', sales_item_text: 'Return' },
+      { sales_item_id: 'SUBMEN10011', sales_item_text: 'Promotion' }
 
     ];
 
@@ -113,6 +113,12 @@ export class AddUserMgtComponent implements OnInit {
       allowSearchFilter: this.showFilter,
       closeDropDownOnSelection: true,
     };
+
+    this.model.menuItem1 = 'MEN0';
+    this.model.menuItem2 = 'MEN0';
+    this.model.menuItem3 = 'MEN0';
+    this.model.menuItem7 = 'MEN0';
+    this.model.menuItem8 = 'MEN0';
   }
 
   onPurchaseSelect(puritem: any) {
@@ -121,7 +127,8 @@ export class AddUserMgtComponent implements OnInit {
   }
   onPurSelectAll(puritems: any) {
     this.purchaseArray = [];
-    this.purchaseArray.push("Orders","Invoices","Return");
+    this.purchaseArray.push("Orders","Invoices","Returns");
+    //this.purchaseArray.push("SUBMEN10001","SUBMEN10002","SUBMEN10003");
   }
 
   onDeSelectPurchase(items: any){
@@ -136,6 +143,7 @@ export class AddUserMgtComponent implements OnInit {
   onprodSelectAll(proditems: any) {
     this.prodArray = [];
     this.prodArray.push("product","units","category");
+    //this.prodArray.push("SUBMEN10004","SUBMEN10005","SUBMEN10006");
   }
 
   onDeSelectProduct(items: any){
@@ -149,7 +157,8 @@ export class AddUserMgtComponent implements OnInit {
 
   onSalesAll(items: any) {
     this.salesArray = [];
-    this.salesArray.push("Orders","Invoices","Customer","Return","Promotion");
+    this.salesArray.push("Orders","Invoices","Customer","Returns","Promotion");
+    //this.salesArray.push("SUBMEN10007","SUBMEN10008","SUBMEN10009","SUBMEN10010","SUBMEN10011");
   }
 
   onDeSalesAll(items: any){
@@ -186,45 +195,45 @@ export class AddUserMgtComponent implements OnInit {
 
   getMenu1(menu1){
     if(menu1 == true){
-      this.model.menuItem1 = 'DashBoard';
+      this.model.menuItem1 = 'MEN10000';
     }else if(menu1 == false){
-      this.model.menuItem1 = '';
+      this.model.menuItem1 = 'MEN0';
     }
     console.log("Menu1 -- >"+this.model.menuItem1);
   }
 
   getMenu2(menu2){
     if(menu2 == true){
-      this.model.menuItem2 = 'Employee';
+      this.model.menuItem2 = 'MEN10001';
     }else if(menu2 == false){
-      this.model.menuItem2 = '';
+      this.model.menuItem2 = 'MEN0';
     }
     console.log("Menu2 -- >"+this.model.menuItem2);
   }
 
   getMenu3(menu3){
     if(menu3 == true){
-      this.model.menuItem3 = 'Vendor';
+      this.model.menuItem3 = 'MEN10002';
     }else if(menu3 == false){
-      this.model.menuItem3 = '';
+      this.model.menuItem3 = 'MEN0';
     }
     console.log("Menu3 -- >"+this.model.menuItem3);
   }
 
   getMenu7(menu7){
     if(menu7 == true){
-      this.model.menuItem7 = 'Stock';
+      this.model.menuItem7 = 'MEN10006';
     }else if(menu7 == false){
-      this.model.menuItem7 = '';
+      this.model.menuItem7 = 'MEN0';
     }
     console.log("Menu7 -- >"+this.model.menuItem7);
   }
 
   getMenu8(menu8){
     if(menu8 == true){
-      this.model.menuItem8 = 'Finance';
+      this.model.menuItem8 = 'MEN10007';
     }else if(menu8 == false){
-      this.model.menuItem8 = '';
+      this.model.menuItem8 = 'MEN0';
     }
     console.log("Menu8 -- >"+this.model.menuItem8);
   }
@@ -244,21 +253,21 @@ export class AddUserMgtComponent implements OnInit {
     console.log("Sales Name -->"+this.salesArray.length);  
 
     if(this.purchaseArray.length > 0){
-      this.model.menuItem4 = 'Purchases';
+      this.model.menuItem4 = 'MEN10003';
     }else{
-      this.model.menuItem4 = '';
+      this.model.menuItem4 = 'MEN0';
     }
     
     if(this.prodArray.length > 0){
-      this.model.menuItem5 = 'Product';
+      this.model.menuItem5 = 'MEN10004';
     }else{
-      this.model.menuItem5 = '';
+      this.model.menuItem5 = 'MEN0';
     }
 
     if(this.salesArray.length > 0){
-      this.model.menuItem6 = 'Sales';
+      this.model.menuItem6 = 'MEN10005';
     }else{
-      this.model.menuItem6 = '';
+      this.model.menuItem6 = 'MEN0';
     }
 
     console.log("Menu Name4 -->"+this.model.menuItem4);
@@ -275,40 +284,53 @@ export class AddUserMgtComponent implements OnInit {
       
       console.log(filteredarray);
     
-    this.userArray.push({ username : this.model.username,password : this.model.password,
-      departmentname:this.model.departmentname,menuArray: filteredarray });
+    /* this.userArray.push({ username : this.model.username,password : this.model.password,
+      departmentname:this.model.departmentname,menuArray: filteredarray }); */
     
-    /* this.menuArray.push({ username : this.model.username,password : this.model.password,
-      departmentname:this.model.departmentname,menuItem1 : this.model.menuItem1,menuItem2 : this.model.menuItem2,
-      menuItem3 : this.model.menuItem3, menuItem4 : this.model.menuItem4,purchasesubmenu : this.purchaseArray,
-      menuItem5 : this.model.menuItem5,productsubmenu : this.prodArray, menuItem6 : this.model.menuItem6,
-      salessubmenu : this.salesArray, menuItem7 : this.model.menuItem7, menuItem8 : this.model.menuItem8 }); */
-    
-    if(this.menuArray.length > 0){
+      if(this.model.menuItem1 == 'MEN0' && this.model.menuItem2 == 'MEN0' && this.model.menuItem3 == 'MEN0' && 
+        this.model.menuItem7 == 'MEN0' && this.model.menuItem8 == 'MEN0' && this.purchaseArray.length == 0 && 
+        this.prodArray.length == 0 && this.salesArray.length == 0){
+      
+        this.snackBar.open(
+          "Please Choose atleast one Menu",
+          "",
+          {
+            panelClass: ["warning"],
+            verticalPosition: "top",
+          }
+        );
+
+    }else{
+      
+      this.userArray.push({ username : this.model.username,password : this.model.password,menuArray: filteredarray,
+        departmentname:this.model.departmentname,menuItem1 : this.model.menuItem1,menuItem2 : this.model.menuItem2,
+        menuItem3 : this.model.menuItem3, menuItem4 : this.model.menuItem4,purchasesubmenu : this.purchaseArray,
+        menuItem5 : this.model.menuItem5,productsubmenu : this.prodArray, menuItem6 : this.model.menuItem6,
+        salessubmenu : this.salesArray, menuItem7 : this.model.menuItem7, menuItem8 : this.model.menuItem8 }); 
+
       this.userMgtService.save(this.userArray)
       .subscribe(
-        (res) => {
-          this.modalService.dismissAll();
-          setTimeout(() => {
-            this.snackBar.open(
-              "User was created Successfully",
-              "",
-              {
-                panelClass: ["success"],
-                verticalPosition: "top",
-              }
-            );
-          });
-      
+      (res) => {
+        this.modalService.dismissAll();
+        setTimeout(() => {
+          this.snackBar.open(
+            "User was created Successfully",
+            "",
+            {
+              panelClass: ["success"],
+              verticalPosition: "top",
+            }
+          );
         });
+    
+      });
 
-        this.menuArray = [];
-        this.purchaseArray = [];
-        this.prodArray = [];
-        this.salesArray = [];
-    }else{
-
+      this.menuArray = [];
+      this.purchaseArray = [];
+      this.prodArray = [];
+      this.salesArray = [];
     }
-    this.modalService.dismissAll();
   }
+
+
 }

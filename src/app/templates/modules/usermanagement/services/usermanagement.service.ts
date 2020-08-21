@@ -1,5 +1,6 @@
 ﻿import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Usermgt } from '../../../../core/common/_models/usermgt';
 
 import { environment } from "src/environments/environment";
 
@@ -23,5 +24,16 @@ export class UserManagementService {
   load() {
     return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.load}`);
   }
+
+  getMenu(menuCode: string){
+    console.log("Menu Code -->" + menuCode);
+    return this.http.get<Usermgt>(
+      `${environment.apiUrl}${API_ENDPOINTS.getMenuName}`+'?menuCode='+menuCode);
+  }
+
+  remove(id: string) {
+     return this.http.delete<Usermgt>(
+       `${environment.apiUrl}${API_ENDPOINTS.removeUser}`+'?id='+id);
+   }
  
 }
