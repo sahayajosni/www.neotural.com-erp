@@ -48,7 +48,16 @@ export class UserManagementComponent implements OnInit {
     this.enable = false;
     this.load();
   }
+  menulable:string = "Show Menu";
+  showMenu(){
+    if(this.menulable == "Show Menu") {
+      this.menulable = "Hide Menu";
+    } else {
+      this.menulable = "Show Menu";
 
+    }
+    //alert("show menu");
+  }
   load(){
     this.userMgtService.load().subscribe(
       data => { 
