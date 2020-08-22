@@ -25,11 +25,21 @@
         <td>{{u.password}}</td>
         <td>{{u.departmentname}}</td>
         <td>
+          <button class="btn btn-outline-primary mb-2 mr-2" 
+          (click)="openScrollableContent(longContent)">menu</button>
 
-          <ngb-accordion #acc="ngbAccordion" (click)="showMenu()" activeIds="ngb-panel">
-            <ngb-panel title="{{menulable}}" id="test">
-              <ng-template ngbPanelContent>
-                <table style="border: 1px solid black !important;">
+
+
+          
+          <ng-template #longContent let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">Modal title</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <table style="border: 1px solid black !important;">
                   <tr>
                     <th style="border: 1px solid black;">Menu</th>
                     <th style="border: 1px solid black;">Sub Menu</th>
@@ -95,11 +105,87 @@
                     <td style="border: 1px solid black;"></td>
                   </tr>
                 </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+            </div>
+          </ng-template>
+
+          
+          <!-- <ngb-accordion #acc="ngbAccordion" (click)="showMenu()" activeIds="ngb-panel">
+            <ngb-panel title="{{menulable}}" id="test">
+              <ng-template ngbPanelContent>
+                <table style="border: 1px solid black !important;">
+                  <tr>
+                    <th style="border: 1px solid black;">Menu</th>
+                    <th style="border: 1px solid black;">Sub Menu</th>
+                  </tr>
+                  <tr *ngIf="u.menuItem1 !== 'MEN0' ">
+                    <td style="border: 1px solid black;">
+                       <button  class="create-button">
+                       {{this.model.menu1}}
+                    </button> 
+                        <input type="checkbox"  [checked]="true" class="custom-control-input1" 
+                        id="customChecks2" >
+                     <label style="color: black;">  {{this.model.menu1}} </label> 
+                    </td>
+                    <td style="border: 1px solid black;"></td>
+                  </tr>
+                  <tr *ngIf="u.menuItem2 !== 'MEN0' ">
+                    <td style="border: 1px solid black;">
+                      <input type="checkbox"  [checked]="true" class="custom-control-input1" 
+                      id="customChecks2" >
+                   <label style="color: black;">  {{this.model.menu2}} </label> 
+                    </td>
+                    <td style="border: 1px solid black;"></td>
+
+                  </tr>
+                  <tr *ngIf="u.menuItem3 !== 'MEN0' ">
+                    <td style="border: 1px solid black;">
+                      
+                      <input type="checkbox"  [checked]="true" class="custom-control-input1" 
+                      id="customChecks2" >
+                   <label style="color: black;">  {{this.model.menu3}} </label> 
+                      
+                     </td>
+                    <td style="border: 1px solid black;"></td>
+                  </tr>
+                  <tr *ngIf="u.menuItem4 !== 'MEN0' "> 
+                    <td style="border: 1px solid black;">
+                    
+                      <input type="checkbox"  [checked]="true" class="custom-control-input1" 
+                      id="customChecks2" >
+                   <label style="color: black;">  {{this.model.menu4}} </label> 
+                    </td>
+                    <td style="border: 1px solid black;">
+                    
+                      <input type="checkbox"  [checked]="true" class="custom-control-input1" 
+                      id="customChecks2" >
+                   <label style="color: black;">  {{this.model.purchasesubmenu}} </label> 
+                    </td>
+                  </tr>
+                  <tr *ngIf="u.menuItem5 !== 'MEN0' ">
+                    <td style="border: 1px solid black;">{{this.model.menu5}}</td>
+                    <td style="border: 1px solid black;">{{u.productsubmenu}}</td>
+                  </tr>
+                  <tr *ngIf="u.menuItem6 !== 'MEN0' ">
+                    <td style="border: 1px solid black;">{{this.model.menu6}}</td>
+                    <td style="border: 1px solid black;">{{u.salessubmenu}}</td>
+                  </tr>
+                  <tr *ngIf="u.menuItem7 !== 'MEN0' ">
+                    <td style="border: 1px solid black;">{{this.model.menu7}}</td>
+                    <td style="border: 1px solid black;"></td>
+                  </tr>
+                  <tr *ngIf="u.menuItem8 !== 'MEN0' ">
+                    <td style="border: 1px solid black;">{{this.model.menu8}}</td>
+                    <td style="border: 1px solid black;"></td>
+                  </tr>
+                </table>
               </ng-template>
             </ngb-panel>
           
           
-          </ngb-accordion>
+          </ngb-accordion> -->
 
          
         </td>

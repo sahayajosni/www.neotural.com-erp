@@ -58,6 +58,9 @@ export class UserManagementComponent implements OnInit {
     }
     //alert("show menu");
   }
+  openScrollableContent(longContent) {
+    this.modalService.open(longContent, { scrollable: true });
+  }
   load(){
     this.userMgtService.load().subscribe(
       data => { 
