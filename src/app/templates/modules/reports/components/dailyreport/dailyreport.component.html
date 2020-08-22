@@ -1,0 +1,223 @@
+<div class="row" style="margin-bottom: 2vh;">
+  <div class="col-3"></div>
+  <div class="col-2">
+    <label class="heading1">Report Type</label>
+  </div>
+  <div class="col-6">
+      <input id="monthlyreport" type="radio" class="regular-radio" value="monthlyreport" 
+          [(ngModel)]="model.reporttype" #reporttype="ngModel" name="reporttype"
+          (ngModelChange)="getReport(model.reporttype)">
+      <label for="monthlyreport" id="radiolabel">Monthly Report</label>
+      &nbsp;&nbsp;&nbsp;
+
+      <input id="customreport" type="radio" class="regular-radio" value="customreport" 
+          [(ngModel)]="model.reporttype" #reporttype="ngModel" name="reporttype"
+          (ngModelChange)="getReport(model.reporttype)">
+      <label for="customreport" id="radiolabel">Custom Report</label>
+  </div>
+</div>
+
+<div *ngIf="monthdiv" id="borderdiv">
+  <form name="reportForm" (ngSubmit)="reportForm.form.valid && loadMonthlyReport()"
+    #reportForm="ngForm" novalidate>  
+    <div class="row" style="margin-top: 2vh;">
+      <div class="col-1"></div>
+      <div class="col-2">
+        <label id="po-label">Employee Name </label>
+        <input class="input-box" type="input" [(ngModel)]="model.employeecode" #employeecode="ngModel" name="employeecode"
+          [ngbTypeahead]="search" autocomplete="on" placeholder="Employee Name" />
+
+        <div *ngIf="employeecode.errors && (employeecode.dirty || employeecode.touched) ||
+          (reportForm.submitted && !employeecode.valid )">
+          <span [hidden]="!employeecode.errors.required" class="spanerror">
+              Required field cannot be left blank
+          </span>
+        </div>
+      </div>
+      <div class="col-3">
+        <label id="po-label">Month Name </label>
+          <select id="selected-box" class="m-t-5px" [(ngModel)]="model.monthname" #monthname="ngModel" name="monthname"
+            autocomplete="off" required>
+            <option id="options-box" [ngValue]="undefined" hidden selected> Select Month </option>
+            <option id="options-box" *ngFor="let item of monthlist" [value]="item"> {{ item }} </option>
+          </select>
+          <div *ngIf="monthname.errors && (monthname.dirty || monthname.touched) ||
+            (reportForm.submitted && !monthname.valid )">
+            <span [hidden]="!monthname.errors.required" class="spanerror">
+                Required field cannot be left blank
+            </span>
+          </div>
+      </div>
+      <div class="col-2">
+        <button type="submit" id="add-btn">Search</button>
+      </div>
+    </div>  
+  </form>
+
+  <div class="row" *ngIf="montherepnable" style="margin-top: 2vh;">
+    <div class="col-1"></div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-3">
+          <label>Employee ID</label>
+        </div>
+        <div class="col-1">:</div>
+        <div class="col-3">{{this.model.code}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="montherepnable">
+    <div class="col-1"></div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-3">
+          <label>Employee Name</label>
+        </div>
+        <div class="col-1">:</div>
+        <div class="col-3">{{this.model.name}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="montherepnable">
+    <div class="col-1"></div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-3">
+          <label>Month Name</label>
+        </div>
+        <div class="col-1">:</div>
+        <div class="col-3">{{this.model.monthname}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 2vh;margin-bottom: 2vh;">
+    <div class="col-12">
+      <table class="table" *ngIf="montherepnable">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Date</th>
+            <th>Monthly Report</th>
+          </tr>
+      </thead>
+      <tbody *ngFor="let m of monthlyList; let i = index"> 
+          <tr>
+            <td>{{i+1}}</td>
+            <td>{{m.date}}</td>
+            <td>{{m.report}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="customdiv" id="borderdiv">
+  <form name="reportForm" (ngSubmit)="reportForm.form.valid && loadCustomReport()"
+    #reportForm="ngForm" novalidate>  
+    <div class="row" style="margin-top: 2vh;">
+      <div class="col-1"></div>
+      <div class="col-2">
+        <label id="po-label">Employee Name </label>
+        <input class="input-box" type="input" [(ngModel)]="model.employeecode" #employeecode="ngModel" name="employeecode"
+          [ngbTypeahead]="search" autocomplete="on" placeholder="Employee Name" required />
+
+        <div *ngIf="employeecode.errors && (employeecode.dirty || employeecode.touched) ||
+          (reportForm.submitted && !employeecode.valid )">
+          <span [hidden]="!employeecode.errors.required" class="spanerror">
+              Required field cannot be left blank
+          </span>
+        </div>
+      </div>
+      <div class="col-2">
+        <label id="po-label">From Date </label>
+        <input type="date" id="datebox" class="m-t-5px" [(ngModel)]="model.fromdate"
+          name="fromdate" placeholder="xx/xx/xx" #fromdate="ngModel" required/>
+        <div *ngIf="fromdate.errors && (fromdate.dirty || fromdate.touched) ||
+          (reportForm.submitted && !fromdate.valid )">
+          <span [hidden]="!fromdate.errors.required" class="spanerror">
+              Required field cannot be left blank
+          </span>
+        </div>
+      </div>
+      <div class="col-2">
+        <label id="po-label">To Date*</label>
+          <input type="date" id="datebox" class="m-t-5px" [(ngModel)]="model.todate"
+            name="todate" placeholder="xx/xx/xx" #todate="ngModel" required/>
+          <div *ngIf="todate.errors && (todate.dirty || todate.touched) ||
+            (reportForm.submitted && !todate.valid )">
+            <span [hidden]="!todate.errors.required" class="spanerror">
+                Required field cannot be left blank
+            </span>
+          </div>
+      </div>
+      <div class="col-3">
+        <button type="submit" id="add-btn">Search</button>
+      </div>
+    </div>  
+  </form>
+
+  <div class="row" *ngIf="customenable" style="margin-top: 2vh;">
+    <div class="col-1"></div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-3">
+          <label>Employee ID</label>
+        </div>
+        <div class="col-1">:</div>
+        <div class="col-3">{{this.model.code}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="customenable">
+    <div class="col-1"></div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-3">
+          <label>Employee Name</label>
+        </div>
+        <div class="col-1">:</div>
+        <div class="col-3">{{this.model.name}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="customenable">
+    <div class="col-1"></div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-3">
+          <label>Date Range</label>
+        </div>
+        <div class="col-1">:</div>
+        <div class="col-7">{{this.model.fromdate | date : 'dd/MMM/yyyy' }} - {{this.model.todate | date : 'dd/MMM/yyyy' }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 2vh;margin-bottom: 2vh;">
+    <div class="col-12">
+      <table class="table" *ngIf="customenable">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Date</th>
+            <th>Monthly Report</th>
+          </tr>
+      </thead>
+      <tbody *ngFor="let c of customList; let i = index"> 
+          <tr>
+            <td>{{i+1}}</td>
+            <td>{{c.date}}</td>
+            <td>{{c.report}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

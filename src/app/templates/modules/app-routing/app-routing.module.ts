@@ -75,10 +75,12 @@ const routes: Routes = [
       },
      
       {
-        path: "report",
+        path: "reports",
         loadChildren: () =>
-          import("../../../shared/components/report/report.module").then(
+          import("./../../modules/reports/reports.module").then(
             (m) => m.ReportModule)
+          /* import("../../../shared/components/report/report.module").then(
+            (m) => m.ReportModule) */
       },
       {
         path: "user-management",

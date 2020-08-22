@@ -155,7 +155,20 @@ export const SidenavItems: MenuItem[] = [
     ],
     submenu: true
   },
-
+  {
+    id: "report",
+    label: "Report",
+    icon: "assets/images/reports.png",
+    path: "/reports",
+    childern: [
+      {
+        id: "employeereport",
+        label: "Employee Report",
+        path: "/reports/employeereport",
+       }
+    ],
+    submenu: true
+  },
   {
     id: "userManagement",
     label: "User Management",
