@@ -17,7 +17,7 @@
 
           <label id="po-label">User Name  </label>
           <input type="text" id="po-textbox" class="m-t-5px" [(ngModel)]="model.username"
-            #username="ngModel" name="username" required />
+            #username="ngModel" name="username" autocomplete="off" required />
           <div *ngIf="username.errors  && (username.dirty || username.touched) ||
             (userForm.submitted && !username.valid )">
             <span [hidden]="!username.errors.required" class="spanerror">

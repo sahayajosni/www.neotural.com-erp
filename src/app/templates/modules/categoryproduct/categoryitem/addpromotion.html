@@ -117,7 +117,7 @@
                             <div *ngIf="freegiftShow">
                                 <input type="text" id="inputBoxVal" name="freegift" 
                                     [(ngModel)]="model.freegift" placeholder="Product Free Gift"
-                                    #freegift="ngModel" required />
+                                    #freegift="ngModel" autocomplete="off" required />
 
                                 <div *ngIf="freegift.errors  && (freegift.dirty || freegift.touched) ||
                                     (addpromotionForm.submitted && !freegift.valid )">
@@ -134,7 +134,7 @@
 
                                 <input type="text" id="inputQty" name="qty" 
                                     [(ngModel)]="model.qty" placeholder="Discount Qty"
-                                    #qty="ngModel" required />
+                                    #qty="ngModel" autocomplete="off" required />
                                 <div *ngIf="qty.errors  && (qty.dirty || qty.touched) ||
                                     (addpromotionForm.submitted && !qty.valid )">
                                     <span [hidden]="!qty.errors.required" class="spanerror">
@@ -146,7 +146,7 @@
                             <div *ngIf="otherShow">
                                 <input type="text" id="inputBoxVal" name="others" 
                                     [(ngModel)]="model.others" placeholder="Custom Promotion"
-                                    #others="ngModel" required />
+                                    #others="ngModel" autocomplete="off" required />
 
                                 <div *ngIf="others.errors  && (others.dirty || others.touched) ||
                                     (addpromotionForm.submitted && !others.valid )">
@@ -168,11 +168,11 @@
                         <div class="col-7 col-md-7 col-sm-7 col-lg-7">
                             <input type="date" id="promotion-periodbox" class="datepicker"
                                 [(ngModel)]="model.fromdate_promotionperiod" name="fromdate_promotionperiod" 
-                                #fromdate_promotionperiod="ngModel"  />
+                                #fromdate_promotionperiod="ngModel" autocomplete="off" />
                             <label id="labelbar"> - </label>
                             <input type="date" id="promotion-periodbox2" class="datepicker"
                                 [(ngModel)]="model.todate_promotionperiod" name="todate_promotionperiod"
-                                #todate_promotionperiod="ngModel"  />
+                                #todate_promotionperiod="ngModel"  autocomplete="off" />
 
                         </div>
                     </div>

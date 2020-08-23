@@ -22,7 +22,7 @@
             <div class="col-75">
               <input type="text" name="unitname"
               [(ngModel)]="model.unitname"
-              #unitname="ngModel"
+              #unitname="ngModel" autocomplete="off"
               id="unitname" 
               required
               placeholder="Enter Unit..">     
@@ -66,6 +66,7 @@
               #quantityname="ngModel"
               id="quantityname" 
               name="quantityname" 
+              autocomplete="off"
               placeholder="Enter Quantity Name..">
             </div>
           </div>
@@ -79,6 +80,7 @@
               [(ngModel)]="model.quantitysymbol"
               #quantitysymbol="ngModel"
               id="quantitysymbol" 
+              autocomplete="off"
               name="quantitysymbol" 
               placeholder="Enter Quantity Symbol..">
             </div>
@@ -92,6 +94,7 @@
               <input type="text" name="dimensionsymbol"
               [(ngModel)]="model.dimensionsymbol"
               #dimensionsymbol="ngModel"
+              autocomplete="off"
               id="dimensionsymbol" 
               name="dimensionsymbol" 
               placeholder="Enter Dimension Symbol..">

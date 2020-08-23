@@ -192,7 +192,7 @@
       <div>
           <!-- <h5>{{employeeDet.rank}}</h5> -->
           <h5 *ngIf="!employeeDet.editable">{{employeeDet.rank}}</h5>
-          <input type="text" id="editinput1" [(ngModel)]="employeeDet.rank" #rank="ngModel"
+          <input type="text" id="editinput1" [(ngModel)]="employeeDet.rank" #rank="ngModel" autocomplete="off"
               name="rank" *ngIf="employeeDet.editable" />
           <span>{{employeeDet.employeecode}}</span>
       </div>
@@ -208,15 +208,15 @@
   <div style="color: rgba(85,112,129,1);margin-top:25px;">Phone</div>
     <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.phonenumber}}</div>
     <input type="text" id="editinput" [(ngModel)]="employeeDet.phonenumber" #phonenumber="ngModel"
-        name="phonenumber" *ngIf="employeeDet.editable" />
+        name="phonenumber" *ngIf="employeeDet.editable" autocomplete="off"/>
 	  <div style="color: rgba(85,112,129,1); margin-top:25px;">Email</div>
     <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.email}}</div>
     <input type="text" id="editinput" [(ngModel)]="employeeDet.email" #email="ngModel"
-      name="email" *ngIf="employeeDet.editable" />
+      name="email" *ngIf="employeeDet.editable" autocomplete="off" />
 	  <div style="color: rgba(85,112,129,1); margin-top:25px;">Address </div>
       <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.address}}</div>
       <input type="text" id="editinput" [(ngModel)]="employeeDet.address" #address="ngModel"
-      name="address" *ngIf="employeeDet.editable" />
+      name="address" *ngIf="employeeDet.editable" autocomplete="off"/>
  <div style="color: rgba(85,112,129,1); margin-top:25px;">Birthday</div>
       <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.dob}}</div>
       <input type="text" id="editinput" [(ngModel)]="employeeDet.dob" #dob="ngModel"
@@ -224,11 +224,11 @@
 	   <div style="color: rgba(85,112,129,1); margin-top:25px;">NPWP</div>
       <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.npwp}}</div>
       <input type="text" id="editinput" [(ngModel)]="employeeDet.npwp" #npwp="ngModel"
-      name="npwp" *ngIf="employeeDet.editable" />
+      name="npwp" *ngIf="employeeDet.editable" autocomplete="off"/>
 	   <div style="color: rgba(85,112,129,1); margin-top:25px;">BPJS</div>
       <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.bpjs}}</div>
       <input type="text" id="editinput" [(ngModel)]="employeeDet.bpjs" #bpjs="ngModel"
-      name="bpjs" *ngIf="employeeDet.editable" />
+      name="bpjs" *ngIf="employeeDet.editable" autocomplete="off"/>
   </div>
 
   <div class="org-footer" *ngIf="employeeDet.editable">
@@ -296,7 +296,7 @@
           (closed)="toggle(ref)" #picker></mat-datepicker> -->
 
           <input type="date" placeholder="Choose a date"
-            style="background-color:#1B2931;color: white;" id="picker" [(ngModel)]="this.model.date" 
+            style="background-color:#1B2931;color: white;" id="picker" [(ngModel)]="this.model.date" autocomplete="off" 
             #date="ngModel" name="date" (ngModelChange)="getDailyReportLists(employeeDet.employeecode,this.model.date)"> 
             <!-- placeholder="Choose a date" id="picker" (dateInput)="addEvent('input', $event, picker)" (dateChange)="addEvent('change', $event, picker)" [(ngModel)]="_picker" [ngModelOptions]="{standalone: true}" (keydown)="false"> -->
 
