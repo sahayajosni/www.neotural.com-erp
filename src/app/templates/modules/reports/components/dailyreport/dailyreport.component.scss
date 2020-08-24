@@ -145,11 +145,11 @@ input[type=text] {
 }
 button[type="submit"]{
   background: $btn-bg;
-  width: 50%;
+  width: 80%;
   border: none;
   border-radius: 20px;
   border-radius: $btn-border-radius;
-  padding: 0rem 1.5rem;
+  padding: auto;
   font-family: $font-family;
   color: white;
   height: 35px;
@@ -172,9 +172,30 @@ input:-webkit-autofill {
   -webkit-text-fill-color: white !important;
 }
 
-#borderdiv{
-  border: 1px solid darksalmon;
-  border-style: dotted;
+::ng-deep .modal-class .modal-dialog {
+  max-width: 60%;
+  width: 40% !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+::ng-deep .modal-class1 .modal-dialog {
+  max-width: 80%;
+  width: 70% !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+::ng-deep .modal-class .modal-content {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background:$po-order-form-bg;
 }
 // iPhone media query start
 

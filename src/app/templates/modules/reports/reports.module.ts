@@ -57,6 +57,7 @@ import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the
 import { MomentModule } from 'angular2-moment'; // optional, provides moment-style pipes for date formatting
 import { NgxSpinnerModule,NgxSpinnerService  } from 'ngx-spinner';
 import { NgbModal, NgbModalConfig, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -107,6 +108,7 @@ import { NgbModal, NgbModalConfig, NgbTypeaheadModule } from '@ng-bootstrap/ng-b
     NgIdleKeepaliveModule.forRoot(),
     MomentModule,
     NgxSpinnerModule,
+    NgbModule,
 
     ModalModule.forRoot(),
     DataTablesModule.forRoot()

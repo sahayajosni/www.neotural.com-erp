@@ -1,16 +1,17 @@
 import {
   Component,
   OnInit,
-  ViewChild,
   Input,
+  ViewChild,ElementRef, AfterViewInit 
 } from "@angular/core";
 
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router, ActivatedRoute } from '@angular/router';
 import {Observable, Subject, Subscription} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { ReportService } from "../../services/reports.service";
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: "app-dailyreport",
@@ -18,11 +19,12 @@ import { ReportService } from "../../services/reports.service";
   styleUrls: ["./dailyreport.component.scss"]
 })
 export class DailyReportComponent implements OnInit {
+
+	@ViewChild('monthreportContent', {static:true}) templateRef: ElementRef<any>;
+
 	monthlyList:any = {};
 	customList:any = {};
 	model: any = {};
-	public monthdiv = false;
-	public customdiv = false;
 	montherepnable : boolean;
 	customenable: boolean;
 
@@ -35,26 +37,39 @@ export class DailyReportComponent implements OnInit {
 
 	constructor(private router: Router,
 		private snackBar: MatSnackBar,
-		private reportService:ReportService,
+		private reportService:ReportService,	
+		config: NgbModalConfig, private modalService: NgbModal,
+		private SpinnerService: NgxSpinnerService,
 	) { 
-		
+		config.backdrop = 'static';
+    	config.keyboard = false;
 	}
 
+	ngAfterViewInit() {
+		const modalRef = this.modalService.open(this.templateRef, {  windowClass: 'modal-class' });
+		modalRef.result.then((result) => {
+			this.loadMonthlyReport();
+		}, (reason) => {
+			this.loadMonthlyReport();
+		}); 
+	}
 
 	ngOnInit() {
-		this.model.name = '';
-		this.model.code = '';
 		this.loadEmployee();
+		this.model.reporttype = "monthlyreport";
 	}
 
-	getReport(reporttype: string){
+	getReport(reportContent){
 		this.model.employeecode = '';
-		if(reporttype == "monthlyreport"){
-			this.monthdiv = true;
-			this.customdiv = false;
-		}else if(reporttype == "customreport"){
-			this.monthdiv = false;
-			this.customdiv = true;
+		this.model.monthname = '';
+		this.model.name = '';
+		this.model.code = '';
+		this.montherepnable = false;
+		this.customenable = false;
+		if(this.model.reporttype == "monthlyreport"){
+			this.modalService.open(reportContent, {  windowClass: 'modal-class' });
+		}else if(this.model.reporttype == "customreport"){
+			this.modalService.open(reportContent, {  windowClass: 'modal-class1' });
 		}
 	}
 
@@ -65,7 +80,7 @@ export class DailyReportComponent implements OnInit {
 		map(term => term === '' ? []
 			: this.employeeData.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
 	)
-
+	
 	loadEmployee(){
 		this.reportService.loadEmployee().subscribe(
 			data => {         
@@ -81,6 +96,7 @@ export class DailyReportComponent implements OnInit {
 
 	loadMonthlyReport(){
 		this.monthlyList = '';
+		this.modalService.dismissAll();
 		var nameArr = this.model.employeecode.split('-');
 		this.model.name = nameArr[0];
 		this.model.code = nameArr[1];
@@ -109,6 +125,7 @@ export class DailyReportComponent implements OnInit {
 
 	loadCustomReport(){
 		this.customList = '';
+		this.modalService.dismissAll();
 		var nameArr = this.model.employeecode.split('-');
 		this.model.name = nameArr[0];
 		this.model.code = nameArr[1];
