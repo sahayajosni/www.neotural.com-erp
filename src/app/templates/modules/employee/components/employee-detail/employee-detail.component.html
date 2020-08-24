@@ -372,14 +372,7 @@
     <div class="col-md-12" *ngFor="let item of attendanceDetails">
       <div class="m-t-10">
       <div class="col-md-2 float-left date-div">
-        <div style="font-size: 14px;">{{item.date}}</div>
-      </div>
-       <div *ngIf="item.absent === null" class="col-md-5 float-left last-div">
-        <div *ngIf="item.checkouttime === null" style="color:#17af7d;font-size: 14px;padding-top: 5px;">9:00 AM</div>
-        <div *ngIf="item.checkintime !== null">
-          <div style="color:red; font-size: 14px;">{{item.checkouttime}}</div>
-          <div style="font-size: 14px;">{{item.checkoutreason}}</div>
-        </div>
+        <div style="font-size: 14px;">{{item.date | date : 'dd-MM-yyyy'}}</div>
       </div>
       <div *ngIf="item.absent === null" class="col-md-4 float-left time-div">
         <div *ngIf="item.checkintime === null" style="color:#17af7d;font-size: 14px;padding-top: 5px;">9:00 AM</div>
@@ -388,11 +381,20 @@
           <div style="font-size: 14px;">{{item.checkinreason}}</div>
         </div>
       </div>
+       <div *ngIf="item.absent === null" class="col-md-4 float-left last-div">
+        <div *ngIf="item.checkouttime === null" style="color:#17af7d;font-size: 14px;padding-top: 5px;">5:00 PM</div>
+        <div *ngIf="item.checkouttime !== null">
+          <div style="color:red; font-size: 14px;">{{item.checkouttime}}</div>
+          <div style="font-size: 14px;">{{item.checkoutreason}}</div>
+        </div>
+      </div>
     </div>
       <div *ngIf="item.absent === 'yes'" class="col-md-9 float-left middle-div">
-        <div>
+        <div  class="col-md-5 float-left">
           <span style="color:red;font-size: 14px;">ABSENT</span>
-          <span style="color:red;font-size: 14px; text-align: center;">{{item.reason}}</span>
+        </div>
+        <div  class="col-md-7 float-left">
+          <span style="color:white;font-size: 14px; text-align: center;">{{item.reason}}</span>
         </div>
       </div>
     </div>
