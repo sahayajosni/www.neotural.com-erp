@@ -31,7 +31,7 @@
 
           <label id="po-label">Transaction Date*</label>
           <input type="date" id="po-textbox" class="m-t-5px" [(ngModel)]="model.addedDate"
-            name="addedDate" placeholder="xx/xx/xx" #addedDate="ngModel" required/>
+            name="addedDate" placeholder="xx/xx/xx" #addedDate="ngModel" autocomplete="off" required/>
 
           <div *ngIf="addedDate.errors  && (addedDate.dirty || addedDate.touched) ||
             (pettyForm.submitted && !addedDate.valid )">
@@ -58,7 +58,7 @@
         <div class="col-6">
           <label id="po-label" style="margin-left: auto;">Paid To* </label>
           <input type="text" id="po-textbox" class="m-t-5px" class="form-control" [(ngModel)]="model.toPerson"
-            name="toPerson" #toPerson="ngModel" style="margin-left: auto;" required/>
+            name="toPerson" #toPerson="ngModel" style="margin-left: auto;" autocomplete="off" required/>
 
           <div *ngIf="toPerson.errors  && (toPerson.dirty || toPerson.touched) ||
             (pettyForm.submitted && !toPerson.valid )">
@@ -69,7 +69,7 @@
 
           <label id="po-label" style="margin-left: auto;">Value*</label>
           <input type="text" id="po-textbox" class="m-t-5px" class="form-control" [(ngModel)]="model.totalAmount"
-            name="totalAmount" placeholder="Eg:-IDR" #totalAmount="ngModel" style="margin-left: auto;" required/>
+            name="totalAmount" placeholder="Eg:-IDR" #totalAmount="ngModel" style="margin-left: auto;" autocomplete="off" required/>
           
           <div *ngIf="totalAmount.errors  && (totalAmount.dirty || totalAmount.touched) ||
             (pettyForm.submitted && !totalAmount.valid )">

@@ -58,7 +58,7 @@
 <div class="row">
    <input type="text" class="col-md-12" 
    id="currentusername" 
-   name="currentusername"
+   name="currentusername" autocomplete="off"
    [(ngModel)]="model.currentusername" #currentusername="ngModel" 
    name="currentusername" required  /> 
 
@@ -82,7 +82,7 @@
 
 
 <div class="row">
- <input type="{{ passwordtype }}" class="col-md-12" [(ngModel)]="model.currentpassword" #currentpassword="ngModel" 
+ <input type="{{ passwordtype }}" autocomplete="off" class="col-md-12" [(ngModel)]="model.currentpassword" #currentpassword="ngModel" 
   name="currentpassword" required  /> 
 
   <p

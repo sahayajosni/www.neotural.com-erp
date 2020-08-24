@@ -14,7 +14,7 @@
                     <label> Code : {{model.categorycode}} </label>
                 </div>
                 <input type="text" [(ngModel)]="model.name" 
-                  #name="ngModel" placeholder="Enter Name"
+                  #name="ngModel" placeholder="Enter Name" autocomplete="off"
                   id="name" name="name"  autocomplete="off" required>
   
                 <div *ngIf="name.errors  && (name.dirty || name.touched) ||
@@ -26,7 +26,7 @@
                 <div id="spaceBar"></div>
   
                 <input type="text" [(ngModel)]="model.description" #description="ngModel"  
-                    id="description"
+                    id="description" 
                     placeholder="Enter Description" name="description" autocomplete="off">
             </div>
             <div class="modal-footer">

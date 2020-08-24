@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-70">
 						<input type="text" id="productcode-box" name ="vendorcode" [(ngModel)]="model.vendorcode"
-                            #vendorcode="ngModel" value="{{ model.vendor }}" readonly/>
+                            #vendorcode="ngModel" value="{{ model.vendor }}" autocomplete="off" readonly/>
                         <!-- <select id="editselect-box" name ="vendorcode" [(ngModel)]="model.vendorcode"
                             #vendorcode="ngModel" required>
                             <option [ngValue]="undefined" hidden selected> Select Vendor </option>
@@ -139,7 +139,7 @@
                     <div class="col-70">
                         <input type="text" id="productcode-box" [(ngModel)]="model.sellingprice" 
                             #sellingprice="ngModel" value="{{ model.sellingprice }}"
-                            placeholder="IDR 30.000" name="sellingprice" readonly/>
+                            placeholder="IDR 30.000" name="sellingprice" autocomplete="off" readonly/>
                     </div>
                 </div>
                 <br/>
