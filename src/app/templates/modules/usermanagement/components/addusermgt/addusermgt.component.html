@@ -94,7 +94,8 @@
             [disabled]="disabled" 
             (onSelect)="onPurchaseSelect($event)"
             (onSelectAll)="onPurSelectAll($event)"
-            (onDeSelectAll)="onDeSelectPurchase($event)"> 
+            (onDeSelectAll)="onDeSelectAllPurchase($event)"
+            (onDeSelect)="onDeSelectPurchase($event)"> 
           </ng-multiselect-dropdown>
           <br/>
         </div>
@@ -115,7 +116,8 @@
             [disabled]="disabled"
             (onSelect)="onProductSelect($event)"
             (onSelectAll)="onprodSelectAll($event)"
-            (onDeSelectAll)="onDeSelectProduct($event)"> 
+            (onDeSelectAll)="onDeSelectAllProduct($event)"
+            (onDeSelect)="onDeSelectProduct($event)"> 
           </ng-multiselect-dropdown>
           <br/>
         </div>
@@ -160,7 +162,10 @@
       </div>
 
       <div class="row">
-        <div class="col-12">
+        <div class="col-6">
+          <p class="pclass" *ngIf="validationMsg">Please Choose atleast one Menu</p>
+        </div>
+        <div class="col-6">
             <div class="update-btn" style="margin: 20px 0px;">
               <button id="add-btn">Add</button>
             </div>
