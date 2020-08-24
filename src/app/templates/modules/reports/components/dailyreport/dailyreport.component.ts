@@ -59,6 +59,10 @@ export class DailyReportComponent implements OnInit {
 		this.model.reporttype = "monthlyreport";
 	}
 
+	backtoreport(){
+		this.router.navigate(["reports"]);
+	}
+
 	getReport(reportContent){
 		this.model.employeecode = '';
 		this.model.monthname = '';
