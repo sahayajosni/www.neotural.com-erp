@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ModalModule } from "ngx-bootstrap";
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 // Modules
 import {
@@ -116,6 +117,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatTooltipModule,
     MatTreeModule,
     NgbModule,
+    InfiniteScrollModule,
     ModalModule.forRoot(),
     DataTablesModule.forRoot()
   ],

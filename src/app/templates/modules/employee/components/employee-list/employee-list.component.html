@@ -25,6 +25,16 @@
 
 <div class="row">
   <div class="col-12">
+    <div
+    class="search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollUpDistance]="1.5"
+    [infiniteScrollThrottle]="15"
+    (scrolled)="onScrollDown()"
+    (scrolledUp)="onScrollUp()"
+    [scrollWindow]="false"
+  >
     <table class="table" *ngIf="enable">
       <thead>
         <tr>
@@ -47,6 +57,7 @@
           <th class="wid-75px">Status</th>
         </tr>
       </thead>
+     
       <tbody *ngFor="let item of employeesDS; let i = index"
         (dblclick)= "router.navigateByUrl('/employment/viewEmployee/'+item.employeecode)"> 
         <tr>
@@ -88,7 +99,10 @@
           </td>
         </tr>
       </tbody>
+
     </table>
+  </div>
+
   </div>
 </div>
 </div>

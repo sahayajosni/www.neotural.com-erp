@@ -26,6 +26,7 @@ import * as _ from 'lodash';
 export class EmployeeListComponent implements OnInit, OnDestroy {
   employeesDS: any = {};
   employeesList: any = {};
+  employeesTempList: any = {};
 
   employees: MatTableDataSource<Employee>;
   employee;
@@ -43,12 +44,15 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   isSortIdAsc: boolean = true;
   isSortNameDesc: boolean = false;
   isSortNameAsc: boolean = true;
+  enable: boolean;
 
   model:any = {};
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
-  
+  pageSkip: number = 0;  
+  totalrowCount: number = 0;  
+
   constructor(
     private employeeService: EmployeeService,
     private alertService: AlertService,
@@ -69,15 +73,52 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
 
   ngOnInit() { 
     this.SpinnerService.show();  
-    this.allemplist();
+    this.totalrowCount = this.getAllEmployeeRowCount();
+    this.employeesDS = this.allemplist(this.pageSkip);
   }
+  onScrollDown() {
+    console.log('scrolled down!!');
+    this.pageSkip = this.pageSkip + 20; 
+    if(this.totalrowCount > this.pageSkip) {
+      this.employeesTempList = this.allemplist(this.pageSkip);
+      this.employeesDS.push(this.employeesTempList); 
+    }
+    
 
+  }
+ 
+  onScrollUp() {
+    console.log('scrolled up!!');
+  }
   printPage(data) {
     this.printDialogService.openDialog(data);
   }
-enable: boolean;
-  allemplist() {
-    this.employeeService.load().subscribe(
+  getAllEmployeeRowCount() {
+    this.employeeService.getAllEmployeeRowCount().subscribe(
+      data => { 
+        this.totalrowCount = data;
+        console.log("Row Count-->"+this.totalrowCount);
+      },
+      error => {
+        this.SpinnerService.hide();
+        setTimeout(() => {
+          this.snackBar.open(
+            "Network error: server is temporarily unavailable",
+            "",
+            {
+              panelClass: ["error"],
+              verticalPosition: "top"
+            }
+          );
+        });
+      }
+    );
+    return this.totalrowCount;
+  }
+  
+
+  allemplist(pagination:number) {
+    this.employeeService.load(pagination).subscribe(
       data => { 
         this.employeesDS = data;
         this.employeesList = this.employeesDS;
@@ -112,6 +153,7 @@ enable: boolean;
         });
       }
     );
+    return this.employeesDS;
   }
   
 
@@ -133,7 +175,7 @@ enable: boolean;
               verticalPosition: "top"
             });
           });
-          this.allemplist();
+          this.allemplist(this.pageSkip);
           this.employees = new MatTableDataSource(this.employeesDS);
           setTimeout(() => {
             this.alertService.clear();
@@ -150,7 +192,7 @@ enable: boolean;
             );
           });
         }
-        this.allemplist();
+        this.allemplist(this.pageSkip);
       },
       error => {
         setTimeout(() => {
@@ -200,9 +242,9 @@ enable: boolean;
     let data: any;
     modalRef.componentInstance.passedData= data;
     modalRef.result.then((result) => {
-      this.allemplist();
+      this.allemplist(this.pageSkip);
     }, (reason) => {
-      this.allemplist();
+      this.allemplist(this.pageSkip);
     }); 
     
     /* if(this.snackBar.open) {
@@ -328,7 +370,7 @@ enable: boolean;
           });
         });
         this.modalService.dismissAll();
-        this.allemplist();
+        this.allemplist(this.pageSkip);
       },
       error => {
         setTimeout(() => {

@@ -125,7 +125,10 @@ table tbody tr:hover td span{
   border-top-width: 0;
   cursor: pointer;
 }
-
+.search-results {
+  height: 80%;
+  overflow-y: scroll;
+}
 .img-fluid{
   cursor: pointer;
 }
