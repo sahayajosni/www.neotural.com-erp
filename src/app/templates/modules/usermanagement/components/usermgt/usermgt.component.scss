@@ -92,3 +92,64 @@ input::-webkit-inner-spin-button {
   text-align: center;
   font-size: 18px;
 }
+
+::ng-deep .modal-class .modal-dialog {
+  max-width: 80%;
+  width: 50% !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+::ng-deep .modal-class .modal-content {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background:$po-order-form-bg;
+}
+
+
+input[type=checkbox] {
+  position: relative;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+input[type=checkbox]:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: -3px;
+  left: 0;
+  border: 1px solid $btn-bg;
+  border-radius: 0px;
+  background-color: $table-invoived-row-bg;
+}
+input[type=checkbox]:checked:after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 10px;
+  border: solid $white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 1px;
+  left: 8px;
+}
+input[type=checkbox]:checked:before{
+  background: #174E76;
+}
+
+input[type="checkbox"][readonly] {
+  pointer-events: none;
+}

@@ -31,6 +31,12 @@ export class UserManagementService {
       `${environment.apiUrl}${API_ENDPOINTS.getMenuName}`+'?menuCode='+menuCode);
   }
 
+  getSubMenu(submenuCode: string){
+    console.log("Sub Menu Code -->" + submenuCode);
+    return this.http.get<Usermgt>(
+      `${environment.apiUrl}${API_ENDPOINTS.getSubMenuName}`+'?submenuCode='+submenuCode);
+  }
+
   remove(id: string) {
      return this.http.delete<Usermgt>(
        `${environment.apiUrl}${API_ENDPOINTS.removeUser}`+'?id='+id);

@@ -3,5 +3,6 @@ export const API_ENDPOINTS = {
     save: `/userMgt/save`,
     load: `/userMgt/load`,
     getMenuName: `/userMgt/getMenuName`, 
+    getSubMenuName: `/userMgt/getSubMenuName`, 
     removeUser: `/userMgt/removeUser`
 };

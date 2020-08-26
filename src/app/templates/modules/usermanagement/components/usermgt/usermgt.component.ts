@@ -45,6 +45,17 @@ export class UserManagementComponent implements OnInit {
     this.getMenuName6("MEN10005");
     this.getMenuName7("MEN10006");
     this.getMenuName8("MEN10007");
+    this.getPurchaseSubMenuName1("SUBMEN10001");
+    this.getPurchaseSubMenuName2("SUBMEN10002");
+    this.getPurchaseSubMenuName3("SUBMEN10003");
+    this.getProductSubMenuName1("SUBMEN10004");
+    this.getProductSubMenuName2("SUBMEN10005");
+    this.getProductSubMenuName3("SUBMEN10006");
+    this.getSalesSubMenuName1("SUBMEN10007");
+    this.getSalesSubMenuName2("SUBMEN10008");
+    this.getSalesSubMenuName3("SUBMEN10009");
+    this.getSalesSubMenuName4("SUBMEN10010");
+    this.getSalesSubMenuName5("SUBMEN10011");
     this.enable = false;
     this.load();
   }
@@ -59,7 +70,7 @@ export class UserManagementComponent implements OnInit {
     //alert("show menu");
   }
   openScrollableContent(longContent) {
-    this.modalService.open(longContent, { scrollable: true });
+    this.modalService.open(longContent, { windowClass: 'modal-class'});
   }
   load(){
     this.userMgtService.load().subscribe(
@@ -156,6 +167,105 @@ export class UserManagementComponent implements OnInit {
       data => {
         this.menuList = data;
         this.model.menu6 = this.menuList[0].menuname;
+      });
+  }
+
+  getPurchaseSubMenuName1(purchasesubmenu1){
+    this.userMgtService.getSubMenu(purchasesubmenu1)
+    .subscribe(
+      data => {
+        this.submenuList = data;
+        this.model.purchasesubmenu1 = this.submenuList[0].submenuname;
+      });
+  }
+
+  getPurchaseSubMenuName2(purchasesubmenu2){
+    this.userMgtService.getSubMenu(purchasesubmenu2)
+    .subscribe(
+      data => {
+        this.submenuList = data;
+        this.model.purchasesubmenu2 = this.submenuList[0].submenuname;
+      });
+  }
+
+  getPurchaseSubMenuName3(purchasesubmenu3){
+    this.userMgtService.getSubMenu(purchasesubmenu3)
+    .subscribe(
+      data => {
+        this.submenuList = data;
+        this.model.purchasesubmenu3 = this.submenuList[0].submenuname;
+      });
+  }
+
+  getProductSubMenuName1(productsubmenu1){
+    this.userMgtService.getSubMenu(productsubmenu1)
+    .subscribe(
+      data => {
+        this.submenuList = data;
+        this.model.productsubmenu1 = this.submenuList[0].submenuname;
+      });
+  }
+
+  getProductSubMenuName2(productsubmenu2){
+    this.userMgtService.getSubMenu(productsubmenu2)
+    .subscribe(
+      data => {
+        this.submenuList = data;
+        this.model.productsubmenu2 = this.submenuList[0].submenuname;
+      });
+  }
+
+  getProductSubMenuName3(productsubmenu3){
+    this.userMgtService.getSubMenu(productsubmenu3)
+    .subscribe(
+      data => {
+        this.submenuList = data;
+        this.model.productsubmenu3 = this.submenuList[0].submenuname;
+      });
+  }
+
+  getSalesSubMenuName1(salessubmenu1){
+    this.userMgtService.getSubMenu(salessubmenu1)
+    .subscribe(
+      data => {
+        this.submenuList = data;
+        this.model.salessubmenu1 = this.submenuList[0].submenuname;
+      });
+  }
+
+  getSalesSubMenuName2(salessubmenu2){
+    this.userMgtService.getSubMenu(salessubmenu2)
+    .subscribe(
+      data => {
+        this.submenuList = data;
+        this.model.salessubmenu2 = this.submenuList[0].submenuname;
+      });
+  }
+
+  getSalesSubMenuName3(salessubmenu3){
+    this.userMgtService.getSubMenu(salessubmenu3)
+    .subscribe(
+      data => {
+        this.submenuList = data;
+        this.model.salessubmenu3 = this.submenuList[0].submenuname;
+      });
+  }
+
+  getSalesSubMenuName4(salessubmenu4){
+    this.userMgtService.getSubMenu(salessubmenu4)
+    .subscribe(
+      data => {
+        this.submenuList = data;
+        this.model.salessubmenu4 = this.submenuList[0].submenuname;
+      });
+  }
+
+  getSalesSubMenuName5(salessubmenu5){
+    this.userMgtService.getSubMenu(salessubmenu5)
+    .subscribe(
+      data => {
+        this.submenuList = data;
+        this.model.salessubmenu5 = this.submenuList[0].submenuname;
       });
   }
 
