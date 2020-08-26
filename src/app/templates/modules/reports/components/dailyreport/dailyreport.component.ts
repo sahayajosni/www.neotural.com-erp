@@ -21,6 +21,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class DailyReportComponent implements OnInit {
 
 	@ViewChild('monthreportContent', {static:true}) templateRef: ElementRef<any>;
+	@ViewChild('customreportContent', {static:true}) templateRef1: ElementRef<any>;
 
 	monthlyList:any = {};
 	customList:any = {};
@@ -30,6 +31,7 @@ export class DailyReportComponent implements OnInit {
 
 	searchText:string;
 	showMenu = false;
+	filterdiv = false;
 	public employeelist: any;
 	public employeeData = [ ];
 
@@ -45,18 +47,19 @@ export class DailyReportComponent implements OnInit {
     	config.keyboard = false;
 	}
 
-	ngAfterViewInit() {
+	/* ngAfterViewInit() {
 		const modalRef = this.modalService.open(this.templateRef, {  windowClass: 'modal-class' });
 		modalRef.result.then((result) => {
 			this.loadMonthlyReport();
 		}, (reason) => {
 			this.loadMonthlyReport();
 		}); 
-	}
+	} */
 
 	ngOnInit() {
 		this.loadEmployee();
-		this.model.reporttype = "monthlyreport";
+		this.filterdiv = false;
+		//this.model.reporttype = "monthlyreport";
 	}
 
 	backtoreport(){
@@ -105,6 +108,7 @@ export class DailyReportComponent implements OnInit {
 		this.model.name = nameArr[0];
 		this.model.code = nameArr[1];
 		this.customenable = false;
+		this.filterdiv = true;
 		this.reportService.load(this.model)
 			.subscribe(
 			data => {
@@ -134,6 +138,7 @@ export class DailyReportComponent implements OnInit {
 		this.model.name = nameArr[0];
 		this.model.code = nameArr[1];
 		this.montherepnable = false;
+		this.filterdiv = true;
 		this.reportService.load(this.model)
 			.subscribe(
 			data => {
@@ -154,6 +159,15 @@ export class DailyReportComponent implements OnInit {
 			}
 		);
 	} 
+
+
+	showDialog(){
+		if(this.model.reporttype == "monthlyreport"){
+			const modalRef = this.modalService.open(this.templateRef, {  windowClass: 'modal-class' });
+		}else if(this.model.reporttype == "customreport"){
+			const modalRef = this.modalService.open(this.templateRef1, {  windowClass: 'modal-class1' });
+		}
+	}
 
 
 }

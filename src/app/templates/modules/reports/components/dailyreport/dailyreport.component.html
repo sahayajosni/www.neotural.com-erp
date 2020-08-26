@@ -118,6 +118,13 @@
   </div>
 </ng-template>
 
+<div class="row" *ngIf="filterdiv">
+  <div class="col-9"></div>
+  <div class="col-3">
+    <button type="submit" id="add-btn" (click)="showDialog()">Filter By Employee</button>
+  </div>
+</div>
+
 <div class="row" *ngIf="montherepnable" style="margin-top: 4vh;">
   <div class="col-1"></div>
   <div class="col-6">
