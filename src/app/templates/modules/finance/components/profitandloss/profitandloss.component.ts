@@ -21,7 +21,7 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
   profitandLossList: any;
   dialogConfig = new MatDialogConfig();
   public profitTable = false;
-  loadinggif:boolean = false;
+  //loadinggif:boolean = false;
   //public filterSelecteddiv = false;
   currentDate = new Date();
   todayDate: any;
@@ -39,6 +39,7 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.model.totalDebit = 0;
     this.model.totalCredit = 0;
+    this.SpinnerService.show();  
     this.getProfitandLossList();
   }
 
@@ -49,14 +50,13 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
   }
   
   getProfitandLossList() {
-        this.SpinnerService.show();  
-
-    this.loadinggif=true;
+    //this.loadinggif=true;
     this.profitTable = false;
     this.financeService.getProfitLoss().subscribe(
       (res) => {
         this.profitandLossList = res;
-        this.loadinggif=false;
+        //this.loadinggif=false;
+        this.SpinnerService.hide();
         if(this.profitandLossList.length == 0){
           this.profitTable = false;
         }else{
@@ -94,7 +94,7 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
 
   sortByDate(){
     this.SpinnerService.show();  
-    this.loadinggif=true;
+    //this.loadinggif=true;
     this.profitTable = false;
     this.model.totalDebit = 0;
     this.model.totalCredit = 0;
@@ -107,13 +107,27 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
           horizontalPosition: 'center'
         });
       });
-      this.loadinggif=false;
+      //this.loadinggif=false;
+      this.SpinnerService.hide();
+      this.profitTable = true;
+    }else if(this.model.todate < this.model.fromdate){
+      setTimeout(() => {
+        this.snackBar.open("Fromate was exceeded on toDate.", "", {
+          duration: undefined, 
+          panelClass: ["warning"],
+          verticalPosition: "top",
+          horizontalPosition: 'center'
+        });
+      });
+      //this.loadinggif=false;
+      this.SpinnerService.hide();
       this.profitTable = true;
     }else{
       this.financeService.filterByDate(this.model).subscribe(
         (res) => {
           this.profitandLossList = res;
-          this.loadinggif=false;
+          this.SpinnerService.hide();
+          //this.loadinggif=false;
           if(this.profitandLossList.length == 0){
             this.profitTable = false;
           }else{
@@ -139,8 +153,6 @@ export class ProfitandLossComponent implements OnInit, OnDestroy {
         }
       );    
     }
-    this.SpinnerService.hide();
-
   }
 
   

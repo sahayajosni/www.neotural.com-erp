@@ -58,6 +58,7 @@ import { ModalModule } from "ngx-bootstrap";
 
 import { FormsModule } from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatTooltipModule,
     MatTreeModule,
     NgbModule,
+    NgMultiSelectDropDownModule.forRoot(),
     ModalModule.forRoot(),
     DataTablesModule.forRoot()
   ],
