@@ -14,6 +14,13 @@ export interface UsersData{
   date:string,
   subtotal:string;
   pocode:string;
+  invoicenumber:string;
+  itemStatus:string;
+  returnStatus:string;
+  qty:number;
+  id:string;
+  price:string;
+  paymentstatus:string;
 }
 
 @Component({
@@ -23,7 +30,7 @@ export interface UsersData{
 })
 export class PurchaseCreateReturnComponent implements OnInit {
   model:any = {};
-  btnsave:string = "Create";
+  btnsave:string;
   paymentType:string;
   returnType:string;
   quantity:number;
@@ -48,6 +55,28 @@ export class PurchaseCreateReturnComponent implements OnInit {
     this.model.date = this.fromParent.date;
     this.model.subtotal = this.fromParent.subtotal;
     this.model.pocode = this.fromParent.pocode;
+    this.btnsave = "Create";
+    this.editPurchaseReturn(this.fromParent);
+  }
+
+  editPurchaseReturn(data: any) {
+    if (data.id !== undefined) {
+      this.model.vendorname = this.fromParent.vendorname;
+      this.model.vendorcode = this.fromParent.vendorcode;
+      this.model.productname = this.fromParent.productname;
+      this.model.pocode = this.fromParent.pocode;
+      this.model.invoicenumber = this.fromParent.invoicenumber;
+      this.model.date = this.fromParent.date;
+      this.model.invqty = this.fromParent.invqty;
+      this.model.itemstatus = this.fromParent.itemStatus;
+      this.model.paymentType = this.fromParent.returnStatus;
+      this.model.quantity = this.fromParent.qty;
+      this.model.id = this.fromParent.id;
+      this.model.price = this.fromParent.price;
+      this.model.paymentstatus = this.fromParent.paymentstatus;
+      this.model.subtotal = this.model.quantity * Number.parseInt(this.model.price);
+      this.btnsave = "Modify";
+    }
   }
 
   getPrice(quantity:number){
@@ -85,10 +114,6 @@ export class PurchaseCreateReturnComponent implements OnInit {
     }else{
       this.model.price = price;
     }
-  }
-
-  close() {
-    //this.dialogRef.close();
   }
 
   getPaymentValid(paymentType:string){
@@ -155,51 +180,103 @@ export class PurchaseCreateReturnComponent implements OnInit {
         );   
       });
     }else{
-      const invoice = {
-        "createddate": new Date().toJSON().slice(0, 10).split('-').reverse().join('/'),
-        "invoicedqty": this.model.invqty,
-        "vendorcode" : this.model.vendorcode,
-        "vendorname" : this.model.vendorname,
-        "itemname" : this.model.productname,
-        "itemStatus" : this.model.itemstatus,
-        "returnStatus" : this.model.paymentType,
-        "qty" : this.model.quantity,
-        "invoiceddate" : this.model.date,
-        "price" : this.model.price,
-        "pocode" : this.model.pocode
-      }
-      this.purchaseService.createReturn(invoice).subscribe(
-        (respose) => {
-          if (respose === null) {
-            this.modalService.dismissAll();
+
+      if(this.model.id == null || this.model.id == ""){
+        const invoice = {
+          "createddate": new Date().toJSON().slice(0, 10).split('-').reverse().join('/'),
+          "invoicedqty": this.model.invqty,
+          "vendorcode" : this.model.vendorcode,
+          "vendorname" : this.model.vendorname,
+          "itemname" : this.model.productname,
+          "itemStatus" : this.model.itemstatus,
+          "returnStatus" : this.model.paymentType,
+          "qty" : this.model.quantity,
+          "invoiceddate" : this.model.date,
+          "price" : this.model.price,
+          "pocode" : this.model.pocode
+        }
+        this.purchaseService.createReturn(invoice).subscribe(
+          (respose) => {
+            if (respose === null) {
+              this.modalService.dismissAll();
+              setTimeout(() => {
+                this.snackBar.open(
+                  "Purchase Return Created Successfully",
+                  "",
+                  {
+                    panelClass: ["success"],
+                    verticalPosition: "top",
+                  }
+                );
+    
+              });
+            }
+          },
+          (error) => {
             setTimeout(() => {
               this.snackBar.open(
-                "Purchase Return Created Successfully",
+                "Network error: server is temporarily unavailable",
                 "",
                 {
-                  panelClass: ["success"],
+                  panelClass: ["error"],
                   verticalPosition: "top",
                 }
               );
-  
             });
-            this.close();
           }
-        },
-        (error) => {
+        );
+      }else{
+        this.updateReturn();
+      }
+    }
+      
+  }
+
+  updateReturn(){
+    const invoice = {
+      "invoicedqty": this.model.invqty,
+      "vendorcode" : this.model.vendorcode,
+      "vendorname" : this.model.vendorname,
+      "itemname" : this.model.productname,
+      "itemStatus" : this.model.itemstatus,
+      "returnStatus" : this.model.paymentType,
+      "qty" : this.model.quantity,
+      "invoiceddate" : this.model.date,
+      "price" : this.model.price,
+      "pocode" : this.model.pocode,
+      "invoicenumber" : this.model.invoicenumber,
+      "id" : this.model.id
+    }
+    this.purchaseService.updateReturn(invoice).subscribe(
+      (respose) => {
+        if (respose === null) {
+          this.modalService.dismissAll();
           setTimeout(() => {
             this.snackBar.open(
-              "Network error: server is temporarily unavailable",
+              "Purchase Return Updated Successfully",
               "",
               {
-                panelClass: ["error"],
+                panelClass: ["success"],
                 verticalPosition: "top",
               }
             );
+
           });
         }
-      );
-    }
+      },
+      (error) => {
+        setTimeout(() => {
+          this.snackBar.open(
+            "Network error: server is temporarily unavailable",
+            "",
+            {
+              panelClass: ["error"],
+              verticalPosition: "top",
+            }
+          );
+        });
+      }
+    );
   }
 
   ngOnDestroy(){

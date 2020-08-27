@@ -187,4 +187,12 @@ export class PurchaseService {
             data
         )
     }
+
+    updateReturn(data:any) {
+        return this.http.post(
+            `${environment.apiUrl}${API_ENDPOINTS.UPDATE_RETURN}`,
+            data
+        )
+    }
+
 }

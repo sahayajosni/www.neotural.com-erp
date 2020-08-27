@@ -20,7 +20,7 @@ th {
 }
 th, td {
   text-align: left;
-  padding: 8px;
+  padding: 10px;
 }
 thead {
   background-color: $table-header-bg;
@@ -39,12 +39,17 @@ tbody {
   border-top:5px solid $main-bg;   
   color:$table-row-font-color;
 }
+
 .table > tbody > tr:hover {
   background-color: $header-bg;
 }
 .table > tbody > tr:hover, .table > tbody > tr:hover span  {
   background-color: $header-bg;
 }
+table tbody tr:hover td span{
+  display: block !important;
+}
+
 .txt-right{
   text-align: right;
 }
@@ -70,6 +75,26 @@ input[type=search] {
   margin: 3px 0px 0px 210px;
   color: white;
   font-size: 14px;
+}
+
+.edit-delete-icon {
+  display: none;
+  background: $table-invoived-row-bg;
+  position: relative;
+  height: 20px;
+  top: 0px;
+  margin-top: -18px;
+}
+
+.fa-pen {
+  float: left;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.fa-trash {
+  float: right;
+  cursor: pointer;
 }
 
 // iPhone media query start

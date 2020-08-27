@@ -40,7 +40,12 @@
           <td ></td>
           <td>{{ret.itemStatus}}</td>
           <td>{{ret.returnStatus}}</td>
-          <td class="txt-right">{{ret.qty}}</td>
+          <td class="txt-right">{{ret.qty}}
+            <span class="edit-delete-icon user-icon">
+              <span class="fas fa-pen" placement="bottom" ngbTooltip="Modify Purchase Reurn" (click)="modifyReturn(ret.id, ret)" ></span>
+              <span class="fas fa-trash" placement="bottom" ngbTooltip="Remove Purchase Return" (click)="removeReturn(ret.id)"></span>
+            </span>
+          </td>
         </tr>
       
       </tbody>

@@ -1,6 +1,6 @@
 <div class="modal-header">
     <div class="container">
-        <h4 class="modal-title" id="modal-basic-title">Create Purchase Return</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{btnsave}} Purchase Return</h4>
     </div>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true" class="close-x">&times;</span>
@@ -107,23 +107,23 @@
             <br/>
 
             <div class="row marginRow">
-                <div class="col-40">
+                <div class="col-4">
                     <label class="heading1">Return Quantity</label>
                 </div>
                 <div class="col-2"></div>
-                <div class="col-40">
+                <div class="col-4">
                     <label class="heading1">Price</label>
                 </div>
             </div>
 
             <div class="row marginRow">
-                <div class="col-40">
+                <div class="col-4">
                     <input type="number" id="qtyBox" [(ngModel)]="model.quantity" #quantity="ngModel" 
                         min="0" [max]="this.model.invqty" name="quantity" (ngModelChange)="getPrice(model.quantity)" 
                         autocomplete="off" required  />
                 </div>
                 <div class="col-2"></div>
-                <div class="col-40">
+                <div class="col-4">
                     <label id="priceBox">{{ this.model.price }}</label>
                 </div>
             </div>
