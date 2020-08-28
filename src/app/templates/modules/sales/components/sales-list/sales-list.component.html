@@ -82,7 +82,8 @@
           </td>
           <td>
             <span *ngIf="item.status === 'Open'" class="open-status">{{item.status}}</span>
-            <span *ngIf="item.status !== 'Open'" class="invoice-status">{{item.status}}</span>
+            <span *ngIf="item.status === 'Invoiced'" class="invoice-status">{{item.status}}</span>
+            <span *ngIf="item.status === 'Returned'" class="return-status">{{item.status}}</span>
           </td>
           <td>{{item.customername}}</td>
           <td><span [ngClass]="item.status !== 'Open' ? 'font-norm' : 'font-bld'">{{item.categoryname}}</span></td>

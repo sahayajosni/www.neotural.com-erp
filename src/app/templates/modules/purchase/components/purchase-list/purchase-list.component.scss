@@ -135,7 +135,9 @@ input[type=checkbox]:checked:before{
 .invoice-status {
   color: $green;
 }
-
+.return-status {
+  color: #a94442;
+}
 .sort-by-desc
 {
   left: 3px;
@@ -184,6 +186,27 @@ input[type=search] {
   color: white;
   font-size: 14px;
 }
+
+::ng-deep .modal-class .modal-dialog {
+  max-width: 80%;
+  width: 50% !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+::ng-deep .modal-class .modal-content {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background:$po-order-form-bg;
+}
+
 // iPhone media query start
 
 // iPhone 6, 7, & 8 in portrait & landscape

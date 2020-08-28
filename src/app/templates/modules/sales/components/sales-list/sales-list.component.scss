@@ -135,7 +135,9 @@ input[type=checkbox]:checked:before{
 .invoice-status {
   color: $green;
 }
-
+.return-status {
+  color: #a94442;
+}
 .sort-by-desc
 {
   left: 3px;

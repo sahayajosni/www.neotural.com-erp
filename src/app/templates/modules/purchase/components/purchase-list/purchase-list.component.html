@@ -80,7 +80,8 @@
           </td>
           <td>
             <span *ngIf="item.status === 'Open'" class="open-status">{{item.status}}</span>
-            <span *ngIf="item.status !== 'Open'" class="invoice-status">{{item.status}}</span>
+            <span *ngIf="item.status === 'Invoiced'" class="invoice-status">{{item.status}}</span>
+            <span *ngIf="item.status === 'Returned'" class="return-status">{{item.status}}</span>
           </td>
           <td>{{item.vendorname}}</td>
           <td><span [ngClass]="item.status !== 'Open' ? 'font-norm' : 'font-bld'">{{item.categoryname}}</span></td>
@@ -99,3 +100,14 @@
   </div>
 </div>
   
+
+<ng-template #detailContent let-modal>
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+  </div>
+</ng-template>
