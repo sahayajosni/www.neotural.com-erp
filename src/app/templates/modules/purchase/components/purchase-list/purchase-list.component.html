@@ -74,7 +74,7 @@
               </label>
             </div>
           </td>
-          <td>{{item.pocode}}</td>
+          <td><a (click)="purchaseflow(detailContent)">{{item.pocode}}</a></td>
           <td>
             <span [ngClass]="item.status !== 'Open' ? 'font-norm' : 'font-bld'">{{item.date | date : 'dd/MM/yyyy'}}</span>
           </td>
@@ -108,6 +108,85 @@
     </button>
   </div>
   <div class="modal-body">
-    
+    <div class="row" style="margin-left: 25%">
+      <svg height="50" width="50" style="cursor: pointer;">
+        <circle cx="25" cy="25" r="25" stroke-width="3" fill="red" />    
+        <text x="50%" y="50%" text-anchor="middle" stroke-width="2px" dy=".3em" style="font-size: 12px;">Order</text>
+        Sorry, your browser does not support inline SVG.  
+      </svg>
+      
+      <svg height="100" width="50">
+        <defs>
+           <marker id="arrowhead" stroke="red" markerWidth="10" markerHeight="7"
+             refX="10" refY="3.5" orient="auto">
+             <polygon points="0 0, 10 3.5, 0 7" />
+           </marker>
+         </defs>
+        
+          <path d="M 0 30 l 50 0" marker-end="url(#arrowhead)"
+           stroke="red" stroke-width="1" fill="none" />
+          Sorry, your browser does not support inline SVG.
+       </svg>
+      
+      
+      <svg height="50" width="50" style="cursor: pointer;">
+        <circle cx="25" cy="25" r="25" stroke-width="3" fill="red" (click)="purchaseflow1()" />    
+        <text x="50%" y="50%" text-anchor="middle" stroke-width="2px" dy=".3em" style="font-size: 12px;">Invoice</text>
+        Sorry, your browser does not support inline SVG.  
+      </svg>
+      
+      <!-- <svg height="400" width="50">
+        <path d="M 0 350 l 50 0" marker-end="url(#arrowhead)" stroke="red" stroke-width="1" fill="none" />
+        Sorry, your browser does not support inline SVG.
+      </svg> -->
+      
+      <svg height="100" width="50">
+        <path d="M 0 30 l 50 0" marker-end="url(#arrowhead)"
+          stroke="red" stroke-width="1" fill="none" />
+        Sorry, your browser does not support inline SVG.
+      </svg>
+      
+      <svg height="50" width="50" style="cursor: pointer;">
+        <circle cx="25" cy="25" r="25" stroke-width="3" fill="red" (click)="purchaseflow2()" />     
+        <text x="50%" y="50%" text-anchor="middle" stroke-width="2px" dy=".3em" style="font-size: 12px;">Return</text>
+        Sorry, your browser does not support inline SVG.  
+      </svg>
+    </div>
+
+    <div style="height: 4vh;"></div>
+
+    <div class="row" *ngIf="orderdiv">
+      <div class="col-2"></div>
+      <div class="col-4">
+        <label >Purchase Ordered</label>
+      </div>
+      <div class="col-4">
+        Date     
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row" *ngIf="invoicediv">
+      <div class="col-2"></div>
+      <div class="col-4">
+        <label >Purchase Ordered</label>
+      </div>
+      <div class="col-4">
+        Date     
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row" *ngIf="returndiv">
+      <div class="col-2"></div>
+      <div class="col-4">
+        <label >Purchase Ordered</label>
+      </div>
+      <div class="col-4">
+        Date     
+      </div>
+      <div class="col-2"></div>
+    </div>
+
   </div>
 </ng-template>

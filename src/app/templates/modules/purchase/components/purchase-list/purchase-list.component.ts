@@ -46,6 +46,10 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
   poreturnList: any = {};
   purchaseList: any = {};
 
+  public orderdiv = true;
+  public invoicediv = false;
+  public returndiv = false;
+
   constructor(
     private purchaseService: PurchaseService,
     private snackBar: MatSnackBar,
@@ -489,6 +493,25 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
   onSearchChange(searchValue: string): void {  
     this.purchaseOrderList = this.purchaseList.filter(purchase =>
     purchase.vendorname.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
+  }
+
+  purchaseflow(detailContent){
+    this.modalService.open(detailContent, { windowClass: 'modal-class'});
+    this.orderdiv = true;
+    this.invoicediv = false;
+    this.returndiv = false;
+  }
+
+  purchaseflow1(){
+    this.orderdiv = false;
+    this.invoicediv = true;
+    this.returndiv = false;
+  }
+
+  purchaseflow2(){
+    this.orderdiv = false;
+    this.invoicediv = false;
+    this.returndiv = true;
   }
 
 }
