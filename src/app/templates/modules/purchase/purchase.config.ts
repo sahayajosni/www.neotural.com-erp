@@ -23,6 +23,7 @@ export const API_ENDPOINTS = {
   CREATE_RETURN:`/purchase/createReturn`,
   lOADRETURN:`/purchase/loadReturn`,
   UPDATE_RETURN:`/purchase/updateReturn`,
+  removePoReturn: `/purchase/removePoReturn`,
 
   CREATE_STOCK:`/stock/createStock`,
   getTemplateDetails: `/purchase/getTemplateDetails`,

@@ -33,6 +33,7 @@ export class PurchaseReturnComponent implements OnInit {
     private purchaseService: PurchaseService,
     private dialog: MatDialog,
     private router: Router, 
+    private snackBar: MatSnackBar,
     private alertService: AlertService,
     private SpinnerService: NgxSpinnerService,
     config: NgbModalConfig, private modalService: NgbModal,
@@ -97,6 +98,29 @@ export class PurchaseReturnComponent implements OnInit {
     }, (reason) => {
       this.ngOnInit();
     }); 
+  }
+
+  removeReturn(id:string,invoicenumber:string){
+    this.purchaseService.removePoReturn(id,invoicenumber)
+      .subscribe(
+        data => {
+          setTimeout(() => {
+            this.snackBar.open("Category Deleted Successfully", "", {
+              panelClass: ["success"],
+              verticalPosition: 'top'      
+            });
+          });
+          this.returnList();
+      },
+      error => {
+        setTimeout(() => {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
+            panelClass: ["error"],
+            verticalPosition: 'top'      
+          });
+        }); 
+      }
+    );
   }
   
 }
