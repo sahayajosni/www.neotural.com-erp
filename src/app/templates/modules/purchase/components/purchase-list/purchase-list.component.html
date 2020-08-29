@@ -64,7 +64,7 @@
         </tr>
       </thead>
       <tbody *ngFor="let item of purchaseOrderList; let i = index"
-        id="purchase-order-row-id{{i}}"> 
+        id="purchase-order-row-id{{i}}" (dblclick)="purchaseflow(detailContent,item)" > 
         <tr>
           <td>
             <div class="custom-control custom-checkbox">
@@ -74,7 +74,7 @@
               </label>
             </div>
           </td>
-          <td><a (click)="purchaseflow(detailContent)">{{item.pocode}}</a></td>
+          <td>{{item.pocode}}</td>
           <td>
             <span [ngClass]="item.status !== 'Open' ? 'font-norm' : 'font-bld'">{{item.date | date : 'dd/MM/yyyy'}}</span>
           </td>
@@ -100,7 +100,6 @@
   </div>
 </div>
   
-
 <ng-template #detailContent let-modal>
   <div class="modal-header">
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -108,29 +107,29 @@
     </button>
   </div>
   <div class="modal-body">
-    <div class="row" style="margin-left: 25%">
-      <svg height="50" width="50" style="cursor: pointer;">
-        <circle cx="25" cy="25" r="25" stroke-width="3" fill="red" />    
-        <text x="50%" y="50%" text-anchor="middle" stroke-width="2px" dy=".3em" style="font-size: 12px;">Order</text>
+    <div class="row" id="center">
+      <svg height="100" width="100">
+        <circle cx="50" cy="50" r="40" stroke-width="3" fill="#1186aa" />    
+        <text x="50%" y="50%" text-anchor="middle" stroke-width="2px" dy=".3em" style="font-size: 12px;color:white">Order</text>
         Sorry, your browser does not support inline SVG.  
       </svg>
       
-      <svg height="100" width="50">
+      <svg height="100" width="100">
         <defs>
-           <marker id="arrowhead" stroke="red" markerWidth="10" markerHeight="7"
+           <marker id="arrowhead" stroke="#1186aa" markerWidth="10" markerHeight="7"
              refX="10" refY="3.5" orient="auto">
              <polygon points="0 0, 10 3.5, 0 7" />
            </marker>
          </defs>
         
-          <path d="M 0 30 l 50 0" marker-end="url(#arrowhead)"
-           stroke="red" stroke-width="1" fill="none" />
+          <path d="M 0 50 l 100 0" marker-end="url(#arrowhead)"
+           stroke="#1186aa" stroke-width="1" fill="none" />
           Sorry, your browser does not support inline SVG.
        </svg>
       
       
-      <svg height="50" width="50" style="cursor: pointer;">
-        <circle cx="25" cy="25" r="25" stroke-width="3" fill="red" (click)="purchaseflow1()" />    
+      <svg height="100" width="100">
+        <circle cx="50" cy="50" r="40" stroke-width="3" fill="#1186aa" />    
         <text x="50%" y="50%" text-anchor="middle" stroke-width="2px" dy=".3em" style="font-size: 12px;">Invoice</text>
         Sorry, your browser does not support inline SVG.  
       </svg>
@@ -140,14 +139,14 @@
         Sorry, your browser does not support inline SVG.
       </svg> -->
       
-      <svg height="100" width="50">
-        <path d="M 0 30 l 50 0" marker-end="url(#arrowhead)"
-          stroke="red" stroke-width="1" fill="none" />
+      <svg height="100" width="100">
+        <path d="M 0 50 l 100 0" marker-end="url(#arrowhead)"
+          stroke="#1186aa" stroke-width="1" fill="none" />
         Sorry, your browser does not support inline SVG.
       </svg>
       
-      <svg height="50" width="50" style="cursor: pointer;">
-        <circle cx="25" cy="25" r="25" stroke-width="3" fill="red" (click)="purchaseflow2()" />     
+      <svg height="100" width="100">
+        <circle cx="50" cy="50" r="40" stroke-width="3" fill="#1186aa" />     
         <text x="50%" y="50%" text-anchor="middle" stroke-width="2px" dy=".3em" style="font-size: 12px;">Return</text>
         Sorry, your browser does not support inline SVG.  
       </svg>
@@ -155,37 +154,36 @@
 
     <div style="height: 4vh;"></div>
 
-    <div class="row" *ngIf="orderdiv">
-      <div class="col-2"></div>
+    <div class="row">
       <div class="col-4">
-        <label >Purchase Ordered</label>
+        <label class="lbl">Purchase Ordered</label>
       </div>
-      <div class="col-4">
-        Date     
+      <div class="col-4" *ngIf="this.model.status == 'Invoiced' || this.model.status == 'Returned' ">
+        <label class="lbl">Purchase Invoiced</label>
       </div>
-      <div class="col-2"></div>
+      <div class="col-4" *ngIf="this.model.status === 'Open' ">
+        <label class="lbl">Not done</label>
+      </div>
+      <div class="col-4" *ngIf="this.model.status == 'Returned' ">
+        <label class="lbl">Purchase Returned</label>
+      </div>
+      <div class="col-4" *ngIf="this.model.status === 'Invoiced' || this.model.status == 'Open' ">
+        <label class="lbl">Not done</label>
+      </div>
     </div>
 
-    <div class="row" *ngIf="invoicediv">
-      <div class="col-2"></div>
+    <div class="row">
       <div class="col-4">
-        <label >Purchase Ordered</label>
+        <label class="lbl">Date : {{ this.model.orderdate | date : 'dd/MM/yyyy' }}</label>
       </div>
-      <div class="col-4">
-        Date     
+      <div class="col-4" *ngIf="this.model.type == 'Invoice' ">
+        <label class="lbl">Date : {{ this.model.invoicedate | date : 'dd/MM/yyyy' }}</label>
       </div>
-      <div class="col-2"></div>
-    </div>
-
-    <div class="row" *ngIf="returndiv">
-      <div class="col-2"></div>
-      <div class="col-4">
-        <label >Purchase Ordered</label>
+      <div class="col-4" *ngIf="this.model.status === 'Open' "></div>
+      <div class="col-4" *ngIf="this.model.rettype == 'Return' ">
+        <label class="lbl">Date : {{ this.model.returndate | date : 'dd/MM/yyyy' }}</label>
       </div>
-      <div class="col-4">
-        Date     
-      </div>
-      <div class="col-2"></div>
+      <div class="col-4" *ngIf="this.model.status === 'Invoiced' || this.model.status == 'Open' "></div>
     </div>
 
   </div>

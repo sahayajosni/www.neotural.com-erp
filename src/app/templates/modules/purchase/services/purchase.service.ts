@@ -100,13 +100,11 @@ export class PurchaseService {
     loadItemName(){
         //return this.http.get<Purchase>(this.productURL+'loadItemName');
         return this.http.get<Purchase>(`${environment.apiUrl}${API_ENDPOINTS.loadItemName}`);
-
     }
 
     getUnitPrice(productName:string,category:string){
       //  return this.http.get<Purchase>(this.commonURL+'getUnitPrice?productName='+productName+'&category='+category);
         return this.http.get<Purchase>(`${environment.apiUrl}${API_ENDPOINTS.getUnitPrice+'?productName='+productName+'&category='+category}`);
-
     }
 
     savePurchaseReturn(returnarray: Array<any>){
@@ -114,19 +112,17 @@ export class PurchaseService {
         return this.http.post(
             `${environment.apiUrl}${API_ENDPOINTS.saveReturn}`,
             returnarray
-          );   
+        );   
     }
 
     loadVendorItem(vendorName:string){
        // return this.http.get<Purchase>(this.commonURL+'loadVendorItem?vendorName='+vendorName);
         return this.http.get<Purchase>(`${environment.apiUrl}${API_ENDPOINTS.loadVendorItem+'?vendorName='+vendorName}`);
-
     }
 
     loadfilterData(purchase:Purchase){
        // return this.http.post<Purchase>(this.commonURL+'loadfilterData',purchase);
         return this.http.post<Purchase>(`${environment.apiUrl}${API_ENDPOINTS.loadfilterData}`,purchase);
-
     }
 
     getPurchaseOrderLists(){
@@ -134,23 +130,21 @@ export class PurchaseService {
     }
 
     addPurchaseOrder(data: any){
-          return this.http.post(
-             `${environment.apiUrl}${API_ENDPOINTS.ADD_PURCHASE_ORDER_LIST}`,
-             data
-           );   
-     }
+        return this.http.post(`${environment.apiUrl}${API_ENDPOINTS.ADD_PURCHASE_ORDER_LIST}`,
+            data
+        );   
+    }
 
      // Remove purchase order
     removePurchaseOrder(id:string){ 
         return this.http.delete<String>(`${environment.apiUrl}${API_ENDPOINTS.REMOVE_PURCHASE_ORDER+'?id='+id}`); 
-     }
+    }
 
-     updatePurchaseOrder(data: any){
-          return this.http.put(
-             `${environment.apiUrl}${API_ENDPOINTS.UPDATE_PURCHASE_ORDER}`,
-             data
-           );   
-     }
+    updatePurchaseOrder(data: any){
+        return this.http.put(`${environment.apiUrl}${API_ENDPOINTS.UPDATE_PURCHASE_ORDER}`,
+            data
+        );   
+    }
 
     createInvoice(data:any) {
         return this.http.post(

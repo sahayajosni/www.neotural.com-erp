@@ -45,6 +45,10 @@ export class SalesListComponent implements OnInit, OnDestroy {
   soreturnList: any = {};
   filtersalesList: any = {};
 
+  salesInvoiceList:any = {};
+  salesReturnList:any = {};
+  model:any = {};
+
   constructor(
     private salesService: SalesService,
     private snackBar: MatSnackBar,
@@ -477,6 +481,71 @@ export class SalesListComponent implements OnInit, OnDestroy {
     console.log(searchValue);
     this.salesOrderList = this.filtersalesList.filter(sales =>
     sales.customername.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
+  }
+
+  
+  salesflow(detailContent,item: any){
+    this.model.type = '';
+    this.model.rettype = '';
+    this.model.invoicedate = '';
+    this.model.returndate = '';
+    this.model.orderdate = '';
+
+    this.model.status = item.status;
+    this.model.orderdate = item.date;
+
+    if(item.status == "Invoiced"){
+
+      this.salesService.loadInvoice().subscribe(
+        (res) => {
+          this.salesInvoiceList = res;
+          if(this.salesInvoiceList.length > 0){
+            for(let i=0; i<this.salesInvoiceList.length; i++){
+              if(item.invoicenumber === this.salesInvoiceList[i].invoicenumber){
+                this.model.invoicedate = this.salesInvoiceList[i].invoicedate;
+                this.model.type = "Invoice";
+              }
+            }
+          }
+        },
+        (error) => {  });
+
+    }
+    
+    if(item.status == "Returned"){
+
+      this.salesService.loadInvoice().subscribe(
+        (res) => {
+          this.salesInvoiceList = res;
+          if(this.salesInvoiceList.length > 0){
+            for(let i=0; i<this.salesInvoiceList.length; i++){
+              if(item.invoicenumber === this.salesInvoiceList[i].invoicenumber){
+                this.model.invoicedate = this.salesInvoiceList[i].invoicedate;
+                this.model.type = "Invoice";
+              }
+            }
+          }
+        },
+        (error) => {  });
+
+      this.salesService.loadReturn().subscribe(
+        (res) => {
+          this.salesReturnList = res;
+          if(this.salesReturnList.length > 0){
+            for(let i=0; i<this.salesReturnList.length; i++){
+              if(item.socode == this.salesReturnList[i].socode){
+                this.model.returndate = this.salesReturnList[i].createddate;
+                this.model.rettype = "Return";
+              }
+            }
+          }
+        },
+        (error) => {  });
+
+    }
+
+    this.modalService.open(detailContent, { windowClass: 'modal-class'});
+
   }
 
 }

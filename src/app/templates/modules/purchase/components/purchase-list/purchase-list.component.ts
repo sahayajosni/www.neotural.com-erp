@@ -46,9 +46,9 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
   poreturnList: any = {};
   purchaseList: any = {};
 
-  public orderdiv = true;
-  public invoicediv = false;
-  public returndiv = false;
+  purchaseInvoiceList: any = {};
+  purchaseReturnList: any = {};
+  model: any = {};
 
   constructor(
     private purchaseService: PurchaseService,
@@ -495,23 +495,68 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
     purchase.vendorname.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
   }
 
-  purchaseflow(detailContent){
+  purchaseflow(detailContent,item: any){
+    this.model.type = '';
+    this.model.rettype = '';
+    this.model.invoicedate = '';
+    this.model.returndate = '';
+    this.model.orderdate = '';
+
+    this.model.status = item.status;
+    this.model.orderdate = item.date;
+
+    if(item.status == "Invoiced"){
+
+      this.purchaseService.load().subscribe(
+        (res) => {
+          this.purchaseInvoiceList = res;
+          if(this.purchaseInvoiceList.length > 0){
+            for(let i=0; i<this.purchaseInvoiceList.length; i++){
+              if(item.invoicenumber === this.purchaseInvoiceList[i].invoicenumber){
+                this.model.invoicedate = this.purchaseInvoiceList[i].invoicedate;
+                this.model.type = "Invoice";
+              }
+            }
+          }
+        },
+        (error) => {  });
+
+    }
+    
+    if(item.status == "Returned"){
+
+      this.purchaseService.load().subscribe(
+        (res) => {
+          this.purchaseInvoiceList = res;
+          if(this.purchaseInvoiceList.length > 0){
+            for(let i=0; i<this.purchaseInvoiceList.length; i++){
+              if(item.invoicenumber === this.purchaseInvoiceList[i].invoicenumber){
+                this.model.invoicedate = this.purchaseInvoiceList[i].invoicedate;
+                this.model.type = "Invoice";
+              }
+            }
+          }
+        },
+        (error) => {  });
+
+      this.purchaseService.loadReturn().subscribe(
+        (res) => {
+          this.purchaseReturnList = res;
+          if(this.purchaseReturnList.length > 0){
+            for(let i=0; i<this.purchaseReturnList.length; i++){
+              if(item.pocode == this.purchaseReturnList[i].pocode){
+                this.model.returndate = this.purchaseReturnList[i].createddate;
+                this.model.rettype = "Return";
+              }
+            }
+          }
+        },
+        (error) => {  });
+
+    }
+    
     this.modalService.open(detailContent, { windowClass: 'modal-class'});
-    this.orderdiv = true;
-    this.invoicediv = false;
-    this.returndiv = false;
-  }
 
-  purchaseflow1(){
-    this.orderdiv = false;
-    this.invoicediv = true;
-    this.returndiv = false;
-  }
-
-  purchaseflow2(){
-    this.orderdiv = false;
-    this.invoicediv = false;
-    this.returndiv = true;
   }
 
 }
