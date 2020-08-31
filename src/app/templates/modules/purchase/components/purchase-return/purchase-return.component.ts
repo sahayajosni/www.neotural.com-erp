@@ -70,7 +70,7 @@ export class PurchaseReturnComponent implements OnInit {
   onSearchChange(searchValue: string): void {  
     console.log(searchValue);
     this.poreturnList = this.purchasereturnList.filter(poreturn =>
-      poreturn.vendorname.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
+      poreturn.itemname.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
   }
 
   modifyReturn(id:string,item: any){

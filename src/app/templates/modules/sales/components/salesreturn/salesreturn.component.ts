@@ -60,7 +60,7 @@ export class SalesreturnComponent implements OnInit {
   onSearchChange(searchValue: string): void {  
     console.log(searchValue);
     this.poreturnList = this.filterList.filter(salesret =>
-      salesret.customername.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
+      salesret.itemname.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
   }
 
 }
