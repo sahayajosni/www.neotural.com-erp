@@ -275,7 +275,7 @@
   </div>
   
 </div>
-<div class="col-md-12 col-xs-12 col-sm-12 side-wapper m-t-20 p-t-10" (click)="showDailyReport()">
+<div class="col-md-12 col-xs-12 col-sm-12 side-wapper m-t-20 p-t-10">
  <h4 class="panel-title" style="color: rgba(85,112,129,1); margin-bottom: 20px;">
     <a data-toggle="collapse" class="collapsed" data-target="#collapse2" style="cursor:pointer;cursor: pointer;
     color: #fff; font-size: 18px;" id="dailyrepcollapse">Daily Report</a>
@@ -306,7 +306,7 @@
           <textarea *ngIf="this.dailyReportList.length == 0 && this.model.editable != true" class="form-control daily-text-area-style" rows="5" id="comment" readonly> No Records Found. </textarea> 
           <textarea class="form-control daily-text-area-style" rows="5" id="comment" [(ngModel)]="model.report" #report="ngModel"
               name="report" *ngIf="this.dailyReportList.length == 0 && this.model.editable === true"></textarea> 
-          <div style="margin: 0px 5px 40px 0px;" *ngIf="this.dailyReportList.length == 0">
+          <div style="margin: 0px 5px 40px 0px;" *ngIf="this.dailyReportList.length === 0">
             <img src="assets/images/edit.PNG" style="margin: 10px 0px 0px 20px;cursor: pointer;float: right;" class="img-fluid logo" alt="Edit" 
               *ngIf="this.model.editable != true" (click)="editEmptyDailyReport()" placement="bottom" ngbTooltip="Edit Daily Report" />
 

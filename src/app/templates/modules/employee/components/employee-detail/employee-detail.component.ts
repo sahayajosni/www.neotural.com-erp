@@ -42,6 +42,7 @@ export class EmployeeDetailComponent implements OnInit {
 
   ngOnInit() {
     this.SpinnerService.show();
+    this.dailyReportList.length = '';
     this.activatedRoute.params.subscribe(params => {
       this.viewEmployee(params.id);
     });
@@ -73,14 +74,14 @@ export class EmployeeDetailComponent implements OnInit {
     });
   }
   
-  showDailyReport() { 
+  /* showDailyReport() { 
     setTimeout(function () { 
       (<HTMLElement>document.querySelector('.mat-icon-button')).click();
       (<HTMLElement>document.querySelector('.mat-calendar')).style.width = '300px';
       (<HTMLElement>document.querySelector('.mat-calendar')).style.height = '0px';
       (<HTMLElement>document.querySelector('.mat-icon-button ')).style.visibility = 'hidden';
      }, 500);
-  }
+  } */
 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>,picker) {
     this.events.push(`${type}: ${event.value}`); 
