@@ -24,10 +24,10 @@
           <th>Product Name</th>
           <th>Invoiced Date</th>
           <th class="txt-right">Quantity Invoiced</th>
-          <th ></th>
-          <th>Item Status</th>
+          <th class="txt-right">Quantity Returned</th>
+          <th></th>
+          <th>Status</th>
           <th>Payment Method</th>
-          <th class="txt-right">Quantity</th>
         </tr>
     </thead>
     <tbody *ngFor="let ret of poreturnList; let i = index"> 
@@ -37,13 +37,13 @@
           <td>{{ret.itemname}}</td>
           <td>{{ret.invoiceddate}}</td>
           <td class="txt-right">{{ret.invoicedqty}}</td>
-          <td ></td>
+          <td class="txt-right">{{ret.qty}}</td>
+          <td></td>
           <td>{{ret.itemStatus}}</td>
-          <td>{{ret.returnStatus}}</td>
-          <td class="txt-right">{{ret.qty}}
+          <td>{{ret.returnStatus}}
             <span class="edit-delete-icon user-icon">
-              <span class="fas fa-pen" placement="bottom" ngbTooltip="Modify Purchase Reurn" (click)="modifyReturn(ret.id, ret)" ></span>
               <span class="fas fa-trash" placement="bottom" ngbTooltip="Remove Purchase Return" (click)="removeReturn(ret.id,ret.invoicenumber)"></span>
+              <span class="fas fa-pen" placement="bottom" ngbTooltip="Modify Purchase Reurn" (click)="modifyReturn(ret.id, ret)" ></span>
             </span>
           </td>
         </tr>
