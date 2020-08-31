@@ -211,7 +211,8 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
             this.isCreateInvoice = false;
           }
           if (status === "Invoiced" && this.isCheckedArr[0].checked) {
-            this.purchaseService.loadReturn()
+            let pocode = "All";
+            this.purchaseService.loadReturn(pocode)
               .subscribe(res => { 
                 this.poreturnList = res;
                 if(this.poreturnList.length == 0){
@@ -507,7 +508,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
 
     if(item.status == "Invoiced"){
 
-      this.purchaseService.load().subscribe(
+      this.purchaseService.load(item.invoicenumber).subscribe(
         (res) => {
           this.purchaseInvoiceList = res;
           if(this.purchaseInvoiceList.length > 0){
@@ -525,7 +526,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
     
     if(item.status == "Returned"){
 
-      this.purchaseService.load().subscribe(
+      this.purchaseService.load(item.invoicenumber).subscribe(
         (res) => {
           this.purchaseInvoiceList = res;
           if(this.purchaseInvoiceList.length > 0){
@@ -539,7 +540,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
         },
         (error) => {  });
 
-      this.purchaseService.loadReturn().subscribe(
+      this.purchaseService.loadReturn(item.pocode).subscribe(
         (res) => {
           this.purchaseReturnList = res;
           if(this.purchaseReturnList.length > 0){

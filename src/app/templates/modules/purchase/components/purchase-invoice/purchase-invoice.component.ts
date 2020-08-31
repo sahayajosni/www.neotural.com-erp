@@ -46,7 +46,8 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
     }, 300);
   } */
   getInvoiceLists() {
-    this.purchaseservice.load().subscribe(res => { 
+    let invoicenumber = "All";
+    this.purchaseservice.load(invoicenumber).subscribe(res => { 
       this.invoiceList = res;
       this.poinvoiceList = this.invoiceList;
       if(this.invoiceList.length == 0 ){

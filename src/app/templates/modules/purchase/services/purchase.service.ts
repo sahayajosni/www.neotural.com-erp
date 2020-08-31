@@ -35,9 +35,9 @@ export class PurchaseService {
           );       
     }
     // Load 
-    load(){
+    load(invoicenumber: string){
         //return this.http.get<Purchase>(this.commonURL+'load');
-        return this.http.get<Purchase>(`${environment.apiUrl}${API_ENDPOINTS.loadInvoice}`);
+        return this.http.get<Purchase>(`${environment.apiUrl}${API_ENDPOINTS.loadInvoice+'?invoicenumber='+invoicenumber}`);
     }
 
     // get 
@@ -160,8 +160,8 @@ export class PurchaseService {
         )
     }
 
-    loadReturn(){
-        return this.http.get<Purchase>(`${environment.apiUrl}${API_ENDPOINTS.lOADRETURN}`);
+    loadReturn(pocode:string){
+        return this.http.get<Purchase>(`${environment.apiUrl}${API_ENDPOINTS.lOADRETURN+'?pocode='+pocode}`);
     }
 
     createStock(invoiceNumber:String) {

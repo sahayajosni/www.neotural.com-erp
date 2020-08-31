@@ -31,8 +31,8 @@ export class PurchasereportComponent implements OnInit {
     private alertService: AlertService,
     private purchaseservice: PurchaseService,
   ) {
-
-    this.purchaseservice.load().subscribe(res => { 
+    let invoicenumber = "All";
+    this.purchaseservice.load(invoicenumber).subscribe(res => { 
       this.purchaseList = res;
       this.dataSource = new MatTableDataSource(this.purchaseList);
       },
@@ -59,7 +59,8 @@ export class PurchasereportComponent implements OnInit {
   }
 
   getReportDetails(invoiceNumber:string){
-    this.purchaseservice.load().subscribe(res => { 
+    let invoicenumber = "All";
+    this.purchaseservice.load(invoicenumber).subscribe(res => { 
       this.purchaseList = res;
       for(let i=0;i<this.purchaseList.length; i++){
         if(this.purchaseList[i].invoiceNumber == invoiceNumber){

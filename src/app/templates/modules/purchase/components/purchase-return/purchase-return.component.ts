@@ -47,7 +47,8 @@ export class PurchaseReturnComponent implements OnInit {
   }
 
   returnList(){
-    this.purchaseService.loadReturn()
+    let pocode = "All";
+    this.purchaseService.loadReturn(pocode)
       .subscribe(res => { 
         this.poreturnList = res;
         this.SpinnerService.hide();
