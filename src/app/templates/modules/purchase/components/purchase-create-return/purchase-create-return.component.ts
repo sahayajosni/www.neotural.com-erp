@@ -31,6 +31,7 @@ export interface UsersData{
 export class PurchaseCreateReturnComponent implements OnInit {
   model:any = {};
   btnsave:string;
+  headerlabel: string;
   paymentType:string;
   returnType:string;
   quantity:number;
@@ -56,6 +57,7 @@ export class PurchaseCreateReturnComponent implements OnInit {
     this.model.subtotal = this.fromParent.subtotal;
     this.model.pocode = this.fromParent.pocode;
     this.btnsave = "Create";
+    this.headerlabel = "Create";
     this.editPurchaseReturn(this.fromParent);
   }
 
@@ -75,7 +77,8 @@ export class PurchaseCreateReturnComponent implements OnInit {
       this.model.price = this.fromParent.price;
       this.model.paymentstatus = this.fromParent.paymentstatus;
       this.model.subtotal = this.model.quantity * Number.parseInt(this.model.price);
-      this.btnsave = "Modify";
+      this.btnsave = "Update";
+      this.headerlabel = "Modify";
     }
   }
 
