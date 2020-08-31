@@ -79,15 +79,18 @@ export class PurchaseCreateReturnComponent implements OnInit {
       this.model.subtotal = this.model.quantity * Number.parseInt(this.model.price);
       this.btnsave = "Update";
       this.headerlabel = "Modify";
+      this.model.qtystatus = '';
     }
   }
 
   getPrice(quantity:number){
+    this.model.qtystatus = "";
     if(this.snackBar.open) {
       this.snackBar.dismiss();
     }
     let price = this.model.subtotal/quantity;
     if(this.model.quantity > this.model.invqty){
+      this.model.qtystatus = "Above";
       setTimeout(() => {
         this.snackBar.open(
           "Qty cannot be more than Invoiced Qty.",
