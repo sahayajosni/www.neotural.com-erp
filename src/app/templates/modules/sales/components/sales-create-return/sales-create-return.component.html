@@ -121,6 +121,7 @@
                 <div class="col-40">
                     <input type="number" id="qtyBox" [(ngModel)]="model.quantity" #quantity="ngModel" 
                         min="0" [max]="this.model.invqty" name="quantity" (ngModelChange)="getPrice(model.quantity)" 
+                        onkeypress='return (event.charCode > 96 && event.charCode < 123) || (event.charCode > 64 && event.charCode < 91) || (event.charCode >= 48 && event.charCode <= 57) || event.charCode <= 31'
                         autocomplete="off" required  />
                 </div>
                 <div class="col-2"></div>
