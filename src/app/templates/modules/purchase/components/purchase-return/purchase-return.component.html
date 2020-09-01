@@ -26,8 +26,8 @@
           <th class="txt-right">Quantity Invoiced</th>
           <th class="txt-right">Quantity Returned</th>
           <th></th>
-          <th>Status</th>
           <th>Payment Method</th>
+          <th>Status</th>
         </tr>
     </thead>
     <tbody *ngFor="let ret of poreturnList; let i = index"> 
@@ -39,8 +39,8 @@
           <td class="txt-right">{{ret.invoicedqty}}</td>
           <td class="txt-right">{{ret.qty}}</td>
           <td></td>
-          <td>{{ret.itemStatus}}</td>
-          <td>{{ret.returnStatus}}
+          <td>{{ret.returnStatus}}</td>
+          <td>{{ret.itemStatus}}
             <span class="edit-delete-icon user-icon">
               <span class="fas fa-trash" placement="bottom" ngbTooltip="Remove Purchase Return" (click)="removeReturn(ret.id,ret.invoicenumber)"></span>
               <span class="fas fa-pen" placement="bottom" ngbTooltip="Modify Purchase Reurn" (click)="modifyReturn(ret.id, ret)" ></span>

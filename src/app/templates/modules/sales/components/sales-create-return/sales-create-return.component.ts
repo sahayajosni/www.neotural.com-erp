@@ -61,8 +61,10 @@ export class SalesCreateReturnComponent implements OnInit {
     /* if(this.snackBar.open) {
       this.snackBar.dismiss();
     } */
+    this.model.qtystatus = "";
     let price = this.model.subtotal/quantity;
     if(this.model.quantity > this.model.invqty){
+      this.model.qtystatus = "Above";
       setTimeout(() => {
         this.snackBar.open(
           "Qty cannot be more than Invoiced Qty.",

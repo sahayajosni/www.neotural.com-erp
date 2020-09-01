@@ -142,7 +142,7 @@
             <div class="row marginRow">
                 <div class="col-20"></div>
                 <div class="col-50">
-                    <button class="save-button">{{btnsave}} </button>
+                    <button class="save-button" [disabled]="model.quantity == 0 || this.model.qtystatus === 'Above' ">{{btnsave}} </button>
                 </div>
                 <div class="col-20"></div>
             </div>

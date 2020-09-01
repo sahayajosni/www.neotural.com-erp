@@ -193,6 +193,12 @@ h5{
 .modal-title{
   margin-left: 25px;
 }
+.save-button[disabled] {
+  background-color: #6E7D87;
+  border: 1px solid #6E7D87;
+  cursor: not-allowed;
+}
+
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
   .col-25, .col-75, input[type=submit] {
