@@ -234,8 +234,8 @@
   <div class="org-footer" *ngIf="employeeDet.editable">
     <div class="row">
       <div class="col-4"></div>
-      <div class="col-4">
-          <div class="fas fa-check" placement="bottom" ngbTooltip="Update Employee" style="float: left;" (click)="update(employeeDet)"></div>
+      <div class="col-3">
+          <div class="fas fa-check" placement="bottom" ngbTooltip="Modify Employee" style="float: left;" (click)="update(employeeDet)"></div>
           <div class="fas fa-times" placement="bottom" ngbTooltip="Cancel Employee" (click)="cancelEmp(employeeDet)"></div>
       </div>
     </div>
@@ -311,8 +311,8 @@
               *ngIf="this.model.editable != true" (click)="editEmptyDailyReport()" placement="bottom" ngbTooltip="Edit Daily Report" />
 
             <span class="edit-delete-icon user-icon" *ngIf="this.model.editable === true">
-              <span class="fas fa-times" placement="bottom" ngbTooltip="Cancel Daily Report" (click)="cancelEmptyDailyReport()" ></span>
-              <span class="fas fa-check" style="float: right;" placement="bottom" ngbTooltip="Update Daily Report" (click)="saveDailyReport(this.model.report)" ></span>
+              <span class="fas fa-times" id="trash" placement="bottom" ngbTooltip="Cancel Daily Report" (click)="cancelEmptyDailyReport()" ></span>
+              <span class="fas fa-check" style="float: right;" placement="bottom" ngbTooltip="Modify Daily Report" (click)="saveDailyReport(this.model.report)" ></span>
             </span>
           </div>
           <div *ngFor="let dRL of dailyReportList">
@@ -325,7 +325,7 @@
                 class="img-fluid logo" alt="Edit" *ngIf="!dRL.editable" (click)="editDailyReport(dRL)"/>
 
                 <span class="edit-delete-icon user-icon" *ngIf="dRL.editable">
-                  <span class="fas fa-times" (click)="cancelDailyReport(dRL)" placement="bottom" ngbTooltip="Cancel Daily Report" ></span>
+                  <span class="fas fa-times" id="trash" (click)="cancelDailyReport(dRL)" placement="bottom" ngbTooltip="Cancel Daily Report" ></span>
                   <span class="fas fa-check" style="float: right;" placement="bottom" ngbTooltip="Update Daily Report" (click)="updateDailyReport(dRL.employeecode,dRL.date,dRL.report)" ></span>
                 </span>
               </div>
