@@ -297,6 +297,7 @@ export class AddnewproductComponent implements OnInit {
   saveNewProduct(prodbtnlabel: string){
       this.model.productImage = this.productImage;
       this.model.vendorcode = this.fromParent.vendorName+'-'+this.fromParent.vendorcode;
+      this.model.productImage1 = this.productImage[0];
       console.log("Selling Price -->"+this.model.sellingprice);
       this.vendorDetailsService.productsave(this.model)
       .subscribe(

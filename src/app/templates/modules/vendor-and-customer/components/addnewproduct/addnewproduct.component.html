@@ -109,7 +109,7 @@
                         <input type="text" id="price-box" 
                             [(ngModel)]="model.price" value="{{model.price}}"
                             #price="ngModel" (ngModelChange)="getSellingPrice(model.price,model.tax,model.margin)"
-                                placeholder="IDR X.XXX.XXX" name="price" autocomplete="off"/>
+                                placeholder="IDR X.XXX.XXX" name="price" autocomplete="off" required/>
                     </div>
                 </div>
                 <div class="row">
