@@ -22,9 +22,7 @@
                         <select id="editselect-box"  name="categorycode" [(ngModel)]="model.categorycode" 
                             #categorycode="ngModel" required>
                             <option [ngValue]="undefined" hidden selected> Select Product Category </option>
-                            <!-- <option id="editselect-box" *ngFor="let itemcategory of categorylist" value="{{itemcategory.name}}-{{itemcategory.categorycode}}"> {{itemcategory.name}}-{{itemcategory.categorycode}} </option> -->
                             <option *ngFor="let itemcategory of categorylist" 
-                                [selected]="itemcategory === categorycode"
                                 value="{{itemcategory}}"> {{itemcategory}} </option>
                         </select>
 
@@ -70,8 +68,6 @@
                         <select id="editselect-box" name ="vendorcode" [(ngModel)]="model.vendorcode"
                             #vendorcode="ngModel" required>
                             <option [ngValue]="undefined" hidden selected> Select Vendor </option>
-                            <!-- <option id="editselect-box" *ngFor="let item of vendornamelist" 
-                                value="{{item.vendorName}}-{{item.vendorcode}}"> {{item.vendorName}}-{{item.vendorcode}} </option>-->
                                 <option *ngFor="let vendornamecode of vendornamelist"  
                                 [selected]="vendornamecode === vendorcode"
                                 value="{{vendornamecode}}"> {{vendornamecode}} </option>
@@ -90,16 +86,12 @@
                         <label for="fname" class="heading">Unit </label>
                     </div>
                     <div class="col-70">
-                        <select id="editselect-box" name="unit" [(ngModel)]="model.unit"
+                        <select id="editselect-box" name="unit" [(ngModel)]="model.unit" 
                             #unit="ngModel" required>
                             <option [ngValue]="undefined" hidden selected> Select Unit </option>
-                            <!-- <option id="editselect-box" *ngFor="let item of allUnitlist" 
-                                value="{{item.unitname}}"> {{item.unitname}} </option> -->
-                            <option id="editselect-box" *ngFor="let item of allUnitlist" 
-                                [selected]="item === unit"
-                                value="{{item.unitname}}"> {{item.unitname}} </option>
+                            <option *ngFor="let itemunit of allUnitlist" 
+                                value="{{itemunit.unitname}}"> {{itemunit.unitname}} </option>
                         </select>
-
                         <div *ngIf="unit.errors  && (unit.dirty || unit.touched) ||
                             (productForm.submitted && !unit.valid )">
                             <span [hidden]="!unit.errors.required" class="spanerror">

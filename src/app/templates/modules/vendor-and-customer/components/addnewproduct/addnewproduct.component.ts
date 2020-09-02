@@ -29,7 +29,6 @@ export class AddnewproductComponent implements OnInit {
   categorylist:any = {};
   vendornamelist: any = {};
   allUnitlist:any = {};
-  unitlist: any = {};
   data: any = {};
   category:Category;
   product:Product;
@@ -107,6 +106,7 @@ export class AddnewproductComponent implements OnInit {
      
      //--load unitList
      let id = "all";
+     this.allUnitlist="";
      this.vendorDetailsService.loadUnitList(id)
       .subscribe(
         data => {
@@ -245,12 +245,7 @@ export class AddnewproductComponent implements OnInit {
                   this.isImageSaved3 = true;
                   console.log("Fourth time Base 64 array value-->"+this.productImage[1]);
                 }
-              }else{	
-                this.productImage.push(this.model.productImage[0]);	
-                this.productImage.push(this.model.productImage[1]);	
-                this.productImage.push(this.model.productImage[2]);	
-                this.productImage.push(this.model.productImage[3]);	
-              }      
+              }    
             }
           };
       };
