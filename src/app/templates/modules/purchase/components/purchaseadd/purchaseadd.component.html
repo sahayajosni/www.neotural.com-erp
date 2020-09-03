@@ -59,7 +59,7 @@
             <select id="selected-box" class="text-field-align" [(ngModel)]="model.vendorName" #vendorName="ngModel" name="vendorName"
               (ngModelChange)="getVendorProduct(this.model.vendorName)"
               autocomplete="off" required >
-              <option id="options-box" [value]="null"  class="text-field-align">Select Vendor</option>
+              <option id="options-box" [ngValue]="undefined" hidden selected> Select Vendor </option>
               <option id="options-box" *ngFor="let item of vendorList" 
                 [value]="item.vendorName+'-'+item.vendorcode"> {{item.vendorName}} 
               </option>

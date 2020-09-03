@@ -181,7 +181,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
         const vendorName = item.vendorname;
         if (this.prodArr.length > 1) {
           this.isCreateReturn = false;
-          if (status !== "Invoiced") {
+          if (status !== "Invoiced" && status !== "Returned") {
             let getVendorName = "";
             this.vendorArr.forEach((item, indexCheck) => {
               if (indexCheck > 0) {
@@ -197,6 +197,13 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
                   this.getErrorMsg(false);
                 }
               }
+            });
+          }else if (status !== "Returned" && status !== "Open") {
+            setTimeout(() => {
+              this.snackBar.open("You need to select only one Invoice", "", {
+                panelClass: ["warn"],
+                verticalPosition: "top",
+              });
             });
           } else {
             this.isDeleteButton = false;
@@ -221,6 +228,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
                   for(let i=0; i<this.poreturnList.length; i++){
                     if(this.poreturnList[i].pocode == this.prodArr[0].pocode ){
                       this.isCreateReturn = false;
+                      this.isAddPurchaseOrder = true;
                       setTimeout(() => {
                         this.snackBar.open("Purchase was Returned already.", "", {
                           panelClass: ["warn"],
