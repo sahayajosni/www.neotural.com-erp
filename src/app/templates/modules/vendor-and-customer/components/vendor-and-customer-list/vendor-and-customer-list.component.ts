@@ -206,7 +206,7 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.getAllVendorDetails();
+      //this.getAllVendorDetails();
     }, (reason) => {
       this.getAllVendorDetails();
     }); 
