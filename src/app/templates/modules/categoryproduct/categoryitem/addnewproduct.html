@@ -273,19 +273,15 @@
                                     <div id="addproductpic-box" *ngIf="div1 && !isImageSaved0">
                                         <img [src]="getImage(model.productImage[0])" onerror="this.src='/assets/images/no-image.png'" />
                                     </div>
-                                    
-                                <!--  <ng-template #isImageSaved0 id="addproductpic-box">
-                                        <img [src]="productImage[0]" />
-                                    </ng-template> -->
 
-                                     <div *ngIf="isImageSaved0" id="addproductpic-box">
+                                    <div *ngIf="isImageSaved0" id="addproductpic-box">
                                         <img [src]="productImage[0]" />
                                     </div>  
                                     <div *ngIf="!isImageSaved0 && !div1">    
                                         <div  id="addproductpic-box">
                                             <i class="fa fa-plus-circle" id="addpicture-icon" aria-hidden="true"></i> 
                                         </div>
-                                </div>
+                                    </div>
                                 </div>
                             </div>
                         </fieldset>

@@ -587,6 +587,7 @@ export class AddnewproductComponent {
      );
 
      //this.vendorservice.load()
+     this.vendornamelist = '';
      this.vendorservice.loadvendornamecode()
      .subscribe(
         data => {
@@ -605,6 +606,7 @@ export class AddnewproductComponent {
      
      //--load unitList
      let id = "all";
+     this.allUnitlist = '';
      this.catprodservice.loadUnitList(id)
       .subscribe(
         data => {
@@ -625,7 +627,11 @@ export class AddnewproductComponent {
   ngOnInit() {
     this.prodheaderlabel = this.fromParent.prodheaderlabel;
     this.prodbtnlabel = this.fromParent.prodbtnlabel;
-    this.allproducteditcall(this.fromParent.prodcode,this.fromParent.vendorcode);
+    if(this.prodbtnlabel == 'Add'){
+
+    }else if(this.prodbtnlabel == 'Update'){
+      this.allproducteditcall(this.fromParent.prodcode,this.fromParent.vendorcode);
+    }
   }
 
   fileChangeEvent(fileInput: any,imageNumber:number) {
@@ -888,6 +894,7 @@ export class AddnewproductComponent {
             console.log("vendor name & code -->"+this.model.vendorcode);
             this.model.unit=this.allproducedittlist[k].unit;
             this.model.productImage=this.allproducedittlist[k].productImage;
+
             if(this.model.productImage[0]!=undefined){
               this.div1 = true;
               this.isImageSaved0 = false;
@@ -1965,8 +1972,8 @@ productlist(number: string){
     }); 
   }
 
-  allproducteditcall(prodcode: string,vendorcode:string){  
-    console.log("allproducteditcall");
+  itemeditcall(prodcode: string,vendorcode:string){  
+    console.log("itemeditcall");
 
     this.inputproductcode = prodcode;
     this.model.vendorcode = vendorcode;

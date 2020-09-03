@@ -50,7 +50,7 @@
         <tr>
           <td>
             <div *ngIf="a.productImage1; else productNoImage">
-              <img  [src]="getImage(a.productImage1)" onerror="this.src='/assets/images/no-image.png'" class="productlogo" />
+              <img [src]="getImage(a.productImage1)" onerror="this.src='/assets/images/no-image.png'" class="productlogo" />
             </div>
             
             <ng-template #productNoImage>
@@ -71,7 +71,7 @@
           <td class="txt-right">{{a.margin}}</td>
           <td class="txt-right wid-100px">{{a.sellingprice}} 
             <span class="edit-delete-icon user-icon">
-              <span class="fas fa-pen mar-let-40px" placement="bottom" ngbTooltip="Edit Product" (click)="allproducteditcall(a.prodcode,a.vendorcode)"></span>
+              <span class="fas fa-pen mar-let-40px" placement="bottom" ngbTooltip="Edit Product" (click)="itemeditcall(a.prodcode,a.vendorcode)"></span>
               <span class="fas fa-trash" placement="bottom" ngbTooltip="Delete Product" (click)="allproductdelete(a.prodcode)"></span>
             </span>
           </td>
