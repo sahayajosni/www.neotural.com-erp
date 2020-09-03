@@ -271,7 +271,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.getSalesOrderLists();
+      //this.getSalesOrderLists();
     }, (reason) => {
       this.getSalesOrderLists();
     }); 

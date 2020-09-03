@@ -3,7 +3,7 @@
     <h4 class="modal-title" id="modal-basic-title">{{fromParent.dialogTitle}}</h4>
     <h5 id="error" *ngIf="noavailableqty">This product has no Quantity.</h5>
   </div>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <button type="button" class="close" aria-label="Close" (click)="closeModal()">
     <span aria-hidden="true" class="close-x">&times;</span>
   </button>
 </div>

@@ -515,5 +515,9 @@ export class SalesorderComponent implements OnInit {
     this.snackBar.dismiss();
     (<HTMLElement>document.querySelector('.mat-drawer-content')).style.overflow = 'auto';
   }
+
+  closeModal() {
+    this.activeModal.close();
+  }
   
 }
