@@ -157,7 +157,7 @@ export class CustomerComponent implements OnInit {
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.getAllCustomerDetails();
+      //this.getAllCustomerDetails();
     }, (reason) => {
       this.getAllCustomerDetails();
     }); 

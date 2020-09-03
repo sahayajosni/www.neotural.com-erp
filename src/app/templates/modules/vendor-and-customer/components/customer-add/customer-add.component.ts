@@ -220,4 +220,9 @@ export class CustomerAddComponent implements OnInit {
     this.model.country = '';
     this.model.city = ''; */
   }
+
+  closeModal() {
+    this.activeModal.close();
+  }
+  
 }
