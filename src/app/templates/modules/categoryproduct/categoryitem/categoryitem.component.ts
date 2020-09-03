@@ -387,6 +387,10 @@ export class AddpromotionComponent {
       this.otherShow = true;
     }
 
+    closeModal() {
+      this.activeModal.close();
+    }
+
 }
 // add promostion end
 
@@ -1777,11 +1781,6 @@ productlist(number: string){
     let data = { categorycode: categorycode }
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then((result) => {
-      //this.allproductList();
-    }, (reason) => {
-      this.allproductList();
-    }); 
     
     // this.dialogConfig.disableClose = true;
     // this.dialogConfig.autoFocus = true;
@@ -1811,11 +1810,6 @@ productlist(number: string){
     let data = {title: title, key: show}
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then((result) => {
-      this.allproductList();
-    }, (reason) => {
-      this.allproductList();
-    }); 
 
     /* this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
