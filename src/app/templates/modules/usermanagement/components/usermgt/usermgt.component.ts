@@ -67,7 +67,6 @@ export class UserManagementComponent implements OnInit {
       this.menulable = "Show Menu";
 
     }
-    //alert("show menu");
   }
   openScrollableContent(longContent) {
     this.modalService.open(longContent, { windowClass: 'modal-class'});
@@ -92,7 +91,7 @@ export class UserManagementComponent implements OnInit {
   addUserMgt(){
     const modalRef = this.modalService.open(AddUserMgtComponent, { windowClass: 'modal-class'});
     modalRef.result.then((result) => {
-      this.ngOnInit();
+      //this.ngOnInit();
     }, (reason) => {
       this.ngOnInit(); 
     }); 

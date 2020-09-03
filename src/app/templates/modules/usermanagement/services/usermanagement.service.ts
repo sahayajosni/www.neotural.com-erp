@@ -10,8 +10,14 @@ import { API_ENDPOINTS } from "./../usermgt.config";
 export class UserManagementService {
   constructor(private http: HttpClient) {}
 
-  loadDepartment() {
-    return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.LOAD_DEPARTMENT}`);
+  loadDepartment(pagination:number) {
+    //return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.LOAD_DEPARTMENT}`);
+    return this.http.get(
+      `${environment.apiUrl}${API_ENDPOINTS.LOAD_DEPARTMENT}`.replace(
+        "{param}",
+        pagination.toString()
+      )
+    );
   }
 
   save(userArray: Array<any>){

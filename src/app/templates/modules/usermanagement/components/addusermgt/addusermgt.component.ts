@@ -34,6 +34,7 @@ export class AddUserMgtComponent implements OnInit {
 
   passwordtype = "password";
   public validationMsg = false;
+  pagination: number = 0;  
 
   userArray: Array<any> = [];
 
@@ -49,8 +50,9 @@ export class AddUserMgtComponent implements OnInit {
 
   ngOnInit() {
     this.model.password = "";
+    this.pagination = 0;
     this.validationMsg = false;
-    this.userMgtService.loadDepartment().subscribe(
+    this.userMgtService.loadDepartment(this.pagination).subscribe(
       data => { 
         this.departmentList = data;
       },
@@ -408,5 +410,8 @@ export class AddUserMgtComponent implements OnInit {
     }
   }
 
+  closeModal() {
+    this.activeModal.close();
+  }
 
 }
