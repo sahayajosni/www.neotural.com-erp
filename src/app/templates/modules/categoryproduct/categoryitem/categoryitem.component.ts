@@ -932,6 +932,10 @@ export class AddnewproductComponent {
     );
   }
 
+  closeModal() {
+    this.activeModal.close();
+  }
+
 }
 // addnewproduct end
 
@@ -1914,8 +1918,9 @@ productlist(number: string){
 
     const modalRef = this.modalService.open(AddnewproductComponent, { windowClass: 'addproduct-class'});
     modalRef.componentInstance.fromParent = data;
+    
     modalRef.result.then((result) => {
-      this.allproductList();
+      //this.allproductList();
     }, (reason) => {
       this.allproductList();
     }); 
@@ -1990,7 +1995,7 @@ productlist(number: string){
     const modalRef = this.modalService.open(AddnewproductComponent, { windowClass: 'addproduct-class'});
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.allproductList();
+      //this.allproductList();
     }, (reason) => {
       this.allproductList();
     }); 
