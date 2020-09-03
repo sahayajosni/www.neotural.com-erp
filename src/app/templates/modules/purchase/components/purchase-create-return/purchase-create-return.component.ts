@@ -290,4 +290,8 @@ export class PurchaseCreateReturnComponent implements OnInit {
     (<HTMLElement>document.querySelector('.mat-drawer-content')).style.overflow = 'auto';
   }
 
+  closeModal() {
+    this.activeModal.close();
+  }
+
 }

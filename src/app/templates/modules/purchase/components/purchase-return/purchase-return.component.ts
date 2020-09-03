@@ -95,7 +95,7 @@ export class PurchaseReturnComponent implements OnInit {
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.ngOnInit();
+      //this.ngOnInit();
     }, (reason) => {
       this.ngOnInit();
     }); 

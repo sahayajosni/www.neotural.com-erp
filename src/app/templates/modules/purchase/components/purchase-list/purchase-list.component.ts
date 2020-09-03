@@ -460,12 +460,12 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.ngOnInit();
+      /* this.ngOnInit();
       let indexx = this.prodArr.indexOf(this.prodArr[0].pocode);
       this.prodArr.splice(indexx, 1);
       this.isCreateReturn = false;
       this.isAddPurchaseOrder = true; 
-      this.isCheckedArr = [];
+      this.isCheckedArr = []; */
     }, (reason) => {
       this.ngOnInit();
       let indexx = this.prodArr.indexOf(this.prodArr[0].pocode);
