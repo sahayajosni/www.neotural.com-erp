@@ -166,4 +166,8 @@ export class AddPettycashComponent implements OnInit {
     form.reset();
   }
 
+  closeModal() {
+    this.activeModal.close();
+  }
+
 }
