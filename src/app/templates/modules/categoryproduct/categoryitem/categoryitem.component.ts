@@ -82,6 +82,10 @@ export class AddnewcategoryComponent {
       
     }
 
+    closeModal() {
+      this.activeModal.close();
+    }
+
     saveCategory(){
       console.log("Inside saveCategory method");
       console.log("Category Name-->"+this.model.categorycode);
@@ -1770,7 +1774,7 @@ productlist(number: string){
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.allproductList();
+      //this.allproductList();
     }, (reason) => {
       this.allproductList();
     }); 

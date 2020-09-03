@@ -71,7 +71,7 @@ export class CategoryComponent implements OnInit {
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.loadCategory();
+      //this.loadCategory();
     }, (reason) => {
       this.loadCategory();
     }); 
