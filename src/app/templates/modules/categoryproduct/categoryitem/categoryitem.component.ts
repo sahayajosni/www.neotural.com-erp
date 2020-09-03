@@ -687,7 +687,7 @@ export class AddnewproductComponent {
                         this.isImageSaved0 = true;
                         this.div1 = false;
                         this.imageIndex1=true;
-                        console.log("First time Base 64 array value-->"+this.productImage[0]);
+                        console.log("First time Base 64 array1 value-->"+this.productImage[0]);
                       }
                       else{
                         console.log("else");
@@ -695,7 +695,7 @@ export class AddnewproductComponent {
                         console.log("Second time Base 64-->"+this.imgBase64Path);
                         this.productImage[0] = this.imgBase64Path;
                         this.isImageSaved0 = true;
-                        console.log("Second time Base 64 array value-->"+this.productImage[0]);
+                        console.log("Second time Base 64 array1 value-->"+this.productImage[0]);
                         //this.imageIndex1=true;
                       }
                   }
@@ -706,7 +706,7 @@ export class AddnewproductComponent {
                       this.productImage.push(this.imgBase64Path);
                       this.isImageSaved1 = true;
                       this.imageIndex1=true;
-                      console.log("First time Base 64 array value-->"+this.productImage[1]);
+                      console.log("First time Base 64 array2 value-->"+this.productImage[1]);
                     }
                     else{
                       console.log("else");
@@ -714,7 +714,7 @@ export class AddnewproductComponent {
                       console.log("Second time Base 64-->"+this.imgBase64Path);
                       this.productImage[1] = this.imgBase64Path;
                       this.isImageSaved1 = true;
-                      console.log("Second time Base 64 array value-->"+this.productImage[1]);
+                      console.log("Second time Base 64 array2 value-->"+this.productImage[1]);
                     }
                 }
 
@@ -725,7 +725,7 @@ export class AddnewproductComponent {
                     this.productImage.push(this.imgBase64Path);
                     this.isImageSaved2 = true;
                     this.imageIndex2=true;
-                    console.log("First time Base 64 array value-->"+this.productImage[2]);
+                    console.log("First time Base 64 array3 value-->"+this.productImage[2]);
                   }
                   else{
                     console.log("else");
@@ -733,7 +733,7 @@ export class AddnewproductComponent {
                     console.log("Third time Base 64-->"+this.imgBase64Path);
                     this.productImage[2] = this.imgBase64Path;
                     this.isImageSaved2 = true;
-                    console.log("Third time Base 64 array value-->"+this.productImage[2]);
+                    console.log("Third time Base 64 array3 value-->"+this.productImage[2]);
                   }
               }
 
@@ -744,7 +744,7 @@ export class AddnewproductComponent {
                   this.productImage.push(this.imgBase64Path);
                   this.isImageSaved3 = true;
                   this.imageIndex3=true;
-                  console.log("First time Base 64 array value-->"+this.productImage[1]);
+                  console.log("First time Base 64 array4 value-->"+this.productImage[1]);
                 }
                 else{
                   console.log("else");
@@ -752,9 +752,10 @@ export class AddnewproductComponent {
                   console.log("Fourth time Base 64-->"+this.imgBase64Path);
                   this.productImage[3] = this.imgBase64Path;
                   this.isImageSaved3 = true;
-                  console.log("Fourth time Base 64 array value-->"+this.productImage[1]);
+                  console.log("Fourth time Base 64 array4 value-->"+this.productImage[1]);
                 }
               }else{	
+                console.log("Old Image Added productImage -->");
                 this.productImage.push(this.model.productImage[0]);	
                 this.productImage.push(this.model.productImage[1]);	
                 this.productImage.push(this.model.productImage[2]);	
@@ -838,8 +839,13 @@ export class AddnewproductComponent {
       ); 
     }else if(prodbtnlabel == "Update"){
       console.log("Product Code-->"+this.inputproductcode);
-      this.model.productImage = this.productImage;
-      this.model.productImage1 = this.productImage[0];
+      if(this.productImage.length == 0){
+        this.model.productImage1 = this.model.productImage[0];
+      }else{
+        this.model.productImage = this.productImage;
+        this.model.productImage1 = this.productImage[0];
+      }
+      
       this.model.prodcode=this.inputproductcode;
       this.catprodservice.setItem(this.model)
       .subscribe(
