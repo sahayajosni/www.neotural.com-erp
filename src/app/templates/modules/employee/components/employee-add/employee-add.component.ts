@@ -141,4 +141,9 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
     this.cardImageBase64 = null;
     this.isImageSaved = false;
   }
+
+  closeModal() {
+    this.activeModal.close();
+  }
+  
 }

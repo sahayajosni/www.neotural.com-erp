@@ -242,7 +242,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     let data: any;
     modalRef.componentInstance.passedData= data;
     modalRef.result.then((result) => {
-      this.allemplist(this.pageSkip);
+      //this.allemplist(this.pageSkip);
     }, (reason) => {
       this.allemplist(this.pageSkip);
     }); 
