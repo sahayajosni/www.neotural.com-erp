@@ -76,7 +76,7 @@ export class UnitsComponent implements OnInit {
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.loadUnits();
+      //this.loadUnits();
     }, (reason) => {
       this.loadUnits();
     }); 
@@ -136,10 +136,10 @@ export class UnitsComponent implements OnInit {
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.loadUnits();
+      //this.loadUnits();
     }, (reason) => {
       this.loadUnits();
-    }); 
+    });  
     //this.router.navigate(["category-and-product/addunits"]);
   }
 

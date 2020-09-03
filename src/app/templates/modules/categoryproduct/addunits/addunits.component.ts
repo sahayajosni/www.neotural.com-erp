@@ -142,4 +142,8 @@ export class AddunitsComponent implements OnInit {
     ); 
   }
 
+  closeModal() {
+    this.activeModal.close();
+  }
+
 }
