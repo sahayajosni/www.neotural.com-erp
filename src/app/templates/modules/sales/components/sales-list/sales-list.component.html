@@ -152,16 +152,16 @@
     <div class="row">
       <div class="col-1"></div>
       <div class="col-3">
-        <label class="lbl">Sales Ordered</label>
+        <label class="lbl">Completed</label>
       </div>
       <div class="col-4" *ngIf="this.model.status == 'Invoiced' || this.model.status == 'Returned' ">
-        <label class="lbl">Sales Invoiced</label>
+        <label class="lbl">Completed</label>
       </div>
       <div class="col-4" *ngIf="this.model.status === 'Open' ">
         <label class="lbl">Not done</label>
       </div>
       <div class="col-3" *ngIf="this.model.status == 'Returned' ">
-        <label class="lbl">Sales Returned</label>
+        <label class="lbl">Completed</label>
       </div>
       <div class="col-3" *ngIf="this.model.status === 'Invoiced' || this.model.status == 'Open' ">
         <label class="lbl">Not done</label>
