@@ -324,6 +324,10 @@ export class AddnewproductComponent implements OnInit {
       ); 
   }
 
+  closeModal() {
+    this.activeModal.close();
+  }
+
 }
 
 

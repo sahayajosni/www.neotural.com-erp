@@ -283,7 +283,7 @@ export class VendorDetailsComponent implements OnInit {
     const modalRef = this.modalService.open(AddnewproductComponent, { windowClass: 'addproduct-class'});
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.ngOnInit();
+      //this.ngOnInit();
     }, (reason) => {
       this.ngOnInit();
     }); 
