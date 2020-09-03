@@ -42,6 +42,7 @@ export class EmployeeDetailComponent implements OnInit {
 
   ngOnInit() {
     this.SpinnerService.show();
+    this.dailyReportList = '';
     this.activatedRoute.params.subscribe(params => {
       this.viewEmployee(params.id);
     });

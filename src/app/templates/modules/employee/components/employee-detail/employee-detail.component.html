@@ -301,7 +301,7 @@
             <!-- placeholder="Choose a date" id="picker" (dateInput)="addEvent('input', $event, picker)" (dateChange)="addEvent('change', $event, picker)" [(ngModel)]="_picker" [ngModelOptions]="{standalone: true}" (keydown)="false"> -->
 
         </div>
-        <div class="col-md-6 float-left">
+        <div class="col-md-6 float-left" *ngIf="this.dailyReportList !== '' ">
           <div style="font-size: 14px;">{{ this.model.date | date : 'MMMM dd, yyyy' }}</div>
           <textarea *ngIf="this.dailyReportList.length == 0 && this.model.editable != true" class="form-control daily-text-area-style" rows="5" id="comment" readonly> No Records Found. </textarea> 
           <textarea class="form-control daily-text-area-style" rows="5" id="comment" [(ngModel)]="model.report" #report="ngModel"
