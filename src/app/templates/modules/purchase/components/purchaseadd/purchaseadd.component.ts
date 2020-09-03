@@ -536,4 +536,8 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
     (<HTMLElement>document.querySelector('.mat-drawer-content')).style.overflow = 'auto';
   }
 
+  closeModal() {
+    this.activeModal.close()
+  }
+
 }

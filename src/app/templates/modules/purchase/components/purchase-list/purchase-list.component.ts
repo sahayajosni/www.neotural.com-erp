@@ -279,8 +279,10 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.getPurchaseOrderLists();
+      console.log("Close Icon Click");
+      //this.getPurchaseOrderLists();
     }, (reason) => {
+      console.log("Reload When add Purchase");
       this.getPurchaseOrderLists();
     }); 
 
