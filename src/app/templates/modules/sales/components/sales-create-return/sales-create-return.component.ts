@@ -210,4 +210,8 @@ export class SalesCreateReturnComponent implements OnInit {
     }
   }
 
+  closeModal() {
+    this.activeModal.close();
+  }
+
 }

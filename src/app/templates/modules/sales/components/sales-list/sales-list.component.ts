@@ -175,7 +175,7 @@ export class SalesListComponent implements OnInit, OnDestroy {
         const customerName = item.customername;
         if (this.prodArr.length > 1) {
           this.isCreateReturn = false;
-          if (status !== "Invoiced") {
+          if (status !== "Invoiced" && status !== "Returned") {
             let getCustomerName = "";
             this.customerArr.forEach((item, indexCheck) => {
               if (indexCheck > 0) {
@@ -191,6 +191,13 @@ export class SalesListComponent implements OnInit, OnDestroy {
                   this.getErrorMsg(false);
                 }
               }
+            });
+          }else if (status !== "Returned" && status !== "Open") {
+            setTimeout(() => {
+              this.snackBar.open("You need to select only one Invoice", "", {
+                panelClass: ["warn"],
+                verticalPosition: "top",
+              });
             });
           } else {
             this.isDeleteButton = false;
@@ -438,11 +445,11 @@ export class SalesListComponent implements OnInit, OnDestroy {
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then((result) => {
-      this.ngOnInit();
+      /* this.ngOnInit();
       let indexx = this.prodArr.indexOf(this.prodArr[0].socode);
       this.prodArr.splice(indexx, 1);
       this.isCreateReturn = false;
-      this.isAddSalesOrder = true;
+      this.isAddSalesOrder = true; */
     }, (reason) => {
       this.ngOnInit();
       let indexx = this.prodArr.indexOf(this.prodArr[0].socode);
