@@ -5,11 +5,11 @@
   <div class="col-8">
     <div style="float: right;">
       <button  (click)="makePayment()" [disabled]="!isPurchaseReturn ? true:false" class="create-button" 
-      placement="bottom" ngbTooltip="Make Return Payment" [ngStyle]="getMakePaymentStyle()">
+      placement="bottom" ngbTooltip="Make Return Payment" triggers="hover" [ngStyle]="getMakePaymentStyle()">
         <span class="fas fa-plus"></span> Payment
       </button>
       <button [disabled]="!isSalesReturn ? true:false"
-        (click)="receivePayment()" placement="bottom" ngbTooltip="Receive Return Payment"
+        (click)="receivePayment()" placement="bottom" ngbTooltip="Receive Return Payment" triggers="hover"
         class="create-button" [ngStyle]="getReceivePaymentStyle()">
           Payment
       </button>

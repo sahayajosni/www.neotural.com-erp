@@ -8,19 +8,19 @@
         <i class="fas fa-trash"></i>
       </button>
       <button [disabled]="!isCreateReturn ? true:false"
-        (click)="createReturn()" placement="bottom" ngbTooltip="Create Purchase Return"
+        (click)="createReturn()" placement="bottom" ngbTooltip="Create Purchase Return" triggers="hover"
         class="create-button" [ngStyle]="getCreateReturnStyle()">
         Return
       </button>
       <button  
         [disabled]="!isCreateInvoice ? true:false" 
-        class="create-button" placement="left" ngbTooltip="Create Purchase Invoice" 
+        class="create-button" placement="left" ngbTooltip="Create Purchase Invoice" triggers="hover" 
         [ngStyle]="getCreateInvoiceStyle()"
         (click)="createInvoice()"> <span class="fas fa-plus"></span> Invoice
       </button>
   
-      <button  (click)="addPurchaseOrder(null,null)" placement="left" ngbTooltip="Add Purchase Order"
-      [disabled]="isAddPurchaseOrder" class="create-button" [ngStyle]="getAddPurchaseOrderStyle()">
+      <button  (click)="addPurchaseOrder(null,null)" placement="left" ngbTooltip="Add Purchase Order" triggers="hover"
+        [disabled]="isAddPurchaseOrder" class="create-button" [ngStyle]="getAddPurchaseOrderStyle()">
         <span class="fas fa-plus"></span> Add
       </button>
     </div>
@@ -89,8 +89,8 @@
           <td class="txt-right">{{item.qty}}</td>
           <td class="txt-right wid-130px">{{item.subtotal}}
             <span class="edit-delete-icon user-icon" *ngIf="isCheckedArr.length === 0 && item.status === 'Open'">
-              <span class="fas fa-pen mar-let-40px" placement="bottom" ngbTooltip="Modifiy Purchase Order" (click)="addPurchaseOrder(item.id, item)" ></span>
-              <span class="fas fa-trash" placement="bottom" ngbTooltip="Remove Purchase Order" (click)="removePurchaseOrder(item.id)"></span>
+              <span class="fas fa-pen mar-let-40px" placement="bottom" ngbTooltip="Modifiy Purchase Order" triggers="hover" (click)="addPurchaseOrder(item.id, item)" ></span>
+              <span class="fas fa-trash" placement="bottom" ngbTooltip="Remove Purchase Order" triggers="hover" (click)="removePurchaseOrder(item.id)"></span>
             </span>
           </td>
         </tr>

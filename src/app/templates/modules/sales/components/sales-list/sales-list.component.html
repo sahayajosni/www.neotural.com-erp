@@ -4,17 +4,18 @@
   </div>
   <div class="col-8">
     <div style="float: right;">
-      <button id="delete" [disabled]="!isDeleteButton ? true:false" [ngStyle]="getDeleteButtonStyle()" placement="bottom" ngbTooltip="Remove Sales">
+      <button id="delete" [disabled]="!isDeleteButton ? true:false" [ngStyle]="getDeleteButtonStyle()" 
+        placement="bottom" ngbTooltip="Remove Sales" triggers="hover">
         <i class="fas fa-trash"></i>
       </button>
       <button [disabled]="!isCreateReturn ? true:false"
-        (click)="createReturn()" placement="bottom" ngbTooltip="Create Sales Return"
+        (click)="createReturn()" placement="bottom" ngbTooltip="Create Sales Return" triggers="hover"
         class="create-button" [ngStyle]="getCreateReturnStyle()">
           Return
       </button>
       <button  
         [disabled]="!isCreateInvoice ? true:false" 
-        class="create-button" placement="bottom" ngbTooltip="Create Sales Invoice" 
+        class="create-button" placement="bottom" ngbTooltip="Create Sales Invoice" triggers="hover"
         [ngStyle]="getCreateInvoiceStyle()"
         (click)="createInvoice()"
         >
@@ -22,7 +23,7 @@
       </button>
 
       <button  (click)="addSalesOrder(null,null)" [disabled]="isAddSalesOrder" class="create-button" 
-      placement="bottom" ngbTooltip="Add Sales Order" [ngStyle]="getAddSalesOrderStyle()">
+      placement="bottom" ngbTooltip="Add Sales Order" triggers="hover" [ngStyle]="getAddSalesOrderStyle()">
         <span class="fas fa-plus"></span> Add
       </button> 
     </div>
@@ -91,8 +92,8 @@
           <td class="txt-right">{{item.qty}}</td>
           <td class="txt-right wid-130px">{{item.subtotal}}
             <span class="edit-delete-icon user-icon" *ngIf="isCheckedArr.length === 0 && item.status === 'Open'">
-              <span class="fas fa-pen mar-let-40px" placement="bottom" ngbTooltip="Modify Sales Order" (click)="addSalesOrder(item.id, item)" ></span>
-              <span class="fas fa-trash" placement="bottom" ngbTooltip="Remove Sales Order" (click)="removeSalesOrder(item.id)"></span>
+              <span class="fas fa-pen mar-let-40px" placement="bottom" ngbTooltip="Modify Sales Order" triggers="hover" (click)="addSalesOrder(item.id, item)" ></span>
+              <span class="fas fa-trash" placement="bottom" ngbTooltip="Remove Sales Order" triggers="hover" (click)="removeSalesOrder(item.id)"></span>
             </span>
           </td>
         </tr>

@@ -6,11 +6,11 @@
   </div>
   <div class="col-8">
     <div style="float: right;">
-      <button class="create-button" placement="bottom" ngbTooltip="Add New Employee" style="float: left; margin-right: 10px; margin-top: 4px;" (click)="addEmployee()">
+      <button class="create-button" placement="bottom" ngbTooltip="Add New Employee" triggers="hover" style="float: left; margin-right: 10px; margin-top: 4px;" (click)="addEmployee()">
         <span class="fas fa-plus"></span> Add  
       </button>
-      <img src="assets/images/print.png" placement="bottom" ngbTooltip="Print Employee Table" style="margin-right: 10px;" class="img-fluid logo" alt="print"/>
-      <img src="assets/images/download.png" placement="bottom" ngbTooltip="Download Excel File" class="img-fluid logo" alt="download" />
+      <img src="assets/images/print.png" placement="bottom" ngbTooltip="Print Employee Table" triggers="hover" style="margin-right: 10px;" class="img-fluid logo" alt="print"/>
+      <img src="assets/images/download.png" placement="bottom" ngbTooltip="Download Excel File" triggers="hover" class="img-fluid logo" alt="download" />
     </div>
   </div>
 </div>
@@ -87,9 +87,9 @@
           </td>
           <td class="wid-75px">{{item.status}}
             <span class="edit-delete-icon user-icon">
-              <span class="fas fa-list-alt" placement="bottom" ngbTooltip="Add Daily Report" (click)="dailyReport(i, item)"></span>
-              <span class="fas fa-user-clock" placement="bottom" ngbTooltip="Add Attendance" (click)="checkinCheckout(i, item)"></span>
-              <span class="fas fa-calendar-times" placement="bottom" ngbTooltip="Add Absence" [ngClass]="isAbsentMouseover[i] ? 'absent-disabled' : ''" (mouseover)="absentMouseover(i, item)" (click)="absentPopup(i, item)"></span>
+              <span class="fas fa-list-alt" placement="bottom" ngbTooltip="Add Daily Report" triggers="hover" (click)="dailyReport(i, item)"></span>
+              <span class="fas fa-user-clock" placement="bottom" ngbTooltip="Add Attendance" triggers="hover" (click)="checkinCheckout(i, item)"></span>
+              <span class="fas fa-calendar-times" placement="bottom" ngbTooltip="Add Absence" triggers="hover" [ngClass]="isAbsentMouseover[i] ? 'absent-disabled' : ''" (mouseover)="absentMouseover(i, item)" (click)="absentPopup(i, item)"></span>
             </span>
           </td>
         </tr>

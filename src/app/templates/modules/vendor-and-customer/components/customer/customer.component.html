@@ -9,11 +9,11 @@
         <div class="col-8">
           <div style="float: right;">
             <button  class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;"
-              (click)="addCustomer(null,null,null,null,null,null,null,null,null)" placement="bottom" ngbTooltip="Add New Customer">
+              (click)="addCustomer(null,null,null,null,null,null,null,null,null)" placement="bottom" ngbTooltip="Add New Customer" triggers="hover">
               <span class="fas fa-plus"></span> Add
             </button>
-            <img src="assets/images/print.png" placement="bottom" ngbTooltip="Print Customer Table" style="margin-right: 10px;" class="img-fluid logo" alt="print"/>
-            <img src="assets/images/download.png" placement="bottom" ngbTooltip="Download Excel File" class="img-fluid logo" alt="download" />
+            <img src="assets/images/print.png" placement="bottom" ngbTooltip="Print Customer Table" triggers="hover" style="margin-right: 10px;" class="img-fluid logo" alt="print"/>
+            <img src="assets/images/download.png" placement="bottom" ngbTooltip="Download Excel File" triggers="hover" class="img-fluid logo" alt="download" />
           </div>
         </div>
       </div>
@@ -65,8 +65,8 @@
                 <td>{{item.address}}</td>
                 <td style="width: 8%;">{{item.city}}
                   <span class="edit-delete-icon user-icon">
-                    <span class="fas fa-trash" placement="bottom" ngbTooltip="Delete Customer" (click)="deleteVendorCustomer(item.custcode)"></span>
-                    <span class="fas fa-pen mar-let-40px" placement="bottom" ngbTooltip="Edit Customer" (click)="addCustomer(item.id,item.custcode,item.customerName,
+                    <span class="fas fa-trash" placement="bottom" ngbTooltip="Delete Customer" triggers="hover" (click)="deleteVendorCustomer(item.custcode)"></span>
+                    <span class="fas fa-pen mar-let-40px" placement="bottom" ngbTooltip="Edit Customer" triggers="hover" (click)="addCustomer(item.id,item.custcode,item.customerName,
                     item.country,item.address,item.email,item.city,item.phoneNumber,item.customerbase64)"></span>
                   </span>
                 </td>

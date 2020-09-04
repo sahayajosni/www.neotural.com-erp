@@ -81,15 +81,15 @@
 
         <div class="org-footer" *ngIf="!data.editable">
             <a [routerLink]="" class="icon-printer"></a>
-            <div class="icon-edit" placement="bottom" ngbTooltip="Edit Vendor" (click)="editVendor(data)"></div>
-            <div class="icon-delete" placement="bottom" ngbTooltip="Delete Vendor" (click)="deleteVendor(data.vendorcode)"></div>
+            <div class="icon-edit" placement="bottom" ngbTooltip="Edit Vendor" triggers="hover" (click)="editVendor(data)"></div>
+            <div class="icon-delete" placement="bottom" ngbTooltip="Delete Vendor" triggers="hover" (click)="deleteVendor(data.vendorcode)"></div>
         </div>
         <div class="org-footer" *ngIf="data.editable">
             <div class="row">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <div class="fas fa-check" placement="bottom" ngbTooltip="Update Vendor" (click)="update(data)"></div>
-                    <div class="fas fa-times" placement="bottom" ngbTooltip="Cancel Vendor" (click)="cancelVendor(data)"></div>
+                    <div class="fas fa-check" placement="bottom" ngbTooltip="Update Vendor" triggers="hover" (click)="update(data)"></div>
+                    <div class="fas fa-times" placement="bottom" ngbTooltip="Cancel Vendor" triggers="hover" (click)="cancelVendor(data)"></div>
                 </div>
             </div>
             
@@ -122,7 +122,8 @@
                 </div>
                 <div class="col-6">
                     <div style="float: right;">
-                        <button class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;" placement="bottom" ngbTooltip="Add Product" (click)="addProduct(data)">
+                        <button class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;" 
+                            placement="bottom" ngbTooltip="Add Product" triggers="hover" (click)="addProduct(data)">
                             <span class="fas fa-plus"></span> Add 
                         </button>
                     </div>
