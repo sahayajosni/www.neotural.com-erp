@@ -52,9 +52,9 @@
             <i *ngIf="!isSortDateDesc" class="sort-by-desc" (click)="sortByOrder('date','desc')"></i>
           <i class="sort-by-asc" *ngIf="!isSortDateAsc" (click)="sortByOrder('date','asc')"></i>
           </th>
-          <th style="cursor:pointer;">Status
+          <th style="cursor:pointer;" (click)="sortByOrder('status','desc')">Status
             <i *ngIf="!isSortStatusDesc" class="sort-by-desc" (click)="sortByOrder('status','desc')"></i>
-            <i class="sort-by-asc" *ngIf="!isSortStatusAsc" (click)="sortByOrder('status','asc')"></i>
+            <i *ngIf="!isSortStatusAsc" class="sort-by-asc" (click)="sortByOrder('status','asc')"></i>
           </th>
           <th>Vendor</th>
           <th>Category</th>
