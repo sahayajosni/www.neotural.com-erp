@@ -19,8 +19,8 @@
 <div *ngIf="promotiondiv">
   <br/>
   <!--  FreeGift Table Start -->
-  <div  *ngIf="freegiftTable">
-    <!-- <kendo-grid id="grid" class="k-grid"
+  <div *ngIf="freegiftTable">
+    <kendo-grid id="grid" class="k-grid"
         [kendoGridBinding]="freegiftgridView"
         kendoGridSelectBy="id"
         [selectedKeys]="freegiftSelection"
@@ -67,13 +67,13 @@
         
         <kendo-grid-pdf fileName="FreeGift.pdf" [repeatHeaders]="true"></kendo-grid-pdf>
         <kendo-grid-excel fileName="FreeGift.xlsx"></kendo-grid-excel>
-    </kendo-grid> -->
+    </kendo-grid>
     
   </div>
   <!--  FreeGift Table End -->
 
   <!--  Discount Table Start -->
-  <div  *ngIf="discountTable">
+  <div *ngIf="discountTable">
     <!-- <div class="row">
       <div class="col-1"></div>
       <div class="col-10">
@@ -110,7 +110,7 @@
         [resizable]="true"
         [height]="480"
         [columnMenu]="{ filter: true }" > -->
-      <!-- <kendo-grid id="grid" class="k-grid"
+      <kendo-grid id="grid" class="k-grid"
         [kendoGridBinding]="gridView"
         kendoGridSelectBy="id"
         [selectedKeys]="mySelection"
@@ -159,7 +159,7 @@
         
         <kendo-grid-pdf fileName="Discount.pdf" [repeatHeaders]="true"></kendo-grid-pdf>
         <kendo-grid-excel fileName="Discount.xlsx"></kendo-grid-excel>
-    </kendo-grid> -->
+    </kendo-grid>
   </div>
   <!--  Discount Table End -->
 </div>

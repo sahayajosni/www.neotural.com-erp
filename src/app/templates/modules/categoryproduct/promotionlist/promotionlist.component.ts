@@ -13,8 +13,8 @@ import {MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource} f
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
-//import { DataBindingDirective } from '@progress/kendo-angular-grid';
-//import { process } from '@progress/kendo-data-query';
+import { DataBindingDirective } from '@progress/kendo-angular-grid';
+import { process } from '@progress/kendo-data-query';
 
 @Component({
   selector: "app-promotionlist",
@@ -22,7 +22,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ["./promotionlist.component.scss"]
 })
 export class PromotionListComponent implements OnInit {
-	//@ViewChild(DataBindingDirective,{static:false}) dataBinding: DataBindingDirective;
+	@ViewChild(DataBindingDirective,{static:false}) dataBinding: DataBindingDirective;
     public gridData: any[];
     public gridView: any[];
     public mySelection: string[] = [];
@@ -53,6 +53,7 @@ export class PromotionListComponent implements OnInit {
 		this.SpinnerService.show();  
 		this.promotiondiv = true;
 		this.discountTable = true;
+		this.model.promotionType = "discount";
 		setTimeout(() => {
 			this.SpinnerService.hide();
 		}, 100);
@@ -62,7 +63,7 @@ export class PromotionListComponent implements OnInit {
 		this.promotiondiv = true;
 		if(promotionType == "discount"){
 			this.loadDiscount();
-			//this.freegiftTable = false;
+			this.freegiftTable = false;
 			//let discountType = "discount";
 		}else if(promotionType == "freegift"){
 			this.loadFreegift();
@@ -95,42 +96,42 @@ export class PromotionListComponent implements OnInit {
 		);
 	}
 
-	// public onFreegiftFilter(inputValue: string): void {
-    //     this.freegiftgridView = process(this.freegiftgridData, {
-    //         filter: {
-    //             logic: "or",
-    //             filters: [
-    //                 {
-    //                     field: 'categorycode',
-    //                     operator: 'contains',
-    //                     value: inputValue
-    //                 },
-    //                 {
-    //                     field: 'productname',
-    //                     operator: 'contains',
-    //                     value: inputValue
-    //                 },
-    //                 {
-    //                     field: 'freegift',
-    //                     operator: 'contains',
-    //                     value: inputValue
-    //                 },
-    //                 {
-    //                     field: 'fromdate_promotionperiod',
-    //                     operator: 'contains',
-    //                     value: inputValue
-    //                 },
-    //                 {
-    //                     field: 'todate_promotionperiod',
-    //                     operator: 'contains',
-    //                     value: inputValue
-    //                 }
-    //             ],
-    //         }
-    //     }).data;
+	public onFreegiftFilter(inputValue: string): void {
+        this.freegiftgridView = process(this.freegiftgridData, {
+	        filter: {
+                logic: "or",
+                filters: [
+                    {
+                        field: 'categorycode',
+    	                operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'productname',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'freegift',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'fromdate_promotionperiod',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'todate_promotionperiod',
+                        operator: 'contains',
+                        value: inputValue
+                    }
+                ],
+            }
+        }).data;
 
-    //     this.dataBinding.skip = 0;
-	// }
+        this.dataBinding.skip = 0;
+	}
 
 	loadDiscount(){
 		this.freegiftTable = false;
@@ -158,42 +159,42 @@ export class PromotionListComponent implements OnInit {
 		);
 	}	
 
-	// public onDiscountFilter(inputValue: string): void {
-    //     this.gridView = process(this.gridData, {
-    //         filter: {
-    //             logic: "or",
-    //             filters: [
-    //                 {
-    //                     field: 'categorycode',
-    //                     operator: 'contains',
-    //                     value: inputValue
-    //                 },
-    //                 {
-    //                     field: 'productname',
-    //                     operator: 'contains',
-    //                     value: inputValue
-    //                 },
-    //                 {
-    //                     field: 'qty',
-    //                     operator: 'contains',
-    //                     value: inputValue
-    //                 },
-    //                 {
-    //                     field: 'fromdate_promotionperiod',
-    //                     operator: 'contains',
-    //                     value: inputValue
-    //                 },
-    //                 {
-    //                     field: 'todate_promotionperiod',
-    //                     operator: 'contains',
-    //                     value: inputValue
-    //                 }
-    //             ],
-    //         }
-    //     }).data;
+	public onDiscountFilter(inputValue: string): void {
+        this.gridView = process(this.gridData, {
+            filter: {
+                logic: "or",
+                filters: [
+                    {
+                        field: 'categorycode',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'productname',
+                        operator: 'contains',
+                        value: inputValue
+                   },
+                   {
+                        field: 'qty',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'fromdate_promotionperiod',
+                        operator: 'contains',
+                        value: inputValue
+                    },
+                    {
+                        field: 'todate_promotionperiod',
+                        operator: 'contains',
+                        value: inputValue
+                     }
+                ],
+            }
+        }).data;
 
-    //     this.dataBinding.skip = 0;
-	// }
+        this.dataBinding.skip = 0;
+	}
 	
 
 }
