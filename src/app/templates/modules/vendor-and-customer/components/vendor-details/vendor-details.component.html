@@ -138,7 +138,7 @@
 
             <div class="category-items" >
                 <div class="category-item" *ngFor="let item of allCategoryItems">
-                    <div class="item-image" *ngIf="item.productImage; else vendorItemNoImage">
+                    <div class="item-image" *ngIf="item.productImage; else vendorItemNoImage" (click)="slideshow(item.vendorcode,item.prodcode)">
                         <!-- <img [src]="getImage(item.productImage)" onerror="this.src='/assets/images/no-image.png'" /> -->
 
                         <!-- <div *ngIf="item.productImage; else vendorItemNoImage"> -->

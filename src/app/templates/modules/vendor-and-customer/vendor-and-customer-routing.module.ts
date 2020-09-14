@@ -5,6 +5,7 @@ import { CustomerComponent } from "./components/customer/customer.component";
 import { CustomerAddComponent } from "./components/customer-add/customer-add.component";
 
 import { AddnewproductComponent } from "./components/addnewproduct/addnewproduct.component";
+import { ProductSlideComponent } from './components/productslide/productslide.component';
 
 // const routes: Routes = [
 //   { path: "", component: VendorAndCustomerComponent, pathMatch: "full" }
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'addnewproduct',
     component: AddnewproductComponent
+  },
+  {
+    path: 'productslide',
+    component: ProductSlideComponent,
   }
 ];
 @NgModule({

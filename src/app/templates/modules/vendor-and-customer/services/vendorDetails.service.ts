@@ -71,5 +71,9 @@ constructor(private http: HttpClient) { }
         ); 
     }
 
+	loadEditItem(vendorcode: string){
+		return this.http.get<Product>(
+            `${environment.apiUrl}${API_ENDPOINTS.loadProduct}`+'?vendorcode='+vendorcode);
+	}
 
 }

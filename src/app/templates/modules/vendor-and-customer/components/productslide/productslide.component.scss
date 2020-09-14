@@ -1,0 +1,107 @@
+@import "_base";
+
+input[type=text], select, textarea {
+  width: 85%;
+  padding: 12px;
+  background: none;
+  border-radius: 4px;
+  resize: vertical;
+  color:white;
+  border: 1px solid  $header-bg; 
+}
+.heading {
+  color:$table-header-font !important;
+}
+label {
+  display: inline-block;
+  color: #435c6c;
+  width: 100%;
+}
+.vl {
+  border-left: 2px solid #435c6c;
+  height: 50px;
+}
+p{
+  color: #d8dcdd;
+}
+::ng-deep .productsilde-class .modal-dialog {
+  max-width: 80%;
+  width: 60% !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+::ng-deep .productsilde-class .modal-content {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background:$po-order-form-bg;
+}
+.carousel-item {
+  width:100%; 
+  height:100%;
+}
+.productlogo{
+  height: 200px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.carousel .carousel-control-next {
+  right: 10px;
+}
+
+.carousel .carousel-control-prev {
+  left: 10px;
+}
+
+.carousel .carousel-control-next, .carousel .carousel-control-prev {
+  position: absolute;
+  top: 50%;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -16px;
+  width: 38px;
+  height: 38px;
+  font-size: 35px;
+  z-index: 12;
+  line-height: 30px;
+  outline: 0;
+  color: #000;
+  transition: .3s ease-in-out;
+}
+
+#slidericon{
+  margin-top: -8px;
+  margin-right: -3px;
+}
+/* .carousel-control-prev {
+  @media (min-width: $bootstrap-md) {
+    left: -90px;
+  }
+}
+
+.carousel-control-next {
+  @media (min-width: $bootstrap-md) {
+    right: -90px;
+  }
+} */
+
+.carousel-indicators {
+  bottom: -50px;
+}
+
+.carousel-indicators li {
+  width: 7px;
+  border-radius: 50%;
+  height: 7px;
+}

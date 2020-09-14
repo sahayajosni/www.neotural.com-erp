@@ -14,4 +14,5 @@ export const API_ENDPOINTS = {
   loadCategoryName: `/category/loadCategoryName`,
   loadUnitList:'item/loadunits',
   productsave: `/item/productsave`,
+  loadProduct: `/item/load`,  
 };

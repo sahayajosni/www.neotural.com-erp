@@ -19,7 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from "ngx-bootstrap";
 
 import { AddnewproductComponent } from "./components/addnewproduct/addnewproduct.component";
-
+import { ProductSlideComponent } from './components/productslide/productslide.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { AddnewproductComponent } from "./components/addnewproduct/addnewproduct
     CustomerComponent,
     CustomerAddComponent,
     VendorDetailsComponent,
-    AddnewproductComponent
+    AddnewproductComponent,
+	ProductSlideComponent
   ],
   imports: [
     CommonModule,

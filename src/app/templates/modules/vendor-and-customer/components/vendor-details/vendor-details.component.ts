@@ -7,6 +7,7 @@ import { AddnewproductComponent } from './../addnewproduct/addnewproduct.compone
 import { VendorDetailsService } from './../../services/vendorDetails.service';
 import { Vendor } from 'src/app/core/common/_models';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductSlideComponent } from './../productslide/productslide.component';
 
 @Component({
   selector: 'app-vendor-details',
@@ -33,6 +34,8 @@ export class VendorDetailsComponent implements OnInit {
   vendor:Vendor = new Vendor;
   prodheaderlabel:any;
   prodbtnlabel:any;
+  allproduclist: any = {};
+  model: any = {};
 
   @HostListener('document:click', ['$event']) closeNaviOnOutClick(event) {
 
@@ -287,6 +290,40 @@ export class VendorDetailsComponent implements OnInit {
     }, (reason) => {
       this.ngOnInit();
     }); 
+  }
+
+  slideshow(vendorcode:string,prodcode:string){    
+    this.vendorDetailsService.loadEditItem(vendorcode)
+    .subscribe(
+      data => {
+        this.allproduclist = data;
+        for(let k=0;k<this.allproduclist.length;k++){
+          if(this.allproduclist[k].prodcode==prodcode){
+            this.model.productImage=this.allproduclist[k].productImage;
+            this.model.productname=this.allproduclist[k].productname;
+            this.model.prodcode=this.allproduclist[k].prodcode;
+            this.model.categoryname=this.allproduclist[k].categoryname;
+            this.model.price=this.allproduclist[k].price;
+            this.model.unit=this.allproduclist[k].unit;
+            this.model.tax=this.allproduclist[k].tax;
+            this.model.margin=this.allproduclist[k].margin;
+            this.model.sellingprice=this.allproduclist[k].sellingprice;
+            this.model.description=this.allproduclist[k].description;
+            this.model.createddate=this.allproduclist[k].createddate;
+
+            let data = { productImage: this.model.productImage,productname: this.model.productname,productcode: this.model.prodcode,
+              categoryname: this.model.categoryname,price: this.model.price,unit: this.model.unit,tax: this.model.tax,margin: this.model.margin,
+              sellingprice: this.model.sellingprice,description: this.model.description,createddate: this.model.createddate }
+            
+            const modalRef = this.modalService.open(ProductSlideComponent, { windowClass: 'productsilde-class'});
+            modalRef.componentInstance.fromParent = data;
+            
+          }
+        }
+      },
+      error => {	}
+    );
+    
   }
 
 }
