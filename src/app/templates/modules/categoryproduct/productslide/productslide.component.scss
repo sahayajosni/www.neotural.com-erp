@@ -43,9 +43,16 @@ p{
   padding-bottom: 10px !important;
   background:$po-order-form-bg;
 }
+.carousel-item {
+  width:100%; 
+  height:100%;
+}
 .productlogo{
-  width: 100%;
   height: 200px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .carousel .carousel-control-next {
