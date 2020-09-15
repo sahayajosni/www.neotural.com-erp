@@ -34,6 +34,7 @@ export class DailyReportComponent implements OnInit {
 	filterdiv = false;
 	public employeelist: any;
 	public employeeData = [ ];
+	pagination: number = 0;
 
 	public monthlist = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -57,6 +58,7 @@ export class DailyReportComponent implements OnInit {
 	} */
 
 	ngOnInit() {
+		this.pagination = 0;
 		this.loadEmployee();
 		this.filterdiv = false;
 		//this.model.reporttype = "monthlyreport";
@@ -89,7 +91,7 @@ export class DailyReportComponent implements OnInit {
 	)
 	
 	loadEmployee(){
-		this.reportService.loadEmployee().subscribe(
+		this.reportService.loadEmployee(this.pagination).subscribe(
 			data => {         
 			 	this.employeelist = data;
 			 	for (var i in this.employeelist) {

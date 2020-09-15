@@ -9,8 +9,13 @@ import { API_ENDPOINTS } from "./../reports.config";
 export class ReportService {
   constructor(private http: HttpClient) {}
 
-  loadEmployee(){
-    return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.loadEmployee}`);
+  loadEmployee(pagination:number) {
+    return this.http.get(
+      `${environment.apiUrl}${API_ENDPOINTS.loadEmployee}`.replace(
+        "{param}",
+        pagination.toString()
+      )
+    );
   }
 
   load(data: any) {
