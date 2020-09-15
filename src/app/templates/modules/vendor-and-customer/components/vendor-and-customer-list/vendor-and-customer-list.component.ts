@@ -3,7 +3,8 @@ import {
   OnInit,
   ViewChild,
   Input,
-  OnDestroy
+  OnDestroy,
+  ElementRef
 } from "@angular/core";
 
 import {
@@ -25,6 +26,7 @@ import * as _ from 'lodash';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import *  as  XLSX from 'xlsx';
 
 @Component({
   selector: "app-vendor-and-customer-list",
@@ -92,6 +94,7 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
   dialogTxt:string;
 
   vendorList: any = {};
+  @ViewChild('vendorReport', {static:false}) vendorReport: ElementRef; 
 
   constructor(
     private vendorService: VendorService,
@@ -355,5 +358,12 @@ export class VendorAndCustomerListComponent implements OnInit, OnDestroy {
     this.vendorsDS = this.vendorList.filter(vendor =>
       vendor.vendorName.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
   }
+
+  exportAsExcel() {  
+    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.vendorReport.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1'); 
+    XLSX.writeFile(wb, 'vendor.xlsx');  
+  }  
 
 }

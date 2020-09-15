@@ -65,6 +65,7 @@
     "select-autocomplete": "0.0.1",
     "sphinx_rtd_theme": "^0.4.2",
     "tslib": "^1.10.0",
+    "xlsx": "^0.16.7",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
