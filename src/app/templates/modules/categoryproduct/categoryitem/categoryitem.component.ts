@@ -687,7 +687,7 @@ export class AddnewproductComponent {
                         this.isImageSaved0 = true;
                         this.div1 = false;
                         this.imageIndex1=true;
-                        console.log("First time Base 64 array1 value-->"+this.productImage[0]);
+                        console.log("First time Index0 Base 64 array1 value-->"+this.productImage[0]);
                       }
                       else{
                         console.log("else");
@@ -695,7 +695,7 @@ export class AddnewproductComponent {
                         console.log("Second time Base 64-->"+this.imgBase64Path);
                         this.productImage[0] = this.imgBase64Path;
                         this.isImageSaved0 = true;
-                        console.log("Second time Base 64 array1 value-->"+this.productImage[0]);
+                        console.log("Second time Index0 Base 64 array1 value-->"+this.productImage[0]);
                         //this.imageIndex1=true;
                       }
                   }
@@ -706,7 +706,7 @@ export class AddnewproductComponent {
                       this.productImage.push(this.imgBase64Path);
                       this.isImageSaved1 = true;
                       this.imageIndex1=true;
-                      console.log("First time Base 64 array2 value-->"+this.productImage[1]);
+                      console.log("First time Index1 Base 64 array2 value-->"+this.productImage[1]);
                     }
                     else{
                       console.log("else");
@@ -714,7 +714,7 @@ export class AddnewproductComponent {
                       console.log("Second time Base 64-->"+this.imgBase64Path);
                       this.productImage[1] = this.imgBase64Path;
                       this.isImageSaved1 = true;
-                      console.log("Second time Base 64 array2 value-->"+this.productImage[1]);
+                      console.log("Second time Index1 Base 64 array2 value-->"+this.productImage[1]);
                     }
                 }
 
@@ -725,7 +725,7 @@ export class AddnewproductComponent {
                     this.productImage.push(this.imgBase64Path);
                     this.isImageSaved2 = true;
                     this.imageIndex2=true;
-                    console.log("First time Base 64 array3 value-->"+this.productImage[2]);
+                    console.log("First time Index2 Base 64 array3 value-->"+this.productImage[2]);
                   }
                   else{
                     console.log("else");
@@ -733,7 +733,7 @@ export class AddnewproductComponent {
                     console.log("Third time Base 64-->"+this.imgBase64Path);
                     this.productImage[2] = this.imgBase64Path;
                     this.isImageSaved2 = true;
-                    console.log("Third time Base 64 array3 value-->"+this.productImage[2]);
+                    console.log("Third time Index2 Base 64 array3 value-->"+this.productImage[2]);
                   }
               }
 
@@ -744,7 +744,7 @@ export class AddnewproductComponent {
                   this.productImage.push(this.imgBase64Path);
                   this.isImageSaved3 = true;
                   this.imageIndex3=true;
-                  console.log("First time Base 64 array4 value-->"+this.productImage[1]);
+                  console.log("First time Index3 Base 64 array4 value-->"+this.productImage[3]);
                 }
                 else{
                   console.log("else");
@@ -752,14 +752,36 @@ export class AddnewproductComponent {
                   console.log("Fourth time Base 64-->"+this.imgBase64Path);
                   this.productImage[3] = this.imgBase64Path;
                   this.isImageSaved3 = true;
-                  console.log("Fourth time Base 64 array4 value-->"+this.productImage[1]);
+                  console.log("Fourth time Index3 Base 64 array4 value-->"+this.productImage[3]);
                 }
+              }if(imageNumber==4){
+
               }else{	
                 console.log("Old Image Added productImage -->");
-                this.productImage.push(this.model.productImage[0]);	
-                this.productImage.push(this.model.productImage[1]);	
-                this.productImage.push(this.model.productImage[2]);	
-                this.productImage.push(this.model.productImage[3]);	
+                if(this.productImage[0] == undefined){
+
+                }else{
+                  this.productImage.push(this.model.productImage[0]);	
+                }
+
+                if(this.productImage[1] == undefined){
+
+                }else{
+                  this.productImage.push(this.model.productImage[1]);	 
+                }
+
+                if(this.productImage[2] == undefined){  
+
+                }else{
+                  this.productImage.push(this.model.productImage[2]);	 
+                }
+
+                if(this.productImage[3] == undefined){
+
+                }else{
+                  this.productImage.push(this.model.productImage[3]);	
+                }
+
               }      
             }
           };
@@ -908,6 +930,7 @@ export class AddnewproductComponent {
             console.log("vendor name & code -->"+this.model.vendorcode);
             this.model.unit=this.allproducedittlist[k].unit;
             this.model.productImage=this.allproducedittlist[k].productImage;
+            this.model.createddate=this.allproducedittlist[k].createddate;
 
             if(this.model.productImage[0]!=undefined){
               this.div1 = true;
@@ -998,7 +1021,6 @@ export class AllproducteditComponent {
       this.inputproductcode = this.local_data.prodcode;
       this.vendorcode = this.local_data.vendorcode;
       this.model.vendorcode = this.vendorcode;
-      //alert(data);
       this.catprodservice.loadCategoryName()
       .subscribe(
          data => {
@@ -1082,7 +1104,6 @@ export class AllproducteditComponent {
             if(this.model.productImage[0]!=undefined){
               this.div1 = true;
               this.isImageSaved0 = false;
-              //alert(this.div1);
             }           
 
             if(this.model.productImage[1]!=undefined){
