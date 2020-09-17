@@ -758,27 +758,19 @@ export class AddnewproductComponent {
 
               }else{	
                 console.log("Old Image Added productImage -->");
-                if(this.productImage[0] == undefined){
-
-                }else{
+                if(this.productImage[0] !== undefined){
                   this.productImage.push(this.model.productImage[0]);	
                 }
 
-                if(this.productImage[1] == undefined){
-
-                }else{
+                if(this.productImage[1] !== undefined){
                   this.productImage.push(this.model.productImage[1]);	 
                 }
 
-                if(this.productImage[2] == undefined){  
-
-                }else{
+                if(this.productImage[2] !== undefined){  
                   this.productImage.push(this.model.productImage[2]);	 
                 }
 
-                if(this.productImage[3] == undefined){
-
-                }else{
+                if(this.productImage[3] !== undefined){
                   this.productImage.push(this.model.productImage[3]);	
                 }
 
