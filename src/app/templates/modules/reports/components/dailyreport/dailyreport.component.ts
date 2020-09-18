@@ -2,7 +2,7 @@ import {
   Component,
   OnInit,
   Input,
-  ViewChild,ElementRef, AfterViewInit 
+  ViewChild,ElementRef 
 } from "@angular/core";
 
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -12,6 +12,7 @@ import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import { ReportService } from "../../services/reports.service";
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
+import *  as  XLSX from 'xlsx';
 
 @Component({
   selector: "app-dailyreport",
@@ -22,7 +23,7 @@ export class DailyReportComponent implements OnInit {
 
 	@ViewChild('monthreportContent', {static:true}) templateRef: ElementRef<any>;
 	@ViewChild('customreportContent', {static:true}) templateRef1: ElementRef<any>;
-
+	
 	monthlyList:any = {};
 	customList:any = {};
 	model: any = {};
@@ -47,26 +48,21 @@ export class DailyReportComponent implements OnInit {
 		config.backdrop = 'static';
     	config.keyboard = false;
 	}
-
-	/* ngAfterViewInit() {
-		const modalRef = this.modalService.open(this.templateRef, {  windowClass: 'modal-class' });
-		modalRef.result.then((result) => {
-			this.loadMonthlyReport();
-		}, (reason) => {
-			this.loadMonthlyReport();
-		}); 
-	} */
-
+	
 	ngOnInit() {
 		this.pagination = 0;
 		this.loadEmployee();
 		this.filterdiv = false;
+		this.monthlyList = '';
 		//this.model.reporttype = "monthlyreport";
 	}
 
 	backtoreport(){
 		this.router.navigate(["reports"]);
 	}
+
+	@ViewChild('employeeMonthlyReport', {static:false}) monthlyReport: ElementRef; 	
+	@ViewChild('employeeCustomReport', {static:false}) customReport: ElementRef; 	
 
 	getReport(reportContent){
 		this.model.employeecode = '';
@@ -75,6 +71,7 @@ export class DailyReportComponent implements OnInit {
 		this.model.code = '';
 		this.montherepnable = false;
 		this.customenable = false;
+		this.monthlyList = '';
 		if(this.model.reporttype == "monthlyreport"){
 			this.modalService.open(reportContent, {  windowClass: 'modal-class' });
 		}else if(this.model.reporttype == "customreport"){
@@ -170,6 +167,25 @@ export class DailyReportComponent implements OnInit {
 			const modalRef = this.modalService.open(this.templateRef1, {  windowClass: 'modal-class1' });
 		}
 	}
+
+	exportAsExcel() {  
+		if(this.model.reporttype == "monthlyreport"){
+
+			const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.monthlyReport.nativeElement);
+			const wb: XLSX.WorkBook = XLSX.utils.book_new();
+			XLSX.utils.book_append_sheet(wb, ws, 'Sheet1'); 
+			XLSX.writeFile(wb, this.model.name+' MonthlyReport.xlsx'); 
+
+		}else if(this.model.reporttype == "customreport"){
+
+			const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.customReport.nativeElement);
+			const wb: XLSX.WorkBook = XLSX.utils.book_new();
+			XLSX.utils.book_append_sheet(wb, ws, 'Sheet1'); 
+			XLSX.writeFile(wb, this.model.name+' CustomReport.xlsx'); 
+			
+		}
+		 
+	} 
 
 
 }

@@ -119,9 +119,17 @@
 </ng-template>
 
 <div class="row" *ngIf="filterdiv">
-  <div class="col-9"></div>
-  <div class="col-3">
-    <button type="submit" id="add-btn" (click)="showDialog()">Filter By Employee</button>
+  <div class="col-6"></div>
+  <div class="col-6">
+    <div style="float: right;">
+      <button class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;"
+        placement="bottom" ngbTooltip="Export to Excel" triggers="hover" (click)="exportAsExcel()">
+        Export Excel
+      </button>
+
+      <button class="create-button" style="float: left; margin-right: 10px; margin-top: 4px;" 
+        (click)="showDialog()">Filter By Employee</button>
+    </div>
   </div>
 </div>
 
@@ -166,7 +174,7 @@
 
 <div class="row" style="margin-top: 2vh;margin-bottom: 2vh;">
   <div class="col-12">
-    <table class="table" *ngIf="montherepnable">
+    <table class="table" *ngIf="montherepnable" id="employeeMonthlyReport" #employeeMonthlyReport>
       <thead>
         <tr>
           <th>No</th>
@@ -227,7 +235,7 @@
 
 <div class="row" style="margin-top: 2vh;margin-bottom: 2vh;">
   <div class="col-12">
-    <table class="table" *ngIf="customenable">
+    <table class="table" *ngIf="customenable" id="employeeCustomReport" #employeeCustomReport>
       <thead>
         <tr>
           <th>No</th>

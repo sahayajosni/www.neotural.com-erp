@@ -155,7 +155,18 @@ button[type="submit"]{
   height: 35px;
   margin-top: 30px;
 }
-
+.create-button {
+  float: right;
+  color: $white;
+  background: $btn-bg;
+  border: 1px solid $btn-bg;
+  margin-right: 10px;
+  font-family: $font-family;
+  border-radius: $btn-border-radius;
+  padding: $btn-padding;
+  font-style: normal;
+  font-size: $table-font-size;
+}
 .spanerror{
   color: red;
   font-size: 12px;
