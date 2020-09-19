@@ -51,7 +51,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   isImageSaved: boolean;
   cardImageBase64: string;
   pageSkip: number = 0;  
-  totalrowCount: number = 0;  
+  //totalrowCount: number = 0;  
 
   constructor(
     private employeeService: EmployeeService,
@@ -73,27 +73,28 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
 
   ngOnInit() { 
     this.SpinnerService.show();  
-    this.totalrowCount = this.getAllEmployeeRowCount();
-    this.employeesDS = this.allemplist(this.pageSkip);
+    //this.totalrowCount = this.getAllEmployeeRowCount();
+    //this.employeesDS = this.allemplist(this.pageSkip);
+    this.employeesDS = this.allemplist();
   }
-  onScrollDown() {
+  /* onScrollDown() {
     console.log('scrolled down!!');
     this.pageSkip = this.pageSkip + 20; 
     if(this.totalrowCount > this.pageSkip) {
       this.employeesTempList = this.allemplist(this.pageSkip);
       this.employeesDS.push(this.employeesTempList); 
     }
-    
-
   }
  
   onScrollUp() {
     console.log('scrolled up!!');
-  }
+  } */
+
   printPage(data) {
     this.printDialogService.openDialog(data);
   }
-  getAllEmployeeRowCount() {
+
+  /* getAllEmployeeRowCount() {
     this.employeeService.getAllEmployeeRowCount().subscribe(
       data => { 
         this.totalrowCount = data;
@@ -114,11 +115,13 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       }
     );
     return this.totalrowCount;
-  }
+  } */
   
 
-  allemplist(pagination:number) {
-    this.employeeService.load(pagination).subscribe(
+  /* allemplist(pagination:number) {
+    this.employeeService.load(pagination).subscribe( */
+  allemplist() {
+    this.employeeService.load().subscribe(
       data => { 
         this.employeesDS = data;
         this.employeesList = this.employeesDS;
@@ -157,14 +160,14 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
   
 
-    onSearchChange(searchValue: string): void {  
-      console.log(searchValue);
-      this.employeesDS = this.employeesList.filter(employee =>
-      employee.name.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
-     
-    }
- 
-    deleteEmployee(employeecode: string) {
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+    this.employeesDS = this.employeesList.filter(employee =>
+    employee.name.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
+    
+  }
+
+  deleteEmployee(employeecode: string) {
     this.employeeService.remove(employeecode).subscribe(
       data => {
         this.employee = data;
@@ -175,7 +178,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
               verticalPosition: "top"
             });
           });
-          this.allemplist(this.pageSkip);
+          this.allemplist();
+          //this.allemplist(this.pageSkip);
           this.employees = new MatTableDataSource(this.employeesDS);
           setTimeout(() => {
             this.alertService.clear();
@@ -192,7 +196,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
             );
           });
         }
-        this.allemplist(this.pageSkip);
+        this.allemplist();
       },
       error => {
         setTimeout(() => {
@@ -245,7 +249,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       //this.allemplist(this.pageSkip);
     }, (reason) => {
       this.pageSkip = 0;  
-      this.allemplist(this.pageSkip);
+      //this.allemplist(this.pageSkip);
+      this.allemplist();
     }); 
     
     /* if(this.snackBar.open) {
@@ -371,7 +376,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
           });
         });
         this.modalService.dismissAll();
-        this.allemplist(this.pageSkip);
+        //this.allemplist(this.pageSkip);
+        this.allemplist();
       },
       error => {
         setTimeout(() => {

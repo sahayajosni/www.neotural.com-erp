@@ -10,12 +10,13 @@ export class ReportService {
   constructor(private http: HttpClient) {}
 
   loadEmployee(pagination:number) {
-    return this.http.get(
+    return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.loadEmployee}`);
+    /* return this.http.get(
       `${environment.apiUrl}${API_ENDPOINTS.loadEmployee}`.replace(
         "{param}",
         pagination.toString()
       )
-    );
+    ); */
   }
 
   load(data: any) {

@@ -1,7 +1,8 @@
 export const API_ENDPOINTS = { 
   //allEmployees: `/employee/load`,
   getEmployeeTotalRowCount: `/employee/getEmployeeTotalRowCount`,
-  allEmployees: `/employee/load?pagination={param}`,
+  //allEmployees: `/employee/load?pagination={param}`,
+  allEmployees: `/employee/load`,
   getEmployee: `/employee/get?id={param}`,
   saveEmployee: `/employee/save`,
   updateEmployee: `/employee/update`,

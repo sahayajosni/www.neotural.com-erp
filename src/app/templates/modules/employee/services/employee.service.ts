@@ -24,14 +24,14 @@ export class EmployeeService {
     return this.http.get<number>(`${environment.apiUrl}${API_ENDPOINTS.getEmployeeTotalRowCount}`);
   }
   
-  load(pagination:number) {
-    //return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.allEmployees}`);
-    return this.http.get(
+  load() {
+    return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.allEmployees}`);
+    /* return this.http.get(
       `${environment.apiUrl}${API_ENDPOINTS.allEmployees}`.replace(
         "{param}",
         pagination.toString()
       )
-    );
+    ); */
   }
 
   get(id) {
