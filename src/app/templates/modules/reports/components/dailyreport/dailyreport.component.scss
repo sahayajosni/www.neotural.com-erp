@@ -83,9 +83,13 @@ input[type=search] {
   color: white;
   font-size: 14px;
 }
-
+.fa-chevron-left{
+  font-size: 22px;
+  cursor: pointer;
+}
 .regular-radio{
   margin-left: 15px;
+  cursor: pointer;
 }
 #radiolabel{
   padding-left: 10px;
