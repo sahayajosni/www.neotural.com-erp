@@ -1,32 +1,32 @@
 @import "_base";
 .box{
   background: rgb(37, 63, 75);
-  width: 30rem;
+  width: 25rem;
   margin-left: -150px;
   border-radius: $dialog-border-radius;
   top:5rem;
   font-family: Open Sans;
 }
 .text{
-  color:white;
+  color:#d6d8da;
   font-family: Open Sans;
   float: left;
-  padding-left: 2.5rem;
+  padding-left: 1.2rem;
   font-weight: bold;
- font-size: 18px;
+  font-size: 16px;
 }
 .datetext{
   color: #627580;
   float: right;
-  padding-right: 2.5rem;
+  //padding-right: 2.5rem;
 }
 .reasonTxt{
   border-radius: 8px;
   border: 1px solid #1C313E;
   background: #1C313E;
-  width: 80%;
-  height: 14em;
-  color: white;
+  width: 84%;
+  height: 7em;
+  color: #d6d8da;
   padding: 3px 15px;
   font-size: 16px;
 }
@@ -42,10 +42,10 @@ button{
 #absent{
   background: #1186AA;
   border: 1px solid #1186AA;
-  color: white;
-  font-size: 18px;
-  width: 14rem;
-  height: 2.5rem;
+  color: #d6d8da;
+  font-size: 16px;
+  width: 12rem;
+  height: 2rem;
 }
 ::placeholder {
   color: #8D9BA4;
