@@ -8,16 +8,17 @@
   font-family: Open Sans;
 }
 .text{
-  color:white;
+  color:#d6d8da;
   font-family: Open Sans;
   float: left;
-  padding-left: 2.5rem;
+  padding-left: 1.2rem;
   font-weight: bold;
+  font-size: 16px;
 }
 .datetext{
   color: #627580;
   float: right;
-  padding-right: 2.5rem;
+  //padding-right: 2.5rem;
 }
 .timeTxt{
   width: 83%;
@@ -30,29 +31,29 @@
   border-radius: 8px;
   border: 1px solid #334F5F;
   background: #1C313E;
-  width: 80%;
-  height: 14em;
-  color: $white;
-  padding-left: 15px;
+  width: 84%;
+  height: 3em;
+  color: #d6d8da;
+  padding: 3px 15px;
 }
 .checkin-checkout{
   background: #1C313E;
   border: 1px solid #1C313E;
   width: 35%;
-  height: 2.5rem;
-  font-size: 16px;
+  height: 2rem;
+  font-size: 14px;
   border-radius: $btn-border-radius;
   font-weight: bold;
 }
 #checkIn{
   background: #149A52;
-  color: white;
+  color: #d6d8da;
   float: left;
   width: 42%;
 }
 #checkOut{
   background: #D84444;
-  color: white;
+  color: #d6d8da;
   float: right;
   width: 42%;
 }
@@ -68,8 +69,8 @@
   font-weight:bold;
 }
 ::placeholder {
-  color: #8D9BA4;
-  font-size: 15px;
+  color: #8897a0;
+  font-size: 16px;
 }
 
 #employee-checkin-checkout-box {
