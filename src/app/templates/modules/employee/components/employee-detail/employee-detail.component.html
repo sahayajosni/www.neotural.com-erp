@@ -205,29 +205,37 @@
   
   <div style="clear:both"></div>
   <div style="margin-left:5px;">
-  <div style="color: rgba(85,112,129,1);margin-top:25px;">Phone</div>
-    <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.phonenumber}}</div>
+    <div style="color: rgba(85,112,129,1);margin-top:25px;">Name</div>
+    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.name}}</div>
+    <input type="text" id="editinput" [(ngModel)]="employeeDet.name" #name="ngModel"
+      name="name" *ngIf="employeeDet.editable" autocomplete="off"/>
+    <div style="color: rgba(85,112,129,1);margin-top:25px;">Phone</div>
+    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.phonenumber}}</div>
     <input type="text" id="editinput" [(ngModel)]="employeeDet.phonenumber" #phonenumber="ngModel"
-        name="phonenumber" *ngIf="employeeDet.editable" autocomplete="off"/>
+      name="phonenumber" *ngIf="employeeDet.editable" autocomplete="off"/>
 	  <div style="color: rgba(85,112,129,1); margin-top:25px;">Email</div>
-    <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.email}}</div>
+    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.email}}</div>
     <input type="text" id="editinput" [(ngModel)]="employeeDet.email" #email="ngModel"
       name="email" *ngIf="employeeDet.editable" autocomplete="off" />
+      <div style="color: rgba(85,112,129,1); margin-top:25px;">Location </div>
+    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.location}}</div>
+    <input type="text" id="editinput" [(ngModel)]="employeeDet.location" #location="ngModel"
+      name="location" *ngIf="employeeDet.editable" autocomplete="off"/>
 	  <div style="color: rgba(85,112,129,1); margin-top:25px;">Address </div>
-      <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.address}}</div>
-      <input type="text" id="editinput" [(ngModel)]="employeeDet.address" #address="ngModel"
+    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.address}}</div>
+    <input type="text" id="editinput" [(ngModel)]="employeeDet.address" #address="ngModel"
       name="address" *ngIf="employeeDet.editable" autocomplete="off"/>
- <div style="color: rgba(85,112,129,1); margin-top:25px;">Birthday</div>
-      <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.dob}}</div>
-      <input type="text" id="editinput" [(ngModel)]="employeeDet.dob" #dob="ngModel"
+    <div style="color: rgba(85,112,129,1); margin-top:25px;">Birthday</div>
+    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.dob}}</div>
+    <input type="date" id="editinput" [(ngModel)]="employeeDet.dob" #dob="ngModel"
       name="dob" *ngIf="employeeDet.editable" />
-	   <div style="color: rgba(85,112,129,1); margin-top:25px;">NPWP</div>
-      <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.npwp}}</div>
-      <input type="text" id="editinput" [(ngModel)]="employeeDet.npwp" #npwp="ngModel"
+	  <div style="color: rgba(85,112,129,1); margin-top:25px;">NPWP</div>
+    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.npwp}}</div>
+    <input type="text" id="editinput" [(ngModel)]="employeeDet.npwp" #npwp="ngModel"
       name="npwp" *ngIf="employeeDet.editable" autocomplete="off"/>
-	   <div style="color: rgba(85,112,129,1); margin-top:25px;">BPJS</div>
-      <div style="color:#fff;" *ngIf="!employeeDet.editable">{{employeeDet.bpjs}}</div>
-      <input type="text" id="editinput" [(ngModel)]="employeeDet.bpjs" #bpjs="ngModel"
+	  <div style="color: rgba(85,112,129,1); margin-top:25px;">BPJS</div>
+    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.bpjs}}</div>
+    <input type="text" id="editinput" [(ngModel)]="employeeDet.bpjs" #bpjs="ngModel"
       name="bpjs" *ngIf="employeeDet.editable" autocomplete="off"/>
   </div>
 
@@ -250,25 +258,25 @@
 
   <h4 class="panel-title" style="color: rgba(85,112,129,1); margin-bottom: 20px;">
     
-    <a class="collapsed" data-toggle="collapse" data-target="#collapse1" style="cursor:pointer;cursor: pointer;
-    color: #fff; font-size: 18px;">Employment Details</a></h4>
+    <a class="collapsed" data-toggle="collapse" data-target="#collapse1" style="cursor:pointer;
+    color: #fff;font-size: 18px;"><label style="color: #3c5260;font-weight: bold;">Employment Details</label></a></h4>
   
     <div id="collapse1" class="panel-collapse collapse">
   <div class="col-md-3 float-left">
   <div class="ble-colr">Joined on</div>
-  <div>{{employeeDet.addeddate}}</div>
+  <div class="lblcolor">{{employeeDet.addeddate}}</div>
   </div>
   <div class="col-md-3 float-left">
   <div class="ble-colr">Monthly Salary</div>
-  <div>{{employeeDet.monthlysalary}}</div>
+  <div class="lblcolor">{{employeeDet.monthlysalary}}</div>
   </div>
   <div class="col-md-3 float-left">
   <div class="ble-colr">Overtime Salary</div>
-  <div>-</div>
+  <div class="lblcolor">0</div>
   </div>
   <div class="col-md-3 float-left">
   <div class="ble-colr">Contract Document</div>
-  <div>CN-99-23430.pdf</div>
+  <div class="lblcolor">CN-99-23430.pdf</div>
   </div>
   
   <div style="clear: both;"></div>
@@ -277,8 +285,8 @@
 </div>
 <div class="col-md-12 col-xs-12 col-sm-12 side-wapper m-t-20 p-t-10">
  <h4 class="panel-title" style="color: rgba(85,112,129,1); margin-bottom: 20px;">
-    <a data-toggle="collapse" class="collapsed" data-target="#collapse2" style="cursor:pointer;cursor: pointer;
-    color: #fff; font-size: 18px;" id="dailyrepcollapse">Daily Report</a>
+    <a data-toggle="collapse" class="collapsed" data-target="#collapse2" style="cursor:pointer;color: #fff;
+    font-size: 18px;" id="dailyrepcollapse"><label style="color: #3c5260;font-weight: bold;">Daily Report</label></a>
     <!-- <input matInput [matDatepicker]="dp" placeholder="Select minimum date" style="visibility: hidden;">
    <mat-datepicker-toggle matSuffix [for]="dp">
     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -296,13 +304,13 @@
           (closed)="toggle(ref)" #picker></mat-datepicker> -->
 
           <input type="date" placeholder="Choose a date"
-            style="background-color:#1B2931;color: white;" id="picker" [(ngModel)]="this.model.date" autocomplete="off" 
+            style="background-color:#1B2931;color: #d6d8da;" id="picker" [(ngModel)]="this.model.date" autocomplete="off" 
             #date="ngModel" name="date" (ngModelChange)="getDailyReportLists(employeeDet.employeecode,this.model.date)"> 
             <!-- placeholder="Choose a date" id="picker" (dateInput)="addEvent('input', $event, picker)" (dateChange)="addEvent('change', $event, picker)" [(ngModel)]="_picker" [ngModelOptions]="{standalone: true}" (keydown)="false"> -->
 
         </div>
         <div class="col-md-6 float-left" *ngIf="this.dailyReportList !== '' ">
-          <div style="font-size: 14px;">{{ this.model.date | date : 'MMMM dd, yyyy' }}</div>
+          <div style="font-size: 14px;color: #d6d8da;">{{ this.model.date | date : 'MMMM dd, yyyy' }}</div>
           <textarea *ngIf="this.dailyReportList.length == 0 && this.model.editable != true" class="form-control daily-text-area-style" rows="5" id="comment" readonly> No Records Found. </textarea> 
           <textarea class="form-control daily-text-area-style" rows="5" id="comment" [(ngModel)]="model.report" #report="ngModel"
               name="report" *ngIf="this.dailyReportList.length == 0 && this.model.editable === true"></textarea> 
@@ -340,69 +348,71 @@
 <div class="col-md-12 col-xs-12 col-sm-12 side-wapper m-t-20 p-t-10">
      
   <h4 class="panel-title" style="color: rgba(85,112,129,1); margin-bottom: 20px;">
-    <a class="collapsed" data-toggle="collapse" data-target="#collapse3" style="cursor:pointer;color: #fff; font-size: 18px;">Attendance Details</a></h4>
-    <div id="collapse3" class="panel-collapse collapse">
-  <div class="col-md-3 float-left">
-  <div class="ble-colr">Work</div>
-  <div>{{employeeDet.workHour}}</div>
-  </div>
-  <div class="col-md-3 float-left">
-  <div class="ble-colr">Annual Leave</div>
-  <div>{{employeeDet.annualLeave}}</div>
-  </div>
-  <div class="col-md-3 float-left">
-  <div class="ble-colr">Days Absent</div>
-  <div>-</div>
-  </div>
-  <div class="col-md-3 float-left">
-  <div class="ble-colr">Absent Deduction</div>
-  <div>-</div>
-  </div>
+    <a class="collapsed" data-toggle="collapse" data-target="#collapse3" style="cursor:pointer;color: #fff;
+      font-size: 18px;"><label style="color: #3c5260;font-weight: bold;">Attendance Details</label></a>
+  </h4>
+  <div id="collapse3" class="panel-collapse collapse">
+    <div class="col-md-3 float-left">
+      <div class="ble-colr">Work</div>
+      <div class="lblcolor">9:00 AM - 5:00 PM</div>
+    </div>
+    <div class="col-md-3 float-left">
+      <div class="ble-colr">Annual Leave</div>
+      <div class="lblcolor">{{employeeDet.annualLeave}}</div>
+    </div>
+    <div class="col-md-3 float-left">
+      <div class="ble-colr">Days Absent</div>
+      <div class="lblcolor">0</div>
+    </div>
+    <div class="col-md-3 float-left">
+      <div class="ble-colr">Absent Deduction</div>
+      <div class="lblcolor">0</div>
+    </div>
 
-  <div style="clear: both;"></div>
-</div>
-</div>
-<div class="col-md-12 col-xs-12 col-sm-12 side-wapper">
-    <div class="profile-div">
-  <div class="col-md-12 m-b-20px"><h5 class="float-left">{{commonService.getTodayDate() | date : 'MMMM'}} Absent Card</h5> 
-    <!-- <img src="assets/images/print1.PNG" style="float: right;" class="img-fluid logo" alt="print"/> -->
-  </div>
-    <div class="clr-both"></div>
-  <ng-container *ngIf="attendanceDetails.length > 0">
-    <div class="col-md-12" *ngFor="let item of attendanceDetails">
-      <div class="m-t-10">
-      <div class="col-md-2 float-left date-div">
-        <div style="font-size: 14px;">{{item.date | date : 'dd-MM-yyyy'}}</div>
-      </div>
-      <div *ngIf="item.absent === null" class="col-md-4 float-left time-div">
-        <div *ngIf="item.checkintime === null" style="color:#17af7d;font-size: 14px;padding-top: 5px;">9:00 AM</div>
-        <div *ngIf="item.checkintime !== null">
-          <div style="color:red;font-size: 14px;">{{item.checkintime}}</div>
-          <div style="font-size: 14px;">{{item.checkinreason}}</div>
-        </div>
-      </div>
-       <div *ngIf="item.absent === null" class="col-md-4 float-left last-div">
-        <div *ngIf="item.checkouttime === null" style="color:#17af7d;font-size: 14px;padding-top: 5px;">5:00 PM</div>
-        <div *ngIf="item.checkouttime !== null">
-          <div style="color:red; font-size: 14px;">{{item.checkouttime}}</div>
-          <div style="font-size: 14px;">{{item.checkoutreason}}</div>
-        </div>
-      </div>
-    </div>
-      <div *ngIf="item.absent === 'yes'" class="col-md-9 float-left middle-div">
-        <div  class="col-md-5 float-left">
-          <span style="color:red;font-size: 14px;">ABSENT</span>
-        </div>
-        <div  class="col-md-7 float-left">
-          <span style="color:white;font-size: 14px; text-align: center;">{{item.reason}}</span>
-        </div>
-      </div>
-    </div>
     <div style="clear: both;"></div>
-  </ng-container>
-    </div>
   </div>
-  
+  </div> 
+  <div class="col-md-12 col-xs-12 col-sm-12 side-wapper">
+    <div class="profile-div">
+      <div class="col-md-12 m-b-20px"><h5 class="float-left">{{commonService.getTodayDate() | date : 'MMMM'}} Absent Card</h5> 
+        <!-- <img src="assets/images/print1.PNG" style="float: right;" class="img-fluid logo" alt="print"/> -->
+      </div>
+      <div class="clr-both"></div>
+      <ng-container *ngIf="attendanceDetails.length > 0">
+        <div class="col-md-12" *ngFor="let item of attendanceDetails">
+          <div class="m-t-10">
+            <div class="col-md-2 float-left date-div">
+              <div style="font-size: 14px;">{{item.date | date : 'dd-MM-yyyy'}}</div>
+            </div>
+            <div *ngIf="item.absent === null" class="col-md-4 float-left time-div">
+              <div *ngIf="item.checkintime === null" style="color:#17af7d;font-size: 14px;padding-top: 5px;">9:00 AM</div>
+              <div *ngIf="item.checkintime !== null">
+                <div style="color:red;font-size: 14px;">{{item.checkintime}}</div>
+                <div style="font-size: 14px;">{{item.checkinreason}}</div>
+              </div>
+            </div>
+            <div *ngIf="item.absent === null" class="col-md-4 float-left last-div">
+              <div *ngIf="item.checkouttime === null" style="color:#17af7d;font-size: 14px;padding-top: 5px;">5:00 PM</div>
+              <div *ngIf="item.checkouttime !== null">
+                <div style="color:red; font-size: 14px;">{{item.checkouttime}}</div>
+                <div style="font-size: 14px;">{{item.checkoutreason}}</div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="item.absent === 'yes'" class="col-md-9 float-left middle-div">
+            <div  class="col-md-5 float-left">
+              <span style="color:red;font-size: 14px;">ABSENT</span>
+            </div>
+            <div  class="col-md-7 float-left">
+              <span style="color:#d6d8da;font-size: 14px;vertical-align: middle;text-align: center;">{{item.reason}}</span>
+            </div>
+          </div>
+        </div>
+        <div style="clear: both;"></div>
+      </ng-container>
+    </div>
+  </div> 
+
   </div>
   </div>
     

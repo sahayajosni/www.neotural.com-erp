@@ -1,5 +1,5 @@
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
-.ble-colr{color: rgba(85,112,129,1)}
+.ble-colr{color: rgba(85,112,129,1);font-size: 13px;}
 .side-wapper{padding-bottom:20px; background-color:#17252F; -webkit-box-shadow:3px 2px 5px -1px rgba(0,0,0,.075);
     -moz-box-shadow: 3px 2px 5px -1px rgba(0,0,0,.075);
     box-shadow:3px 2px 5px -1px rgba(0,0,0,.075); float: left;}
@@ -71,7 +71,7 @@ h5{
 }
 .daily-text-area-style{
     background-color: #17252F;
-    color: #fff;
+    color: #d6d8da;
     border: 1px solid #334F5F;
     border-radius: 0px;
     font-size: 13px;
@@ -136,7 +136,7 @@ h5{
     width: 100%;
     height: 30px;
     border: 1px solid #2C4655 !important;
-    color: white;
+    color: #d6d8da;
 }
 #editinput1{
     background: #1c313e;
@@ -144,7 +144,7 @@ h5{
     height: 30px;
     margin-bottom: 10px;
     border: 1px solid #2C4655 !important;
-    color: white;
+    color: #d6d8da;
 }
 
 .fa-check{
@@ -167,7 +167,7 @@ input:-webkit-autofill:active {
 }
 /*Change text in autofill textbox*/
 input:-webkit-autofill {
-  -webkit-text-fill-color: white !important;
+  -webkit-text-fill-color: #d6d8da !important;
 }
 
 .edit-delete-icon {
@@ -177,4 +177,8 @@ input:-webkit-autofill {
 }
 #trash {
     margin-left: 15px;
+}
+.lblcolor {
+    color: #d6d8da;
+    font-size: 13px;
 }
