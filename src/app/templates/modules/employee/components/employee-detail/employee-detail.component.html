@@ -276,7 +276,7 @@
   </div>
   <div class="col-md-3 float-left">
   <div class="ble-colr">Contract Document</div>
-  <div class="lblcolor">CN-99-23430.pdf</div>
+  <div class="pdfcolor">CN-99-23430.pdf</div>
   </div>
   
   <div style="clear: both;"></div>
@@ -379,7 +379,7 @@
       </div>
       <div class="clr-both"></div>
       <ng-container *ngIf="attendanceDetails.length > 0">
-        <div class="col-md-12" *ngFor="let item of attendanceDetails">
+        <div class="col-md-12 m-b-10px" *ngFor="let item of attendanceDetails" id="attendancediv">
           <div class="m-t-10">
             <div class="col-md-2 float-left date-div">
               <div style="font-size: 14px;">{{item.date | date : 'dd-MM-yyyy'}}</div>
@@ -410,6 +410,7 @@
         </div>
         <div style="clear: both;"></div>
       </ng-container>
+      <br/>
     </div>
   </div> 
 

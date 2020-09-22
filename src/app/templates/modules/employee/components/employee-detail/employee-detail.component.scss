@@ -11,6 +11,7 @@
     margin-right: 10px;
     width: calc(90% - 10px);
     overflow: hidden;
+    background: #1a2d39;
     img {
         max-width: 70%;
         max-height: 75px;
@@ -181,4 +182,17 @@ input:-webkit-autofill {
 .lblcolor {
     color: #d6d8da;
     font-size: 13px;
+}
+
+.pdfcolor {
+    color: #2385a9;
+    font-size: 15px;
+    text-decoration: underline;
+}
+
+#attendancediv {
+    padding-bottom: 55px;
+}
+.m-b-20px {
+    padding-top: 20px;
 }
