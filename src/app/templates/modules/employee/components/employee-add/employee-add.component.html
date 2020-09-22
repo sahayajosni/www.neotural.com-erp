@@ -78,6 +78,24 @@
             <input type="text" name="contractnumber" id="textbox7" [(ngModel)]="this.model.contractnumber" 
               #contractnumber="ngModel" />
       
+              <label class="heading">Country </label>
+
+              <select name="country" id="country" [(ngModel)]="this.model.location" 
+              #country="ngModel" value="{{model.location}}" class="m-t-5px">
+            <option value="India">India</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Malaysia">Malaysia</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Australia">Australia</option>
+            <option value="US">US</option>
+            <option value="UK">UK</option>
+            <option value="Others">Others</option>
+  
+          </select>
+
+              <!-- <input type="text" name="monthlysalary" id="textbox10" [(ngModel)]="this.model.monthlysalary" 
+                #monthlysalary="ngModel" autocomplete="off"/> -->
+<div *ngIf="this.model.location === 'Indonesia'">
             <label class="heading">NPWP Number </label>
             <input type="text" name="npwp" id="textbox8" [(ngModel)]="this.model.npwp" 
               #npwp="ngModel" autocomplete="off"/>
@@ -86,7 +104,7 @@
             <input type="text" name="bpjs" id="textbox9" [(ngModel)]="this.model.bpjs" 
               #bpjs="ngModel" autocomplete="off"/>
       
-      
+            </div>
             <label class="heading">Monthly Salary </label>
             <input type="text" name="monthlysalary" id="textbox10" [(ngModel)]="this.model.monthlysalary" 
               #monthlysalary="ngModel" autocomplete="off"/>
@@ -100,9 +118,9 @@
             <input type="text" name="annualLeave" id="textbox12" [(ngModel)]="this.model.annualLeave" 
               #annualLeave="ngModel" autocomplete="off"/>
 
-            <label class="heading">Location</label>
+            <!-- <label class="heading">Location</label>
             <input type="text" name="location" id="textbox6" [(ngModel)]="this.model.location" 
-              #location="ngModel" autocomplete="off"/>
+              #location="ngModel" autocomplete="off"/> -->
       
             <div> </div>
           </div>
