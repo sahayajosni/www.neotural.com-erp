@@ -27,6 +27,7 @@ export class EmployeeDetailComponent implements OnInit {
   employee:Employee = new Employee;
   model:any =[];
   dailyReportList:any = {};
+  attendancedaylist = [];
   @Input() getDailyReportDetail: any;
 
   constructor(
@@ -40,6 +41,7 @@ export class EmployeeDetailComponent implements OnInit {
 
   ngOnInit() {
     this.dailyReportList = '';
+    this.model.absentdays = 0;
     this.activatedRoute.params.subscribe(params => {
       this.viewEmployee(params.id);
     });
@@ -56,6 +58,7 @@ export class EmployeeDetailComponent implements OnInit {
   }
 
   viewEmployee(empCode: string) {
+    this.model.absentdays = 0;
     this.employeeService.getEmployeeDetail(empCode).subscribe((res: any) => {
       if (res.length > 0) {
         this.employeeDet = res[0];
@@ -63,11 +66,22 @@ export class EmployeeDetailComponent implements OnInit {
         this.employeeService.getAbsentLists(item).subscribe((data: any) => { 
           if (data.length > 0) { 
             this.attendanceDetails = data;
+            this.absentdays(empCode);
           }
         })
         
       }
     });
+  }
+
+  absentdays(empCode: string){
+    const item = {date:this.commonService.getTodayDate(),type:'Absent',employeecode: empCode};
+    this.employeeService.getAbsentLists(item).subscribe((data: any) => { 
+      if (data.length > 0) { 
+        this.attendancedaylist = data;
+        this.model.absentdays = this.attendancedaylist.length;
+      }
+    })
   }
   
   /* showDailyReport() { 
