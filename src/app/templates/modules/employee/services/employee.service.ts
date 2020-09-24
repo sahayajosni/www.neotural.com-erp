@@ -60,8 +60,7 @@ export class EmployeeService {
   }
 
   saveDailyReport(data: any) {
-    return this.http.post<any>(
-      `${environment.apiUrl}${API_ENDPOINTS.SAVE_DAILY_REPORT}`,
+    return this.http.post(`${environment.apiUrl}${API_ENDPOINTS.SAVE_DAILY_REPORT}`,
       data
     );
   }
@@ -75,10 +74,9 @@ export class EmployeeService {
   }
 
   updateDailyReport(data: any) {
-    return this.http.put<any>(
-      `${environment.apiUrl}${API_ENDPOINTS.UPDATE_DAILY_REPORT}`,
+    return this.http.put(`${environment.apiUrl}${API_ENDPOINTS.UPDATE_DAILY_REPORT}`,
       data
-    );
+    ); 
   }
 
   saveEmployeeAbsent(data: any) {
