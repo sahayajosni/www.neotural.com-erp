@@ -386,22 +386,34 @@
             </div>
             <div class="col-lg-10 col-xs-10 col-sm-10 col-md-10 float-left" *ngIf="item.absent === null">
               <div *ngIf="item.absent === null" class="col-md-5 float-left time-div">
-                <div *ngIf="item.checkintime === null" style="color:#17af7d;font-size: 14px;padding-top: 5px;">9:00 AM</div>
+                <div *ngIf="item.checkintime === null" style="color:#17af7d;font-size: 12px;padding-top: 5px;">9:00 AM</div>
                 <div *ngIf="item.checkintime !== null">
-                  <div style="color:red;font-size: 14px;">{{item.checkintime}}</div>
-                  <div style="font-size: 14px;">{{item.checkinreason}}</div>
+                  <div style="color:red;font-size: 12px;">{{item.checkintime}}</div>
+                  <div style="font-size: 12px;">{{item.checkinreason}}</div>
                 </div>
               </div>
               <div *ngIf="item.absent === null" class="col-md-1"></div>
-              <div *ngIf="item.absent === null" class="col-md-5 float-left last-div">
-                <div *ngIf="item.checkouttime === null" style="color:#17af7d;font-size: 14px;padding-top: 5px;">5:00 PM</div>
+              <div *ngIf="item.absent === null" class="col-md-6 float-left last-div">
+                <div *ngIf="item.checkouttime === null" style="color:#17af7d;font-size: 12px;padding-top: 5px;">5:00 PM</div>
                 <div *ngIf="item.checkouttime !== null">
-                  <div style="color:red; font-size: 14px;">{{item.checkouttime}}</div>
-                  <div style="font-size: 14px;">{{item.checkoutreason}}</div>
+                  <div style="color:red; font-size: 12px;">{{item.checkouttime}}</div>
+                  <div style="font-size: 12px;">{{item.checkoutreason}}</div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-9 col-xs-9 col-sm-9 col-md-9 float-left" *ngIf="item.absent !== null">
+            <div class="col-lg-10 col-xs-10 col-sm-10 col-md-10 float-left" *ngIf="item.absent !== null">
+              <div *ngIf="item.absent === 'yes'" class="col-md-5 float-left middle-div">
+                <div>
+                  <span style="color:red;font-size: 12px;">ABSENT</span>
+                </div>
+              </div>
+              <div *ngIf="item.absent !== null" class="col-md-6 float-left last-div">
+                <div>
+                  <span style="color:#d6d8da;font-size: 12px;vertical-align: middle;text-align: center;">{{item.reason}}</span>
+                </div>                
+              </div>
+            </div>
+            <!-- <div class="col-lg-9 col-xs-9 col-sm-9 col-md-9 float-left" *ngIf="item.absent !== null">
               <div *ngIf="item.absent === 'yes'" class="col-md-12 float-left middle-div">
                 <div  class="col-lg-5 col-xs-5 col-sm-5 col-md-5 float-left">
                   <span style="color:red;font-size: 14px;">ABSENT</span>
@@ -410,7 +422,7 @@
                   <span style="color:#d6d8da;font-size: 14px;vertical-align: middle;text-align: center;">{{item.reason}}</span>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div style="clear: both;"></div>
