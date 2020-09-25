@@ -311,16 +311,19 @@
         </div>
         <div class="col-md-6 float-left" *ngIf="this.dailyReportList !== '' ">
           <div style="font-size: 14px;color: #d6d8da;">{{ this.model.date | date : 'MMMM dd, yyyy' }}</div>
+
           <textarea *ngIf="this.dailyReportList.length == 0 && this.model.editable != true" class="form-control daily-text-area-style" rows="5" id="comment" readonly> No Records Found. </textarea> 
+
           <textarea class="form-control daily-text-area-style" rows="5" id="comment" [(ngModel)]="model.report" #report="ngModel"
               name="report" *ngIf="this.dailyReportList.length == 0 && this.model.editable === true"></textarea> 
+              
           <div style="margin: 0px 5px 40px 0px;" *ngIf="this.dailyReportList.length === 0">
             <img src="assets/images/edit.PNG" style="margin: 10px 0px 0px 20px;cursor: pointer;float: right;" class="img-fluid logo" alt="Edit" 
               *ngIf="this.model.editable != true" (click)="editEmptyDailyReport()" placement="bottom" ngbTooltip="Edit Daily Report" triggers="hover" />
 
             <span class="edit-delete-icon user-icon" *ngIf="this.model.editable === true">
               <span class="fas fa-times" id="trash" placement="bottom" ngbTooltip="Cancel Daily Report" triggers="hover" (click)="cancelEmptyDailyReport()" ></span>
-              <span class="fas fa-check" style="float: right;" placement="bottom" ngbTooltip="Modify Daily Report" triggers="hover" (click)="saveDailyReport(this.model.report)" ></span>
+              <span class="fas fa-check" style="float: right;" placement="bottom" ngbTooltip="Save Daily Report" triggers="hover" (click)="saveDailyReport()" ></span>
             </span>
           </div>
           <div *ngFor="let dRL of dailyReportList">
@@ -334,7 +337,7 @@
 
                 <span class="edit-delete-icon user-icon" *ngIf="dRL.editable">
                   <span class="fas fa-times" id="trash" (click)="cancelDailyReport(dRL)" placement="bottom" ngbTooltip="Cancel Daily Report" triggers="hover"></span>
-                  <span class="fas fa-check" style="float: right;" placement="bottom" ngbTooltip="Update Daily Report" triggers="hover" (click)="updateDailyReport(dRL.employeecode,dRL.date,dRL.report)" ></span>
+                  <span class="fas fa-check" style="float: right;" placement="bottom" ngbTooltip="Modify DailyReport" triggers="hover" (click)="saveandupdatereport(dRL)"></span>
                 </span>
               </div>
           </div>

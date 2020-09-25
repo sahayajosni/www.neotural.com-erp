@@ -7,6 +7,7 @@ export class CommonService {
     currentDate = new Date();
     todayDate: any;
     currentTime: any;
+    formatedDate: any;
     constructor(public snackBar: MatSnackBar) {
         this.todayDate = formatDate(this.currentDate, 'dd/MMM/yyy', 'en-US');
         this.currentTime = formatDate(this.currentDate, 'dd/MMM/yyy hh:mm:ss a', 'en-US');
@@ -16,6 +17,10 @@ export class CommonService {
         return this.todayDate;
     }
 
+    dateFormatChange(date) {
+      this.formatedDate = formatDate(date, 'dd/MMM/yyy', 'en-US');
+      return this.formatedDate;
+    }
   
     getCurrentTime() {
       return this.currentTime;

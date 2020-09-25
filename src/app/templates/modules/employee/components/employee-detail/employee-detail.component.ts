@@ -25,7 +25,7 @@ export class EmployeeDetailComponent implements OnInit {
   employeeDet: any;
   events: string[] = [];
   employee:Employee = new Employee;
-  model:any =[];
+  model:any = {};
   dailyReportList:any = {};
   attendancedaylist = [];
   @Input() getDailyReportDetail: any;
@@ -188,32 +188,6 @@ export class EmployeeDetailComponent implements OnInit {
     c.editable = false;
     this.getDailyReportLists(this.employeeDet.employeecode,this.model.date);
   }
-  
-  updateDailyReport(employeecode:string,date:string,report:string){
-    this.model.employeecode = employeecode;
-    this.model.type = this.getDailyReportDetail === undefined ? 'save': 'update';
-    this.model.date = date;
-    this.model.report = report;
-
-    if (this.model.report !== '') { 
-      this.employeeService.saveDailyReport(this.model).subscribe((res: any) => {
-        this.snackBar.open("Daily Report Updated Successfully", "", {
-          panelClass: ["success"],
-          duration: undefined, 
-          verticalPosition: 'top'      
-        });
-        this.ngOnInit();
-      },
-      error => {
-        setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "", {
-            panelClass: ["error"],
-            verticalPosition: 'top'      
-          });
-        }); 
-      });
-    }
-  }
 
   editEmptyDailyReport(){
 		this.model.editable = true;
@@ -223,20 +197,32 @@ export class EmployeeDetailComponent implements OnInit {
     this.model.editable = false;
     this.dailyReportList.length = 0;
   }
-  
-  saveDailyReport(report:any){
+
+  saveDailyReport(){
     this.model.employeecode = this.employeeDet.employeecode;
-    this.model.report = report;
-    this.model.type = this.getDailyReportDetail === undefined ? 'save': 'update';
-    if (this.model.report !== '') { 
-      this.employeeService.updateDailyReport(this.model).subscribe((res: any) => {
-        this.snackBar.open("Daily Report Updated Successfully", "", {
-          panelClass: ["success"],
-          duration: undefined, 
-          verticalPosition: 'top'      
-        });
+    this.model.reportdate = this.model.date;
+    this.model.date = this.commonService.dateFormatChange(this.model.date);
+    this.employeeService.saveDailyReport(this.model).subscribe((res: any) => {
+      this.getDailyReportLists(this.employeeDet.employeecode,this.model.reportdate);
+      this.snackBar.open("Daily Report Updated Successfully", "", {
+        panelClass: ["success"],
+        verticalPosition: 'top'      
       });
-    }
+    },
+    error => { }
+		);
+  }
+
+  saveandupdatereport(model: any){
+    this.employeeService.saveDailyReport(model).subscribe((res: any) => {
+      model.editable = false;
+      this.snackBar.open("Daily Report Updated Successfully", "", {
+        panelClass: ["success"],
+        verticalPosition: 'top'      
+      });
+    },
+    error => { }
+		); 
   }
 
 
