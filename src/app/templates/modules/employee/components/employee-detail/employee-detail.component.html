@@ -379,11 +379,13 @@
     <div class="profile-div">
       <div class="col-md-12 m-b-20px"><h5 class="float-left">{{commonService.getTodayDate() | date : 'MMMM'}} Absent Card</h5> 
         <!-- <img src="assets/images/print1.PNG" style="float: right;" class="img-fluid logo" alt="print"/> -->
+        <img src="assets/images/print.png" placement="bottom" ngbTooltip="Print AttendanceDetails" triggers="hover" 
+          (click)="printDiv('printable')" style="float: right;" class="img-fluid logo" alt="print"/>
       </div>
       <div class="clr-both"></div>
       <ng-container *ngIf="attendanceDetails.length > 0">
         <div class="col-md-12 m-b-10px" *ngFor="let item of attendanceDetails" id="attendancediv">
-          <div class="m-t-10">
+          <div class="m-t-10" id="printable">
             <div class="col-lg-2 col-xs-2 col-sm-2 col-md-2 float-left date-div">
               <div style="font-size: 14px;">{{item.date | date : 'dd-MM-yyyy'}}</div>
             </div>
