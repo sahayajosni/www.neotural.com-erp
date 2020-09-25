@@ -10,7 +10,8 @@
         <span class="fas fa-plus"></span> Add  
       </button>
       <img src="assets/images/print.png" placement="bottom" ngbTooltip="Print Employee Table" triggers="hover" style="margin-right: 10px;" class="img-fluid logo" alt="print"/>
-      <img src="assets/images/download.png" placement="bottom" ngbTooltip="Download Excel File" triggers="hover" class="img-fluid logo" alt="download" />
+      <img src="assets/images/download.png" placement="bottom" ngbTooltip="Download Excel File" triggers="hover" 
+        (click)="exportAsExcel()" class="img-fluid logo" alt="download" />
     </div>
   </div>
 </div>
@@ -35,7 +36,7 @@
     (scrolledUp)="onScrollUp()"
     [scrollWindow]="false"
     > -->
-    <table class="table" *ngIf="enable">
+    <table class="table" *ngIf="enable" id="employeeReport" #employeeReport>
       <thead>
         <tr>
           <th style="width: 4% !important;"></th> 

@@ -16,6 +16,7 @@ import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
+import *  as  XLSX from 'xlsx';
 
 @Component({
   selector: "app-employee-list",
@@ -50,7 +51,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
-  pageSkip: number = 0;  
+  pageSkip: number = 0; 
+  @ViewChild('employeeReport', {static:false}) employeeReport: ElementRef;  
   //totalrowCount: number = 0;  
 
   constructor(
@@ -461,5 +463,12 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   getImage(imgData) {
     return this._sanitizer.bypassSecurityTrustResourceUrl(imgData);
   }
+
+  exportAsExcel() {  
+    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.employeeReport.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1'); 
+    XLSX.writeFile(wb, 'Employee.xlsx');  
+  } 
   
 }
