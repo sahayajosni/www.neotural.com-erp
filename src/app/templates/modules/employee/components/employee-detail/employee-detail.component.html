@@ -160,7 +160,7 @@
   <div class="container-fluid"> 
   <div> <a [routerLink]= "['/employment']" style="color: #fff;">
     <i class="fas fa-chevron-left left-arrow"></i></a>
-    <h3 style="float:left;"> {{employeeDet.name}}</h3> 
+    <h4 style="float:left;"> {{employeeDet.name}}</h4>
   <!--<button style="float:right;" class="button button5"> Add Purchase Order</button>-->
  <div style="float: right;">
  <img src="assets/images/print.png" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Print" (click)="printEmp()" 
@@ -204,7 +204,7 @@
     </div> -->
   
   <div style="clear:both"></div>
-  <div style="margin-left:5px;">
+  <div style="margin-left:25px;">
     <div style="color: rgba(85,112,129,1);margin-top:25px;font-size: 12px;">Name</div>
     <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.name}}</div>
     <input type="text" id="editinput" [(ngModel)]="employeeDet.name" #name="ngModel"

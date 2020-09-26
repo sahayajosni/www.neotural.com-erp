@@ -111,7 +111,7 @@ h5{
 .org-header {
     display: flex;
     align-items: center;
-    margin-bottom: 35px;
+    margin: 35px 10px;
     box-shadow: 0 0 8px #0c141a !important;
     padding: 10px;
     background: #1a2d39;
@@ -134,14 +134,15 @@ h5{
 
 #editinput{
     background: #1c313e;
-    width: 100%;
+    width: 90%;
     height: 30px;
     border: 1px solid #2C4655 !important;
     color: #d6d8da;
+    font-size: 12px;
 }
 #editinput1{
     background: #1c313e;
-    width: 100%;
+    width: 90%;
     height: 30px;
     margin-bottom: 10px;
     border: 1px solid #2C4655 !important;
