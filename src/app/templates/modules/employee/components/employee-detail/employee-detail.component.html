@@ -194,7 +194,7 @@
           <h5 *ngIf="!employeeDet.editable">{{employeeDet.rank}}</h5>
           <input type="text" id="editinput1" [(ngModel)]="employeeDet.rank" #rank="ngModel" autocomplete="off"
               name="rank" *ngIf="employeeDet.editable" />
-          <span>{{employeeDet.employeecode}}</span>
+          <span style="font-size: 12px;">{{employeeDet.employeecode}}</span>
       </div>
   </div>
 
@@ -205,36 +205,36 @@
   
   <div style="clear:both"></div>
   <div style="margin-left:5px;">
-    <div style="color: rgba(85,112,129,1);margin-top:25px;">Name</div>
-    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.name}}</div>
+    <div style="color: rgba(85,112,129,1);margin-top:25px;font-size: 12px;">Name</div>
+    <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.name}}</div>
     <input type="text" id="editinput" [(ngModel)]="employeeDet.name" #name="ngModel"
       name="name" *ngIf="employeeDet.editable" autocomplete="off"/>
-    <div style="color: rgba(85,112,129,1);margin-top:25px;">Phone</div>
-    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.phonenumber}}</div>
-    <input type="text" id="editinput" [(ngModel)]="employeeDet.phonenumber" #phonenumber="ngModel"
+    <div style="color: rgba(85,112,129,1);margin-top:25px;font-size: 12px;">Phone</div>
+    <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.phonenumber}}</div>
+    <input type="number" id="editinput" [(ngModel)]="employeeDet.phonenumber" #phonenumber="ngModel"
       name="phonenumber" *ngIf="employeeDet.editable" autocomplete="off"/>
-	  <div style="color: rgba(85,112,129,1); margin-top:25px;">Email</div>
-    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.email}}</div>
+	  <div style="color: rgba(85,112,129,1); margin-top:25px;font-size: 12px;">Email</div>
+    <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.email}}</div>
     <input type="text" id="editinput" [(ngModel)]="employeeDet.email" #email="ngModel"
       name="email" *ngIf="employeeDet.editable" autocomplete="off" />
-      <div style="color: rgba(85,112,129,1); margin-top:25px;">Location </div>
-    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.location}}</div>
+      <div style="color: rgba(85,112,129,1); margin-top:25px;font-size: 12px;">Country </div>
+    <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.location}}</div>
     <input type="text" id="editinput" [(ngModel)]="employeeDet.location" #location="ngModel"
       name="location" *ngIf="employeeDet.editable" autocomplete="off"/>
-	  <div style="color: rgba(85,112,129,1); margin-top:25px;">Address </div>
-    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.address}}</div>
+	  <div style="color: rgba(85,112,129,1); margin-top:25px;font-size: 12px;">Address </div>
+    <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.address}}</div>
     <input type="text" id="editinput" [(ngModel)]="employeeDet.address" #address="ngModel"
       name="address" *ngIf="employeeDet.editable" autocomplete="off"/>
-    <div style="color: rgba(85,112,129,1); margin-top:25px;">Birthday</div>
-    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.dob}}</div>
+    <div style="color: rgba(85,112,129,1); margin-top:25px;font-size: 12px;">Birthday</div>
+    <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.dob}}</div>
     <input type="date" id="editinput" [(ngModel)]="employeeDet.dob" #dob="ngModel"
       name="dob" *ngIf="employeeDet.editable" />
-	  <div style="color: rgba(85,112,129,1); margin-top:25px;">NPWP</div>
-    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.npwp}}</div>
+	  <div style="color: rgba(85,112,129,1); margin-top:25px;font-size: 12px;">NPWP</div>
+    <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.npwp}}</div>
     <input type="text" id="editinput" [(ngModel)]="employeeDet.npwp" #npwp="ngModel"
       name="npwp" *ngIf="employeeDet.editable" autocomplete="off"/>
-	  <div style="color: rgba(85,112,129,1); margin-top:25px;">BPJS</div>
-    <div style="color:#d6d8da;" *ngIf="!employeeDet.editable">{{employeeDet.bpjs}}</div>
+	  <div style="color: rgba(85,112,129,1); margin-top:25px;font-size: 12px;">BPJS</div>
+    <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.bpjs}}</div>
     <input type="text" id="editinput" [(ngModel)]="employeeDet.bpjs" #bpjs="ngModel"
       name="bpjs" *ngIf="employeeDet.editable" autocomplete="off"/>
   </div>
@@ -319,7 +319,7 @@
               
           <div style="margin: 0px 5px 40px 0px;" *ngIf="this.dailyReportList.length === 0">
             <img src="assets/images/edit.PNG" style="margin: 10px 0px 0px 20px;cursor: pointer;float: right;" class="img-fluid logo" alt="Edit" 
-              *ngIf="this.model.editable != true" (click)="editEmptyDailyReport()" placement="bottom" ngbTooltip="Edit Daily Report" triggers="hover" />
+              *ngIf="this.model.editable != true" (click)="editEmptyDailyReport()" placement="bottom" ngbTooltip="Click to Edit" triggers="hover" />
 
             <span class="edit-delete-icon user-icon" *ngIf="this.model.editable === true">
               <span class="fas fa-times" id="trash" placement="bottom" ngbTooltip="Cancel Daily Report" triggers="hover" (click)="cancelEmptyDailyReport()" ></span>
@@ -332,7 +332,7 @@
               name="report" *ngIf="dRL.editable"></textarea> 
 
               <div style="margin: 0px 5px 40px 0px;">
-                <img src="assets/images/edit.PNG" style="margin: 10px 0px 0px 20px;cursor: pointer;float: right;" placement="bottom" ngbTooltip="Edit Daily Report" triggers="hover"  
+                <img src="assets/images/edit.PNG" style="margin: 10px 0px 0px 20px;cursor: pointer;float: right;" placement="bottom" ngbTooltip="Click to Edit" triggers="hover"  
                 class="img-fluid logo" alt="Edit" *ngIf="!dRL.editable" (click)="editDailyReport(dRL)"/>
 
                 <span class="edit-delete-icon user-icon" *ngIf="dRL.editable">
