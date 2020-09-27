@@ -272,7 +272,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
       item.selected = true;
       data = item;
     } else {
-      this.title = "Add Purchase Order";
+      this.title = "Place Order";
       this.button = "Add";
       data = { dialogTitle: this.title, dialogText: this.button };
     }
@@ -403,8 +403,8 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
   createInvoice() {
     let data: any;
     data = {
-      dialogPaneTitle: "Purchase Orders",
-      dialogInvoiceTitle: "Create Invoice",
+      dialogPaneTitle: "Orders List",
+      dialogInvoiceTitle: "Create Purchase Order",
       dialogText: "Create",
       invoiceItems: this.prodArr,
       venderName: this.prodArr[0].vendorname,

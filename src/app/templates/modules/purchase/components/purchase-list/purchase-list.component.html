@@ -1,6 +1,6 @@
 <div class="row" id="headerdiv">
   <div class="col-4">
-    <h4>Purchase Order List</h4> 
+    <h4>Order List</h4> 
   </div>
   <div class="col-8">
     <div style="float: right;">
@@ -14,12 +14,12 @@
       </button>
       <button  
         [disabled]="!isCreateInvoice ? true:false" 
-        class="create-button" placement="left" ngbTooltip="Create Purchase Invoice" triggers="hover" 
+        class="create-button" placement="left" ngbTooltip="Create Purchase Order" triggers="hover" 
         [ngStyle]="getCreateInvoiceStyle()"
-        (click)="createInvoice()"> <span class="fas fa-plus"></span> Invoice
+        (click)="createInvoice()"> <span class="fas fa-plus"></span> PO 
       </button>
   
-      <button  (click)="addPurchaseOrder(null,null)" placement="left" ngbTooltip="Add Purchase Order" triggers="hover"
+      <button  (click)="addPurchaseOrder(null,null)" placement="left" ngbTooltip="Place Order" triggers="hover"
         [disabled]="isAddPurchaseOrder" class="create-button" [ngStyle]="getAddPurchaseOrderStyle()">
         <span class="fas fa-plus"></span> Add
       </button>
@@ -47,7 +47,7 @@
               <label class="custom-control-label1" for="customCheck2"></label>
             </div> -->
           </th>
-          <th style="cursor:pointer;">Number</th>
+          <th style="cursor:pointer;">Order Number</th>
           <th style="cursor:pointer;">Date
             <i *ngIf="!isSortDateDesc" class="sort-by-desc" (click)="sortByOrder('date','desc')"></i>
           <i class="sort-by-asc" *ngIf="!isSortDateAsc" (click)="sortByOrder('date','asc')"></i>
