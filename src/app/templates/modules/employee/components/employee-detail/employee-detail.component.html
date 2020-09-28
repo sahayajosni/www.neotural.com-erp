@@ -316,11 +316,17 @@
           <textarea class="form-control daily-text-area-style" rows="5" id="comment" [(ngModel)]="model.report" #report="ngModel"
               name="report" *ngIf="this.dailyReportList.length == 0 && this.model.editable === true"></textarea> 
               
-          <div style="margin: 0px 5px 40px 0px;" *ngIf="this.dailyReportList.length === 0">
-            <img src="assets/images/edit.PNG" style="margin: 10px 0px 0px 20px;cursor: pointer;float: right;" class="img-fluid logo" alt="Edit" 
-              *ngIf="this.model.editable != true" (click)="editEmptyDailyReport()" placement="bottom" ngbTooltip="Click to Edit" triggers="hover" />
+          <div *ngIf="this.dailyReportList.length === 0">
+            <div class="row">
+              <div class="col-9"></div>
+              <div class="col-3" *ngIf="this.model.editable != true" (click)="editEmptyDailyReport()">
+                  <div placement="bottom" ngbTooltip="Click to Edit" triggers="hover" class="editlogo">
+                   <i class="fa fa-pencil" aria-hidden="true"></i>
+                 </div>
+              </div>
+            </div>
 
-            <span class="edit-delete-icon user-icon" *ngIf="this.model.editable === true">
+            <span class="edit-delete-icon user-icon" *ngIf="this.model.editable === true" style="margin: 0px 5px 45px 0px;">
               <span class="fas fa-times" id="trash" placement="bottom" ngbTooltip="Cancel Daily Report" triggers="hover" (click)="cancelEmptyDailyReport()" ></span>
               <span class="fas fa-check" style="float: right;" placement="bottom" ngbTooltip="Save Daily Report" triggers="hover" (click)="saveDailyReport()" ></span>
             </span>
@@ -331,14 +337,20 @@
               name="report" *ngIf="dRL.editable"></textarea> 
 
               <div style="margin: 0px 5px 40px 0px;">
-                <img src="assets/images/edit.PNG" style="margin: 10px 0px 0px 20px;cursor: pointer;float: right;" placement="bottom" ngbTooltip="Click to Edit" triggers="hover"  
-                class="img-fluid logo" alt="Edit" *ngIf="!dRL.editable" (click)="editDailyReport(dRL)"/>
-
+                <div class="row">
+                  <div class="col-9"></div>
+                  <div class="col-3" *ngIf="!dRL.editable" (click)="editDailyReport(dRL)">
+                      <div placement="bottom" ngbTooltip="Click to Edit" triggers="hover" class="editlogo">
+                       <i class="fa fa-pencil" aria-hidden="true"></i>
+                     </div>
+                  </div>
+                </div>
+    
                 <span class="edit-delete-icon user-icon" *ngIf="dRL.editable">
                   <span class="fas fa-times" id="trash" (click)="cancelDailyReport(dRL)" placement="bottom" ngbTooltip="Cancel Daily Report" triggers="hover"></span>
                   <span class="fas fa-check" style="float: right;" placement="bottom" ngbTooltip="Modify DailyReport" triggers="hover" (click)="saveandupdatereport(dRL)"></span>
                 </span>
-              </div>
+              </div> 
           </div>
           <!-- <div style="font-size: 14px;">October 24, 2019</div>
           <textarea class="form-control text-area-style" rows="5" id="comment">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in
@@ -378,8 +390,15 @@
     <div class="profile-div">
       <div class="col-md-12 m-b-20px"><h5 class="float-left">{{commonService.getTodayDate() | date : 'MMMM'}} Absent Card</h5> 
         <!-- <img src="assets/images/print1.PNG" style="float: right;" class="img-fluid logo" alt="print"/> -->
-        <img src="assets/images/print.png" placement="bottom" ngbTooltip="Print AttendanceDetails" triggers="hover" 
-          (click)="printDiv('printable')" style="float: right;" class="img-fluid logo" alt="print"/>
+        <div class="row">
+          <div class="col-10"></div>
+          <div class="col-2" (click)="printDiv('printable')">
+              <div placement="bottom" ngbTooltip="Print AttendanceDetails" triggers="hover" class="editlogo">
+               <i class="fa fa-print" aria-hidden="true"></i>
+             </div>
+          </div>
+        </div>
+
       </div>
       <div class="clr-both"></div>
       <ng-container *ngIf="attendanceDetails.length > 0">
