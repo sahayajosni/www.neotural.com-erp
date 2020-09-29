@@ -49,7 +49,8 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
   purchaseInvoiceList: any = {};
   purchaseReturnList: any = {};
   model: any = {};
-
+  pageNumber: number = 0;
+  pageSize: number = 10
   constructor(
     private purchaseService: PurchaseService,
     private snackBar: MatSnackBar,
@@ -134,8 +135,12 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
       return myStyles;
     }
   }
+
+
   getPurchaseOrderLists() {
-    this.purchaseService.getPurchaseOrderLists().subscribe(
+    console.log("pageNumber-->"+this.pageNumber);
+    console.log("pageSiez-->"+this.pageSize);
+    this.purchaseService.getPurchaseOrderLists(this.pageNumber, this.pageSize).subscribe(
       (res: []) => {
         this.purchaseOrderList = res;
         this.purchaseList = this.purchaseOrderList;

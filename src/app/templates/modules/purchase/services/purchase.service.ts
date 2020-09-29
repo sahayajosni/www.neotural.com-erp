@@ -125,8 +125,8 @@ export class PurchaseService {
         return this.http.post<Purchase>(`${environment.apiUrl}${API_ENDPOINTS.loadfilterData}`,purchase);
     }
 
-    getPurchaseOrderLists(){
-        return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.GET_PURCHASE_ORDER_LIST}`);
+    getPurchaseOrderLists(pageNumber: number, pageSize: number){
+        return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.GET_PURCHASE_ORDER_LIST+'?pageNumber='+pageNumber+"&pageSize="+pageSize}`);
     }
 
     addPurchaseOrder(data: any){
