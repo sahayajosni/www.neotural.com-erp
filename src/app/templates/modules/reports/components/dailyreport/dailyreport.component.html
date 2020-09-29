@@ -90,7 +90,7 @@
         <div class="col-3">
           <label id="po-label">From Date </label>
           <input type="date" id="datebox" class="m-t-5px" [(ngModel)]="model.fromdate"
-            name="fromdate" placeholder="xx/xx/xx" #fromdate="ngModel" required/>
+            name="fromdate" placeholder="xx/xx/xx" #fromdate="ngModel" [max]="getToday()" required />
           <div *ngIf="fromdate.errors && (fromdate.dirty || fromdate.touched) ||
             (reportForm.submitted && !fromdate.valid )">
             <span [hidden]="!fromdate.errors.required" class="spanerror">
@@ -101,7 +101,7 @@
         <div class="col-3">
           <label id="po-label">To Date*</label>
             <input type="date" id="datebox" class="m-t-5px" [(ngModel)]="model.todate"
-              name="todate" placeholder="xx/xx/xx" #todate="ngModel" required/>
+              name="todate" placeholder="xx/xx/xx" #todate="ngModel" [max]="getToday()" required/>
             <div *ngIf="todate.errors && (todate.dirty || todate.touched) ||
               (reportForm.submitted && !todate.valid )">
               <span [hidden]="!todate.errors.required" class="spanerror">

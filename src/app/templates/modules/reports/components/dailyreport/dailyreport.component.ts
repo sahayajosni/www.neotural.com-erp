@@ -187,5 +187,8 @@ export class DailyReportComponent implements OnInit {
 		 
 	} 
 
+	getToday(): string {
+		return new Date().toISOString().split('T')[0]
+	}
 
 }
