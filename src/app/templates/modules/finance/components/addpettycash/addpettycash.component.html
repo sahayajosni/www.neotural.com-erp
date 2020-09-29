@@ -30,7 +30,7 @@
           </div>
 
           <label id="po-label">Transaction Date*</label>
-          <input type="date" id="po-textbox" class="m-t-5px" [(ngModel)]="model.addedDate"
+          <input type="date" id="po-textbox" class="m-t-5px" [(ngModel)]="model.addedDate" [max]="getToday()"
             name="addedDate" placeholder="xx/xx/xx" #addedDate="ngModel" autocomplete="off" required/>
 
           <div *ngIf="addedDate.errors  && (addedDate.dirty || addedDate.touched) ||

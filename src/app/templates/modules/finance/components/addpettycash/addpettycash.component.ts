@@ -170,4 +170,8 @@ export class AddPettycashComponent implements OnInit {
     this.activeModal.close();
   }
 
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+  }
+
 }
