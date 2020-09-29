@@ -145,5 +145,9 @@ export class EmployeeAddComponent implements OnInit, AfterViewInit {
   closeModal() {
     this.activeModal.close();
   }
+
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+  }
   
 }
