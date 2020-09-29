@@ -30,8 +30,6 @@ export class EmployeeDetailComponent implements OnInit {
   dailyReportList:any = {};
   attendancedaylist = [];
   @Input() getDailyReportDetail: any;
-  currentDate = new Date();
-  todayDate: any;
 
   constructor(
     private employeeService: EmployeeService,
@@ -41,7 +39,7 @@ export class EmployeeDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
   ) {
-    this.todayDate = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
+   
   }
 
   ngOnInit() {
@@ -171,34 +169,22 @@ export class EmployeeDetailComponent implements OnInit {
     this.model.report = "";
     this.model.employeecode = employeecode;
     this.model.date = date;
-    alert("Model date -->"+this.model.date+"  >"+this.todayDate);
-    if(this.model.todate > this.todayDate){
-      setTimeout(() => {
-        this.snackBar.open("ToDate was exceeded on today.No Record Found.", "", {
-          duration: undefined, 
-          panelClass: ["warning"],
-          verticalPosition: "top",
-          horizontalPosition: 'center'
-        });
-      });
-    }else{
-      this.employeeService.getDailyReportLists(this.model)
-      .subscribe(
-        data => {
-          this.dailyReportList = data;
-          for (var i = 0; i < this.dailyReportList.length; i++) {
-            this.dailyReportList[i].editable = false; 
-          }
-        },
-        error => {
-          setTimeout(() => {
-            this.snackBar.open("Network error: server is temporarily unavailable", "", {
-              panelClass: ["error"],
-              verticalPosition: 'top'      
-            });
-          });  
+    this.employeeService.getDailyReportLists(this.model)
+    .subscribe(
+      data => {
+        this.dailyReportList = data;
+        for (var i = 0; i < this.dailyReportList.length; i++) {
+          this.dailyReportList[i].editable = false; 
         }
-      );}
+      },
+      error => {
+        setTimeout(() => {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
+            panelClass: ["error"],
+            verticalPosition: 'top'      
+          });
+        });  
+      });
   }
 
   editDailyReport(c: any){
@@ -254,5 +240,8 @@ export class EmployeeDetailComponent implements OnInit {
     document.body.innerHTML = originalContents; */
   }
 
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+  }
 
 }

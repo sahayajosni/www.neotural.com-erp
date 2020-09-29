@@ -227,7 +227,7 @@
     <div style="color: rgba(85,112,129,1); margin-top:25px;font-size: 12px;">Birthday</div>
     <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.dob}}</div>
     <input type="date" id="editinput" [(ngModel)]="employeeDet.dob" #dob="ngModel"
-      name="dob" *ngIf="employeeDet.editable" />
+      name="dob" *ngIf="employeeDet.editable" [max]="getToday()" />
 	  <div style="color: rgba(85,112,129,1); margin-top:25px;font-size: 12px;">NPWP</div>
     <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.npwp}}</div>
     <input type="text" id="editinput" [(ngModel)]="employeeDet.npwp" #npwp="ngModel"
@@ -302,7 +302,7 @@
           <mat-datepicker #ref (opened)="toggle(ref)"
           (closed)="toggle(ref)" #picker></mat-datepicker> -->
 
-          <input type="date" placeholder="Choose a date"
+          <input type="date" placeholder="Choose a date" [max]="getToday()"
             style="background-color:#1B2931;color: #d6d8da;" id="picker" [(ngModel)]="this.model.date" autocomplete="off" 
             #date="ngModel" name="date" (ngModelChange)="getDailyReportLists(employeeDet.employeecode,this.model.date)"> 
             <!-- placeholder="Choose a date" id="picker" (dateInput)="addEvent('input', $event, picker)" (dateChange)="addEvent('change', $event, picker)" [(ngModel)]="_picker" [ngModelOptions]="{standalone: true}" (keydown)="false"> -->
