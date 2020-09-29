@@ -13,6 +13,7 @@ import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Employee } from 'src/app/core/common/_models';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: "app-employee-detail",
@@ -29,6 +30,8 @@ export class EmployeeDetailComponent implements OnInit {
   dailyReportList:any = {};
   attendancedaylist = [];
   @Input() getDailyReportDetail: any;
+  currentDate = new Date();
+  todayDate: any;
 
   constructor(
     private employeeService: EmployeeService,
@@ -37,13 +40,20 @@ export class EmployeeDetailComponent implements OnInit {
     private _sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-  ) {}
+  ) {
+    this.todayDate = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
+  }
 
   ngOnInit() {
     this.dailyReportList = '';
     this.model.absentdays = 0;
+
+    let currentDateTime = new Date();
+    let currentDate = (currentDateTime.getMonth()+1) +'-'+ currentDateTime.getDate()  +'-'+ currentDateTime.getFullYear();
+    this.model.date = currentDate;
     this.activatedRoute.params.subscribe(params => {
       this.viewEmployee(params.id);
+      this.getDailyReportLists(params.id,this.model.date);
     });
     this.model.report = "";
     // setTimeout(function () {
@@ -161,23 +171,34 @@ export class EmployeeDetailComponent implements OnInit {
     this.model.report = "";
     this.model.employeecode = employeecode;
     this.model.date = date;
-    this.employeeService.getDailyReportLists(this.model)
-    .subscribe(
-      data => {
-        this.dailyReportList = data;
-        for (var i = 0; i < this.dailyReportList.length; i++) {
-          this.dailyReportList[i].editable = false; 
+    alert("Model date -->"+this.model.date+"  >"+this.todayDate);
+    if(this.model.todate > this.todayDate){
+      setTimeout(() => {
+        this.snackBar.open("ToDate was exceeded on today.No Record Found.", "", {
+          duration: undefined, 
+          panelClass: ["warning"],
+          verticalPosition: "top",
+          horizontalPosition: 'center'
+        });
+      });
+    }else{
+      this.employeeService.getDailyReportLists(this.model)
+      .subscribe(
+        data => {
+          this.dailyReportList = data;
+          for (var i = 0; i < this.dailyReportList.length; i++) {
+            this.dailyReportList[i].editable = false; 
+          }
+        },
+        error => {
+          setTimeout(() => {
+            this.snackBar.open("Network error: server is temporarily unavailable", "", {
+              panelClass: ["error"],
+              verticalPosition: 'top'      
+            });
+          });  
         }
-      },
-      error => {
-        setTimeout(() => {
-          this.snackBar.open("Network error: server is temporarily unavailable", "", {
-            panelClass: ["error"],
-            verticalPosition: 'top'      
-          });
-        });  
-      }
-    );
+      );}
   }
 
   editDailyReport(c: any){
