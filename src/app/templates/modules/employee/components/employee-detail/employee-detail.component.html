@@ -407,29 +407,50 @@
                         <div style="font-size: 14px;">{{item.date | date : 'dd-MM-yyyy'}}</div>
                       </div>
                       <div class="col-lg-10 col-xs-10 col-sm-10 col-md-10 float-left" *ngIf="item.absent === null">
-                        <div *ngIf="item.absent === null" class="col-md-5 float-left time-div">
+
+                        <div *ngIf="item.absent === null && (item.checkintime !== null && item.checkintime !== '09:00')" class="col-md-5 float-left time-div3">
+                          <div style="color:#d84048;font-size: 12px;">{{item.checkintime}}</div>
+                          <div style="font-size: 12px;">{{item.checkinreason}}</div>
+                        </div> 
+  
+                        <div *ngIf="item.absent === null && (item.checkouttime !== null && item.checkouttime !== '17:00')" class="col-md-6 float-left last-div">
+                          <div style="color:#d84048; font-size: 12px;">{{item.checkouttime}}</div>
+                          <div style="font-size: 12px;">{{item.checkoutreason}}</div>
+                        </div> 
+
+                        <div *ngIf="item.absent === null  && (item.checkintime === null || item.checkintime === '09:00')"
+                          class="col-md-5 float-left time-div1">
+                          <div style="color:#17af7d;font-size: 12px;padding-top: 5px;">9:00 AM</div>
+                        </div>
+                        
+                        <div *ngIf="item.absent === null && (item.checkouttime === null || item.checkouttime === '17:00')"
+                          class="col-md-6 float-left time-div2">
+                          <div style="color:#17af7d;font-size: 12px;padding-top: 5px;">5:00 PM</div>
+                        </div>
+
+                        <!-- <div *ngIf="item.absent === null" class="col-md-5 float-left time-div">
                           <div *ngIf="item.checkintime === null" style="color:#17af7d;font-size: 12px;padding-top: 5px;">9:00 AM</div>
                           <div *ngIf="item.checkintime !== null">
-                            <div style="color:red;font-size: 12px;">{{item.checkintime}}</div>
+                            <div style="color:#d84048;font-size: 12px;">{{item.checkintime}}</div>
                             <div style="font-size: 12px;">{{item.checkinreason}}</div>
                           </div>
                         </div>
-                        <div *ngIf="item.absent === null" class="col-md-1"></div>
                         <div *ngIf="item.absent === null" class="col-md-6 float-left last-div">
                           <div *ngIf="item.checkouttime === null" style="color:#17af7d;font-size: 12px;padding-top: 5px;">5:00 PM</div>
                           <div *ngIf="item.checkouttime !== null">
-                            <div style="color:red; font-size: 12px;">{{item.checkouttime}}</div>
+                            <div style="color:#d84048; font-size: 12px;">{{item.checkouttime}}</div>
                             <div style="font-size: 12px;">{{item.checkoutreason}}</div>
                           </div>
-                        </div>
+                        </div> -->
+
                       </div>
                       <div class="col-lg-10 col-xs-10 col-sm-10 col-md-10 float-left" *ngIf="item.absent !== null">
-                        <div *ngIf="item.absent === 'yes'" class="col-md-5 float-left middle-div">
+                        <div *ngIf="item.absent === 'yes'" class="col-md-5 float-left absent-div">
                           <div>
-                            <span style="color:red;font-size: 12px;">ABSENT</span>
+                            <span style="color:#d84048;font-size: 12px;">ABSENT</span>
                           </div>
                         </div>
-                        <div *ngIf="item.absent !== null" class="col-md-6 float-left last-div">
+                        <div *ngIf="item.absent !== null" class="col-md-6 float-left absent-div">
                           <div>
                             <span style="color:#d6d8da;font-size: 12px;vertical-align: middle;text-align: center;">{{item.reason}}</span>
                           </div>                
