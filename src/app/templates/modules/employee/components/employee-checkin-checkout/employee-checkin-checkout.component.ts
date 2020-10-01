@@ -29,7 +29,9 @@ export class EmployeeChecinCheckoutComponent implements OnInit {
               }
 
   ngOnInit() { 
-   this.todayTime = formatDate(this.currentTime, 'HH:mm', 'en-US', '+0530');
+   //this.todayTime = formatDate(this.currentTime, 'HH:mm', 'en-US', '+0530');
+   this.todayTime = formatDate(this.currentTime, 'hh:mm aa', 'en-US', '+0530');
+   alert("Time -->"+this.todayTime);
    setTimeout(() => { 
     this.model.checkinCheckoutReason = '';
     this.disableCheckoutButton();
