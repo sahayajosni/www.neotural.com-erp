@@ -22,7 +22,7 @@ import { formatDate } from '@angular/common';
 })
 export class EmployeeDetailComponent implements OnInit {
   
-  attendanceDetails = [];
+  attendanceDetails:any = {};
   employeeDet: any;
   events: string[] = [];
   employee:Employee = new Employee;
@@ -52,6 +52,7 @@ export class EmployeeDetailComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.viewEmployee(params.id);
       this.getDailyReportLists(params.id,this.model.toggledate);
+      this.getabsentmonths();
     });
     this.model.report = "";
     // setTimeout(function () {
@@ -82,12 +83,33 @@ export class EmployeeDetailComponent implements OnInit {
     });
   }
 
+  getabsentmonths() {    
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var d = new Date();
+    this.model.monthname = months[d.getMonth()];
+    
+    var month = new Date().getMonth();
+    $('#monthname option:gt(' + month + ')').prop('disabled', true);
+   }
+
   absentdays(empCode: string){
     const item = {date:this.commonService.getTodayDate(),type:'Absent',employeecode: empCode};
     this.employeeService.getAbsentLists(item).subscribe((data: any) => { 
       if (data.length > 0) { 
         this.attendancedaylist = data;
         this.model.absentdays = this.attendancedaylist.length;
+      }
+    })
+  }
+
+  getMonthAbsentList(monthname: string,empCode: string){
+    this.attendanceDetails = '';
+    let attendancedate = '01/'+ monthname +'/2020';
+    const absentitem = {date:attendancedate,type:'M',employeecode: empCode};
+    this.employeeService.getAbsentLists(absentitem).subscribe((data: any) => { 
+      if (data.length > 0) { 
+        this.attendanceDetails = data;
+        this.absentdays(empCode);
       }
     })
   }

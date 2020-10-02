@@ -387,8 +387,26 @@
           
             <div class="col-md-12 col-xs-12 col-sm-12 side-wapper">
               <div class="profile-div">
-                <div class="col-md-12 m-b-20px"><h5 class="float-left">{{commonService.getTodayDate() | date : 'MMMM'}} Absent Card</h5> 
-                  <!-- <img src="assets/images/print1.PNG" style="float: right;" class="img-fluid logo" alt="print"/> -->
+                <div class="col-md-12 m-b-20px">
+                    <select name="monthname" [(ngModel)]="this.model.monthname" #monthname="ngModel" 
+                      id="monthname" class="selected-box" (ngModelChange)="getMonthAbsentList(this.model.monthname,employeeDet.employeecode)">
+                      <option id="options-box" [ngValue]="undefined" hidden selected> Select Month </option>
+                      <option id="options-box" value="Jan">January Absent Card</option>
+                      <option id="options-box" value="Feb">February Absent Card</option>
+                      <option id="options-box" value="Mar">March Absent Card</option>
+                      <option id="options-box" value="Apr">April Absent Card</option>
+                      <option id="options-box" value="May">May Absent Card</option>
+                      <option id="options-box" value="Jun">June Absent Card</option>
+                      <option id="options-box" value="Jul">July Absent Card</option>
+                      <option id="options-box" value="Aug">August Absent Card</option>
+                      <option id="options-box" value="Sep">September Absent Card</option>
+                      <option id="options-box" value="Oct">October Absent Card</option>
+                      <option id="options-box" value="Nov">November Absent Card</option>
+                      <option id="options-box" value="Dec">December Absent Card</option>
+                    </select>
+
+                  <!-- <h5 class="float-left">{{commonService.getTodayDate() | date : 'MMMM'}} Absent Card</h5> 
+                  <img src="assets/images/print1.PNG" style="float: right;" class="img-fluid logo" alt="print"/> -->
                   <div class="row">
                     <div class="col-10"></div>
                     <div class="col-2" (click)="printDiv('printable')">

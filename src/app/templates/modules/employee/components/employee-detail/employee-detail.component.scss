@@ -228,3 +228,16 @@ input:-webkit-autofill {
     cursor: pointer;
     padding-left: 2px;
 }
+
+.selected-box{
+    background: #1c313e;
+    border: 1px solid #2C4655;
+    color: white;
+    height: 32px;
+    padding: 0px 5px;
+}
+#options-box{
+    background: #1c313e;
+    border: 1px solid #2C4655;
+    color: white;
+}
