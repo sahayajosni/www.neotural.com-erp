@@ -43,7 +43,7 @@
               #rank="ngModel" autocomplete="off"/>
 
             <label class="heading">Phone Number </label>
-            <input type="text" name="phonenumber" id="textbox3" [(ngModel)]="this.model.phonenumber" 
+            <input type="number" name="phonenumber" id="textbox3" [(ngModel)]="this.model.phonenumber" 
               #phonenumber="ngModel" autocomplete="off"/>
       
       
@@ -81,16 +81,15 @@
               <label class="heading">Country </label>
 
               <select name="country" id="country" [(ngModel)]="this.model.location" 
-              #country="ngModel" value="{{model.location}}" class="m-t-5px">
-              <option value="Australia">Australia</option>
-              <option value="India">India</option>
-          <option value="Indonesia">Indonesia</option>
-          <option value="Malaysia">Malaysia</option>
-          <option value="Singapore">Singapore</option>
-            <option value="UAE">UAE</option>
-              <option value="Others">Others</option>
-    
-          </select>
+                #country="ngModel" value="{{model.location}}" class="m-t-5px">
+                <option value="Australia">Australia</option>
+                <option value="India">India</option>
+                <option value="Indonesia">Indonesia</option>
+                <option value="Malaysia">Malaysia</option>
+                <option value="Singapore">Singapore</option>
+                <option value="UAE">UAE</option>
+                <option value="Others">Others</option>
+              </select>
 
               <!-- <input type="text" name="monthlysalary" id="textbox10" [(ngModel)]="this.model.monthlysalary" 
                 #monthlysalary="ngModel" autocomplete="off"/> -->
