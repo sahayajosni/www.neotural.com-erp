@@ -47,11 +47,11 @@ export class EmployeeDetailComponent implements OnInit {
     this.model.absentdays = 0;
 
     let currentDateTime = new Date();
-    let currentDate = (currentDateTime.getMonth()+1) +'-'+ currentDateTime.getDate()  +'-'+ currentDateTime.getFullYear();
-    this.model.date = currentDate;
+    let currentDate = currentDateTime.getFullYear() +'-'+ (currentDateTime.getMonth()+1) +'-'+ currentDateTime.getDate();
+    this.model.toggledate = currentDate;
     this.activatedRoute.params.subscribe(params => {
       this.viewEmployee(params.id);
-      this.getDailyReportLists(params.id,this.model.date);
+      this.getDailyReportLists(params.id,this.model.toggledate);
     });
     this.model.report = "";
     // setTimeout(function () {
