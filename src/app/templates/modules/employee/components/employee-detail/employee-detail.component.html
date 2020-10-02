@@ -408,24 +408,24 @@
                       </div>
                       <div class="col-lg-10 col-xs-10 col-sm-10 col-md-10 float-left" *ngIf="item.absent === null">
 
-                        <div *ngIf="item.absent === null && (item.checkintime !== null && item.checkintime !== '09:00 AM')" class="col-md-5 float-left time-div3">
+                        <div *ngIf="item.checkintime !== null && item.checkintime !== '09:00 AM' " class="col-md-5 float-left time-div3">
                           <div style="color:#d84048;font-size: 12px;">{{item.checkintime}}</div>
                           <div style="font-size: 12px;">{{item.checkinreason}}</div>
                         </div> 
   
-                        <div *ngIf="item.absent === null && (item.checkouttime !== null && item.checkouttime !== '05:00 PM')" class="col-md-6 float-left last-div">
+                        <div *ngIf="item.checkouttime !== null && item.checkouttime !== '05:00 PM' " class="col-md-6 float-left last-div">
                           <div style="color:#d84048; font-size: 12px;">{{item.checkouttime}}</div>
                           <div style="font-size: 12px;">{{item.checkoutreason}}</div>
                         </div> 
 
-                        <div *ngIf="item.absent === null  && (item.checkintime === null || item.checkintime === '09:00 AM')"
+                        <div *ngIf="item.checkintime === null || item.checkintime === '09:00 AM'"
                           class="col-md-5 float-left time-div1">
-                          <div style="color:#17af7d;font-size: 12px;padding-top: 5px;">{{item.checkintime}}</div>
+                          <div style="color:#17af7d;font-size: 12px;padding-top: 5px;">09:00 AM</div>
                         </div>
                         
-                        <div *ngIf="item.absent === null && (item.checkouttime === null || item.checkouttime === '05:00 PM')"
+                        <div *ngIf="item.checkouttime === null || item.checkouttime === '05:00 PM'"
                           class="col-md-6 float-left time-div2">
-                          <div style="color:#17af7d;font-size: 12px;padding-top: 5px;">{{item.checkouttime}}</div>
+                          <div style="color:#17af7d;font-size: 12px;padding-top: 5px;">05:00 PM</div>
                         </div>
 
                         <!-- <div *ngIf="item.absent === null" class="col-md-5 float-left time-div">
