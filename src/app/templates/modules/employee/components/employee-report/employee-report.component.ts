@@ -1,6 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, Optional, Inject } from "@angular/core";
 import { EmployeeService } from "../../services/employee.service";
 import { CommonService } from "../../../../../core/common/_services/common.service";
+
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+
+export interface UsersData{
+  employeecode:string;
+  date:string;
+}
 
 @Component({
   selector: "app-employee-report",
@@ -9,26 +19,33 @@ import { CommonService } from "../../../../../core/common/_services/common.servi
 })
 export class EmployeeReportComponent implements OnInit {
   model: any = {};
-  @Output() closeDailyReport: EventEmitter<any> = new EventEmitter<any>();
+  //@Output() closeDailyReport: EventEmitter<any> = new EventEmitter<any>();
   @Input() dailyReportItem: any;
   @Input() getDailyReportDetail: any;
   isSaveDailyReport: boolean = false;
   dailyReportList:any = [];
   btnlabel: any;
+  employeecode: any;
+  @Input() fromParent: UsersData;
   
   constructor(
     private employeeService: EmployeeService,
-    public commonService: CommonService
+    public commonService: CommonService,
+    public activeModal: NgbActiveModal,
+    private modalService: NgbModal,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData,    
   ) {
-    
+
   }
 
   ngOnInit() { 
-    this.getDailyReportLists();      
+    this.getDailyReportLists();
   }
 
-  getDailyReportLists(){
-    this.model.employeecode = this.dailyReportItem.employeecode;
+  getDailyReportLists(){  
+    this.employeecode = this.fromParent.employeecode;
+    this.model.employeecode = this.employeecode;
+    //this.model.employeecode = this.dailyReportItem.employeecode;
     this.model.date = this.commonService.getTodayDate();
     let msg = '';
     this.employeeService.getTodayReportLists(this.model)
@@ -56,11 +73,12 @@ export class EmployeeReportComponent implements OnInit {
   }
 
   dailyReportClose() { 
-    this.closeDailyReport.emit(false);
+    this.activeModal.close();
+    //this.closeDailyReport.emit(false);
   }
 
   saveDailyReport() { 
-    this.model.employeecode = this.dailyReportItem.employeecode;
+    //this.model.employeecode = this.dailyReportItem.employeecode;
     this.model.type = this.getDailyReportDetail === undefined ? 'save': 'update';
     this.model.date = this.commonService.getTodayDate();
     this.isSaveDailyReport = true;

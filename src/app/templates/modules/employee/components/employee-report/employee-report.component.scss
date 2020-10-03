@@ -2,9 +2,9 @@
 .box{
   background: rgb(37, 63, 75);
   width: 25rem;
-  margin-left: -150px;
+  margin-left: 350px;
   border-radius: $dialog-border-radius;
-  top:5rem;
+  margin-top: 10rem;
   font-family: Open Sans;
 }
 .text{
@@ -72,4 +72,19 @@ button{
 
 #employee-report-box {
   position:absolute; top:10px; z-index: 1;
+}
+
+::ng-deep .dailyreport .modal-dialog {
+  max-width: 80%;
+  width: 50% !important;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+::ng-deep .dailyreport .modal-content {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background:$po-order-form-bg;
 }

@@ -17,6 +17,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
 import *  as  XLSX from 'xlsx';
+import { EmployeeReportComponent } from "../employee-report/employee-report.component";
 
 @Component({
   selector: "app-employee-list",
@@ -296,11 +297,20 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.isShowHideCheckinCheckout = [];
     this.showHideDailyReport[index] = true;
     item.date = this.commonService.getTodayDate();
-    this.employeeService.getDailyReportLists(item).subscribe((res: any) => {
+
+    const modalRef = this.modalService.open(EmployeeReportComponent, { windowClass: 'dailyreport-class'});
+    let data: any;
+    data = item;
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then((result) => {
+    }, (reason) => { }); 
+
+    /* this.employeeService.getDailyReportLists(item).subscribe((res: any) => {
       if (res.length > 0) { 
         this.getDailyReportDetail = res[0];
       }
-    })
+    }) */
   }
 
   closePopup(value: boolean, index, type: string) {
