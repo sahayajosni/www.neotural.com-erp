@@ -18,6 +18,8 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
 import *  as  XLSX from 'xlsx';
 import { EmployeeReportComponent } from "../employee-report/employee-report.component";
+import { EmployeeAbsenceComponent } from "../employee-absence/employee-absence.component";
+import { EmployeeChecinCheckoutComponent } from "../employee-checkin-checkout/employee-checkin-checkout.component";
 
 @Component({
   selector: "app-employee-list",
@@ -329,6 +331,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.isShowHideCheckinCheckout = [];
     this.isShowHideAbsent[index] = true;
     item.date = this.commonService.getTodayDate();
+    item.reporttype = "Absent";
     this.getEmployeeAbsentDetail(item);
   }
 
@@ -340,6 +343,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.isShowHideAbsent = [];
     this.isShowHideCheckinCheckout = [];
     this.isShowHideCheckinCheckout[index] = true;
+    item.reporttype = "CheckInOut";
     this.getEmployeeAbsentDetail(item);
   }
 
@@ -347,11 +351,26 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.getAbsentDetail = undefined;
     item.date = this.commonService.getTodayDate();
     item.type = 'D';
-    this.employeeService.getAbsentLists(item).subscribe((res: any) => { 
+    let modalRef: any;
+    let data: any;
+
+    if(item.reporttype == "Absent"){
+      modalRef = this.modalService.open(EmployeeAbsenceComponent, { windowClass: 'absent-class'});
+      data = item;
+    }else if(item.reporttype == "CheckInOut"){
+      modalRef = this.modalService.open(EmployeeChecinCheckoutComponent, { windowClass: 'checkinout-class'});
+      data = item;
+    }
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then((result) => {
+    }, (reason) => { }); 
+
+    /* this.employeeService.getAbsentLists(item).subscribe((res: any) => { 
       if (res.length > 0) { 
         this.getAbsentDetail = res[0];
       }
-    })
+    }) */
   }
 
   absentMouseover(index: number, item: any) { 

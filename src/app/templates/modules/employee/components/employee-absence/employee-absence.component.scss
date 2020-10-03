@@ -3,8 +3,9 @@
 .box{
   background: rgb(37, 63, 75);
   width: 386px;
-  margin-left: -200px;
+  margin-left: 350px;
   border-radius: $dialog-border-radius;
+  margin-top: 10rem;
   font-family: Open Sans;
 }
 .text{
@@ -68,4 +69,9 @@ button{
 
 #error-msg {
   color: red;
+}
+
+::ng-deep .absent-class .modal-dialog {
+  max-width: 80%;
+  width: 50% !important;
 }

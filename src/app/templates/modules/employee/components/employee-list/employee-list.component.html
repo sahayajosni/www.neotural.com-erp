@@ -83,8 +83,8 @@
           <td></td>
           <td>{{item.rank}}</td>
           <td>
-            <app-employee-absence *ngIf="isShowHideAbsent[i]" [absenceItem]="item" (closeAbsencePopup)="closePopup($event, i,'absence')" [getAbsentDetail]="getAbsentDetail"></app-employee-absence>
-            <app-employee-checkin-checkout *ngIf="isShowHideCheckinCheckout[i]" (closeCheckinCheckoutPopup)="closePopup($event, i,'checkinCheckout')" (enableAbsentIcon)="enableAbsentIcon($event, i)" [absenceItem]="item" [getAbsentDetail]="getAbsentDetail" [currentTime]="todayTime"></app-employee-checkin-checkout>
+            <!-- <app-employee-absence *ngIf="isShowHideAbsent[i]" [absenceItem]="item" (closeAbsencePopup)="closePopup($event, i,'absence')" [getAbsentDetail]="getAbsentDetail"></app-employee-absence>
+            <app-employee-checkin-checkout *ngIf="isShowHideCheckinCheckout[i]" (closeCheckinCheckoutPopup)="closePopup($event, i,'checkinCheckout')" (enableAbsentIcon)="enableAbsentIcon($event, i)" [absenceItem]="item" [getAbsentDetail]="getAbsentDetail" [currentTime]="todayTime"></app-employee-checkin-checkout> -->
             {{item.addeddate}}
           </td>
           <td class="wid-75px">{{item.status}}
