@@ -364,6 +364,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
         item.checkinreason = this.getAbsentDetail.checkinreason;
         item.checkintime = this.getAbsentDetail.checkintime;
         item.checkouttime = this.getAbsentDetail.checkouttime;
+        item.absent = this.getAbsentDetail.absent;
         this.model.checktype = "In";
       }
     })

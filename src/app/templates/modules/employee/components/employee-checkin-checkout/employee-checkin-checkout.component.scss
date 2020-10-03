@@ -57,6 +57,18 @@
   float: right;
   width: 42%;
 }
+.absent-disabled{
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  top: 85%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 50%;
+  color: #CC4343 !important;
+  background: #1C313E !important;
+  cursor: not-allowed;
+}
 #btn1{
   padding-left: 2.5rem;
 }

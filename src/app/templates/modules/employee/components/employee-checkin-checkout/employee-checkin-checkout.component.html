@@ -19,11 +19,15 @@
       <textarea class="reasonTxt" placeholder="Reason" name="checkinCheckoutReason" [(ngModel)]="this.model.checkinCheckoutReason" #checkinCheckoutReason="ngModel"></textarea>
     </div>
     <br/>
-    <div id="btn1">
+    <div id="btn1" *ngIf="checked">
       <button id="checkIn" class="checkin-checkout" name="checkIn" type="button" (click)="saveCheckinCheckedout('checkedin')" [disabled]="isDisableCheckin" [ngClass]="isDisableCheckin ? 'checkin-disabled' : ''">{{checkinLabel}}</button>
     </div>
-    <div id="btn2">
+    <div id="btn2" *ngIf="checked">
       <button id="checkOut" class="checkin-checkout" name="checkOut" type="button" (click)="saveCheckinCheckedout('checkedout')" [disabled]="isDisableCheckout" [ngClass]="isDisableCheckout ? 'checkout-disabled' : ''">{{checkoutLabel}}</button>
+    </div>
+    <div id="btn1" *ngIf="absent">
+      <button class="checkin-checkout" name="checkOut" type="button" [disabled]="isDisableCheckout" [ngClass]="isDisableCheckout ? 'absent-disabled' : ''">{{checkoutLabel}}</button>
+      <br/>
     </div>
     <div style="clear: both; height: 20px;"></div>
   </div>

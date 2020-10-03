@@ -15,6 +15,7 @@ export interface UsersData{
   checkoutreason:string;
   checkinreason:string;
   checkintime: string;
+  absent:string;
 }
 
 @Component({
@@ -38,6 +39,8 @@ export class EmployeeChecinCheckoutComponent implements OnInit {
   checkinLabel: string = '';
   getAttendanceDetail:any = {};
   @Input() fromParent: UsersData;
+  checked:boolean = false;
+  absent: boolean = false;
 
   constructor(
     private employeeService: EmployeeService,
@@ -56,6 +59,7 @@ export class EmployeeChecinCheckoutComponent implements OnInit {
       this.model.checkinCheckoutReason = '';
       this.disableCheckoutButton();
       this.disableCheckinButton();
+      this.disableCheckInoutButton();
     }, 200);
    
   }
@@ -104,6 +108,8 @@ export class EmployeeChecinCheckoutComponent implements OnInit {
   }
 
   disableCheckoutButton() { 
+    this.checked = true;
+    this.absent = false;
     if (this.fromParent.checkoutreason !== null ) {
       this.isDisableCheckout = true;
       this.checkoutLabel = 'Checked-Out';
@@ -114,6 +120,8 @@ export class EmployeeChecinCheckoutComponent implements OnInit {
   }
 
   disableCheckinButton() { 
+    this.checked = true;
+    this.absent = false;
     if (this.fromParent.checkinreason !== null ) {
       this.isDisableCheckin = true;
       this.checkinLabel = 'Checked-In';
@@ -122,4 +130,14 @@ export class EmployeeChecinCheckoutComponent implements OnInit {
       this.checkinLabel = 'Check-In';
     } 
   }
+
+  disableCheckInoutButton() { 
+    if (this.fromParent.absent === 'yes' ) {
+      this.isDisableCheckout = true;
+      this.checked = false;
+      this.absent = true;
+      this.checkoutLabel = 'Absent';
+    } 
+  }
+
 }
