@@ -362,6 +362,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
         this.getAbsentDetail = res[0];
         item.checkoutreason = this.getAbsentDetail.checkoutreason;
         item.checkinreason = this.getAbsentDetail.checkinreason;
+        item.checkintime = this.getAbsentDetail.checkintime;
+        item.checkouttime = this.getAbsentDetail.checkouttime;
         this.model.checktype = "In";
       }
     })
@@ -374,6 +376,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       if(this.model.checktype !== "In"){
         item.checkoutreason = null;
         item.checkinreason = null;
+        item.checkintime = null;
+        item.checkouttime = null;
       }
       data = item;
     }
