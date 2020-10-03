@@ -47,6 +47,15 @@ button{
   height: 3rem;
   margin-bottom: 20px;
 }
+.absent-disabled{
+  background-color: #6E7D87 !important;
+  cursor: not-allowed;
+  color: white;
+  font-size: 18px;
+  width: 17rem;
+  height: 3rem;
+  margin-bottom: 20px;
+}
 ::placeholder {
   color: #8D9BA4;
   font-size: 15px;

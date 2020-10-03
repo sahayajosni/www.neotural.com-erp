@@ -10,6 +10,7 @@ export interface UsersData{
   employeecode:string;
   date:string;
   type:string;
+  checkinreason:string;
 }
 
 @Component({
@@ -23,7 +24,9 @@ export class EmployeeAbsenceComponent implements OnInit {
   @Input() absenceItem: any;
   @Input() getAbsentDetail: any;
   isSaveAbsent: boolean = false;
+  isDisableAbsent: boolean = false;
   @Input() fromParent: UsersData;
+  absentLabel: string = '';
   
   constructor(
     private employeeService: EmployeeService,
@@ -36,6 +39,7 @@ export class EmployeeAbsenceComponent implements OnInit {
   ngOnInit() {
    setTimeout(() => {
     this.model.reason = this.getAbsentDetail !== undefined ? this.getAbsentDetail.reason:'';
+    this.disableAbsentButton();
   }, 200);
   }
 
@@ -90,4 +94,15 @@ export class EmployeeAbsenceComponent implements OnInit {
     // } 
     }
   }
+
+  disableAbsentButton() { 
+    if (this.fromParent.checkinreason !== null ) {
+      this.isDisableAbsent = true;
+      this.absentLabel = 'Already Checked-In';
+    } else {
+      this.isDisableAbsent = false;
+      this.absentLabel = 'Mark as Absent';
+    } 
+  }
+
 }
