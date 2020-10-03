@@ -13,7 +13,7 @@
       </div>
     </div>
     <div>
-      <input type="text" placeholder="{{currentTime | date : 'h:mm a'}}" class="timeTxt" readonly/>
+      <input type="text" placeholder="{{this.fromParent.currentTime | date : 'h:mm a'}}" class="timeTxt" readonly/>
       <br/><br/>
       <div *ngIf="isSaveChecinCheckout && model.checkinCheckoutReason === ''" id="error-msg">Reason is required</div>
       <textarea class="reasonTxt" placeholder="Reason" name="checkinCheckoutReason" [(ngModel)]="this.model.checkinCheckoutReason" #checkinCheckoutReason="ngModel"></textarea>

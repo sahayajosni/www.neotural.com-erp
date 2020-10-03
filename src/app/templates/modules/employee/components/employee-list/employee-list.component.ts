@@ -339,6 +339,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.todayTime = '';
     const currentDate = new Date();
     this.todayTime = currentDate;
+    item.currentTime = this.todayTime;
     this.showHideDailyReport = [];
     this.isShowHideAbsent = [];
     this.isShowHideCheckinCheckout = [];
@@ -353,12 +354,27 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     item.type = 'D';
     let modalRef: any;
     let data: any;
+    item.checkoutreason = null;
+    item.checkinreason = null;
+
+    this.employeeService.getAbsentLists(item).subscribe((res: any) => { 
+      if (res.length > 0) { 
+        this.getAbsentDetail = res[0];
+        item.checkoutreason = this.getAbsentDetail.checkoutreason;
+        item.checkinreason = this.getAbsentDetail.checkinreason;
+        this.model.checktype = "In";
+      }
+    })
 
     if(item.reporttype == "Absent"){
       modalRef = this.modalService.open(EmployeeAbsenceComponent, { windowClass: 'absent-class'});
       data = item;
     }else if(item.reporttype == "CheckInOut"){
       modalRef = this.modalService.open(EmployeeChecinCheckoutComponent, { windowClass: 'checkinout-class'});
+      if(this.model.checktype !== "In"){
+        item.checkoutreason = null;
+        item.checkinreason = null;
+      }
       data = item;
     }
 

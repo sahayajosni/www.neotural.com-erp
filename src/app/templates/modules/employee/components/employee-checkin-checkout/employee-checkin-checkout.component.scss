@@ -2,9 +2,9 @@
 .box{
   background: rgb(37, 63, 75);
   width: 25rem;
-  margin-left: -200px;
+  margin-left: 300px;
   border-radius: $dialog-border-radius;
-  top:5rem;
+  margin-top: 10rem;
   font-family: Open Sans;
 }
 .text{
@@ -102,4 +102,9 @@
 
 #error-msg {
   color: red;
+}
+
+::ng-deep .checkinout-class .modal-dialog {
+  max-width: 80%;
+  width: 50% !important;
 }
