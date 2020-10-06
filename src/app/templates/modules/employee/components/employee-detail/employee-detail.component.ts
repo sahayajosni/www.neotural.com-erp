@@ -52,7 +52,6 @@ export class EmployeeDetailComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.viewEmployee(params.id);
       this.getDailyReportLists(params.id,this.model.toggledate);
-      this.getabsentmonths();
     });
     this.model.report = "";
     // setTimeout(function () {
@@ -76,6 +75,7 @@ export class EmployeeDetailComponent implements OnInit {
           if (data.length > 0) { 
             this.attendanceDetails = data;
             this.absentdays(empCode);
+            this.getabsentmonths();
           }
         })
         
@@ -83,11 +83,11 @@ export class EmployeeDetailComponent implements OnInit {
     });
   }
 
-  getabsentmonths() {    
+  getabsentmonths() {   
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var d = new Date();
     this.model.monthname = months[d.getMonth()];
-    
+
     var month = new Date().getMonth();
     $('#monthname option:gt(' + month + ')').prop('disabled', true);
    }

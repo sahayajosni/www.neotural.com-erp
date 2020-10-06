@@ -388,9 +388,8 @@
             <div class="col-md-12 col-xs-12 col-sm-12 side-wapper">
               <div class="profile-div">
                 <div class="col-md-12 m-b-20px">
-                    <select name="monthname" [(ngModel)]="this.model.monthname" #monthname="ngModel" 
-                      id="monthname" class="selected-box" (ngModelChange)="getMonthAbsentList(this.model.monthname,employeeDet.employeecode)">
-                      <option id="options-box" [ngValue]="undefined" hidden selected> Select Month </option>
+                    <select name="monthname" [(ngModel)]="this.model.monthname" #monthname="ngModel" id="monthname" 
+                      class="selected-box" (ngModelChange)="getMonthAbsentList(this.model.monthname,employeeDet.employeecode)">
                       <option id="options-box" value="Jan">January Absent Card</option>
                       <option id="options-box" value="Feb">February Absent Card</option>
                       <option id="options-box" value="Mar">March Absent Card</option>
