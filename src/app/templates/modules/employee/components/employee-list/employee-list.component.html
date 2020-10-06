@@ -56,13 +56,13 @@
           <th></th>
           <th>Designation</th>
           <th>Joined Date</th>
-          <th class="wid-75px">Status</th>
+          <th class="wid-95px">Status</th>
         </tr>
       </thead>
      
       <tbody *ngFor="let item of employeesDS; let i = index"
         (dblclick)= "router.navigateByUrl('/employment/viewEmployee/'+item.employeecode)"> 
-        <tr>
+        <tr (mouseover)="absentPopup(i, item,1)">
           <td style="width: 4% !important;">
             
             <div *ngIf="item.profilepic; else employeeNoImage">
@@ -87,11 +87,11 @@
             <app-employee-checkin-checkout *ngIf="isShowHideCheckinCheckout[i]" (closeCheckinCheckoutPopup)="closePopup($event, i,'checkinCheckout')" (enableAbsentIcon)="enableAbsentIcon($event, i)" [absenceItem]="item" [getAbsentDetail]="getAbsentDetail" [currentTime]="todayTime"></app-employee-checkin-checkout> -->
             {{item.addeddate}}
           </td>
-          <td class="wid-75px">{{item.status}}
+          <td class="wid-95px">{{item.status}}
             <span class="edit-delete-icon user-icon">
               <span class="fas fa-list-alt" placement="bottom" ngbTooltip="Add Daily Report" triggers="hover" (click)="dailyReport(i, item)"></span>
-              <span class="fas fa-user-clock" placement="bottom" ngbTooltip="Add Attendance" triggers="hover" (click)="checkinCheckout(i, item)"></span>
-              <span class="fas fa-calendar-times" placement="bottom" ngbTooltip="Add Absence" triggers="hover" [ngClass]="isAbsentMouseover[i] ? 'absent-disabled' : ''" (mouseover)="absentMouseover(i, item)" (click)="absentPopup(i, item)"></span>
+              <button class="fas fa-user-clock" placement="bottom" ngbTooltip="Add Attendance" triggers="hover" (click)="checkinCheckout(i, item)" [disabled]="isDisableCheckin" [ngClass]="isDisableCheckin ? 'checkin-disabled' : ''"></button>
+              <button class="fas fa-calendar-times" placement="bottom" ngbTooltip="Add Absence" triggers="hover" [disabled]="isDisableAbsent" [ngClass]="isDisableAbsent ? 'absent-disabled' : ''" (click)="absentPopup(i, item,2)"></button>
             </span>
           </td>
         </tr>

@@ -75,6 +75,7 @@ table tbody tr:hover td span{
 }
 .mar-let-40px{margin-left: 40px;}
 .wid-75px{width: 75px!important;}
+.wid-95px{width: 95px!important;}
 .edit-delete-icon {
   display: none;
   background: $table-invoived-row-bg;
@@ -91,11 +92,13 @@ table tbody tr:hover td span{
 .fa-calendar-times {
   float: right;
   cursor: pointer;
+  border: none;
 }
 .fa-user-clock {
   margin: 0px 0px 0px 8px;
   float: left;
   cursor: pointer;
+  border: none;
 }
 
 .sort-by-desc
@@ -183,4 +186,13 @@ input[type=search] {
   padding-top: 10px !important;
   padding-bottom: 10px !important;
   background:$white;
+}
+
+.absent-disabled {
+  color: #d34344;
+  cursor: unset;
+}
+.checkin-disabled {
+  color: #406479;
+  cursor: unset;
 }

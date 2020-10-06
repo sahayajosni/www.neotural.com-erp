@@ -56,6 +56,10 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   cardImageBase64: string;
   pageSkip: number = 0; 
   @ViewChild('employeeReport', {static:false}) employeeReport: ElementRef;  
+
+  
+  isDisableCheckin: boolean = false;
+  isDisableAbsent: boolean = false;
   //totalrowCount: number = 0;  
 
   constructor(
@@ -169,7 +173,6 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     console.log(searchValue);
     this.employeesDS = this.employeesList.filter(employee =>
     employee.name.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
-    
   }
 
   deleteEmployee(employeecode: string) {
@@ -315,7 +318,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     }) */
   }
 
-  closePopup(value: boolean, index, type: string) {
+  /* closePopup(value: boolean, index, type: string) {
     if (type === 'report') {
       this.showHideDailyReport[index] = value;
     } else if (type === 'absence') {
@@ -323,16 +326,20 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     } else {
       this.isShowHideCheckinCheckout[index] = value;
     }
-  }
+  } */
 
-  absentPopup(index: number, item: any) { 
+  absentPopup(index: number, item: any,temp) { 
     this.isShowHideAbsent = [];
     this.showHideDailyReport = [];
     this.isShowHideCheckinCheckout = [];
     this.isShowHideAbsent[index] = true;
     item.date = this.commonService.getTodayDate();
     item.reporttype = "Absent";
-    this.getEmployeeAbsentDetail(item);
+    if(temp == 1){
+      this.getEmployeeAttendanceDetail(item);
+    }else if(temp == 2){
+      this.getEmployeeAbsentDetail(item);
+    }
   }
 
   checkinCheckout(index: number, item: any) {
@@ -371,6 +378,13 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
 
     if(item.reporttype == "Absent"){
       modalRef = this.modalService.open(EmployeeAbsenceComponent, { windowClass: 'absent-class'});
+      if(item.absent === 'yes'){
+        this.isDisableAbsent = true;
+        this.isDisableCheckin = true;
+      }else{
+        this.isDisableAbsent = false;
+        this.isDisableCheckin = false;
+      }
       data = item;
     }else if(item.reporttype == "CheckInOut"){
       modalRef = this.modalService.open(EmployeeChecinCheckoutComponent, { windowClass: 'checkinout-class'});
@@ -394,7 +408,34 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     }) */
   }
 
-  absentMouseover(index: number, item: any) { 
+  getEmployeeAttendanceDetail(item: any) {
+    this.getAbsentDetail = undefined;
+    item.date = this.commonService.getTodayDate();
+    item.type = 'D';
+    item.checkoutreason = null;
+    item.checkinreason = null;
+
+    this.employeeService.getAbsentLists(item).subscribe((res: any) => { 
+      if (res.length > 0) { 
+        this.getAbsentDetail = res[0];
+        item.checkoutreason = this.getAbsentDetail.checkoutreason;
+        item.checkinreason = this.getAbsentDetail.checkinreason;
+        item.absent = this.getAbsentDetail.absent;
+      }
+    })
+
+    if(item.reporttype == "Absent"){
+      if(item.absent == 'yes'){
+        this.isDisableAbsent = true;
+        this.isDisableCheckin = true;
+      }else{
+        this.isDisableAbsent = false;
+        this.isDisableCheckin = false;
+      }
+    }
+  }
+
+  /* absentMouseover(index: number, item: any) { 
     this.isAbsentMouseover = [];
     item.date = this.commonService.getTodayDate();
     item.type = 'D';
@@ -414,7 +455,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
 
   enableAbsentIcon(value: boolean, index: number) {
     this.isAbsentMouseover[index] = value;
-  }
+  } */
 
   saveEmployee() { 
     this.model.profilepic=this.cardImageBase64;
