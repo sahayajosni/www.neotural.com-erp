@@ -270,7 +270,9 @@
             </div>
             <div class="col-md-3 float-left">
               <div class="ble-colr">Overtime Salary</div>
-              <div class="lblcolor">0</div>
+              <div class="lblcolor" *ngIf="!employeeDet.editable">{{employeeDet.overtimesalary}} / per hour</div>
+              <input type="text" id="editinput" [(ngModel)]="employeeDet.overtimesalary" #overtimesalary="ngModel"
+                name="overtimesalary" *ngIf="employeeDet.editable" autocomplete="off" placeholder="overrime per hour"/>
             </div>
             <div class="col-md-3 float-left">
               <div class="ble-colr">Contract Document</div>
@@ -374,9 +376,7 @@
             </div>
             <div class="col-md-3 float-left">
               <div class="ble-colr">Annual Leave</div>
-              <div class="lblcolor" *ngIf="!employeeDet.editable">{{employeeDet.annualLeave}}</div>
-              <input type="text" id="editinput" [(ngModel)]="employeeDet.annualLeave" #annualLeave="ngModel"
-                name="annualLeave" *ngIf="employeeDet.editable" autocomplete="off"/>
+              <div class="lblcolor">{{ employeeDet.annualLeave }}</div>
             </div>
             <div class="col-md-3 float-left">
               <div class="ble-colr">Days Absent</div>
