@@ -216,10 +216,21 @@
           <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.email}}</div>
           <input type="text" id="editinput" [(ngModel)]="employeeDet.email" #email="ngModel"
             name="email" *ngIf="employeeDet.editable" autocomplete="off" />
-            <div style="color: rgba(85,112,129,1); margin-top:25px;font-size: 12px;">Country </div>
+          <div style="color: rgba(85,112,129,1); margin-top:25px;font-size: 12px;">Country </div>
           <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.location}}</div>
-          <input type="text" id="editinput" [(ngModel)]="employeeDet.location" #location="ngModel"
-            name="location" *ngIf="employeeDet.editable" autocomplete="off"/>
+          <select name="location" id="editinput" [(ngModel)]="employeeDet.location" *ngIf="employeeDet.editable" 
+              #location="ngModel" value="{{employeeDet.location}}" class="m-t-5px">
+              <option value="Australia">Australia</option>
+              <option value="India">India</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="Singapore">Singapore</option>
+              <option value="UAE">UAE</option>
+              <option value="Others">Others</option>
+            </select>
+            
+          <!-- <input type="text" id="editinput" [(ngModel)]="employeeDet.location" #location="ngModel"
+            name="location" *ngIf="employeeDet.editable" autocomplete="off"/> -->
           <div style="color: rgba(85,112,129,1); margin-top:25px;font-size: 12px;">Address </div>
           <div style="color:#d6d8da;font-size: 12px;" *ngIf="!employeeDet.editable">{{employeeDet.address}}</div>
           <input type="text" id="editinput" [(ngModel)]="employeeDet.address" #address="ngModel"
