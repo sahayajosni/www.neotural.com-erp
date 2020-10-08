@@ -91,7 +91,7 @@
             <span class="edit-delete-icon user-icon">
               <span class="fas fa-list-alt" placement="bottom" ngbTooltip="Add Daily Report" triggers="hover" (click)="dailyReport(i, item)"></span>
               <button class="fas fa-user-clock" placement="bottom" ngbTooltip="Add Attendance" triggers="hover" (click)="checkinCheckout(i, item)" [disabled]="isDisableCheckin" [ngClass]="isDisableCheckin ? 'checkin-disabled' : ''"></button>
-              <button class="fas fa-calendar-times" placement="bottom" ngbTooltip="Add Absence" triggers="hover" [disabled]="isDisableAbsent" [ngClass]="isDisableAbsent ? 'absent-disabled' : ''" (click)="absentPopup(i, item,2)"></button>
+              <button class="fas fa-calendar-times" placement="bottom" ngbTooltip="Add Absent" triggers="hover" [disabled]="isDisableAbsent" [ngClass]="isDisableAbsent ? 'absent-disabled' : ''" (click)="absentPopup(i, item,2)"></button>
             </span>
           </td>
         </tr>
@@ -99,7 +99,7 @@
 
     </table>
   <!-- </div>  -->
-
+    <div style="height: 3rem;"></div>
   </div>
 </div>
 </div>
