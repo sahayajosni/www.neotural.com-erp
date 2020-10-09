@@ -7,11 +7,11 @@
       <button id="delete" [disabled]="!isDeleteButton ? true:false" [ngStyle]="getDeleteButtonStyle()">
         <i class="fas fa-trash"></i>
       </button>
-      <button [disabled]="!isCreateReturn ? true:false"
+      <!-- <button [disabled]="!isCreateReturn ? true:false"
         (click)="createReturn()" placement="bottom" ngbTooltip="Create Purchase Return" triggers="hover"
         class="create-button" [ngStyle]="getCreateReturnStyle()">
         Return
-      </button>
+      </button> -->
       <button  
         [disabled]="!isCreateInvoice ? true:false" 
         class="create-button" placement="left" ngbTooltip="Create Purchase Order" triggers="hover" 
@@ -85,7 +85,7 @@
           <td>
             <span *ngIf="item.status === 'Open'" class="open-status">{{item.status}}</span>
             <span *ngIf="item.status === 'Placed'" class="invoice-status">{{item.status}}</span>
-            <span *ngIf="item.status === 'Returned'" class="return-status">{{item.status}}</span>
+            <!-- <span *ngIf="item.status === 'Returned'" class="return-status">{{item.status}}</span> -->
           </td>
           <td>{{item.vendorname}}</td>
           <td><span [ngClass]="item.status !== 'Open' ? 'font-norm' : 'font-bld'">{{item.categoryname}}</span></td>
@@ -143,16 +143,11 @@
       
       <svg height="100" width="100">
         <circle cx="50" cy="50" r="50" stroke-width="3" fill="#1186aa" />    
-        <text x="50%" y="50%" text-anchor="middle" stroke-width="2px" dy=".3em" style="font-size: 14px;" fill="white">Invoice</text>
+        <text x="50%" y="50%" text-anchor="middle" stroke-width="2px" dy=".3em" style="font-size: 14px;" fill="white">Status</text>
         Sorry, your browser does not support inline SVG.  
       </svg>
       
-      <!-- <svg height="400" width="50">
-        <path d="M 0 350 l 50 0" marker-end="url(#arrowhead)" stroke="red" stroke-width="1" fill="none" />
-        Sorry, your browser does not support inline SVG.
-      </svg> -->
-      
-      <svg height="100" width="100">
+      <!-- <svg height="100" width="100">
         <path d="M 0 50 l 100 0" marker-end="url(#arrowhead)"
           stroke="#1186aa" stroke-width="1" fill="none" />
         Sorry, your browser does not support inline SVG.
@@ -162,12 +157,12 @@
         <circle cx="50" cy="50" r="50" stroke-width="3" fill="#1186aa" />     
         <text x="50%" y="50%" text-anchor="middle" stroke-width="2px" dy=".3em" style="font-size: 14px;" fill="white">Return</text>
         Sorry, your browser does not support inline SVG.  
-      </svg>
+      </svg> -->
     </div>
     <div style="height: 1vh;"></div>
     <div class="row">
-      <div class="col-1"></div>
-      <div class="col-3">
+      <div class="col-2"></div>
+      <div class="col-4">
         <label class="lbl">Completed</label>
       </div>
       <div class="col-4" *ngIf="this.model.status == 'Placed' || this.model.status == 'Returned' ">
@@ -176,29 +171,29 @@
       <div class="col-4" *ngIf="this.model.status === 'Open' ">
         <label class="lbl">Not done</label>
       </div>
-      <div class="col-3" *ngIf="this.model.status == 'Returned' ">
+     <!-- <div class="col-3" *ngIf="this.model.status == 'Returned' ">
         <label class="lbl">Completed</label>
       </div>
       <div class="col-3" *ngIf="this.model.status === 'Placed' || this.model.status == 'Open' ">
         <label class="lbl">Not done</label>
-      </div>
-      <div class="col-1"></div>
+      </div> -->
+      <div class="col-2"></div>
     </div>
 
     <div class="row">
-      <div class="col-1"></div>
-      <div class="col-3">
+      <div class="col-2"></div>
+      <div class="col-4">
         <label class="lbl">Date : {{ this.model.orderdate | date : 'dd/MM/yyyy' }}</label>
       </div>
       <div class="col-4" *ngIf="this.model.type == 'Invoice' ">
         <label class="lbl">Date : {{ this.model.invoicedate }}</label>
       </div>
       <div class="col-4" *ngIf="this.model.status === 'Open' "></div>
-      <div class="col-3" *ngIf="this.model.rettype == 'Return' ">
+      <!-- <div class="col-3" *ngIf="this.model.rettype == 'Return' ">
         <label class="lbl">Date : {{ this.model.returndate }}</label>
       </div>
-      <div class="col-3" *ngIf="this.model.status === 'Placed' || this.model.status == 'Open' "></div>
-      <div class="col-1"></div>
+      <div class="col-3" *ngIf="this.model.status === 'Placed' || this.model.status == 'Open' "></div> -->
+      <div class="col-2"></div>
     </div>
 
   </div>

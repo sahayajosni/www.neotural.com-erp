@@ -28,7 +28,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
   prodArr = [];
   isCheckedArr = [];
   vendorArr = [];
-  isCreateReturn: boolean = false;
+  //isCreateReturn: boolean = false;
   isDeleteButton: boolean = false;
   isCreateInvoice: boolean = false;
   isShowEditDelete = [];
@@ -100,7 +100,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
     }
   }
 
-  getCreateReturnStyle() {
+  /* getCreateReturnStyle() {
     if (!this.isCreateReturn) {
       let myStyles = {
         color: "gray",
@@ -110,7 +110,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
       };
       return myStyles;
     }
-  }
+  } */
 
   getCreateInvoiceStyle() {
     if (!this.isCreateInvoice) {
@@ -185,7 +185,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
         const status = item.status;
         const vendorName = item.vendorname;
         if (this.prodArr.length > 1) {
-          this.isCreateReturn = false;
+          //this.isCreateReturn = false;
           if (status !== "Placed" && status !== "Returned") {
             let getVendorName = "";
             this.vendorArr.forEach((item, indexCheck) => {
@@ -198,7 +198,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
                 } else {
                   this.isDeleteButton = true;
                   this.isCreateInvoice = true;
-                  this.isCreateReturn = false;
+                  //this.isCreateReturn = false;
                   this.getErrorMsg(false);
                 }
               }
@@ -222,7 +222,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
           } else {
             this.isCreateInvoice = false;
           }
-          if (status === "Placed" && this.isCheckedArr[0].checked) {
+          /* if (status === "Placed" && this.isCheckedArr[0].checked) {
             let pocode = "All";
             this.purchaseService.loadReturn(pocode)
               .subscribe(res => { 
@@ -253,12 +253,12 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
             );
           } else {
             this.isCreateReturn = false;
-          }
+          } */
         }
       });
     } else {
       this.isCreateInvoice = false;
-      this.isCreateReturn = false;
+      //this.isCreateReturn = false;
       this.isDeleteButton = false;
       this.isAddPurchaseOrder = false;
     }
@@ -475,7 +475,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
       this.ngOnInit();
       let indexx = this.prodArr.indexOf(this.prodArr[0].pocode);
       this.prodArr.splice(indexx, 1);
-      this.isCreateReturn = false;
+      //this.isCreateReturn = false;
       this.isAddPurchaseOrder = true; 
     }); 
     /* this.dialogConfig.disableClose = true;
