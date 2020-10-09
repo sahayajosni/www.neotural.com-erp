@@ -378,7 +378,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
       if (data === null) {
         setTimeout(() => {
           this.snackBar.open(
-            "Purchase order has been deleted successfully",
+            "Order has been deleted successfully",
             "",
             {
               panelClass: ["success"],

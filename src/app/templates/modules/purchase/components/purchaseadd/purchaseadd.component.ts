@@ -328,7 +328,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
             console.log("............1 ....");
             setTimeout(() => {
               this.snackBar.open(
-                "Purchase Order created Successfully",
+                "Order created Successfully",
                 "",
                 {
                   panelClass: ["success"],
@@ -473,7 +473,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
           this.modalService.dismissAll();
           setTimeout(() => {
             this.snackBar.open(
-              "Purchase Order created Successfully",
+              "Order created Successfully",
               "",
               {
                 panelClass: ["success"],
@@ -506,7 +506,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
           setTimeout(() => {
             this.modalService.dismissAll();
             this.snackBar.open(
-              "Purchase Order updated Successfully",
+              "Order updated Successfully",
               "",
               {
                 panelClass: ["success"],
