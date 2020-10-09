@@ -186,7 +186,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
         const vendorName = item.vendorname;
         if (this.prodArr.length > 1) {
           this.isCreateReturn = false;
-          if (status !== "Invoiced" && status !== "Returned") {
+          if (status !== "Placed" && status !== "Returned") {
             let getVendorName = "";
             this.vendorArr.forEach((item, indexCheck) => {
               if (indexCheck > 0) {
@@ -222,7 +222,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
           } else {
             this.isCreateInvoice = false;
           }
-          if (status === "Invoiced" && this.isCheckedArr[0].checked) {
+          if (status === "Placed" && this.isCheckedArr[0].checked) {
             let pocode = "All";
             this.purchaseService.loadReturn(pocode)
               .subscribe(res => { 
@@ -521,7 +521,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
     this.model.status = item.status;
     this.model.orderdate = item.date;
 
-    if(item.status == "Invoiced"){
+    if(item.status == "Placed"){
 
       this.purchaseService.load(item.invoicenumber).subscribe(
         (res) => {

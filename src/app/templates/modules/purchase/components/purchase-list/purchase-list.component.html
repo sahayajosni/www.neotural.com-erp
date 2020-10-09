@@ -84,7 +84,7 @@
           </td>
           <td>
             <span *ngIf="item.status === 'Open'" class="open-status">{{item.status}}</span>
-            <span *ngIf="item.status === 'Invoiced'" class="invoice-status">{{item.status}}</span>
+            <span *ngIf="item.status === 'Placed'" class="invoice-status">{{item.status}}</span>
             <span *ngIf="item.status === 'Returned'" class="return-status">{{item.status}}</span>
           </td>
           <td>{{item.vendorname}}</td>
@@ -170,7 +170,7 @@
       <div class="col-3">
         <label class="lbl">Completed</label>
       </div>
-      <div class="col-4" *ngIf="this.model.status == 'Invoiced' || this.model.status == 'Returned' ">
+      <div class="col-4" *ngIf="this.model.status == 'Placed' || this.model.status == 'Returned' ">
         <label class="lbl">Completed</label>
       </div>
       <div class="col-4" *ngIf="this.model.status === 'Open' ">
@@ -179,7 +179,7 @@
       <div class="col-3" *ngIf="this.model.status == 'Returned' ">
         <label class="lbl">Completed</label>
       </div>
-      <div class="col-3" *ngIf="this.model.status === 'Invoiced' || this.model.status == 'Open' ">
+      <div class="col-3" *ngIf="this.model.status === 'Placed' || this.model.status == 'Open' ">
         <label class="lbl">Not done</label>
       </div>
       <div class="col-1"></div>
@@ -197,7 +197,7 @@
       <div class="col-3" *ngIf="this.model.rettype == 'Return' ">
         <label class="lbl">Date : {{ this.model.returndate }}</label>
       </div>
-      <div class="col-3" *ngIf="this.model.status === 'Invoiced' || this.model.status == 'Open' "></div>
+      <div class="col-3" *ngIf="this.model.status === 'Placed' || this.model.status == 'Open' "></div>
       <div class="col-1"></div>
     </div>
 
