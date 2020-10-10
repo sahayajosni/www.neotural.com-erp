@@ -28,4 +28,5 @@ export const API_ENDPOINTS = {
   CREATE_STOCK:`/stock/createStock`,
   getTemplateDetails: `/purchase/getTemplateDetails`,
   addTemplateDetails: `/purchase/addTemplateDetails`,
+  POSTATUS_RECEIVED:`/purchase/poStatusReceived`,
 };

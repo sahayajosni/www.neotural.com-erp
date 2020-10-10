@@ -4,11 +4,18 @@
       <h4>PO Status</h4>             
   </div>
   <div class="col-8">
+    <button [disabled]="!isDisableReceived ? true:false"
+      (click)="getReceived()" placement="bottom" ngbTooltip="Order Receive" triggers="hover"
+      class="create-button" [ngStyle]="getReceivedStyle()">
+        Received
+    </button>  
+
     <button [disabled]="!isAddStock ? true:false"
       (click)="addStock()" placement="bottom" ngbTooltip="Add Stock" triggers="hover"
       class="create-button" [ngStyle]="getaddStockStyle()">
         Add
-    </button>  
+    </button> 
+
   </div>
 </div>
 <br/>

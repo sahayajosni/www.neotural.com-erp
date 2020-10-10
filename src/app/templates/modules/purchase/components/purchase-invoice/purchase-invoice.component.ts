@@ -20,6 +20,8 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
 
   poinvoiceList: any = {};
 
+  isDisableReceived: boolean = false;
+
   constructor(
     private purchaseservice: PurchaseService,
     private snackBar: MatSnackBar
@@ -109,6 +111,18 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
     }
   }
 
+  getReceivedStyle() {
+    if (!this.isDisableReceived) {
+      let myStyles = {
+        color: "gray",
+        background: "#1A2D39",
+        border: "1px solid #1A2D39",
+        display: "none",
+      };
+      return myStyles;
+    }
+  }
+
   rowSelected(index: number, item: any, isChecked: boolean) {
     this.checkedInfo = isChecked;
     if (isChecked) {
@@ -123,18 +137,27 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
 
     if (this.invArr.length > 0) {
       this.invArr.forEach((item, index) => {
+        const status = item.status;
         if (this.invArr.length > 1) {
           this.isAddStock = false;
-          this.getErrorMsg(false);
+          this.isDisableReceived = false;
+          this.getErrorMsg(true);
         } else {
-          if (this.isCheckedArr[0].checked) {
-            this.isAddStock = true;
-          } else{
-            this.isAddStock = false;
+          this.getErrorMsg(false);
+          if (status === "Pending" && this.isCheckedArr[0].checked) {
+            this.isDisableReceived = true;
+          } else {
+            this.isDisableReceived = false;
           }
+          if (status === "Received" && this.isCheckedArr[0].checked) {
+            this.isAddStock = true;
+          } else {
+            this.isAddStock = false;
+          } 
         }
       });
     } else {
+      this.isDisableReceived = false;
       this.isAddStock = false;
     }
   }
@@ -166,25 +189,54 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
     }
   }
 
-  addStock(){
+  getReceived(){
     this.model.invoiceNumber = this.invArr[0].invoicenumber;
-    this.purchaseservice.createStock(this.model.invoiceNumber).subscribe(
+    this.purchaseservice.poStatusReceived(this.model.invoiceNumber).subscribe(
       (respose) => {
-          this.snackBar.open("Stock was added Successfully", "", {
-              panelClass: ["success"],
-              verticalPosition: "top",
-            }
-          );
-          this.isCheckedArr = [];
-          this.invArr = [];
-          this.isAddStock = false;
+        this.snackBar.open("Status Received Successfully", "", {
+            panelClass: ["success"],
+            verticalPosition: "top",
+          }
+        );
+        this.isCheckedArr = [];
+        this.invArr = [];
+        this.isAddStock = false;
+        this.isDisableReceived = false;
         this.getInvoiceLists();
       },
       (error) => {
         setTimeout(() => {
           this.snackBar.open(
-            "Network error: server is temporarily unavailable",
-            "",
+            "Network error: server is temporarily unavailable", "",
+            {
+              panelClass: ["error"],
+              verticalPosition: "top",
+            }
+          );
+        });
+      }
+    );
+  }
+
+  addStock(){
+    this.model.invoiceNumber = this.invArr[0].invoicenumber;
+    this.purchaseservice.createStock(this.model.invoiceNumber).subscribe(
+      (respose) => {
+        this.snackBar.open("Stock was added Successfully", "", {
+            panelClass: ["success"],
+            verticalPosition: "top",
+          }
+        );
+        this.isCheckedArr = [];
+        this.invArr = [];
+        this.isAddStock = false;
+        this.isDisableReceived = false;
+        this.getInvoiceLists();
+      },
+      (error) => {
+        setTimeout(() => {
+          this.snackBar.open(
+            "Network error: server is temporarily unavailable", "",
             {
               panelClass: ["error"],
               verticalPosition: "top",

@@ -194,4 +194,10 @@ export class PurchaseService {
         return this.http.delete<Purchase>(`${environment.apiUrl}${API_ENDPOINTS.removePoReturn+'?id='+id+'&invoicenumber='+invoicenumber}`);
     }
 
+    poStatusReceived(invoiceNumber:String) {
+        return this.http.put(
+            `${environment.apiUrl}${API_ENDPOINTS.POSTATUS_RECEIVED}`,
+            invoiceNumber
+        )
+    }
 }
