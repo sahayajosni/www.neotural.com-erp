@@ -200,4 +200,8 @@ export class PurchaseService {
             invoiceNumber
         )
     }
+
+    getOrderReturnList(invoicenumber: string){
+        return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.getOrderReturnList+'?invoicenumber='+invoicenumber}`);
+    }
 }

@@ -29,4 +29,6 @@ export const API_ENDPOINTS = {
   getTemplateDetails: `/purchase/getTemplateDetails`,
   addTemplateDetails: `/purchase/addTemplateDetails`,
   POSTATUS_RECEIVED:`/purchase/poStatusReceived`,
+
+  getOrderReturnList: `/purchase/loadReturnPO`,
 };

@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild ,ElementRef,Inject} from '@angular/core';
 import { MatExpansionPanel, MatSnackBar, Sort } from "@angular/material";
 import { PurchaseService } from '../../services/purchase.service';
+import { PurchaseCreateReturnComponent } from '../purchase-create-return/purchase-create-return.component';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-purchase-invoice',
@@ -21,12 +23,16 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
   poinvoiceList: any = {};
 
   isDisableReceived: boolean = false;
+  isOrderPartial: boolean = false;
+  isOrderReturn: boolean = false;
 
   constructor(
     private purchaseservice: PurchaseService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    config: NgbModalConfig, private modalService: NgbModal,
   ) { 
-       
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
   
 
@@ -151,8 +157,12 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
           }
           if (status === "Received" && this.isCheckedArr[0].checked) {
             this.isAddStock = true;
+            this.isOrderPartial = true;
+            this.isOrderReturn = true;
           } else {
             this.isAddStock = false;
+            this.isOrderPartial = false;
+            this.isOrderReturn = false;
           } 
         }
       });
@@ -251,6 +261,23 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
     console.log(searchValue);
     this.invoiceList = this.poinvoiceList.filter(poinvoice =>
       poinvoice.vendorname.toLowerCase().indexOf(searchValue.toLowerCase()) !==-1)
+  }
+
+  returnOrder(){
+    const modalRef = this.modalService.open(PurchaseCreateReturnComponent, { windowClass: 'modal-class'});
+   
+    let data: any;
+    data = {
+      invoicenumber: this.invArr[0].invoicenumber
+    };
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then((result) => {
+     
+    }, (reason) => {
+      this.ngOnInit();
+    }); 
+     this.checkedInfo.target.checked = false;
   }
 
 }

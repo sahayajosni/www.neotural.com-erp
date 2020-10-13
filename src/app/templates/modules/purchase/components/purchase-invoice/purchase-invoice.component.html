@@ -10,12 +10,24 @@
         Received
     </button>  
 
-    <button [disabled]="!isAddStock ? true:false"
-      (click)="addStock()" placement="bottom" ngbTooltip="Add Stock" triggers="hover"
+    <button [disabled]="!isOrderReturn ? true:false"
+      (click)="returnOrder()" placement="bottom" ngbTooltip="Return Order" triggers="hover"
       class="create-button" [ngStyle]="getaddStockStyle()">
-        Add
+        Return 
     </button> 
 
+    <button [disabled]="!isOrderPartial ? true:false"
+      (click)="addPartialStock()" placement="bottom" ngbTooltip="Add Partial Stock" triggers="hover"
+      class="create-button" [ngStyle]="getaddStockStyle()">
+        Partial
+    </button> 
+
+    <button [disabled]="!isAddStock ? true:false"
+      (click)="addStock()" placement="bottom" ngbTooltip="Add Complete Stock" triggers="hover"
+      class="create-button" [ngStyle]="getaddStockStyle()">
+        Complete
+    </button> 
+    
   </div>
 </div>
 <br/>
