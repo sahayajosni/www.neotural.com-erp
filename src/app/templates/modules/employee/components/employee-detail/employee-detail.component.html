@@ -162,10 +162,9 @@
         <i class="fas fa-chevron-left left-arrow"></i></a>
         <h4 style="float:left;"> {{employeeDet.name}}</h4>
         <div style="float: right;">
-          <img src="assets/images/print.png" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Print" (click)="printEmp()" 
-            placement="bottom" ngbTooltip="Print Employee" triggers="hover" />
-          <img src="assets/images/bar.PNG" style="margin-right: 15px;margin-left: 15px;cursor: pointer;" class="img-fluid logo" />
-          <img src="assets/images/edit.PNG" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Edit" (click)="editEmp(employeeDet)"
+          <!-- <img src="assets/images/print.png" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Print" (click)="printEmp()" 
+            placement="bottom" ngbTooltip="Print Employee" triggers="hover" /> 
+          <img src="assets/images/bar.PNG" style="margin-right: 15px;margin-left: 15px;cursor: pointer;" class="img-fluid logo" /> -->          <img src="assets/images/edit.PNG" style="margin-right: 10px;cursor: pointer;" class="img-fluid logo" alt="Edit" (click)="editEmp(employeeDet)"
             placement="bottom" ngbTooltip="Edit Employee" triggers="hover" />
           <img src="assets/images/bar.PNG" style="margin-right: 15px;margin-left: 15px;cursor: pointer;" class="img-fluid logo" />
           <img src="assets/images/delete.PNG" class="img-fluid logo" alt="Delete" style="cursor: pointer;" (click)="removeEmp(employeeDet.employeecode)" 
@@ -423,11 +422,11 @@
                   <img src="assets/images/print1.PNG" style="float: right;" class="img-fluid logo" alt="print"/> -->
                   <div class="row">
                     <div class="col-10"></div>
-                    <div class="col-2" (click)="printDiv('printable')">
+                    <!-- <div class="col-2" (click)="printDiv('printable')">
                         <div placement="bottom" ngbTooltip="Print AttendanceDetails" triggers="hover" class="editlogo">
                         <i class="fa fa-print" aria-hidden="true"></i>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
 
                 </div>
