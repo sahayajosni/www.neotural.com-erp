@@ -60,6 +60,8 @@ export class PurchaseCreateReturnComponent implements OnInit {
     this.purchaseService.getOrderReturnList(invoicenumber).subscribe(
       (res) => {
         this.orderReturnList = res;
+        this.model.vendorname = this.orderReturnList[0].vendorname;
+        this.model.vendorcode = this.orderReturnList[0].vendorcode;
       },
       (error) => {
         setTimeout(() => {
@@ -163,7 +165,7 @@ export class PurchaseCreateReturnComponent implements OnInit {
           verticalPosition: "top",
         }
       );
-    }else if(this.model.quantity == 0){
+    }/* else if(this.model.quantity == 0){
       setTimeout(() => {
         this.snackBar.open(
           "Qty must be valid.",
@@ -175,7 +177,7 @@ export class PurchaseCreateReturnComponent implements OnInit {
           }
         );   
       });
-    }else{
+    } */else{
 
       const invoice = {
         "createddate": new Date().toJSON().slice(0, 10).split('-').reverse().join('/'),
@@ -188,7 +190,9 @@ export class PurchaseCreateReturnComponent implements OnInit {
         "qty" : this.model.quantity,
         "invoiceddate" : this.model.date,
         "price" : this.model.price,
-        "pocode" : this.model.pocode
+        "pocode" : this.model.pocode,
+        "itemcode" : this.model.productcode,
+        "invoicenumber" : this.model.invoicenumber
       }
       this.purchaseService.createReturn(invoice).subscribe(
         (respose) => {
@@ -232,6 +236,24 @@ export class PurchaseCreateReturnComponent implements OnInit {
 
   closeModal() {
     this.activeModal.close();
+  }
+
+  getProductName(productname:string){
+    this.purchaseService.getOrderReturnList(this.fromParent.invoicenumber).subscribe(
+    (res) => {
+      this.orderReturnList = res;
+      for(let i=0; i<this.orderReturnList.length; i++){
+        if(this.orderReturnList[i].productname == productname){
+          this.model.invqty = this.orderReturnList[i].qty;
+          this.model.date = this.orderReturnList[i].date;
+          this.model.subtotal = this.orderReturnList[i].subtotal;
+          this.model.pocode = this.orderReturnList[i].pocode;
+          this.model.productcode = this.orderReturnList[i].productcode;
+          this.model.invoicenumber = this.orderReturnList[i].invoicenumber;
+        }
+      }
+    },
+    (error) => { });
   }
 
 }

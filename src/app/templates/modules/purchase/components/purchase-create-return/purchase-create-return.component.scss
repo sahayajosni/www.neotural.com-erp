@@ -94,7 +94,7 @@ h5{
   height: 80%;
   border-radius: 5px;
 }
-.col-20{
+.col-30{
   float: left;
   width: 30%;
   margin-top: 6px;
@@ -104,7 +104,11 @@ h5{
   width: 50%;
   margin-top: 6px;
 }
-
+.col-40 {
+  float: left;
+  width: 40%;
+  margin-top: 6px;
+}
 .col-75 {
   float: left;
   width: 50%;
@@ -153,12 +157,13 @@ h5{
 }
 
 .save-button {
-  width: 250px;
+  width: 100%;
   height: 40px;
   color: white;
   background: $btn-bg;
   border: 1px solid $btn-bg;
   border-radius: 20px;
+  margin-bottom: 20px;
 }
 .left-arrow {
   font-size: 25px;
@@ -199,6 +204,23 @@ h5{
   background-color: #6E7D87;
   border: 1px solid #6E7D87;
   cursor: not-allowed;
+}
+select,input{
+  border: 1px solid #4d6573;
+}
+#selected-box{
+  width: 75%;
+  background: #253F4B;
+  color:$h2-bg;
+  margin-bottom: 15px;
+  height: 32px;
+  padding: 0px 5px;
+}
+#options-box{
+  width: 75%;
+  height: 1.5rem;
+  background: none;
+  color:$h2-bg;
 }
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */

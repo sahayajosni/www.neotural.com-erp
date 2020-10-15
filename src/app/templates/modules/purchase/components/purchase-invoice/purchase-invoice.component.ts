@@ -117,6 +117,30 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
     }
   }
 
+  getaddPartialStyle() {
+    if (!this.isOrderPartial) {
+      let myStyles = {
+        color: "gray",
+        background: "#1A2D39",
+        border: "1px solid #1A2D39",
+        display: "none",
+      };
+      return myStyles;
+    }
+  }
+
+  getaddReturnStyle() {
+    if (!this.isOrderReturn) {
+      let myStyles = {
+        color: "gray",
+        background: "#1A2D39",
+        border: "1px solid #1A2D39",
+        display: "none",
+      };
+      return myStyles;
+    }
+  }
+
   getReceivedStyle() {
     if (!this.isDisableReceived) {
       let myStyles = {
@@ -156,9 +180,20 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
             this.isDisableReceived = false;
           }
           if (status === "Received" && this.isCheckedArr[0].checked) {
-            this.isAddStock = true;
-            this.isOrderPartial = true;
-            this.isOrderReturn = true;
+            if(item.pophasestatus === "Returned"){
+              this.isAddStock = false;
+              this.isOrderPartial = false;
+              this.isOrderReturn = true;
+            }else if(item.pophasestatus == "Partial" || item.pophasestatus == "Completed"){
+              this.isAddStock = false;
+              this.isOrderPartial = false;
+              this.isOrderReturn = false;
+            }else{
+              this.isAddStock = true;
+              this.isOrderPartial = true;
+              this.isOrderReturn = true;
+            }
+            
           } else {
             this.isAddStock = false;
             this.isOrderPartial = false;

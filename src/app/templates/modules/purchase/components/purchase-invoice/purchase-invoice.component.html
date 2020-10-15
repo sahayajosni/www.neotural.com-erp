@@ -12,13 +12,13 @@
 
     <button [disabled]="!isOrderReturn ? true:false"
       (click)="returnOrder()" placement="bottom" ngbTooltip="Return Order" triggers="hover"
-      class="create-button" [ngStyle]="getaddStockStyle()">
+      class="create-button" [ngStyle]="getaddReturnStyle()">
         Return 
     </button> 
 
     <button [disabled]="!isOrderPartial ? true:false"
       (click)="addPartialStock()" placement="bottom" ngbTooltip="Add Partial Stock" triggers="hover"
-      class="create-button" [ngStyle]="getaddStockStyle()">
+      class="create-button" [ngStyle]="getaddPartialStyle()">
         Partial
     </button> 
 
