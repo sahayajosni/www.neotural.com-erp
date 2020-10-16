@@ -68,7 +68,7 @@ export class StockListComponent implements OnInit {
 		);
 	}
 
-	editStock(c: any){
+	/* editStock(c: any){
 		c.editable = !c.editable;
 	}
 
@@ -101,7 +101,7 @@ export class StockListComponent implements OnInit {
 				}); 
 			}
 		); 
-	}
+	} */
 
 	onSearchChange(searchValue: string): void {  
 		this.stockList = this.filterstockList.filter(employee =>
