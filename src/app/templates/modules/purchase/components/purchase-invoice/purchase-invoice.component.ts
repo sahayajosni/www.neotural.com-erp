@@ -276,6 +276,8 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
         this.invArr = [];
         this.isAddStock = false;
         this.isDisableReceived = false;
+        this.isOrderPartial = false;
+        this.isOrderReturn = false;
         this.getInvoiceLists();
       },
       (error) => {
@@ -312,7 +314,41 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
     }, (reason) => {
       this.ngOnInit();
     }); 
-     this.checkedInfo.target.checked = false;
+    this.isCheckedArr = [];
+    this.invArr = [];
+    this.isAddStock = false;
+    this.isDisableReceived = false;
+    this.isOrderPartial = false;
+    this.isOrderReturn = true;
+  }
+
+  addPartialOrder(){
+    this.model.invoiceNumber = this.invArr[0].invoicenumber;
+    this.purchaseservice.addPartialOrder(this.model.invoiceNumber).subscribe(
+      (respose) => {
+        this.snackBar.open("Partial Order was added Successfully", "", {
+            panelClass: ["success"],
+            verticalPosition: "top",
+          }
+        );
+        this.isCheckedArr = [];
+        this.invArr = [];
+        this.isAddStock = false;
+        this.isDisableReceived = false;
+        this.getInvoiceLists();
+      },
+      (error) => {
+        setTimeout(() => {
+          this.snackBar.open(
+            "Network error: server is temporarily unavailable", "",
+            {
+              panelClass: ["error"],
+              verticalPosition: "top",
+            }
+          );
+        });
+      }
+    );
   }
 
 }

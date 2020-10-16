@@ -204,4 +204,11 @@ export class PurchaseService {
     getOrderReturnList(invoicenumber: string){
         return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.getOrderReturnList+'?invoicenumber='+invoicenumber}`);
     }
+
+    addPartialOrder(invoiceNumber:String) {
+        return this.http.post(
+            `${environment.apiUrl}${API_ENDPOINTS.addPartialOrder}`,
+            invoiceNumber
+        )
+    }
 }

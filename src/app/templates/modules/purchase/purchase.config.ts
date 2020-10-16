@@ -31,4 +31,5 @@ export const API_ENDPOINTS = {
   POSTATUS_RECEIVED:`/purchase/poStatusReceived`,
 
   getOrderReturnList: `/purchase/loadReturnPO`,
+  addPartialOrder: `/purchase/addPartialOrder`,
 };
