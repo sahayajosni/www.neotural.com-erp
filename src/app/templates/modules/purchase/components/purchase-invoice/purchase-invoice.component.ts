@@ -37,8 +37,8 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
   
 
   ngOnInit() { 
-      this.getInvoiceLists();
-     // this.removeScrollBar();
+    this.getInvoiceLists();
+    // this.removeScrollBar();
   }
 
   ngOnDestroy() {
@@ -55,6 +55,10 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
   } */
   getInvoiceLists() {
     let invoicenumber = "All";
+    this.isAddStock = false;
+    this.isDisableReceived = false;
+    this.isOrderReturn = false;
+    this.isOrderPartial = false;
     this.purchaseservice.load(invoicenumber).subscribe(res => { 
       this.invoiceList = res;
       this.poinvoiceList = this.invoiceList;
@@ -245,8 +249,7 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
         );
         this.isCheckedArr = [];
         this.invArr = [];
-        this.isAddStock = false;
-        this.isDisableReceived = false;
+        this.checkedInfo.target.checked = false;
         this.getInvoiceLists();
       },
       (error) => {
@@ -274,10 +277,7 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
         );
         this.isCheckedArr = [];
         this.invArr = [];
-        this.isAddStock = false;
-        this.isDisableReceived = false;
-        this.isOrderPartial = false;
-        this.isOrderReturn = false;
+        this.checkedInfo.target.checked = false;
         this.getInvoiceLists();
       },
       (error) => {
@@ -312,14 +312,11 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
     modalRef.result.then((result) => {
      
     }, (reason) => {
-      this.ngOnInit();
+      this.isCheckedArr = [];
+      this.invArr = [];
+      this.checkedInfo.target.checked = false;
+      this.getInvoiceLists();
     }); 
-    this.isCheckedArr = [];
-    this.invArr = [];
-    this.isAddStock = false;
-    this.isDisableReceived = false;
-    this.isOrderPartial = false;
-    this.isOrderReturn = true;
   }
 
   addPartialOrder(){
@@ -333,8 +330,7 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
         );
         this.isCheckedArr = [];
         this.invArr = [];
-        this.isAddStock = false;
-        this.isDisableReceived = false;
+        this.checkedInfo.target.checked = false;
         this.getInvoiceLists();
       },
       (error) => {
