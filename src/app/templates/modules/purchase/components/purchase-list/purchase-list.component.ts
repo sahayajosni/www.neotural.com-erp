@@ -269,7 +269,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
     const modalRef = this.modalService.open(PurchaseAddComponent, { windowClass: 'modal-class'});
     let data: any;
     if (id !== null) {
-      this.title = "Edit Purchase Order";
+      this.title = "Edit Place Order";
       this.button = "Update";
       item.dialogTitle = this.title;
       item.dialogText = this.button;
@@ -408,8 +408,8 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
   createInvoice() {
     let data: any;
     data = {
-      dialogPaneTitle: "Orders List",
-      dialogInvoiceTitle: "Create Purchase Order",
+      dialogPaneTitle: "Pending for Purchase",
+      dialogInvoiceTitle: "Purchase Order",
       dialogText: "Create",
       invoiceItems: this.prodArr,
       venderName: this.prodArr[0].vendorname,

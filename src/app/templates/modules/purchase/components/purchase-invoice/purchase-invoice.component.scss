@@ -86,11 +86,11 @@ input[type=checkbox]:before {
   content: "";
   display: block;
   position: absolute;
-  width: 18px;
-  height: 19px;
-  top: -2px;
-  left: 0px;
-  border: 1px solid #1186aa;
+  width: 20px;
+  height: 20px;
+  top: -3px;
+  left: 0;
+  border: 1px solid $btn-bg;
   //border: 2px solid $header-bg;
   border-radius: 0px;
   background-color: $table-invoived-row-bg;
