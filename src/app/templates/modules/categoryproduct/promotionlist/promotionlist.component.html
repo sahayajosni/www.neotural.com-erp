@@ -20,7 +20,25 @@
   <br/>
   <!--  FreeGift Table Start -->
   <div *ngIf="freegiftTable">
-    <kendo-grid id="grid" class="k-grid"
+    <table class="table" id="table">
+      <thead>
+        <tr>
+          <th>Category Name</th>
+          <th>Product Name</th>
+          <th>Free Gift</th>
+          <th>Promotion Period</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let f of freegiftList; let i = index"> 
+        <tr>
+          <td>{{f.categorycode}}</td>
+          <td>{{f.productname}}</td>
+          <td>{{f.freegift}}</td>
+          <td>{{f.fromdate_promotionperiod | date : 'dd-MM-yyyy'}} &nbsp; to &nbsp; {{f.todate_promotionperiod | date : 'dd-MM-yyyy'}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <kendo-grid id="grid" class="k-grid"
         [kendoGridBinding]="freegiftgridView"
         kendoGridSelectBy="id"
         [selectedKeys]="freegiftSelection"
@@ -67,7 +85,7 @@
         
         <kendo-grid-pdf fileName="FreeGift.pdf" [repeatHeaders]="true"></kendo-grid-pdf>
         <kendo-grid-excel fileName="FreeGift.xlsx"></kendo-grid-excel>
-    </kendo-grid>
+    </kendo-grid> -->
     
   </div>
   <!--  FreeGift Table End -->
@@ -80,7 +98,7 @@
         <h4>Discount List</h4> 
       </div>
     </div> -->
-    <!-- <table class="table" id="table">
+    <table class="table" id="table">
       <thead>
         <tr>
           <th>Category Name</th>
@@ -97,20 +115,8 @@
           <td>{{d.fromdate_promotionperiod | date : 'dd-MM-yyyy'}} &nbsp; to &nbsp; {{d.todate_promotionperiod | date : 'dd-MM-yyyy'}}</td>
         </tr>
       </tbody>
-    </table> -->
-    <!-- <kendo-grid
-        [kendoGridBinding]="gridView"
-        kendoGridSelectBy="id"
-        [selectedKeys]="mySelection"
-        [pageSize]="20"
-        [pageable]="true"
-        [sortable]="true"
-        [groupable]="true"
-        [reorderable]="true"
-        [resizable]="true"
-        [height]="480"
-        [columnMenu]="{ filter: true }" > -->
-      <kendo-grid id="grid" class="k-grid"
+    </table>
+    <!-- <kendo-grid id="grid" class="k-grid"
         [kendoGridBinding]="gridView"
         kendoGridSelectBy="id"
         [selectedKeys]="mySelection"
@@ -160,7 +166,7 @@
         <kendo-grid-pdf fileName="Discount.pdf" [repeatHeaders]="true"></kendo-grid-pdf>
         <kendo-grid-excel fileName="Discount.xlsx"></kendo-grid-excel>
     </kendo-grid>
-  </div>
+  </div> -->
   <!--  Discount Table End -->
 </div>
 

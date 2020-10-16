@@ -7,10 +7,9 @@ import {
 
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { CategoryproductService } from '../services/categoryproduct.service';
-import { Category, Product } from '../../../../core/common/_models';
-import { PrintDialogService } from "src/app/core/services/print-dialog/print-dialog.service";
-import {MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
-import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
+import { Product } from '../../../../core/common/_models';
+import { MatDialog } from "@angular/material";
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 import { DataBindingDirective } from '@progress/kendo-angular-grid';
@@ -22,16 +21,17 @@ import { process } from '@progress/kendo-data-query';
   styleUrls: ["./promotionlist.component.scss"]
 })
 export class PromotionListComponent implements OnInit {
-	@ViewChild(DataBindingDirective,{static:false}) dataBinding: DataBindingDirective;
-    public gridData: any[];
-    public gridView: any[];
-    public mySelection: string[] = [];
+	//@ViewChild(DataBindingDirective,{static:false}) dataBinding: DataBindingDirective;
+    //public gridData: any[];
+    //public gridView: any[];
+    //public mySelection: string[] = [];
 
-	public freegiftgridData: any[];
-    public freegiftgridView: any[];
-    public freegiftSelection: string[] = [];
+	//public freegiftgridData: any[];
+    //public freegiftgridView: any[];
+    //public freegiftSelection: string[] = [];
 
-	constructor(private router: Router,
+	constructor(
+		private router: Router,
 		private dialog: MatDialog,
 		private catprodservice: CategoryproductService,
 		private snackBar: MatSnackBar,
@@ -77,8 +77,8 @@ export class PromotionListComponent implements OnInit {
 			.subscribe(
 			data => {
 				this.freegiftList = data;
-				this.freegiftgridData = this.freegiftList;
-				this.freegiftgridView = this.freegiftgridData;
+				//this.freegiftgridData = this.freegiftList;
+				//this.freegiftgridView = this.freegiftgridData;
 				if(this.freegiftList.length == 0){
 					this.freegiftTable = false;
 				}else{
@@ -96,7 +96,7 @@ export class PromotionListComponent implements OnInit {
 		);
 	}
 
-	public onFreegiftFilter(inputValue: string): void {
+	/* public onFreegiftFilter(inputValue: string): void {
         this.freegiftgridView = process(this.freegiftgridData, {
 	        filter: {
                 logic: "or",
@@ -131,7 +131,7 @@ export class PromotionListComponent implements OnInit {
         }).data;
 
         this.dataBinding.skip = 0;
-	}
+	} */
 
 	loadDiscount(){
 		this.freegiftTable = false;
@@ -140,8 +140,8 @@ export class PromotionListComponent implements OnInit {
 			.subscribe(
 			data => {
 				this.discountList = data;
-				this.gridData = this.discountList;
-				this.gridView = this.gridData;
+				//this.gridData = this.discountList;
+				//this.gridView = this.gridData;
 				if(this.discountList.length == 0){
 					this.discountTable = false;
 				}else{
@@ -159,7 +159,7 @@ export class PromotionListComponent implements OnInit {
 		);
 	}	
 
-	public onDiscountFilter(inputValue: string): void {
+	/* public onDiscountFilter(inputValue: string): void {
         this.gridView = process(this.gridData, {
             filter: {
                 logic: "or",
@@ -194,7 +194,7 @@ export class PromotionListComponent implements OnInit {
         }).data;
 
         this.dataBinding.skip = 0;
-	}
+	} */
 	
 
 }
