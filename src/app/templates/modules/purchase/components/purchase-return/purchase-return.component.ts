@@ -101,12 +101,12 @@ export class PurchaseReturnComponent implements OnInit {
     }); 
   }
 
-  removeReturn(id:string,invoicenumber:string){
-    this.purchaseService.removePoReturn(id,invoicenumber)
+  removeReturn(id:string,invoicenumber:string,pocode:string){
+    this.purchaseService.removePoReturn(id,invoicenumber,pocode)
       .subscribe(
         data => {
           setTimeout(() => {
-            this.snackBar.open("Category Deleted Successfully", "", {
+            this.snackBar.open("Order Return Deleted Successfully", "", {
               panelClass: ["success"],
               verticalPosition: 'top'      
             });

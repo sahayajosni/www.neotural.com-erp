@@ -42,8 +42,8 @@
           <td>{{ret.returnStatus}}</td>
           <td>{{ret.itemStatus}}
             <span class="edit-delete-icon user-icon">
-              <span class="fas fa-trash" placement="bottom" ngbTooltip="Remove Purchase Return" triggers="hover" (click)="removeReturn(ret.id,ret.invoicenumber)"></span>
-              <span class="fas fa-pen" placement="bottom" ngbTooltip="Modify Purchase Reurn" triggers="hover" (click)="modifyReturn(ret.id, ret)" ></span>
+              <span class="fas fa-trash" placement="bottom" ngbTooltip="Remove Purchase Return" triggers="hover" (click)="removeReturn(ret.id,ret.invoicenumber,ret.pocode)"></span>
+              <!--  <span class="fas fa-pen" placement="bottom" ngbTooltip="Modify Purchase Reurn" triggers="hover" (click)="modifyReturn(ret.id, ret)" ></span> -->
             </span>
           </td>
         </tr>
