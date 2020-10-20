@@ -48,6 +48,14 @@ export class PromotionListComponent implements OnInit {
 	public discountTable = false;
 	public promotiondiv = false;
 
+	stockList:any = {};
+	public stockTable = false;
+	promotionArr = [];
+  	isCheckedArr = [];
+	  checkedInfo: any;
+	
+	isAddPromotion: boolean = false;
+
 	ngOnInit() {
 		this.loadDiscount();
 		this.SpinnerService.show();  
@@ -59,6 +67,19 @@ export class PromotionListComponent implements OnInit {
 		}, 100);
 	}
 
+	getAddPromotionStyle() {
+		if (!this.isAddPromotion) {
+			let myStyles = {
+			  color: "gray",
+			  background: "#1A2D39",
+			  border: "1px solid #1A2D39",
+			  display: "none",
+			};
+			return myStyles;
+		}
+	}
+	
+
 	getpromotionlist(promotionType: string){
 		this.promotiondiv = true;
 		if(promotionType == "discount"){
@@ -67,11 +88,14 @@ export class PromotionListComponent implements OnInit {
 			//let discountType = "discount";
 		}else if(promotionType == "freegift"){
 			this.loadFreegift();
+		}else if(promotionType == "all"){
+			this.loadAllStock();
 		}
 	}
 
 	loadFreegift(){
 		this.discountTable = false;
+		this.stockTable = false;
 		let discountType = "freegift";
 		this.catprodservice.loadDiscount(discountType)
 			.subscribe(
@@ -135,6 +159,7 @@ export class PromotionListComponent implements OnInit {
 
 	loadDiscount(){
 		this.freegiftTable = false;
+		this.stockTable = false;
 		let discountType = "discount";
 		this.catprodservice.loadDiscount(discountType)
 			.subscribe(
@@ -196,5 +221,81 @@ export class PromotionListComponent implements OnInit {
         this.dataBinding.skip = 0;
 	} */
 	
+	loadAllStock(){
+		this.freegiftTable = false;
+		this.discountTable = false;
+		let status = "Ready for Sales";
+		this.catprodservice.loadStock(status)
+			.subscribe(
+			data => {
+				this.stockList = data;
+				if(this.stockList.length == 0){
+					this.stockTable = false;
+				}else{
+					this.stockTable = true;
+				}
+			},
+			error => {
+				setTimeout(() => {
+					this.snackBar.open("Network error: server is temporarily unavailable", "", {
+						panelClass: ["error"],
+						verticalPosition: 'top'      
+					});
+				});   
+			}
+		);
+	}
+
+	rowSelected(index: number, item: any, isChecked: boolean) {
+		this.checkedInfo = isChecked;
+		if (isChecked) {
+			item.indexVal = index;
+			this.promotionArr.push(item);
+			this.isCheckedArr.push({ checked: true, indexVal: index });
+		  } else {
+			this.removeItem(this.isCheckedArr, index, "checked");
+			this.removeItem(this.promotionArr, index, "promotion");
+		  }
+	  
+		  if (this.promotionArr.length > 1) {
+			setTimeout(() => {
+			  this.snackBar.open("Select only one CheckBox", "", {
+				panelClass: ["warn"],
+				verticalPosition: "top",
+			  });
+			});
+			this.isAddPromotion = false;
+		  }else {
+			  this.isAddPromotion = false;
+		  }
+	}
+
+	removeItem(isCheckedArr: any, index: number, type: string) {
+		isCheckedArr.forEach((item, indexCheck) => {
+		  if (item.indexVal === index) {
+			isCheckedArr.splice(indexCheck, 1);
+		  }
+		});
+	
+		if (type === "checked") {
+		  this.isCheckedArr = isCheckedArr;
+		} else if (type === "promotion") {
+		  this.promotionArr = isCheckedArr;
+		}
+	}
+
+	getErrorMsg(isErrMsg: boolean) {
+		// console.log('isErrMsg', isErrMsg)
+		if (isErrMsg) {
+		  setTimeout(() => {
+			this.snackBar.open("Select only one vendor", "", {
+			  panelClass: ["warn"],
+			  verticalPosition: "top",
+			});
+		  });
+		} else {
+		  return "";
+		}
+	}
 
 }

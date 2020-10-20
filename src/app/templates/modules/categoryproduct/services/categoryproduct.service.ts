@@ -1,6 +1,6 @@
 ﻿import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Category, Product, Units } from "../../../../core/common/_models";
+import { Category, Product, Units, Stock } from "../../../../core/common/_models";
 import { Discount } from "../../../../core/common/_models/discount";
 import { environment } from "src/environments/environment";
 import { API_ENDPOINTS } from "./../categoryproduct.config";
@@ -184,5 +184,15 @@ export class CategoryproductService {
   removeUnit(id: string) {
      return this.http.delete<Units>(
        `${environment.apiUrl}${API_ENDPOINTS.removeUnit}`+'?id='+id);
-   }
+  }
+
+  loadStock(status: string) {
+    return this.http.get<Stock>(
+      `${environment.apiUrl}${API_ENDPOINTS.LOAD_STOCK}`.replace(
+        "{param}",
+        status
+      )
+    );
+  }
+
 }

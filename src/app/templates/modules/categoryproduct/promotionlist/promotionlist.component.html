@@ -7,13 +7,20 @@
     <input type="radio" class="regular-radio" value="discount" 
       [(ngModel)]="model.promotionType" #promotionType="ngModel" name="promotionType"
       (ngModelChange)="getpromotionlist(model.promotionType)">
-    <label for="damaged" id="radiolabel">Discount</label>
+    <label for="discount" id="radiolabel">Discount</label>
     &nbsp;&nbsp;&nbsp;
 
     <input type="radio" class="regular-radio" value="freegift" 
       [(ngModel)]="model.promotionType" #promotionType="ngModel" name="promotionType"
       (ngModelChange)="getpromotionlist(model.promotionType)">
-    <label for="expired" id="radiolabel">Freegift</label>
+    <label for="freegift" id="radiolabel">Freegift</label>
+    &nbsp;&nbsp;&nbsp;
+
+    <input type="radio" class="regular-radio" value="all" 
+      [(ngModel)]="model.promotionType" #promotionType="ngModel" name="promotionType"
+      (ngModelChange)="getpromotionlist(model.promotionType)">
+    <label for="all" id="radiolabel">All</label>
+
   </div>
 </div>
 <div *ngIf="promotiondiv">
@@ -168,5 +175,50 @@
     </kendo-grid>
   </div> -->
   <!--  Discount Table End -->
+</div>
+
+
+<div *ngIf="stockTable">
+  <button  
+    [disabled]="!isAddPromotion ? true:false" 
+    class="create-button" placement="left" ngbTooltip="Create Promotion" triggers="hover" 
+    [ngStyle]="getAddPromotionStyle()" (click)="addPromotion()"> Add 
+  </button>
+  <div style="height: 1.5rem;"></div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Invoice Date</th>
+        <th>Category Name</th>
+        <th>Product Code</th>
+        <th>Product Name</th>
+        <th>Stock</th>
+        <th></th>
+        <th>Status</th>
+        <th>Unit</th>
+      </tr>
+  </thead>
+  <tbody *ngFor="let c of stockList; let i = index"> 
+      <tr>
+        <td>
+          <div class="custom-control custom-checkbox">
+            <label>
+              <input type="checkbox" class="custom-control-input1" id="customCheck{{i}}" 
+              (click)="rowSelected(i,item, $event.target.checked)">
+            </label>
+          </div>
+        </td>
+        <td>{{c.invoicedate}}</td>
+        <td>{{c.category}}</td>
+        <td>{{c.itemcode}}</td>
+        <td>{{c.itemname}}</td>
+        <td>{{c.recentStock}}</td>
+        <td></td>
+        <td>{{c.status}}</td>
+        <td>{{c.unit}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 

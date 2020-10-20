@@ -21,4 +21,6 @@ export const API_ENDPOINTS = {
   saveUnit: `/item/saveunits`,
   loadUnitList:'item/loadunits',
   removeUnit: `/item/removeUnit`, 
+  
+  LOAD_STOCK: `/stock/loadStock?status={param}`,
 };
