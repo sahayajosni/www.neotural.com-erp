@@ -12,6 +12,52 @@ import { SalesorderComponent } from "../salesorder/salesorder.component";
 import { SalesCreateInvoiceComponent } from "./../sales-create-invoice/sales-create-invoice.component";
 import { SalesCreateReturnComponent } from '../sales-create-return/sales-create-return.component';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+@Component({
+  selector: 'promotionlist',
+  styleUrls: ['./promotionlist.component.scss'],
+  templateUrl: './promotionlist.component.html', 
+})
+export class PromotionListComponent {
+  model: any = {};
+  promotionList: any = {};
+
+  constructor(
+    private salesService: SalesService,
+    private snackBar: MatSnackBar,
+    public activeModal: NgbActiveModal,
+  ) {
+
+  }
+
+  ngOnInit(){
+    this.getpromotionList();
+  }
+
+  getpromotionList(){
+    let discount="all"
+    this.salesService.loadPromotion(discount)
+    .subscribe(
+      data => {
+        this.promotionList = data;
+      },
+      error => {
+        setTimeout(() => {
+          this.snackBar.open("Network error: server is temporarily unavailable", "", {
+            panelClass: ["error"],
+            verticalPosition: 'top'      
+          });
+        });  
+      }
+    );
+  }
+
+  closeModal() {
+    this.activeModal.close();
+  }
+
+}
 
 @Component({
   selector: "app-saleslist",
@@ -553,6 +599,16 @@ export class SalesListComponent implements OnInit, OnDestroy {
 
     this.modalService.open(detailContent, { windowClass: 'modal-class'});
 
+  }
+
+  getPromotion(){
+    const modalRef = this.modalService.open(PromotionListComponent, { windowClass: 'promotion-class'});
+    let data: any;
+    data = {
+      customername: this.prodArr[0].customername,
+    };
+
+    modalRef.componentInstance.fromParent = data;
   }
 
 }

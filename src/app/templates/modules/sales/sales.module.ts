@@ -52,7 +52,7 @@ import {
 } from "./components/salesinvoice/salesinvoice.component";
 import { SalesreturnComponent } from "./components/salesreturn/salesreturn.component";
 import { SalesreportComponent } from "./components/salesreport/salesreport.component";
-import { SalesListComponent } from "./components/sales-list/sales-list.component";
+import { SalesListComponent,PromotionListComponent } from "./components/sales-list/sales-list.component";
 import { SalesCreateInvoiceComponent } from './components/sales-create-invoice/sales-create-invoice.component';
 import { SalesCreateReturnComponent } from './components/sales-create-return/sales-create-return.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -68,7 +68,8 @@ import { SalesTemplateComponent } from './components/sales-template/sales-templa
     SalesListComponent,
     SalesCreateInvoiceComponent,
     SalesCreateReturnComponent,
-    SalesTemplateComponent
+    SalesTemplateComponent,
+    PromotionListComponent
   ],
   imports: [
     CommonModule,
@@ -122,7 +123,7 @@ import { SalesTemplateComponent } from './components/sales-template/sales-templa
 
   ],
   providers: [SalesService, PurchaseService],
-  entryComponents: [SalesorderComponent,
-    SalesCreateInvoiceComponent,SalesCreateReturnComponent,SalesTemplateComponent]
+  entryComponents: [SalesorderComponent,SalesCreateInvoiceComponent,
+    SalesCreateReturnComponent,SalesTemplateComponent,PromotionListComponent]
 })
 export class SalesModule {}

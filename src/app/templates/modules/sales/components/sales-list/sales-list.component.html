@@ -22,8 +22,12 @@
         Invoice
       </button>
 
+      <button (click)="getPromotion()" [disabled]="isAddSalesOrder" class="create-button" placement="bottom" 
+        ngbTooltip="Search Promotion" triggers="hover" [ngStyle]="getAddSalesOrderStyle()"> Promotion
+      </button> 
+
       <button  (click)="addSalesOrder(null,null)" [disabled]="isAddSalesOrder" class="create-button" 
-      placement="bottom" ngbTooltip="Add Sales Order" triggers="hover" [ngStyle]="getAddSalesOrderStyle()">
+        placement="bottom" ngbTooltip="Add Sales Order" triggers="hover" [ngStyle]="getAddSalesOrderStyle()">
         <span class="fas fa-plus"></span> Add
       </button> 
     </div>

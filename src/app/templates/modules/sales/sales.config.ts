@@ -22,4 +22,7 @@ export const API_ENDPOINTS = {
   lOADRETURN:`/sales/loadReturn`,
   getTemplateDetails: `/sales/getTemplateDetails`,
   addTemplateDetails: `/sales/addTemplateDetails`,
+
+  
+  discountload: `/item/discountload`, 
 };

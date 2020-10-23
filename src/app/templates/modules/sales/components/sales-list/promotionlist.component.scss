@@ -1,0 +1,137 @@
+@import "_base";
+
+h4{ 
+  font-size: $header-label; 
+}
+
+::ng-deep .mat-dialog-container {
+  background:$po-order-form-bg;
+}
+
+/* Just common table stuff. Really. */
+table  { 
+  border-collapse: collapse; 
+  width: 95%; 
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 1rem;
+}
+th { 
+  background:$table-header-bg; 
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+thead {
+  background-color: $table-header-bg;
+}
+tbody {
+  background-color:$table-invoived-row-bg; 
+}
+.table>thead>tr>th{
+  font-size: $table-font-size;
+  border-top: 0px solid $main-bg;
+  border-bottom:10px solid $main-bg;
+  color:$table-header-font;
+} 
+.table>tbody>tr>td{
+  font-size: $table-font-size;
+  border-top:5px solid $main-bg;   
+  color:$table-row-font-color;
+  vertical-align: middle;
+  height: 60px;
+}
+.table > tbody > tr:hover {
+  background-color: $header-bg;
+}
+.table > tbody > tr:hover, .table > tbody > tr:hover span  {
+  background-color: $header-bg;
+}
+table tbody tr td span{
+  display: block;
+}
+
+table tbody tr:hover td span{
+  display: block !important;
+}
+tr[ng-click] {
+  cursor: pointer;
+}
+::ng-deep .promotion-class .modal-dialog {
+  max-width: 90%;
+  width: 80% !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+.modal-header,.modal-body {
+  background:$po-order-form-bg;
+  padding: 0.5rem;
+  border: 1px solid $po-order-form-bg;
+}
+.modal-footer {
+  border: 1px solid $po-order-form-bg;
+}
+::ng-deep .promotion-class .modal-content {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background:$po-order-form-bg;
+}
+.close-x{
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+}
+
+// iPhone 6, 7, & 8 in portrait & landscape
+@media only screen and (min-width: 375px) and (max-width: 667px) { 
+  .table>tbody>tr>td{
+	font-size:10px;
+  }
+  .table>thead>tr>th{
+    font-size:10px;
+  } 
+}
+
+ // iPhone 6, 7, & 8 Plus in portrait & landscape
+@media only screen and (min-width: 414px) and (max-width: 736px) { 
+  .table>tbody>tr>td{
+	font-size:10px;
+  }
+  .table>thead>tr>th{
+    font-size:10px;
+  } 
+}
+
+
+ // iPhone X in landscape & iPhone X in portrait
+@media only screen and (min-width: 375px) and (max-width: 812px) { 
+  .table>tbody>tr>td{
+	font-size:10px;
+  }
+  .table>thead>tr>th{
+    font-size:10px;
+  } 
+}
+
+
+// iPhone 5 & 5S in portrait & landscape
+@media only screen and (min-width: 320px) and (max-width: 568px) { 
+  .table>tbody>tr>td{
+	font-size:10px;
+  }
+  .table>thead>tr>th{
+    font-size:10px;
+  } 
+}
+// iPhone 2G-4S in portrait
+@media only screen and (min-width: 320px) and (max-width: 480px) { 
+  .table>tbody>tr>td{
+	font-size:10px;
+  }
+  .table>thead>tr>th{
+    font-size:10px;
+  } 
+}
+

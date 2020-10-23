@@ -160,4 +160,9 @@ export class SalesService {
         )
     }
 
+    loadPromotion(discount: string) {
+        return this.http.get<Sales>(`${environment.apiUrl}${API_ENDPOINTS.discountload+'?discountType='+discount}`);
+    }
+    
+
 }
