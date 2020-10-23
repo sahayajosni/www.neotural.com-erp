@@ -38,11 +38,11 @@ export class PromotionListComponent implements OnInit {
 		private catprodservice: CategoryproductService,
 		private snackBar: MatSnackBar,
 		private SpinnerService: NgxSpinnerService,
-    public activeModal: NgbActiveModal,
-    config: NgbModalConfig, private modalService: NgbModal,
+    	public activeModal: NgbActiveModal,
+    	config: NgbModalConfig, private modalService: NgbModal,
 	) { 
 		config.backdrop = 'static';
-    config.keyboard = false;
+    	config.keyboard = false;
 	}
 
 	discountList:any = {};

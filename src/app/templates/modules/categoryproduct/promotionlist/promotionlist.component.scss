@@ -196,6 +196,10 @@ input[type=checkbox]:checked:before{
   font-style: normal;
   font-size: $table-font-size;
 }
+
+#stockid{
+  height: 1rem;
+}
 // iPhone media query start
 
 // iPhone 6, 7, & 8 in portrait & landscape
