@@ -51,16 +51,20 @@ import { UnitsComponent } from './units/units.component';
 import { AddunitsComponent } from './addunits/addunits.component';
 import { CategoryComponent } from './category/category.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule,NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from "ngx-bootstrap";
+
 import { PromotionListComponent } from './promotionlist/promotionlist.component';
 import { ProductSlideComponent } from './productslide/productslide.component';
 
 import { GridModule, PDFModule, ExcelModule } from '@progress/kendo-angular-grid';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 
+import { PromotionAddComponent } from './promotionadd/promotionadd.component';
+
 @NgModule({
   declarations: [AddnewcategoryComponent,CategoryItemComponent,CategoryeditdeleteComponent,AddpromotionComponent,DiscounteditComponent, DiscountdeleteComponent,AddnewproductComponent,ProductviewComponent,ProducteditComponent,AllproducteditComponent,CategorytableComponent, 
-      UnitsComponent, AddunitsComponent, CategoryComponent,PromotionListComponent,ProductSlideComponent],
+      UnitsComponent, AddunitsComponent, CategoryComponent,PromotionListComponent,ProductSlideComponent,PromotionAddComponent],
   imports: [
     FormsModule,
     MatFormFieldModule,
@@ -116,11 +120,15 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
     InputsModule,
     PDFModule,
     ExcelModule,
+    
+    ModalModule.forRoot(),
+    NgbModule
+    //NgbModule.forRoot()
   ],
   exports: [CategoryItemComponent],
   bootstrap: [CategoryItemComponent],
   entryComponents: [AddnewcategoryComponent,AddpromotionComponent,DiscounteditComponent, CategoryeditdeleteComponent,DiscountdeleteComponent,AddnewproductComponent,ProductviewComponent,ProducteditComponent,AllproducteditComponent],
-  providers: [CategoryproductService,VendorService]
+  providers: [CategoryproductService,VendorService,NgbActiveModal]
 })
 export class CategoryproductModule { 
   constructor(private dialog: MatDialog) {}

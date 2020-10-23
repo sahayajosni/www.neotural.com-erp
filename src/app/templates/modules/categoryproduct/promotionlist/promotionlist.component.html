@@ -179,11 +179,16 @@
 
 
 <div *ngIf="stockTable">
-  <button  
-    [disabled]="!isAddPromotion ? true:false" 
-    class="create-button" placement="left" ngbTooltip="Create Promotion" triggers="hover" 
-    [ngStyle]="getAddPromotionStyle()" (click)="addPromotion()"> Add 
-  </button>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-8">
+      <button  
+        [disabled]="!isAddPromotion ? true:false" 
+        class="create-button" placement="left" ngbTooltip="Create Promotion" triggers="hover" 
+        [ngStyle]="getAddPromotionStyle()" (click)="addPromotion('Add Promotion','all')"> Add 
+      </button>
+    </div>
+  </div>
   <div style="height: 1.5rem;"></div>
   <table class="table">
     <thead>
@@ -199,7 +204,7 @@
         <th>Unit</th>
       </tr>
   </thead>
-  <tbody *ngFor="let c of stockList; let i = index"> 
+  <tbody *ngFor="let item of stockList; let i = index"> 
       <tr>
         <td>
           <div class="custom-control custom-checkbox">
@@ -209,14 +214,14 @@
             </label>
           </div>
         </td>
-        <td>{{c.invoicedate}}</td>
-        <td>{{c.category}}</td>
-        <td>{{c.itemcode}}</td>
-        <td>{{c.itemname}}</td>
-        <td>{{c.recentStock}}</td>
+        <td>{{item.invoicedate}}</td>
+        <td>{{item.category}}</td>
+        <td>{{item.itemcode}}</td>
+        <td>{{item.itemname}}</td>
+        <td>{{item.recentStock}}</td>
         <td></td>
-        <td>{{c.status}}</td>
-        <td>{{c.unit}}</td>
+        <td>{{item.status}}</td>
+        <td>{{item.unit}}</td>
       </tr>
     </tbody>
   </table>

@@ -11,7 +11,9 @@ import { Product } from '../../../../core/common/_models';
 import { MatDialog } from "@angular/material";
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PromotionAddComponent } from './../promotionadd/promotionadd.component';
 import { DataBindingDirective } from '@progress/kendo-angular-grid';
 import { process } from '@progress/kendo-data-query';
 
@@ -36,8 +38,11 @@ export class PromotionListComponent implements OnInit {
 		private catprodservice: CategoryproductService,
 		private snackBar: MatSnackBar,
 		private SpinnerService: NgxSpinnerService,
+    public activeModal: NgbActiveModal,
+    config: NgbModalConfig, private modalService: NgbModal,
 	) { 
-		
+		config.backdrop = 'static';
+    config.keyboard = false;
 	}
 
 	discountList:any = {};
@@ -52,7 +57,7 @@ export class PromotionListComponent implements OnInit {
 	public stockTable = false;
 	promotionArr = [];
   	isCheckedArr = [];
-	  checkedInfo: any;
+	checkedInfo: any;
 	
 	isAddPromotion: boolean = false;
 
@@ -82,6 +87,8 @@ export class PromotionListComponent implements OnInit {
 
 	getpromotionlist(promotionType: string){
 		this.promotiondiv = true;
+		this.removeItem(this.isCheckedArr, 1, "checked");
+		this.removeItem(this.promotionArr, 1, "promotion");
 		if(promotionType == "discount"){
 			this.loadDiscount();
 			this.freegiftTable = false;
@@ -252,12 +259,12 @@ export class PromotionListComponent implements OnInit {
 			item.indexVal = index;
 			this.promotionArr.push(item);
 			this.isCheckedArr.push({ checked: true, indexVal: index });
-		  } else {
+		} else {
 			this.removeItem(this.isCheckedArr, index, "checked");
 			this.removeItem(this.promotionArr, index, "promotion");
-		  }
+		}
 	  
-		  if (this.promotionArr.length > 1) {
+	  if (this.promotionArr.length > 1) {
 			setTimeout(() => {
 			  this.snackBar.open("Select only one CheckBox", "", {
 				panelClass: ["warn"],
@@ -265,16 +272,20 @@ export class PromotionListComponent implements OnInit {
 			  });
 			});
 			this.isAddPromotion = false;
-		  }else {
-			  this.isAddPromotion = false;
-		  }
+		}else {
+			if (this.promotionArr.length == 1) {
+				this.isAddPromotion = true;
+			} else {
+				this.isAddPromotion = false;
+			}
+		}
 	}
 
 	removeItem(isCheckedArr: any, index: number, type: string) {
 		isCheckedArr.forEach((item, indexCheck) => {
-		  if (item.indexVal === index) {
-			isCheckedArr.splice(indexCheck, 1);
-		  }
+		  	if (item.indexVal === index) {
+				isCheckedArr.splice(indexCheck, 1);
+		  	}
 		});
 	
 		if (type === "checked") {
@@ -284,18 +295,24 @@ export class PromotionListComponent implements OnInit {
 		}
 	}
 
-	getErrorMsg(isErrMsg: boolean) {
-		// console.log('isErrMsg', isErrMsg)
-		if (isErrMsg) {
-		  setTimeout(() => {
-			this.snackBar.open("Select only one vendor", "", {
-			  panelClass: ["warn"],
-			  verticalPosition: "top",
-			});
-		  });
-		} else {
-		  return "";
+	addPromotion(title:string,show:string){
+		const modalRef = this.modalService.open(PromotionAddComponent, { windowClass: 'promotion-class'});
+		let data = {
+			title: title, 
+			key: show,
+			productname: this.promotionArr[0].itemname+'-'+this.promotionArr[0].itemcode,
+			categorycode: this.promotionArr[0].category+'-'+this.promotionArr[0].categorycode,
 		}
+		modalRef.componentInstance.fromParent = data;	
+		modalRef.result.then((result) => {
+
+		}, (reason) => {
+			this.removeItem(this.isCheckedArr, 1, "checked");
+			this.removeItem(this.promotionArr, 1, "promotion");
+			this.isAddPromotion = false;
+			this.isCheckedArr = [];
+		}); 
+													  
 	}
 
 }

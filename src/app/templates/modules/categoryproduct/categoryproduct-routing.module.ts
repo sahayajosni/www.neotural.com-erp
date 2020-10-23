@@ -19,6 +19,7 @@ import { AddunitsComponent } from './addunits/addunits.component';
 import { CategoryComponent } from './category/category.component';
 import { PromotionListComponent } from '././promotionlist/promotionlist.component';
 import { ProductSlideComponent } from './productslide/productslide.component';
+import { PromotionAddComponent } from './promotionadd/promotionadd.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'productslide',
     component: ProductSlideComponent,
+  },
+  {
+    path: 'promotionadd',
+    component: PromotionAddComponent
   }
 
 ];

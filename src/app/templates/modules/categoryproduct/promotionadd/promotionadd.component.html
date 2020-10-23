@@ -1,0 +1,149 @@
+<div class="modal-header">
+    <!-- <h4 class="modal-title" id="modal-basic-title">Hi there!</h4> -->
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="close-x">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <form name="addpromotionForm" (ngSubmit)="addpromotionForm.form.valid && savePromotion()"
+            #addpromotionForm="ngForm" novalidate> 
+            <h2 style="text-align: center;">{{title}}</h2>
+            <br/>
+            <div class="row">
+                <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-3 col-md-3 col-sm-3 col-lg-3">
+                            <p class="heading">Category</p>
+                        </div>
+                        <div class="col-1 col-md-1 col-sm-1 col-lg-1">
+                            <p class="heading">:</p>
+                        </div>
+                        <div class="col-8 col-md-8 col-sm-8 col-lg-8">
+                            <div style="margin: 5px 0px -3px -20px" >{{ this.model.categorycode }}</div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-3 col-md-3 col-sm-3 col-lg-3">
+                            <p class="heading">Product</p>
+                        </div>
+                        <div class="col-1 col-md-1 col-sm-1 col-lg-1">
+                            <p class="heading">:</p>
+                        </div>
+                        <div class="col-8 col-md-8 col-sm-8 col-lg-8">
+                            <div style="margin: 5px 0px -3px -20px" >{{ this.model.productname }}</div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-3 col-md-3 col-sm-3 col-lg-3">
+                            <p class="heading">Please Choose</p>
+                        </div>
+                        <div class="col-1 col-md-1 col-sm-1 col-lg-1">
+                            <p class="heading">:</p>
+                        </div>
+                        <div class="col-8 col-md-8 col-sm-8 col-lg-8">
+                            <div class="row">
+                                <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+                                    <input type="radio" class="regular-radio" value="freegift"
+                                        [(ngModel)]="model.discountType" #discountType="ngModel"
+                                        name="radiopromo" style="margin: 5px 0px -3px -20px" 
+                                        (change)="freediscountBox(model.discountType)" />
+                                    <label style="margin: 5px 0px 17px 8px">Free Gift</label>
+                                </div>
+                                <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+                                    <input type="radio" class="regular-radio" value="discount"
+                                        [(ngModel)]="model.discountType" #discountType="ngModel"
+                                        name="radiopromo" style="margin: 5px 0px -3px -20px" 
+                                        (change)="freediscountBox(model.discountType)" />
+                                    <label style="margin: 5px 0px 17px 8px">Discount</label>
+                                </div>
+                                <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+                                    <input type="radio" class="regular-radio" value="others"
+                                        [(ngModel)]="model.discountType" #discountType="ngModel"
+                                        name="radiopromo" style="margin: 5px 0px -3px -20px" 
+                                        (change)="freediscountBox(model.discountType)" />
+                                    <label style="margin: 5px 0px 17px 8px">Others</label>
+                                </div>
+                            </div>
+
+                            <div *ngIf="freegiftShow">
+                                <input type="text" id="inputBoxVal" name="freegift" 
+                                    [(ngModel)]="model.freegift" placeholder="Product Free Gift"
+                                    #freegift="ngModel" autocomplete="off" required />
+
+                                <div *ngIf="freegift.errors  && (freegift.dirty || freegift.touched) ||
+                                    (addpromotionForm.submitted && !freegift.valid )">
+                                    <span [hidden]="!freegift.errors.required" class="spanerror">
+                                        Required field cannot be left blank
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div *ngIf="discountShow">
+                                <input type="text" id="inputDis" name="discount" 
+                                    [(ngModel)]="model.discount" placeholder="%"
+                                    #discount="ngModel" readonly />
+
+                                <input type="text" id="inputQty" name="qty" 
+                                    [(ngModel)]="model.qty" placeholder="Discount Qty"
+                                    #qty="ngModel" autocomplete="off" required />
+                                <div *ngIf="qty.errors  && (qty.dirty || qty.touched) ||
+                                    (addpromotionForm.submitted && !qty.valid )">
+                                    <span [hidden]="!qty.errors.required" class="spanerror">
+                                        Required field cannot be left blank
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div *ngIf="otherShow">
+                                <input type="text" id="inputBoxVal" name="others" 
+                                    [(ngModel)]="model.others" placeholder="Custom Promotion"
+                                    #others="ngModel" autocomplete="off" required />
+
+                                <div *ngIf="others.errors  && (others.dirty || others.touched) ||
+                                    (addpromotionForm.submitted && !others.valid )">
+                                    <span [hidden]="!others.errors.required" class="spanerror">
+                                        Required field cannot be left blank
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-3 col-md-3 col-sm-3 col-lg-3">
+                            <p class="heading">Promotion Period</p>
+                        </div>
+                        <div class="col-1 col-md-1 col-sm-1 col-lg-1">
+                            <p class="heading">:</p>
+                        </div>
+                        <div class="col-8 col-md-8 col-sm-8 col-lg-8">
+                            <input type="date" id="promotion-periodbox" class="datepicker"
+                                [(ngModel)]="model.fromdate_promotionperiod" name="fromdate_promotionperiod" 
+                                #fromdate_promotionperiod="ngModel" autocomplete="off" />
+                            <label id="labelbar"> - </label>
+                            <input type="date" id="promotion-periodbox2" class="datepicker"
+                                [(ngModel)]="model.todate_promotionperiod" name="todate_promotionperiod"
+                                #todate_promotionperiod="ngModel"  autocomplete="off" />
+
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-4 col-md-4 col-sm-4 col-lg-4"></div>
+                        <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+                            <button id="save-btn" type="submit">Save</button>
+                        </div>
+                        <!--   <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+                            <button id="cancel-btn" (click)="close($event); false">Cancel</button>
+                        </div> -->
+                        <div class="col-2 col-md-2 col-sm-2 col-lg-2"></div>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </form>  
+    </div>
+</div>
