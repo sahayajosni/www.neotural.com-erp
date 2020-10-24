@@ -310,9 +310,13 @@ export class PromotionListComponent implements OnInit {
 			this.removeItem(this.isCheckedArr, 1, "checked");
 			this.removeItem(this.promotionArr, 1, "promotion");
 			this.isAddPromotion = false;
+			this.loadAllStock();
 			this.isCheckedArr = [];
-		}); 
-													  
+
+			let indexx = this.promotionArr.indexOf(this.promotionArr[0].discountcode);
+			this.promotionArr.splice(indexx, 1);
+		});
+		this.checkedInfo.target.checked = false;										
 	}
 
 }
