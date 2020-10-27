@@ -207,6 +207,8 @@ export class PurchaseInvoiceComponent implements OnInit, OnDestroy {
       });
     } else {
       this.isDisableReceived = false;
+      this.isOrderReturn = false;
+      this.isOrderPartial = false;
       this.isAddStock = false;
     }
   }
