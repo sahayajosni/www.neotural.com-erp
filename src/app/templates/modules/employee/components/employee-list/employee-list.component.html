@@ -9,8 +9,8 @@
       <button class="create-button" placement="bottom" ngbTooltip="Add New Employee" triggers="hover" style="float: left; margin-right: 10px; margin-top: 4px;" (click)="addEmployee()">
         <span class="fas fa-plus"></span> Add  
       </button>
-      <!-- <img src="assets/images/print.png" placement="bottom" ngbTooltip="Print Employee Table" triggers="hover" 
-        style="margin-right: 10px;" class="img-fluid logo" alt="print"/> -->
+      <img src="assets/images/print.png" placement="bottom" ngbTooltip="Print Employee Table" triggers="hover" 
+        style="margin-right: 10px;" class="img-fluid logo" alt="print" (click)="printData()" />
       <img src="assets/images/download.png" placement="bottom" ngbTooltip="Download Excel File" triggers="hover" 
         (click)="exportAsExcel()" class="img-fluid logo" alt="download" />
     </div>
@@ -26,7 +26,7 @@
 </div>
 
 <div class="row">
-  <div class="col-12">
+  <div class="col-12" id="printable">
     <!-- <div
     class="search-results"
     infiniteScroll
@@ -53,7 +53,7 @@
             <i class="fa fa-filter"></i>
           </th>
           <th class="txt-right">Phone</th>
-          <th></th>
+          <th id="notprint"></th>
           <th>Designation</th>
           <th>Joined Date</th>
           <th class="wid-95px">Status</th>
@@ -80,7 +80,7 @@
             <!-- <app-employee-report (closeDailyReport)="closePopup($event, i,'report')" *ngIf="showHideDailyReport[i]" [dailyReportItem]="item" [getDailyReportDetail]="getDailyReportDetail"></app-employee-report> -->
             {{item.phonenumber}}
           </td>
-          <td></td>
+          <td id="notprint"></td>
           <td>{{item.rank}}</td>
           <td>
             <!-- <app-employee-absence *ngIf="isShowHideAbsent[i]" [absenceItem]="item" (closeAbsencePopup)="closePopup($event, i,'absence')" [getAbsentDetail]="getAbsentDetail"></app-employee-absence>
@@ -88,7 +88,7 @@
             {{item.addeddate}}
           </td>
           <td class="wid-95px">{{item.status}}
-            <span class="edit-delete-icon user-icon">
+            <span class="edit-delete-icon user-icon" id="notprint">
               <span class="fas fa-list-alt" placement="bottom" ngbTooltip="Add Daily Report" triggers="hover" (click)="dailyReport(i, item)"></span>
               <button class="fas fa-user-clock" placement="bottom" ngbTooltip="Add Attendance" triggers="hover" (click)="checkinCheckout(i, item)" [disabled]="isDisableCheckin" [ngClass]="isDisableCheckin ? 'checkin-disabled' : ''"></button>
               <button class="fas fa-calendar-times" placement="bottom" ngbTooltip="Add Absent" triggers="hover" [disabled]="isDisableAbsent" [ngClass]="isDisableAbsent ? 'absent-disabled' : ''" (click)="absentPopup(i, item,2)"></button>

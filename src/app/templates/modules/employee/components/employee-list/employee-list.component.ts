@@ -561,5 +561,23 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1'); 
     XLSX.writeFile(wb, 'Employee.xlsx');  
   } 
+
+  printData() {  
+    var divToPrint = document.getElementById('printable');
+    var htmlToPrint = '' +
+      '<style type="text/css">' +
+      'table th,table td  {' +
+      'border:1px solid #000;padding:0.5em;' +
+      '}' +
+      '#notprint{ '+
+      '  display: none;' +
+      '}' +
+      '</style>';
+    htmlToPrint += divToPrint.outerHTML;
+    var popupWin = window.open('', '_blank', 'width=800,height=800');
+    popupWin.document.open();
+    popupWin.document.write('<html><body onload="window.print()">' + htmlToPrint + '</html>');
+    popupWin.document.close();
+  }  
   
 }
