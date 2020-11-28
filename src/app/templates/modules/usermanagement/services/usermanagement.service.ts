@@ -46,6 +46,13 @@ export class UserManagementService {
   remove(id: string) {
      return this.http.delete<Usermgt>(
        `${environment.apiUrl}${API_ENDPOINTS.removeUser}`+'?id='+id);
-   }
+  }
+
+  update(userArray: Array<any>){
+    return this.http.post(
+        `${environment.apiUrl}${API_ENDPOINTS.update}`,
+        userArray
+    );     
+  }
  
 }

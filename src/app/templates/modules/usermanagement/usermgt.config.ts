@@ -5,5 +5,6 @@ export const API_ENDPOINTS = {
     load: `/userMgt/load`,
     getMenuName: `/userMgt/getMenuName`, 
     getSubMenuName: `/userMgt/getSubMenuName`, 
-    removeUser: `/userMgt/removeUser`
+    removeUser: `/userMgt/removeUser`,
+    update: `/userMgt/update`,
 };

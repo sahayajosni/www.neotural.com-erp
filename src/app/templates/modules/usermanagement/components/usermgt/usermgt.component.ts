@@ -21,6 +21,8 @@ export class UserManagementComponent implements OnInit {
   menuList: any = {};
   submenuList:any = {};
   enable: boolean;
+
+  userArray: Array<any> = [];
   
   constructor(
     private dialog: MatDialog,
@@ -69,8 +71,39 @@ export class UserManagementComponent implements OnInit {
 
     }
   }
-  openScrollableContent(longContent) {
+  openScrollableContent(longContent,id:string) {
     this.modalService.open(longContent, { windowClass: 'modal-class'});
+    this.userMgtService.load().subscribe(
+      data => { 
+        this.userList = data;
+        for(let i=0; i<this.userList.length;i++){
+          if(this.userList[i].id == id){
+            this.model.menuItem1 = this.userList[i].menuItem1;
+            this.model.menuItem2 = this.userList[i].menuItem2;
+            this.model.menuItem3 = this.userList[i].menuItem3;
+            this.model.menuItem4 = this.userList[i].menuItem4;
+            this.model.purchasesubmenuItem1 = this.userList[i].purchasesubmenu1;
+            this.model.purchasesubmenuItem2 = this.userList[i].purchasesubmenu2;
+            this.model.purchasesubmenuItem3 = this.userList[i].purchasesubmenu3;
+            this.model.menuItem5 = this.userList[i].menuItem5;
+            this.model.productsubmenuItem1 = this.userList[i].productsubmenu1;
+            this.model.productsubmenuItem2 = this.userList[i].productsubmenu2;
+            this.model.productsubmenuItem3 = this.userList[i].productsubmenu3;
+            this.model.menuItem6 = this.userList[i].menuItem6;
+            this.model.salessubmenuItem1 = this.userList[i].salessubmenu1;
+            this.model.salessubmenuItem2 = this.userList[i].salessubmenu2;
+            this.model.salessubmenuItem3 = this.userList[i].salessubmenu3;
+            this.model.salessubmenuItem4 = this.userList[i].salessubmenu4;
+            this.model.salessubmenuItem5 = this.userList[i].salessubmenu5;
+            this.model.menuItem7 = this.userList[i].menuItem7;
+            this.model.menuItem8 = this.userList[i].menuItem8;
+          }
+        }
+      },
+      error => {
+        this.SpinnerService.hide();
+      }
+    );
   }
   load(){
     this.userMgtService.load().subscribe(
@@ -270,6 +303,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   removeuser(id:string){
+    //$scope.submenuList[id] == id;
     this.userMgtService.remove(id)
       .subscribe(
         data => {
@@ -291,6 +325,277 @@ export class UserManagementComponent implements OnInit {
       }
     );
   }
+
   
+  getupdatemenu0(isMenuChecked: boolean){
+    console.log("Menu1 Check Boolean --->"+isMenuChecked);
+    this.model.menuItem1 = '';
+    if(isMenuChecked == true){
+      this.model.menuItem1 = 'MEN10000';
+    }else{
+      this.model.menuItem1 = 'MEN0';
+    }
+    console.log("Menu1 Code --->"+this.model.menuItem1);
+  }
+
+  getupdatemenu1(isMenuChecked: boolean){
+    console.log("Menu2 Check Boolean --->"+isMenuChecked);
+    this.model.menuItem2 = '';
+    if(isMenuChecked == true){
+      this.model.menuItem2 = 'MEN10001';
+    }else{
+      this.model.menuItem2 = 'MEN0';
+    }
+    console.log("Menu2 Code --->"+this.model.menuItem2);
+  }
+
+  getupdatemenu2(isMenuChecked: boolean){
+    console.log("Menu3 Check Boolean --->"+isMenuChecked);
+    this.model.menuItem3 = '';
+    if(isMenuChecked == true){
+      this.model.menuItem3 = 'MEN10002';
+    }else{
+      this.model.menuItem3 = 'MEN0';
+    }
+    console.log("Menu3 Code --->"+this.model.menuItem3);
+  }
+
+  getupdatemenu3(isMenuChecked: boolean){
+    console.log("Menu4 Check Boolean --->"+isMenuChecked);
+    this.model.menuItem4 = '';
+    if(isMenuChecked == true){
+      this.model.menuItem4 = 'MEN10003';
+    }else{
+      this.model.menuItem4 = 'MEN0';
+    }
+    console.log("Menu4 Code --->"+this.model.menuItem4);
+  }
+
+  getPurchasesubmenu1(isSubMenuChecked: boolean){
+    console.log("Purchase SubMenu1 Check Boolean --->"+isSubMenuChecked);
+    this.model.purchasesubmenuItem1 = '';
+    this.model.menuItem4 = '';
+    if(isSubMenuChecked == true){
+      this.model.purchasesubmenuItem1 = 'SUBMEN10001';
+      this.model.menuItem4 = 'MEN10003';
+    }else{
+      this.model.purchasesubmenuItem1 = 'SUBMEN0';
+      this.model.menuItem4 = 'MEN0';
+    }
+    console.log("Menu4 Code ---->"+this.model.menuItem4+" Purchase SubMenu1 Code --->"+this.model.purchasesubmenuItem1);
+  }  
+
+  getPurchasesubmenu2(isSubMenuChecked: boolean){
+    console.log("Purchase SubMenu2 Check Boolean --->"+isSubMenuChecked);
+    this.model.purchasesubmenuItem2 = '';
+    this.model.menuItem4 = '';
+    if(isSubMenuChecked == true){
+      this.model.purchasesubmenuItem2 = 'SUBMEN10002';
+      this.model.menuItem4 = 'MEN10003';
+    }else{
+      this.model.purchasesubmenuItem2 = 'SUBMEN0';
+      this.model.menuItem4 = 'MEN0';
+    }
+    console.log("Menu4 Code ---->"+this.model.menuItem4+" Purchase SubMenu2 Code --->"+this.model.purchasesubmenuItem2);
+  } 
+
+  getPurchasesubmenu3(isSubMenuChecked: boolean){
+    console.log("Purchase SubMenu3 Check Boolean --->"+isSubMenuChecked);
+    this.model.purchasesubmenuItem3 = '';
+    this.model.menuItem4 = '';
+    if(isSubMenuChecked == true){
+      this.model.purchasesubmenuItem3 = 'SUBMEN10003';
+      this.model.menuItem4 = 'MEN10003';
+    }else{
+      this.model.purchasesubmenuItem3 = 'SUBMEN0';
+      this.model.menuItem4 = 'MEN0';
+    }
+    console.log("Menu4 Code ---->"+this.model.menuItem4+" Purchase SubMenu3 Code --->"+this.model.purchasesubmenuItem3);
+  } 
+  
+  getupdatemenu4(isMenuChecked: boolean){
+    console.log("Menu5 Check Boolean --->"+isMenuChecked);
+    this.model.menuItem5 = '';
+    if(isMenuChecked == true){
+      this.model.menuItem5 = 'MEN10004';
+    }else{
+      this.model.menuItem5 = 'MEN0';
+    }
+    console.log("Menu5 Code --->"+this.model.menuItem5);
+  }
+
+  getProductsubmenu1(isSubMenuChecked: boolean){
+    console.log("Product SubMenu1 Check Boolean --->"+isSubMenuChecked);
+    this.model.productsubmenuItem1 = '';
+    this.model.menuItem5 = '';
+    if(isSubMenuChecked == true){
+      this.model.productsubmenuItem1 = 'SUBMEN10004';
+      this.model.menuItem5 = 'MEN10004';
+    }else{
+      this.model.productsubmenuItem1 = 'SUBMEN0';
+      this.model.menuItem5 = 'MEN0';
+    }
+    console.log("Menu5 Code ---->"+this.model.menuItem5+" Product SubMenu1 Code --->"+this.model.productsubmenuItem1);
+  } 
+
+  getProductsubmenu2(isSubMenuChecked: boolean){
+    console.log("Product SubMenu2 Check Boolean --->"+isSubMenuChecked);
+    this.model.productsubmenuItem2 = '';
+    this.model.menuItem5 = '';
+    if(isSubMenuChecked == true){
+      this.model.productsubmenuItem2 = 'SUBMEN10005';
+      this.model.menuItem5 = 'MEN10004';
+    }else{
+      this.model.productsubmenuItem2 = 'SUBMEN0';
+      this.model.menuItem5 = 'MEN0';
+    }
+    console.log("Menu5 Code ---->"+this.model.menuItem5+" Product SubMenu2 Code --->"+this.model.productsubmenuItem2);
+  }
+
+  getProductsubmenu3(isSubMenuChecked: boolean){
+    console.log("Product SubMenu3 Check Boolean --->"+isSubMenuChecked);
+    this.model.productsubmenuItem3 = '';
+    this.model.menuItem5 = '';
+    if(isSubMenuChecked == true){
+      this.model.productsubmenuItem3 = 'SUBMEN10006';
+      this.model.menuItem5 = 'MEN10004';
+    }else{
+      this.model.productsubmenuItem3 = 'SUBMEN0';
+      this.model.menuItem5 = 'MEN0';
+    }
+    console.log("Menu5 Code ---->"+this.model.menuItem5+" Product SubMenu3 Code --->"+this.model.productsubmenuItem3);
+  }
+
+  getupdatemenu5(isMenuChecked: boolean){
+    console.log("Menu6 Check Boolean --->"+isMenuChecked);
+    this.model.menuItem6 = '';
+    if(isMenuChecked == true){
+      this.model.menuItem6 = 'MEN10005';
+    }else{
+      this.model.menuItem6 = 'MEN0';
+    }
+    console.log("Menu6 Code --->"+this.model.menuItem6);
+  }
+
+  getSalessubmenu1(isSubMenuChecked: boolean){
+    console.log("Sales SubMenu1 Check Boolean --->"+isSubMenuChecked);
+    this.model.salessubmenuItem1 = '';
+    this.model.menuItem6 = '';
+    if(isSubMenuChecked == true){
+      this.model.salessubmenuItem1 = 'SUBMEN10007';
+      this.model.menuItem6 = 'MEN10005';
+    }else{
+      this.model.salessubmenuItem1 = 'SUBMEN0';
+      this.model.menuItem6 = 'MEN0';
+    }
+    console.log("Menu6 Code ---->"+this.model.menuItem6+" Sales SubMenu1 Code --->"+this.model.salessubmenuItem1);
+  }
+
+  getSalessubmenu2(isSubMenuChecked: boolean){
+    console.log("Sales SubMenu2 Check Boolean --->"+isSubMenuChecked);
+    this.model.salessubmenuItem2 = '';
+    this.model.menuItem6 = '';
+    if(isSubMenuChecked == true){
+      this.model.salessubmenuItem2 = 'SUBMEN10008';
+      this.model.menuItem6 = 'MEN10005';
+    }else{
+      this.model.salessubmenuItem2 = 'SUBMEN0';
+      this.model.menuItem6 = 'MEN0';
+    }
+    console.log("Menu6 Code ---->"+this.model.menuItem6+" Sales SubMenu2 Code --->"+this.model.salessubmenuItem2);
+  }
+
+  getSalessubmenu3(isSubMenuChecked: boolean){
+    console.log("Sales SubMenu3 Check Boolean --->"+isSubMenuChecked);
+    this.model.salessubmenuItem3 = '';
+    this.model.menuItem6 = '';
+    if(isSubMenuChecked == true){
+      this.model.salessubmenuItem3 = 'SUBMEN10009';
+      this.model.menuItem6 = 'MEN10005';
+    }else{
+      this.model.salessubmenuItem3 = 'SUBMEN0';
+      this.model.menuItem6 = 'MEN0';
+    }
+    console.log("Menu6 Code ---->"+this.model.menuItem6+" Sales SubMenu3 Code --->"+this.model.salessubmenuItem3);
+  }
+
+  getSalessubmenu4(isSubMenuChecked: boolean){
+    console.log("Sales SubMenu4 Check Boolean --->"+isSubMenuChecked);
+    this.model.salessubmenuItem4 = '';
+    this.model.menuItem6 = '';
+    if(isSubMenuChecked == true){
+      this.model.salessubmenuItem4 = 'SUBMEN10010';
+      this.model.menuItem6 = 'MEN10005';
+    }else{
+      this.model.salessubmenuItem4 = 'SUBMEN0';
+      this.model.menuItem6 = 'MEN0';
+    }
+    console.log("Menu6 Code ---->"+this.model.menuItem6+" Sales SubMenu4 Code --->"+this.model.salessubmenuItem4);
+  }
+
+  getSalessubmenu5(isSubMenuChecked: boolean){
+    console.log("Sales SubMenu5 Check Boolean --->"+isSubMenuChecked);
+    this.model.salessubmenuItem5 = '';
+    this.model.menuItem6 = '';
+    if(isSubMenuChecked == true){
+      this.model.salessubmenuItem5 = 'SUBMEN10011';
+      this.model.menuItem6 = 'MEN10005';
+    }else{
+      this.model.salessubmenuItem5 = 'SUBMEN0';
+      this.model.menuItem6 = 'MEN0';
+    }
+    console.log("Menu6 Code ---->"+this.model.menuItem6+" Sales SubMenu5 Code --->"+this.model.salessubmenuItem5);
+  }
+
+  getupdatemenu6(isMenuChecked: boolean){
+    console.log("Menu7 Check Boolean --->"+isMenuChecked);
+    this.model.menuItem7 = '';
+    if(isMenuChecked == true){
+      this.model.menuItem7 = 'MEN10006';
+    }else{
+      this.model.menuItem7 = 'MEN0';
+    }
+    console.log("Menu7 Code --->"+this.model.menuItem7);
+  }
+
+  getupdatemenu7(isMenuChecked: boolean){
+    console.log("Menu8 Check Boolean --->"+isMenuChecked);
+    this.model.menuItem8 = '';
+    if(isMenuChecked == true){
+      this.model.menuItem8 = 'MEN10007';
+    }else{
+      this.model.menuItem8 = 'MEN0';
+    }
+    console.log("Menu8 Code --->"+this.model.menuItem8);
+  }
+
+  updateUser(id:string){     
+    this.userArray.push({ id:id, menuItem1 : this.model.menuItem1,menuItem2 : this.model.menuItem2,
+      menuItem3 : this.model.menuItem3, menuItem4 : this.model.menuItem4,purchasesubmenu1 : this.model.purchasesubmenuItem1,
+      purchasesubmenu2 : this.model.purchasesubmenuItem2,purchasesubmenu3 : this.model.purchasesubmenuItem3,
+      menuItem5 : this.model.menuItem5,productsubmenu1 : this.model.productsubmenuItem1,productsubmenu2 : this.model.productsubmenuItem2,
+      productsubmenu3 : this.model.productsubmenuItem3, menuItem6 : this.model.menuItem6,salessubmenu1 : this.model.salessubmenuItem1,
+      salessubmenu2 : this.model.salessubmenuItem2,salessubmenu3 : this.model.salessubmenuItem3,salessubmenu4 : this.model.salessubmenuItem4,
+      salessubmenu5 : this.model.salessubmenuItem5, menuItem7 : this.model.menuItem7, menuItem8 : this.model.menuItem8 }); 
+
+    this.userMgtService.update(this.userArray)
+    .subscribe(
+    (res) => {
+      this.modalService.dismissAll();
+      this.load(); 
+      setTimeout(() => {
+        this.snackBar.open(
+          "User was updated Successfully",
+          "",
+          {
+            panelClass: ["success"],
+            verticalPosition: "top",
+          }
+        );
+      });
+      this.userArray = [];
+    });
+
+  }
   
 }

@@ -78,8 +78,14 @@ input::-webkit-inner-spin-button {
   top: 0px;
 }
 
+.fa-pen {
+  cursor: pointer;
+  float: left;
+  margin-right: 25px;
+}
 .fa-trash {
   cursor: pointer;
+  float: left;
   font-size: 18px;
 }
 
