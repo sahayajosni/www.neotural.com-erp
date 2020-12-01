@@ -39,6 +39,7 @@ export class UserManagementComponent implements OnInit {
 
   ngOnInit() {
     this.userList = '';
+    this.userArray = [];
     this.SpinnerService.show();  
     this.getMenuName1("MEN10000");
     this.getMenuName2("MEN10001");
@@ -73,6 +74,7 @@ export class UserManagementComponent implements OnInit {
   }
   openScrollableContent(longContent,id:string) {
     this.modalService.open(longContent, { windowClass: 'modal-class'});
+    this.userArray = [];
     this.userMgtService.load().subscribe(
       data => { 
         this.userList = data;
@@ -374,43 +376,34 @@ export class UserManagementComponent implements OnInit {
   getPurchasesubmenu1(isSubMenuChecked: boolean){
     console.log("Purchase SubMenu1 Check Boolean --->"+isSubMenuChecked);
     this.model.purchasesubmenuItem1 = '';
-    this.model.menuItem4 = '';
     if(isSubMenuChecked == true){
       this.model.purchasesubmenuItem1 = 'SUBMEN10001';
-      this.model.menuItem4 = 'MEN10003';
     }else{
       this.model.purchasesubmenuItem1 = 'SUBMEN0';
-      this.model.menuItem4 = 'MEN0';
     }
-    console.log("Menu4 Code ---->"+this.model.menuItem4+" Purchase SubMenu1 Code --->"+this.model.purchasesubmenuItem1);
+    console.log("Purchase SubMenu1 Code --->"+this.model.purchasesubmenuItem1);
   }  
 
   getPurchasesubmenu2(isSubMenuChecked: boolean){
     console.log("Purchase SubMenu2 Check Boolean --->"+isSubMenuChecked);
     this.model.purchasesubmenuItem2 = '';
-    this.model.menuItem4 = '';
     if(isSubMenuChecked == true){
       this.model.purchasesubmenuItem2 = 'SUBMEN10002';
-      this.model.menuItem4 = 'MEN10003';
     }else{
       this.model.purchasesubmenuItem2 = 'SUBMEN0';
-      this.model.menuItem4 = 'MEN0';
     }
-    console.log("Menu4 Code ---->"+this.model.menuItem4+" Purchase SubMenu2 Code --->"+this.model.purchasesubmenuItem2);
+    console.log("Purchase SubMenu2 Code --->"+this.model.purchasesubmenuItem2);
   } 
 
   getPurchasesubmenu3(isSubMenuChecked: boolean){
     console.log("Purchase SubMenu3 Check Boolean --->"+isSubMenuChecked);
     this.model.purchasesubmenuItem3 = '';
-    this.model.menuItem4 = '';
     if(isSubMenuChecked == true){
       this.model.purchasesubmenuItem3 = 'SUBMEN10003';
-      this.model.menuItem4 = 'MEN10003';
     }else{
       this.model.purchasesubmenuItem3 = 'SUBMEN0';
-      this.model.menuItem4 = 'MEN0';
     }
-    console.log("Menu4 Code ---->"+this.model.menuItem4+" Purchase SubMenu3 Code --->"+this.model.purchasesubmenuItem3);
+    console.log("Purchase SubMenu3 Code --->"+this.model.purchasesubmenuItem3);
   } 
   
   getupdatemenu4(isMenuChecked: boolean){
@@ -427,43 +420,34 @@ export class UserManagementComponent implements OnInit {
   getProductsubmenu1(isSubMenuChecked: boolean){
     console.log("Product SubMenu1 Check Boolean --->"+isSubMenuChecked);
     this.model.productsubmenuItem1 = '';
-    this.model.menuItem5 = '';
     if(isSubMenuChecked == true){
       this.model.productsubmenuItem1 = 'SUBMEN10004';
-      this.model.menuItem5 = 'MEN10004';
     }else{
       this.model.productsubmenuItem1 = 'SUBMEN0';
-      this.model.menuItem5 = 'MEN0';
     }
-    console.log("Menu5 Code ---->"+this.model.menuItem5+" Product SubMenu1 Code --->"+this.model.productsubmenuItem1);
+    console.log("Product SubMenu1 Code --->"+this.model.productsubmenuItem1);
   } 
 
   getProductsubmenu2(isSubMenuChecked: boolean){
     console.log("Product SubMenu2 Check Boolean --->"+isSubMenuChecked);
     this.model.productsubmenuItem2 = '';
-    this.model.menuItem5 = '';
     if(isSubMenuChecked == true){
       this.model.productsubmenuItem2 = 'SUBMEN10005';
-      this.model.menuItem5 = 'MEN10004';
     }else{
       this.model.productsubmenuItem2 = 'SUBMEN0';
-      this.model.menuItem5 = 'MEN0';
     }
-    console.log("Menu5 Code ---->"+this.model.menuItem5+" Product SubMenu2 Code --->"+this.model.productsubmenuItem2);
+    console.log("Product SubMenu2 Code --->"+this.model.productsubmenuItem2);
   }
 
   getProductsubmenu3(isSubMenuChecked: boolean){
     console.log("Product SubMenu3 Check Boolean --->"+isSubMenuChecked);
     this.model.productsubmenuItem3 = '';
-    this.model.menuItem5 = '';
     if(isSubMenuChecked == true){
       this.model.productsubmenuItem3 = 'SUBMEN10006';
-      this.model.menuItem5 = 'MEN10004';
     }else{
       this.model.productsubmenuItem3 = 'SUBMEN0';
-      this.model.menuItem5 = 'MEN0';
     }
-    console.log("Menu5 Code ---->"+this.model.menuItem5+" Product SubMenu3 Code --->"+this.model.productsubmenuItem3);
+    console.log("Product SubMenu3 Code --->"+this.model.productsubmenuItem3);
   }
 
   getupdatemenu5(isMenuChecked: boolean){
@@ -480,71 +464,56 @@ export class UserManagementComponent implements OnInit {
   getSalessubmenu1(isSubMenuChecked: boolean){
     console.log("Sales SubMenu1 Check Boolean --->"+isSubMenuChecked);
     this.model.salessubmenuItem1 = '';
-    this.model.menuItem6 = '';
     if(isSubMenuChecked == true){
       this.model.salessubmenuItem1 = 'SUBMEN10007';
-      this.model.menuItem6 = 'MEN10005';
     }else{
       this.model.salessubmenuItem1 = 'SUBMEN0';
-      this.model.menuItem6 = 'MEN0';
     }
-    console.log("Menu6 Code ---->"+this.model.menuItem6+" Sales SubMenu1 Code --->"+this.model.salessubmenuItem1);
+    console.log("Sales SubMenu1 Code --->"+this.model.salessubmenuItem1);
   }
 
   getSalessubmenu2(isSubMenuChecked: boolean){
     console.log("Sales SubMenu2 Check Boolean --->"+isSubMenuChecked);
     this.model.salessubmenuItem2 = '';
-    this.model.menuItem6 = '';
     if(isSubMenuChecked == true){
       this.model.salessubmenuItem2 = 'SUBMEN10008';
-      this.model.menuItem6 = 'MEN10005';
     }else{
       this.model.salessubmenuItem2 = 'SUBMEN0';
-      this.model.menuItem6 = 'MEN0';
     }
-    console.log("Menu6 Code ---->"+this.model.menuItem6+" Sales SubMenu2 Code --->"+this.model.salessubmenuItem2);
+    console.log("Sales SubMenu2 Code --->"+this.model.salessubmenuItem2);
   }
 
   getSalessubmenu3(isSubMenuChecked: boolean){
     console.log("Sales SubMenu3 Check Boolean --->"+isSubMenuChecked);
     this.model.salessubmenuItem3 = '';
-    this.model.menuItem6 = '';
     if(isSubMenuChecked == true){
       this.model.salessubmenuItem3 = 'SUBMEN10009';
-      this.model.menuItem6 = 'MEN10005';
     }else{
       this.model.salessubmenuItem3 = 'SUBMEN0';
-      this.model.menuItem6 = 'MEN0';
     }
-    console.log("Menu6 Code ---->"+this.model.menuItem6+" Sales SubMenu3 Code --->"+this.model.salessubmenuItem3);
+    console.log("Sales SubMenu3 Code --->"+this.model.salessubmenuItem3);
   }
 
   getSalessubmenu4(isSubMenuChecked: boolean){
     console.log("Sales SubMenu4 Check Boolean --->"+isSubMenuChecked);
     this.model.salessubmenuItem4 = '';
-    this.model.menuItem6 = '';
     if(isSubMenuChecked == true){
       this.model.salessubmenuItem4 = 'SUBMEN10010';
-      this.model.menuItem6 = 'MEN10005';
     }else{
       this.model.salessubmenuItem4 = 'SUBMEN0';
-      this.model.menuItem6 = 'MEN0';
     }
-    console.log("Menu6 Code ---->"+this.model.menuItem6+" Sales SubMenu4 Code --->"+this.model.salessubmenuItem4);
+    console.log("Sales SubMenu4 Code --->"+this.model.salessubmenuItem4);
   }
 
   getSalessubmenu5(isSubMenuChecked: boolean){
     console.log("Sales SubMenu5 Check Boolean --->"+isSubMenuChecked);
     this.model.salessubmenuItem5 = '';
-    this.model.menuItem6 = '';
     if(isSubMenuChecked == true){
       this.model.salessubmenuItem5 = 'SUBMEN10011';
-      this.model.menuItem6 = 'MEN10005';
     }else{
       this.model.salessubmenuItem5 = 'SUBMEN0';
-      this.model.menuItem6 = 'MEN0';
     }
-    console.log("Menu6 Code ---->"+this.model.menuItem6+" Sales SubMenu5 Code --->"+this.model.salessubmenuItem5);
+    console.log("Sales SubMenu5 Code --->"+this.model.salessubmenuItem5);
   }
 
   getupdatemenu6(isMenuChecked: boolean){
@@ -569,7 +538,29 @@ export class UserManagementComponent implements OnInit {
     console.log("Menu8 Code --->"+this.model.menuItem8);
   }
 
-  updateUser(id:string){     
+  updateUser(id:string){  
+    if(this.model.purchasesubmenuItem1 == 'SUBMEN10001' || this.model.purchasesubmenuItem2 == 'SUBMEN10002' ||
+      this.model.purchasesubmenuItem3 == 'SUBMEN10003'){
+      this.model.menuItem4 = 'MEN10003';
+    }else{
+      this.model.menuItem4 = 'MEN0';
+    }
+    
+    if(this.model.productsubmenuItem1 == 'SUBMEN10004' || this.model.productsubmenuItem2 == 'SUBMEN10005' ||
+      this.model.productsubmenuItem3 == 'SUBMEN10006'){
+      this.model.menuItem5 = 'MEN10004';
+    }else{
+      this.model.menuItem5 = 'MEN0';
+    }
+
+    if(this.model.salessubmenuItem1 == 'SUBMEN10007' || this.model.salessubmenuItem2 == 'SUBMEN10008' ||
+      this.model.salessubmenuItem3 == 'SUBMEN10009' || this.model.salessubmenuItem4 == 'SUBMEN10010' || 
+      this.model.salessubmenuItem5 == 'SUBMEN10011'){
+      this.model.menuItem6 = 'MEN10005';
+    }else{
+      this.model.menuItem6 = 'MEN0';
+    }
+
     this.userArray.push({ id:id, menuItem1 : this.model.menuItem1,menuItem2 : this.model.menuItem2,
       menuItem3 : this.model.menuItem3, menuItem4 : this.model.menuItem4,purchasesubmenu1 : this.model.purchasesubmenuItem1,
       purchasesubmenu2 : this.model.purchasesubmenuItem2,purchasesubmenu3 : this.model.purchasesubmenuItem3,
