@@ -139,7 +139,7 @@ export class PurchaseListComponent implements OnInit, OnDestroy {
 
   getPurchaseOrderLists() {
     console.log("pageNumber-->"+this.pageNumber);
-    console.log("pageSiez-->"+this.pageSize);
+    console.log("pageSize-->"+this.pageSize);
     this.purchaseService.getPurchaseOrderLists(this.pageNumber, this.pageSize).subscribe(
       (res: []) => {
         this.purchaseOrderList = res;
