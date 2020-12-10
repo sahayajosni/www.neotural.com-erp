@@ -12,3 +12,31 @@
 .earnings {
   background-color: $widget-earnings-bg;
 }
+
+.widget:first-of-type {
+  padding-left: 0 !important;
+}
+.widget:last-of-type {
+  padding-right: 0 !important;
+}
+
+#sales-box {
+  width: 95%;
+  height: 160px;
+  background: #30cfa6;
+}
+#completeorder-box {
+  width: 95%;
+  height: 160px;
+  background: #b457fd;
+}
+#purchase-box {
+  width: 95%;
+  height: 160px;
+  background: #f89f47;
+}
+#totaleraning-box {
+  width: 95%;
+  height: 160px;
+  background: #78bbf3;
+}

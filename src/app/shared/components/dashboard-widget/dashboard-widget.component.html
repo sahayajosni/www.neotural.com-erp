@@ -1,8 +1,60 @@
-<section class="p-3 {{ param.bgClass }}">
-  <p class="font-bold" p>{{ param.title }}</p>
-  <div class="row">
-    <i class="col font-x-lg fas {{ param.icon }}"></i>
-    <p class="col font-x-lg text-right">{{ param.value }}</p>
-  </div>
-  <p class="text-center m-0">{{ param.description }}</p>
-</section>
+<div class="row">
+
+    <div class="col-12 col-xs-3 col-md-6 col-lg-3 col-sm-12">
+      <div class="d-flex justify-content-stretch">
+        <ng-container>
+          <div class="col pl-4 widget">
+            <section class="p-3 sales">
+              <p class="font-bold">Sales</p>
+              <div class="row">
+                <i class="col font-x-lg fas fa-shopping-cart"></i>
+                <p class="col font-x-lg text-right">{{ this.model.salesInvoiceCount }}</p>
+              </div>
+              <!-- <p class="text-center m-0">{{ param.description }}</p> -->
+            </section>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="col-12 col-xs-3 col-md-6 col-lg-3 col-sm-12">
+      <div class="d-flex justify-content-stretch">
+        <ng-container>
+          <div class="col pl-4 widget">
+            <section class="p-3 orders">
+              <p class="font-bold">Completed Orders</p>
+              <div class="row">
+                <i class="col font-x-lg fas fa-suitcase"></i>
+                <p class="col font-x-lg text-right">{{ this.model.salesCount }}</p>
+              </div>
+            </section>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="col-12 col-xs-3 col-md-6 col-lg-3 col-sm-12">
+      <div class="col pl-4 widget">
+        <section class="p-3 purchase">
+          <p class="font-bold">Purchase</p>
+          <div class="row">
+            <i class="col font-x-lg fas fa-chart-line"></i>
+            <p class="col font-x-lg text-right">{{ this.model.purchaseCount }}</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="col-12 col-xs-3 col-md-6 col-lg-3 col-sm-12">
+      <div class="col pl-4 widget">
+        <section class="p-3 earnings">
+          <p class="font-bold">Total Earnings</p>
+          <div class="row">
+            <i class="col font-x-lg fas fa-dollar-sign"></i>
+            <p class="col font-x-lg text-right">{{ this.model.totalCredit }}</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+</div>

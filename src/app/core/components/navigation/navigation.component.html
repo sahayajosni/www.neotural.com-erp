@@ -1,12 +1,6 @@
 <main>
   <!-- Dashboard Widgets: Sales, Completed Orders, Purchase, Total Earnigs -->
-  <div class="d-flex justify-content-stretch">
-    <ng-container *ngFor="let widget of widgets">
-      <div class="col pl-4 widget">
-        <app-dashboard-widget [param]="widget"></app-dashboard-widget>
-      </div>
-    </ng-container>
-  </div>
+  <app-dashboard-widget></app-dashboard-widget>
 
   <!-- END: Dashboard Widgets: Sales, Completed Orders, Purchase, Total Earnigs -->
 

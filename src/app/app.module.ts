@@ -31,7 +31,9 @@ import { NgxSpinnerModule,NgxSpinnerService  } from 'ngx-spinner';
 import { NgbModal, NgbModalConfig, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 //import { InputsModule } from '@progress/kendo-angular-inputs';
 //import { GridModule } from '@progress/kendo-angular-grid';
-
+import { SalesService } from "src/app/templates/modules/sales/services/sales.service";
+import { PurchaseService } from "src/app/templates/modules/purchase/services/purchase.service";
+import { FinanceService } from "src/app/templates/modules/finance/services/finance.service";
 
 
 @NgModule({
@@ -63,7 +65,8 @@ import { NgbModal, NgbModalConfig, NgbTypeaheadModule } from '@ng-bootstrap/ng-b
     // NgbModal,
     // NgbModalConfig
   ],
-  providers: [AlertService, AuthenticationService, UserService,NgbModalConfig,NgxSpinnerService, NgbModal],
+  providers: [AlertService, AuthenticationService, UserService,NgbModalConfig,
+    NgxSpinnerService, NgbModal,SalesService,PurchaseService,FinanceService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
