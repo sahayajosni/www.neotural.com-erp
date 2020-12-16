@@ -20,10 +20,14 @@ export class AddUserMgtComponent implements OnInit {
   purdropdownList:any = {};
   proddropdownList:any = [];
   saledropdownList:any = [];
+  financedropdownList:any = [];
+  reportdropdownList:any = [];
   selectedItems:any = [];
   purchasedropdownSettings:any = {};
   productdropdownSettings:any = {};
   salesdropdownSettings:any = {};
+  financedropdownSettings:any = {};
+  reportdropdownSettings:any = {};
   model: any = {};
   //departmentList:any = {};
   departmentList:any = [];
@@ -31,6 +35,8 @@ export class AddUserMgtComponent implements OnInit {
   public purchase = false;
   public product = false;
   public sales = false;
+  public finance = false;
+  public report = false;
 
   passwordtype = "password";
   public validationMsg = false;
@@ -61,8 +67,9 @@ export class AddUserMgtComponent implements OnInit {
 
     this.purdropdownList = [
       { purchase_item_id: 'SUBMEN10001', purchase_item_text: 'Orders' },
-      { purchase_item_id: 'SUBMEN10002', purchase_item_text: 'Invoices' },
-      { purchase_item_id: 'SUBMEN10003', purchase_item_text: 'Return' }
+      { purchase_item_id: 'SUBMEN10002', purchase_item_text: 'Status' },
+      { purchase_item_id: 'SUBMEN10003', purchase_item_text: 'Returns' },
+      { purchase_item_id: 'SUBMEN10012', purchase_item_text: 'Template' }
     ];
 
     this.proddropdownList = [
@@ -75,9 +82,20 @@ export class AddUserMgtComponent implements OnInit {
       { sales_item_id: 'SUBMEN10007', sales_item_text: 'Orders' },
       { sales_item_id: 'SUBMEN10008', sales_item_text: 'Invoices' },
       { sales_item_id: 'SUBMEN10009', sales_item_text: 'Customer' },
-      { sales_item_id: 'SUBMEN10010', sales_item_text: 'Return' },
-      { sales_item_id: 'SUBMEN10011', sales_item_text: 'Promotion' }
+      { sales_item_id: 'SUBMEN10010', sales_item_text: 'Returns' },
+      { sales_item_id: 'SUBMEN10011', sales_item_text: 'Promotion' },
+      { sales_item_id: 'SUBMEN10013', sales_item_text: 'Template' }
+    ];
 
+    this.financedropdownList = [
+      { finance_item_id: 'SUBMEN10014', finance_item_text: 'pettycash' },
+      { finance_item_id: 'SUBMEN10015', finance_item_text: 'Invoices' },
+      { finance_item_id: 'SUBMEN10016', finance_item_text: 'Return' },
+      { finance_item_id: 'SUBMEN10017', finance_item_text: 'ProfitAndLoss' },
+    ];
+
+    this.reportdropdownList = [
+      { report_item_id: 'SUBMEN10018', report_item_text: 'Employee Report' },
     ];
 
     this.purchasedropdownSettings = {
@@ -113,23 +131,55 @@ export class AddUserMgtComponent implements OnInit {
       closeDropDownOnSelection: true,
     };
 
+    this.financedropdownSettings = {
+      singleSelection: false,
+      idField: 'finance_item_id',
+      textField: 'finance_item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: this.showFilter,
+      closeDropDownOnSelection: true,
+    };
+
+    this.reportdropdownSettings = {
+      singleSelection: false,
+      idField: 'report_item_id',
+      textField: 'report_item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: this.showFilter,
+      closeDropDownOnSelection: true,
+    };
+
     this.model.menuItem1 = 'MEN0';
     this.model.menuItem2 = 'MEN0';
     this.model.menuItem3 = 'MEN0';
     this.model.menuItem7 = 'MEN0';
-    this.model.menuItem8 = 'MEN0';
 
     this.model.purchasesubmenu1 = 'SUBMEN0';
     this.model.purchasesubmenu2 = 'SUBMEN0';
     this.model.purchasesubmenu3 = 'SUBMEN0';
+    this.model.purchasesubmenu4 = 'SUBMEN0';
+
     this.model.productsubmenu1 = 'SUBMEN0';
     this.model.productsubmenu2 = 'SUBMEN0';
     this.model.productsubmenu3 = 'SUBMEN0';
+
     this.model.salessubmenu1 = 'SUBMEN0';
     this.model.salessubmenu2 = 'SUBMEN0';
     this.model.salessubmenu3 = 'SUBMEN0';
     this.model.salessubmenu4 = 'SUBMEN0';
     this.model.salessubmenu5 = 'SUBMEN0';
+    this.model.salessubmenu6 = 'SUBMEN0';
+
+    this.model.financesubmenu1 = 'SUBMEN0';
+    this.model.financesubmenu2 = 'SUBMEN0';
+    this.model.financesubmenu3 = 'SUBMEN0';
+    this.model.financesubmenu4 = 'SUBMEN0';
+
+    this.model.reportsubmenu1 = 'SUBMEN0';
   }
 
   onPurchaseSelect(puritem: any) {
@@ -141,18 +191,22 @@ export class AddUserMgtComponent implements OnInit {
       this.model.purchasesubmenu2 = 'SUBMEN10002';
     }else if(puritem.purchase_item_id == 'SUBMEN10003'){
       this.model.purchasesubmenu3 = 'SUBMEN10003';
+    }else if(puritem.purchase_item_id == 'SUBMEN10012'){
+      this.model.purchasesubmenu4 = 'SUBMEN10012';
     }
   }
   onPurSelectAll(puritems: any) {
     this.model.purchasesubmenu1 = 'SUBMEN10001';
     this.model.purchasesubmenu2 = 'SUBMEN10002';
     this.model.purchasesubmenu3 = 'SUBMEN10003';
+    this.model.purchasesubmenu4 = 'SUBMEN10012';
   }
 
   onDeSelectAllPurchase(items: any){
     this.model.purchasesubmenu1 = 'SUBMEN0';
     this.model.purchasesubmenu2 = 'SUBMEN0';
     this.model.purchasesubmenu3 = 'SUBMEN0';
+    this.model.purchasesubmenu4 = 'SUBMEN0';
   }
 
   onDeSelectPurchase(puritem: any) {
@@ -164,6 +218,8 @@ export class AddUserMgtComponent implements OnInit {
       this.model.purchasesubmenu2 = 'SUBMEN0';
     }else if(this.model.number == 'SUBMEN10003'){
       this.model.purchasesubmenu3 = 'SUBMEN0';
+    }else if(this.model.number == 'SUBMEN10012'){
+      this.model.purchasesubmenu4 = 'SUBMEN0';
     }
   }
 
@@ -216,6 +272,8 @@ export class AddUserMgtComponent implements OnInit {
       this.model.salessubmenu4 = 'SUBMEN10010';
     }else  if(item.sales_item_id == 'SUBMEN10011'){
       this.model.salessubmenu5 = 'SUBMEN10011';
+    }else  if(item.sales_item_id == 'SUBMEN10013'){
+      this.model.salessubmenu6 = 'SUBMEN10013';
     }
   }
 
@@ -225,6 +283,7 @@ export class AddUserMgtComponent implements OnInit {
     this.model.salessubmenu3 = 'SUBMEN10009';
     this.model.salessubmenu4 = 'SUBMEN10010';
     this.model.salessubmenu5 = 'SUBMEN10011';
+    this.model.salessubmenu6 = 'SUBMEN10013';
   }
 
   onDeSalesAll(items: any){
@@ -233,6 +292,7 @@ export class AddUserMgtComponent implements OnInit {
     this.model.salessubmenu3 = 'SUBMEN0';
     this.model.salessubmenu4 = 'SUBMEN0';
     this.model.salessubmenu5 = 'SUBMEN0';
+    this.model.salessubmenu6 = 'SUBMEN0';
   }
 
   onSalesDeSelect(item: any) {
@@ -248,6 +308,74 @@ export class AddUserMgtComponent implements OnInit {
       this.model.salessubmenu4 = 'SUBMEN0';
     }else if(this.model.number == 'SUBMEN10011'){
       this.model.salessubmenu5 = 'SUBMEN0';
+    }else if(this.model.number == 'SUBMEN10013'){
+      this.model.salessubmenu6 = 'SUBMEN0';
+    }
+  }
+
+  onFinanceSelect(item: any) {
+    this.validationMsg = false;
+    console.log('Finance SingleSelect  -->'+item.finance_item_id);
+    if(item.finance_item_id == 'SUBMEN10014'){
+      this.model.financesubmenu1 = 'SUBMEN10014';
+    }else if(item.finance_item_id == 'SUBMEN10015'){
+      this.model.financesubmenu2 = 'SUBMEN10015';
+    }else if(item.finance_item_id == 'SUBMEN10016'){
+      this.model.financesubmenu3 = 'SUBMEN10016';
+    }else if(item.finance_item_id == 'SUBMEN10017'){
+      this.model.financesubmenu4 = 'SUBMEN10017';
+    }
+  }
+
+  onFinanceAll(items: any) {
+    this.model.financesubmenu1 = 'SUBMEN10014';
+    this.model.financesubmenu2 = 'SUBMEN10015';
+    this.model.financesubmenu3 = 'SUBMEN10016';
+    this.model.financesubmenu4 = 'SUBMEN10017';
+  }
+
+  onDeFinanceAll(items: any){
+    this.model.financesubmenu1 = 'SUBMEN0';
+    this.model.financesubmenu2 = 'SUBMEN0';
+    this.model.financesubmenu3 = 'SUBMEN0';
+    this.model.financesubmenu4 = 'SUBMEN0';
+  }
+
+  onFinanceDeSelect(item: any) {
+    console.log('Finance Single DeSelect  -->'+item.finance_item_id);
+    this.model.number = item.finance_item_id;
+    if(this.model.number == 'SUBMEN10014'){
+      this.model.financesubmenu1 = 'SUBMEN0';
+    }else if(this.model.number == 'SUBMEN10015'){
+      this.model.financesubmenu2 = 'SUBMEN0';
+    }else if(this.model.number == 'SUBMEN10016'){
+      this.model.financesubmenu3 = 'SUBMEN0';
+    }else if(this.model.number == 'SUBMEN10017'){
+      this.model.financesubmenu4 = 'SUBMEN0';
+    }
+  }
+
+  onReportSelect(item: any) {
+    this.validationMsg = false;
+    console.log('Report SingleSelect  -->'+item.report_item_id);
+    if(item.report_item_id == 'SUBMEN10018'){
+      this.model.reportsubmenu1 = 'SUBMEN10018';
+    }
+  }
+
+  onReportAll(items: any) {
+    this.model.reportsubmenu1 = 'SUBMEN10018';
+  }
+
+  onDeReportAll(items: any){
+    this.model.reportsubmenu1 = 'SUBMEN0';
+  }
+
+  onReportDeSelect(item: any) {
+    console.log('Report Single DeSelect  -->'+item.report_item_id);
+    this.model.number = item.report_item_id;
+    if(this.model.number == 'SUBMEN10018'){
+      this.model.reportsubmenu1 = 'SUBMEN0';
     }
   }
 
@@ -273,6 +401,22 @@ export class AddUserMgtComponent implements OnInit {
       this.sales = true;
     }else{
       this.sales = false;
+    }
+  }
+
+  getFinance(isFinanceChecked: boolean){
+    if (isFinanceChecked) {
+      this.finance = true;
+    }else{
+      this.finance = false;
+    }
+  }
+
+  getReport(isReportChecked: boolean){
+    if (isReportChecked) {
+      this.report = true;
+    }else{
+      this.report = false;
     }
   }
 
@@ -316,7 +460,7 @@ export class AddUserMgtComponent implements OnInit {
     console.log("Menu7 -- >"+this.model.menuItem7);
   }
 
-  getMenu8(menu8){
+  /* getMenu8(menu8){
     this.validationMsg = false;
     if(menu8 == true){
       this.model.menuItem8 = 'MEN10007';
@@ -324,7 +468,7 @@ export class AddUserMgtComponent implements OnInit {
       this.model.menuItem8 = 'MEN0';
     }
     console.log("Menu8 -- >"+this.model.menuItem8);
-  }
+  } */
 
   saveUserMgt(){
     console.log("user Name -->"+this.model.username);
@@ -334,11 +478,9 @@ export class AddUserMgtComponent implements OnInit {
     console.log("Menu Name2 -->"+this.model.menuItem2);
     console.log("Menu Name3 -->"+this.model.menuItem3);
     console.log("Menu Name7 -->"+this.model.menuItem7);
-    console.log("Menu Name8 -->"+this.model.menuItem8);
-    console.log("Menu Name9 -->"+this.model.menuItem9);
 
     if(this.model.purchasesubmenu1 == 'SUBMEN10001' || this.model.purchasesubmenu2 == 'SUBMEN10002' ||
-      this.model.purchasesubmenu3 == 'SUBMEN10003'){
+      this.model.purchasesubmenu3 == 'SUBMEN10003' || this.model.purchasesubmenu4 == 'SUBMEN10012'){
       this.model.menuItem4 = 'MEN10003';
     }else{
       this.model.menuItem4 = 'MEN0';
@@ -353,10 +495,23 @@ export class AddUserMgtComponent implements OnInit {
 
     if(this.model.salessubmenu1 == 'SUBMEN10007' || this.model.salessubmenu2 == 'SUBMEN10008' ||
       this.model.salessubmenu3 == 'SUBMEN10009' || this.model.salessubmenu4 == 'SUBMEN10010' || 
-      this.model.salessubmenu5 == 'SUBMEN10011'){
+      this.model.salessubmenu5 == 'SUBMEN10011' || this.model.salessubmenu6 == 'SUBMEN10013'){
       this.model.menuItem6 = 'MEN10005';
     }else{
       this.model.menuItem6 = 'MEN0';
+    }
+
+    if(this.model.financesubmenu1 == 'SUBMEN10014' || this.model.financesubmenu2 == 'SUBMEN10015' ||
+      this.model.financesubmenu3 == 'SUBMEN10016' || this.model.financesubmenu4 == 'SUBMEN10017'){
+      this.model.menuItem8 = 'MEN10007';
+    }else{
+      this.model.menuItem8 = 'MEN0';
+    }
+
+    if(this.model.reportsubmenu1 == 'SUBMEN10018'){
+      this.model.menuItem9 = 'MEN10008';
+    }else{
+      this.model.menuItem9 = 'MEN0';
     }
 
     console.log("Menu Name4 -->"+this.model.menuItem4);
@@ -364,8 +519,8 @@ export class AddUserMgtComponent implements OnInit {
     console.log("Menu Name6 -->"+this.model.menuItem6);
     
     if(this.model.menuItem1 == 'MEN0' && this.model.menuItem2 == 'MEN0' && this.model.menuItem3 == 'MEN0' && 
-        this.model.menuItem7 == 'MEN0' && this.model.menuItem8 == 'MEN0' && this.model.menuItem4 == 'MEN0' && 
-        this.model.menuItem5 == 'MEN0' && this.model.menuItem6 == 'MEN0'){
+        this.model.menuItem7 == 'MEN0' && this.model.menuItem4 == 'MEN0' && this.model.menuItem5 == 'MEN0' && 
+        this.model.menuItem6 == 'MEN0' && this.model.menuItem8 == 'MEN0' && this.model.menuItem9 == 'MEN0'){
 
         this.validationMsg = true;
 
@@ -384,11 +539,14 @@ export class AddUserMgtComponent implements OnInit {
       this.userArray.push({ username : this.model.username,password : this.model.password,
         departmentname:this.model.departmentname,menuItem1 : this.model.menuItem1,menuItem2 : this.model.menuItem2,
         menuItem3 : this.model.menuItem3, menuItem4 : this.model.menuItem4,purchasesubmenu1 : this.model.purchasesubmenu1,
-        purchasesubmenu2 : this.model.purchasesubmenu2,purchasesubmenu3 : this.model.purchasesubmenu3,menuItem5 : this.model.menuItem5, 
-        productsubmenu1 : this.model.productsubmenu1,productsubmenu2 : this.model.productsubmenu2,productsubmenu3 : this.model.productsubmenu3,
-        menuItem6 : this.model.menuItem6,salessubmenu1 : this.model.salessubmenu1,salessubmenu2 : this.model.salessubmenu2,
-        salessubmenu3 : this.model.salessubmenu3,salessubmenu4 : this.model.salessubmenu4,salessubmenu5 : this.model.salessubmenu5,
-        menuItem7 : this.model.menuItem7, menuItem8 : this.model.menuItem8 }); 
+        purchasesubmenu2 : this.model.purchasesubmenu2,purchasesubmenu3 : this.model.purchasesubmenu3,purchasesubmenu4 : this.model.purchasesubmenu4,
+        menuItem5 : this.model.menuItem5, productsubmenu1 : this.model.productsubmenu1,productsubmenu2 : this.model.productsubmenu2,
+        productsubmenu3 : this.model.productsubmenu3, menuItem6 : this.model.menuItem6,salessubmenu1 : this.model.salessubmenu1,
+        salessubmenu2 : this.model.salessubmenu2, salessubmenu3 : this.model.salessubmenu3,salessubmenu4 : this.model.salessubmenu4,
+        salessubmenu5 : this.model.salessubmenu5, salessubmenu6 : this.model.salessubmenu6, menuItem7 : this.model.menuItem7, 
+        menuItem8 : this.model.menuItem8, financesubmenu1 : this.model.financesubmenu1, financesubmenu2 : this.model.financesubmenu2,
+        financesubmenu3 : this.model.financesubmenu3, financesubmenu4 : this.model.financesubmenu4, menuItem9 : this.model.menuItem9, 
+        reportsubmenu1 : this.model.reportsubmenu1 }); 
 
       this.userMgtService.save(this.userArray)
       .subscribe(

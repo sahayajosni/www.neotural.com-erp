@@ -125,6 +125,17 @@
                         (click)="getPurchasesubmenu3($event.target.checked)">
                       <label style="margin-left: 20px;">  {{this.model.purchasesubmenu3}} </label> 
                     </div>
+                    <div *ngIf="u.purchasesubmenu4 !== 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="true" class="custom-control-input1" id="customChecks2"
+                        (click)="getPurchasesubmenu4($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.purchasesubmenu4}} </label> 
+                    </div>
+                    <div *ngIf="u.purchasesubmenu4 === 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="false" class="custom-control-input1" id="customChecks2"
+                        (click)="getPurchasesubmenu4($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.purchasesubmenu4}} </label> 
+                    </div>
+
                   </td>
                 </tr>
                 <tr>
@@ -233,6 +244,16 @@
                         (click)="getSalessubmenu5($event.target.checked)">
                       <label style="margin-left: 20px;">  {{this.model.salessubmenu5}} </label> 
                     </div>
+                    <div *ngIf="u.salessubmenu6 !== 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="true" class="custom-control-input1" id="customChecks2"
+                        (click)="getSalessubmenu6($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.salessubmenu6}} </label> 
+                    </div>
+                    <div *ngIf="u.salessubmenu6 === 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="false" class="custom-control-input1" id="customChecks2"
+                        (click)="getSalessubmenu6($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.salessubmenu6}} </label> 
+                    </div>
                   </td>
                 </tr>
                 <tr>
@@ -248,18 +269,83 @@
                   </td>
                   <td style="border: 1px solid black;width: 50%;"></td>
                 </tr>
-                <tr>
+                <tr> 
                   <td style="border: 1px solid black;width: 50%;" *ngIf="u.menuItem8 !== 'MEN0' ">
                     <input type="checkbox" [checked]="true" class="custom-control-input1" id="customChecks2"
                       (click)="getupdatemenu7($event.target.checked)">
-                    <label style="margin-left: 20px;">{{this.model.menu8}}</label>
+                    <label style="margin-left: 20px;">  {{this.model.menu8}} </label> 
                   </td>
                   <td style="border: 1px solid black;width: 50%;" *ngIf="u.menuItem8 === 'MEN0' ">
                     <input type="checkbox" [checked]="false" class="custom-control-input1" id="customChecks2"
                       (click)="getupdatemenu7($event.target.checked)">
-                    <label style="margin-left: 20px;">{{this.model.menu8}}</label>
+                    <label style="margin-left: 20px;">  {{this.model.menu8}} </label> 
                   </td>
-                  <td style="border: 1px solid black;width: 50%;"></td>
+                  <td style="border: 1px solid black;width: 50%;">
+                    <div *ngIf="u.financesubmenu1 !== 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="true" class="custom-control-input1" id="customChecks2"
+                        (click)="getFinancesubmenu1($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.financesubmenu1}} </label> 
+                    </div>
+                    <div *ngIf="u.financesubmenu1 === 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="false" class="custom-control-input1" id="customChecks2"
+                        (click)="getFinancesubmenu1($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.financesubmenu1}} </label> 
+                    </div>
+                    <div *ngIf="u.financesubmenu2 !== 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="true" class="custom-control-input1" id="customChecks2"
+                        (click)="getFinancesubmenu2($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.financesubmenu2}} </label> 
+                    </div>
+                    <div *ngIf="u.financesubmenu2 === 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="false" class="custom-control-input1" id="customChecks2"
+                        (click)="getFinancesubmenu2($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.financesubmenu2}} </label> 
+                    </div>
+                    <div *ngIf="u.financesubmenu3 !== 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="true" class="custom-control-input1" id="customChecks2"
+                        (click)="getFinancesubmenu3($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.financesubmenu3}} </label> 
+                    </div>
+                    <div *ngIf="u.financesubmenu3 === 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="false" class="custom-control-input1" id="customChecks2"
+                        (click)="getFinancesubmenu3($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.financesubmenu3}} </label> 
+                    </div>
+                    <div *ngIf="u.financesubmenu4 !== 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="true" class="custom-control-input1" id="customChecks2"
+                        (click)="getFinancesubmenu4($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.financesubmenu4}} </label> 
+                    </div>
+                    <div *ngIf="u.financesubmenu4 === 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="false" class="custom-control-input1" id="customChecks2"
+                        (click)="getFinancesubmenu4($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.financesubmenu4}} </label> 
+                    </div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td style="border: 1px solid black;width: 50%;" *ngIf="u.menuItem9 !== 'MEN0' ">
+                    <input type="checkbox" [checked]="true" class="custom-control-input1" id="customChecks2"
+                      (click)="getupdatemenu8($event.target.checked)">
+                    <label style="margin-left: 20px;">  {{this.model.menu9}} </label> 
+                  </td>
+                  <td style="border: 1px solid black;width: 50%;" *ngIf="u.menuItem9 === 'MEN0' ">
+                    <input type="checkbox" [checked]="false" class="custom-control-input1" id="customChecks2"
+                      (click)="getupdatemenu8($event.target.checked)">
+                    <label style="margin-left: 20px;">  {{this.model.menu9}} </label> 
+                  </td>
+                  <td style="border: 1px solid black;width: 50%;">
+                    <div *ngIf="u.reportsubmenu1 !== 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="true" class="custom-control-input1" id="customChecks2"
+                        (click)="getReportsubmenu1($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.reportsubmenu1}} </label> 
+                    </div>
+                    <div *ngIf="u.reportsubmenu1 === 'SUBMEN0' ">
+                      <input type="checkbox" [checked]="false" class="custom-control-input1" id="customChecks2"
+                        (click)="getReportsubmenu1($event.target.checked)">
+                      <label style="margin-left: 20px;">  {{this.model.reportsubmenu1}} </label> 
+                    </div>
+                  </td>
                 </tr>
               </table>
               <div class="row">

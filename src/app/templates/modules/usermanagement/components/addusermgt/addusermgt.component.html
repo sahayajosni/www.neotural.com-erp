@@ -151,14 +151,59 @@
             [(ngModel)]="model.menu7" #menu7="ngModel" name="menu7"
             (ngModelChange)="getMenu7(model.menu7)">    
           <label for="Stock" id="menu-label">Stock</label>
-          <br/>   
-          <input id="finance" type="checkbox" value="Finance" 
+          <br/>  
+          <!-- <input id="finance" type="checkbox" value="Finance" 
               [(ngModel)]="model.menu8" #menu8="ngModel" name="menu8"
               (ngModelChange)="getMenu8(model.menu8)">       
           <label for="Finance" id="menu-label">Finance</label>
-          <br/>  
+          <br/>  -->
+        </div> 
+         <div class="col-6"></div>
+      </div>
+         
+
+      <div class="row">
+        <div class="col-6">
+          <input id="finance" type="checkbox" value="Finance" 
+              [(ngModel)]="model.menu8" #menu8="ngModel" name="menu8"
+              (click)="getFinance($event.target.checked)">   
+          <label for="Finance" id="menu-label">Finance</label>
+          <br/>   
         </div>
-        <div class="col-6"></div>
+        <div class="col-6">
+          <ng-multiselect-dropdown id="financemultiselect" *ngIf="finance"
+            [data]="financedropdownList"
+            [settings]="financedropdownSettings"
+            [disabled]="disabled"
+            (onSelect)="onFinanceSelect($event)"
+            (onSelectAll)="onFinanceAll($event)"
+            (onDeSelect)="onFinanceDeSelect($event)"
+            (onDeSelectAll)="onDeFinanceAll($event)">     
+          </ng-multiselect-dropdown> 
+          <br/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <input id="sales" type="checkbox" value="Sales" 
+              [(ngModel)]="model.menu9" #menu9="ngModel" name="menu9"
+              (click)="getReport($event.target.checked)">   
+          <label for="Report" id="menu-label">Report</label>
+          <br/>   
+        </div>
+        <div class="col-6">
+          <ng-multiselect-dropdown id="reportmultiselect" *ngIf="report"
+            [data]="reportdropdownList"
+            [settings]="reportdropdownSettings"
+            [disabled]="disabled"
+            (onSelect)="onReportSelect($event)"
+            (onSelectAll)="onReportAll($event)"
+            (onDeSelect)="onReportDeSelect($event)"
+            (onDeSelectAll)="onDeReportAll($event)">     
+          </ng-multiselect-dropdown> 
+          <br/>
+        </div>
       </div>
 
       <div class="row">
