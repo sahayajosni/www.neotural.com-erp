@@ -24,10 +24,10 @@
 }
 
 .sales {
-  .completed {
+  .Success {
     background-color: $sales-completed;
   }
-  .delayed {
+  .pending {
     background-color: $sales-delayed;
   }
   .canceled {

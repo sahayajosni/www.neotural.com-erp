@@ -212,4 +212,8 @@ export class PurchaseService {
             invoiceNumber
         )
     }
+
+    getRecentUpdateList(){
+        return this.http.get(`${environment.apiUrl}${API_ENDPOINTS.getRecentUpdateList}`);
+    }
 }

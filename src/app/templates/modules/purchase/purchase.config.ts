@@ -32,4 +32,6 @@ export const API_ENDPOINTS = {
 
   getOrderReturnList: `/purchase/loadReturnPO`,
   addPartialOrder: `/purchase/addPartialOrder`,
+
+  getRecentUpdateList: `/purchase/getRecentUpdateList`,
 };

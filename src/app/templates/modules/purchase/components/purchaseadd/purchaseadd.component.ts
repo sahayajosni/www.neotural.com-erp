@@ -428,6 +428,7 @@ export class PurchaseAddComponent implements OnInit, AfterViewInit {
       date: data.id !== undefined ? data.date : this.purchaseDate,
       description: "",
       status: data.id !== undefined ? data.status : "Open",
+      pocode: data.id !== undefined ? data.pocode : data.pocode,
     };
 
     if (data.id !== undefined) {

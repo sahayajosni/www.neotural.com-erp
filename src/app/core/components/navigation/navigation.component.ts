@@ -13,9 +13,12 @@ import { Moment } from "moment";
 import { dashboardWidgets } from "../../../core/common/config/dashboard-widgets.config";
 import { WidgetData } from "../../../shared/components/dashboard-widget/dashboard-widget.model";
 import { RecentUpdate, Stock, Sale } from "./navigation.model";
-import { RecentUpdatesMock } from "../../../core/common/config/mock/recent-updates.mock";
-import { StocksMock } from "../../../core/common/config/mock/stocks.mock";
-import { SalesMock } from "../../../core/common/config/mock/sales.mock";
+//import { RecentUpdatesMock } from "../../../core/common/config/mock/recent-updates.mock";
+//import { StocksMock } from "../../../core/common/config/mock/stocks.mock";
+//import { SalesMock } from "../../../core/common/config/mock/sales.mock";
+import { PurchaseService } from "src/app/templates/modules/purchase/services/purchase.service";
+import { StockService } from "src/app/templates/modules/stock/services/stock.service";
+import { SalesService } from "src/app/templates/modules/sales/services/sales.service";
 
 @Component({
   selector: "app-navigation",
@@ -24,8 +27,11 @@ import { SalesMock } from "../../../core/common/config/mock/sales.mock";
 })
 export class NavigationComponent implements OnInit {
   widgets: WidgetData[];
-  recentUpdates: RecentUpdate[];
-  stocks: Stock[];
+  //recentUpdates: RecentUpdate[];
+  recentUpdatesList: any = {};
+  //stocks: Stock[];
+  stockList: any = {};
+  salesInvList: any = {};
   sales: MatTableDataSource<Sale>;
 
   searchText: any;
@@ -64,12 +70,14 @@ export class NavigationComponent implements OnInit {
   //private count=0;
   static showParent: any;
 
-  constructor(private router: Router, public route: ActivatedRoute) {
+  constructor(private router: Router, public route: ActivatedRoute, 
+    private purchaseService: PurchaseService, private stockService: StockService,
+  private salesService: SalesService) {
     //this.count=route.firstChild.children.length;
 
-    this.sales = new MatTableDataSource(SalesMock);
+    /* this.sales = new MatTableDataSource(SalesMock);
     this.sales.paginator = this.paginator;
-    this.sales.sort = this.sort;
+    this.sales.sort = this.sort; */
   }
   @HostListener("window:resize", ["$event"])
   onResize(event) {
@@ -81,8 +89,14 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.widgets = dashboardWidgets;
-    this.recentUpdates = RecentUpdatesMock;
-    this.stocks = StocksMock;
+    //this.recentUpdates = RecentUpdatesMock;
+    this.recentUpdatesList = '';
+    this.getRecentUpdate();
+    //this.stocks = StocksMock;
+    this.stockList = '';
+    this.getStockList();
+    this.salesInvList = '';
+    this.getSalesList();
     // this.sales = SalesMock;
 
     this.getScreenWidth().subscribe(width => {
@@ -157,4 +171,30 @@ new MenuItem("home","login"),
     // alert(`Selected: ${date}`);
     this.model.date = date;
   }
+
+  getRecentUpdate(){
+    this.purchaseService.getRecentUpdateList().subscribe(
+    (res) => {
+      this.recentUpdatesList = res;
+    });
+  }
+
+  getStockList(){
+    let status = "Ready for Sales";
+    this.stockService.load(status).subscribe(
+    (res) => {
+      this.stockList = res;
+    });
+  }
+
+  getSalesList(){
+    this.salesService.loadInvoice().subscribe(
+    (res) => {
+      this.salesInvList = res;
+      this.sales = new MatTableDataSource(this.salesInvList);
+      this.sales.paginator = this.paginator;
+      this.sales.sort = this.sort;
+    });
+  }
+
 }

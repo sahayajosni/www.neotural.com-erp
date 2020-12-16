@@ -11,10 +11,11 @@
         <app-data-widget [title]="'Recent Updates'">
           <div class="recent-updates">
             <div
-              *ngFor="let recentUpdate of recentUpdates"
-              class="font-sm mb-2"
-            >
-              {{ recentUpdate.date }} &nbsp; {{ recentUpdate.update }}
+              *ngFor="let recentUpdate of recentUpdatesList"
+              class="font-sm mb-2">
+              <p *ngIf="recentUpdate.status === 'Order'">{{ recentUpdate.date | date : 'dd/MM/yyyy' }} &nbsp; Purchase Order from {{ recentUpdate.vendorname }} Pending</p>
+              <p *ngIf="recentUpdate.status === 'invoice'">{{ recentUpdate.date }} &nbsp; Purchase Invoice from {{ recentUpdate.vendorname }} Completed</p>
+              <p *ngIf="recentUpdate.status === 'stock'">{{ recentUpdate.date }} &nbsp; Stock Updated</p>
             </div>
           </div>
         </app-data-widget>
@@ -22,9 +23,10 @@
       <div class="w-100">
         <app-data-widget [title]="'Stock'">
           <div class="stock">
-            <div *ngFor="let stock of stocks" class="font-sm p-2">
-              {{ stock.item }} &nbsp;
-              <span class="text-right">{{ stock.quantity }}</span>
+            <div *ngFor="let stock of stockList" class="font-sm p-2">
+              {{ stock.itemname }} &nbsp;&nbsp;
+              {{ stock.recentStock }} &nbsp;&nbsp;
+              {{ stock.unit }}
             </div>
           </div>
         </app-data-widget>
@@ -88,14 +90,14 @@
 
           <ng-container matColumnDef="client">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Client</th>
-            <td mat-cell *matCellDef="let sale">{{ sale.client }}</td>
+            <td mat-cell *matCellDef="let sale">{{ sale.customername }}</td>
           </ng-container>
 
           <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               Date
             </th>
-            <td mat-cell *matCellDef="let sale">{{ sale.date }}</td>
+            <td mat-cell *matCellDef="let sale">{{ sale.invoicedate }}</td>
           </ng-container>
 
           <ng-container matColumnDef="status">

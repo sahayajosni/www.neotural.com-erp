@@ -34,6 +34,7 @@ import { NgbModal, NgbModalConfig, NgbTypeaheadModule } from '@ng-bootstrap/ng-b
 import { SalesService } from "src/app/templates/modules/sales/services/sales.service";
 import { PurchaseService } from "src/app/templates/modules/purchase/services/purchase.service";
 import { FinanceService } from "src/app/templates/modules/finance/services/finance.service";
+import { StockService } from './templates/modules/stock/services/stock.service';
 
 
 @NgModule({
@@ -66,7 +67,7 @@ import { FinanceService } from "src/app/templates/modules/finance/services/finan
     // NgbModalConfig
   ],
   providers: [AlertService, AuthenticationService, UserService,NgbModalConfig,
-    NgxSpinnerService, NgbModal,SalesService,PurchaseService,FinanceService],
+    NgxSpinnerService, NgbModal,SalesService,PurchaseService,FinanceService,StockService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
