@@ -22,6 +22,8 @@ button[name="btn"] {
 }
 
 ::ng-deep .warning{
+  background-color: $snackbar-warning;
+  color:white !important; 
   border: none !important;
 }
 

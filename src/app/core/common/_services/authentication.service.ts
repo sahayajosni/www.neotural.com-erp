@@ -37,8 +37,7 @@ export class AuthenticationService {
   login(uname: string, pwd: string) {
     localStorage.setItem("username", uname);
     localStorage.setItem("password", pwd);
-    return this.http.get(`${environment.apiUrl}${"/auth/login?username=+uname+&password=pwd"}`);
-
+    return this.http.get<User>(`${environment.apiUrl}${"/auth/login?username="+uname+"&password="+pwd}`);
   }
   private userLoggedIn = new Subject<boolean>();
 
@@ -50,13 +49,13 @@ export class AuthenticationService {
     return this.userLoggedIn.asObservable();
   }
   logout() {   
-      console.log("logout"); 
-      this.setUserLoggedIn(false);
-      localStorage.removeItem('username');
-      localStorage.removeItem('password');
-      sessionStorage.removeItem('TOKEN_NAME');
-      this.router.navigate(['/login']);
+    console.log("logout"); 
+    this.setUserLoggedIn(false);
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
+    sessionStorage.removeItem('TOKEN_NAME');
+    this.router.navigate(['/login']);
   }
-  
-  }
+
+}
   

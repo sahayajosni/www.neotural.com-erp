@@ -81,19 +81,33 @@ export class LoginComponent implements OnInit {
     }
 
   }
+
   login() {
     this.SpinnerService.show(); 
     this.alertService.clear();
-    let message = "Invalid User Name !";
+    //let message = "Invalid User Name !";
     console.log("user name : password" +this.model.currentusername +
         this.model.currentpassword
     );
     this.authenticationService.login(this.model.currentusername,this.model.currentpassword)
     .subscribe(
       response => {
+        this.user = response;
         this.authenticationService.setToken("00000000000001111111111");
         this.authenticationService.setUserLoggedIn(true);
-        this.router.navigate(["/"]);
+        if(this.user.status == 'success') {
+          this.router.navigate(["/"]);
+        }else {
+          setTimeout(() => {
+            this.snackBar.open(this.user.status, "", {
+              duration: undefined,   
+                panelClass: ["warning"],
+                verticalPosition: "top",
+                horizontalPosition: 'center'
+            });
+          }); 
+        }
+        
     },
     error => {
       this.router.navigate(["/login"]);

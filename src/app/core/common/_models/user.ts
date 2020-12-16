@@ -7,5 +7,8 @@ export class User extends Common {
    empCode: string;
    rank: string;
    contactNumber: string;
-   purchaseOrdeData:any;
+   purchaseOrdeData: any;
+   currentusername: string;
+   currentpassword: string;
+   status: string;
 }
