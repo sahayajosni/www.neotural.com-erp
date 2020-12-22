@@ -35,7 +35,7 @@ import { SalesService } from "src/app/templates/modules/sales/services/sales.ser
 import { PurchaseService } from "src/app/templates/modules/purchase/services/purchase.service";
 import { FinanceService } from "src/app/templates/modules/finance/services/finance.service";
 import { StockService } from './templates/modules/stock/services/stock.service';
-
+import { UserManagementService } from "src/app/templates/modules/usermanagement/services/usermanagement.service";
 
 @NgModule({
   declarations: [
@@ -66,7 +66,7 @@ import { StockService } from './templates/modules/stock/services/stock.service';
     // NgbModal,
     // NgbModalConfig
   ],
-  providers: [AlertService, AuthenticationService, UserService,NgbModalConfig,
+  providers: [AlertService, AuthenticationService, UserService,NgbModalConfig,UserManagementService,
     NgxSpinnerService, NgbModal,SalesService,PurchaseService,FinanceService,StockService],
   bootstrap: [AppComponent]
 })

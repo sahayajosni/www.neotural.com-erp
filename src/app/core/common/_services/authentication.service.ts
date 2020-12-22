@@ -57,5 +57,10 @@ export class AuthenticationService {
     this.router.navigate(['/login']);
   }
 
+  getUser(invoice: string){
+    console.log("Invoice Number -->" + invoice);
+    return this.http.get<User>(`${environment.apiUrl}${"/auth/getUser?invoice="+invoice}`);
+  }
+
 }
   

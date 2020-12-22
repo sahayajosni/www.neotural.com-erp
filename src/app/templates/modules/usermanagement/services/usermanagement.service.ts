@@ -32,13 +32,11 @@ export class UserManagementService {
   }
 
   getMenu(menuCode: string){
-    console.log("Menu Code -->" + menuCode);
     return this.http.get<Usermgt>(
       `${environment.apiUrl}${API_ENDPOINTS.getMenuName}`+'?menuCode='+menuCode);
   }
 
   getSubMenu(submenuCode: string){
-    console.log("Sub Menu Code -->" + submenuCode);
     return this.http.get<Usermgt>(
       `${environment.apiUrl}${API_ENDPOINTS.getSubMenuName}`+'?submenuCode='+submenuCode);
   }

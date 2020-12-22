@@ -97,6 +97,7 @@ export class LoginComponent implements OnInit {
         this.authenticationService.setUserLoggedIn(true);
         if(this.user.status == 'success') {
           this.router.navigate(["/"]);
+          localStorage.setItem("invoiceNumber",this.user.invoiceNumber);
         }else {
           setTimeout(() => {
             this.snackBar.open(this.user.status, "", {
