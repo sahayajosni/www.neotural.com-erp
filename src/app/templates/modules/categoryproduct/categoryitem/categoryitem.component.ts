@@ -1600,8 +1600,12 @@ export class CategoryItemComponent implements OnInit {
         this.allproductlist = data;
         this.productfilterList = this.allproductlist;
         this.loadinggif=false;
-        this.productTable = true;
         console.log("Product length -->"+this.allproductlist.length);
+        if(this.allproductlist.length > 0){
+          this.productTable = true;
+        }else{
+          this.productTable = false;
+        }
         this.dataSource = new MatTableDataSource(this.allproductlist);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
